@@ -13,11 +13,9 @@ public class Triangle extends AbstractShape {
 
   @Override
   public IShape copy() {
-    IShape copy = new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),
+    return new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
-
-    return copy;
   }
 
 }

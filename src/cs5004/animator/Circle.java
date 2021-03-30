@@ -14,11 +14,9 @@ public class Circle extends AbstractShape {
 
   @Override
   public IShape copy() {
-    IShape copy = new Circle(this.name, this.color, this.radius,
+    return new Circle(this.name, this.color, this.radius,
             this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
-
-    return copy;
   }
 
 }

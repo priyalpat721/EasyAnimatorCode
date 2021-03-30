@@ -13,11 +13,9 @@ public class Rhombus extends AbstractShape {
 
   @Override
   public IShape copy() {
-    IShape copy = new Rhombus(this.name, this.color, this.getWidth(), this.getHeight(),
+    return new Rhombus(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
-
-    return copy;
   }
 
 }
