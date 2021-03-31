@@ -11,29 +11,16 @@ public abstract class AbstractShape implements IShape {
   protected double width;
   protected double height;
 
-  // Square
-  public AbstractShape(String name, RGB color, double length,
+  // Square and Circle
+  public AbstractShape(String name, RGB color, double size,
                        int x, int y, int startTime, int endTime) {
     this.name = name;
     this.color = color;
     this.position = new Position(x, y);
     this.totalTime = new Time(startTime, endTime);
 
-    this.length = length;
-    this.type = Shape.SQUARE;
   }
 
-  // Circle
-  public AbstractShape(String name, RGB color, double radius,
-                       int x, int y, int startTime, int endTime) {
-    this.name = name;
-    this.color = color;
-    this.position = new Position(x, y);
-    this.totalTime = new Time(startTime, endTime);
-
-    this.radius = radius;
-    this.type = Shape.CIRCLE;
-  }
 
   // Rectangle, Triangle, Rhombus, and Oval
   public AbstractShape(String name, RGB color, double width, double height,
