@@ -1,27 +1,27 @@
 package cs5004.animator;
 
 public class Position {
-  private int x;
-  private int y;
+  public double x;
+  public double y;
 
-  public Position(int x, int y) {
+  public Position(double x, double y) {
     this.x = x;
     this.y = y;
   }
 
-  public int getX() {
+  public double getX() {
     return this.x;
   }
 
-  public int getY() {
+  public double getY() {
     return this.y;
   }
 
-  public void setX(int newX) {
+  public void setX(double newX) {
     this.x = newX;
   }
 
-  public void setY(int newY) {
+  public void setY(double newY) {
     this.y = newY;
   }
 

@@ -10,7 +10,7 @@ public interface IShape {
 
   Position getPosition();
 
-  void setPosition(int newX, int newY);
+  void setPosition(double newX, double newY);
 
   RGB getColor();
 

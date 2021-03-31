@@ -13,7 +13,7 @@ public abstract class AbstractShape implements IShape {
 
   // The width is the radius of a circle and the length of a square
   public AbstractShape(String name, RGB color, double width, double height,
-                       int x, int y, int startTime, int endTime) {
+                       double x, double y, int startTime, int endTime) {
     if (width <= 0) {
       throw new IllegalArgumentException("Invalid width");
     } else if (height <= 0) {
@@ -50,7 +50,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setPosition(int newX, int newY) {
+  public void setPosition(double newX, double newY) {
     this.position.setX(newX);
     this.position.setY(newY);
   }
