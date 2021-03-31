@@ -3,8 +3,11 @@ package cs5004.animator;
 import java.util.HashMap;
 import java.util.List;
 
-public class AnimatorModelImpl implements IAnimatorModel{
-  private HashMap<String,IShape> logOfShapes;
+public class AnimatorModelImpl implements IAnimatorModel {
+  // all shapes created - originals
+  private HashMap<String, IShape> logOfShapes;
+
+
   private HashMap<String, List<IActions>> logOfActions;
   private List<IActions> shapeActions;
 
@@ -17,17 +20,14 @@ public class AnimatorModelImpl implements IAnimatorModel{
     }
 
     if (width < 0 || height < 0) {
-      throw new IllegalArgumentException ("The object's width or height cannot be negative");
+      throw new IllegalArgumentException("The object's width or height cannot be negative");
     }
 
     if (shape == Shape.CIRCLE) {
       logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
-    }
-
-    else if (shape == Shape.SQUARE) {
+    } else if (shape == Shape.SQUARE) {
       logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
-    }
-    if (shape == Shape.RECTANGLE) {
+    } else if (shape == Shape.RECTANGLE) {
       logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
     } else if (shape == Shape.TRIANGLE) {
       logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
@@ -41,7 +41,14 @@ public class AnimatorModelImpl implements IAnimatorModel{
   // create, move, change Color, scale,
   @Override
   public void addActionsToShape(String name, Action action) {
-
+    if (action == Action.CIRCLE) {
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
+    } else if (shape == Shape.SQUARE) {
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
+    } else if (shape == Shape.RECTANGLE) {
+      logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
+    } else if (shape == Shape.TRIANGLE) {
+      logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
   }
 
   @Override
