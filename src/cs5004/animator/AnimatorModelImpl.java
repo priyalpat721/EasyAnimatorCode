@@ -6,6 +6,8 @@ import java.util.List;
 public class AnimatorModelImpl implements IAnimatorModel{
   private HashMap<String,IShape> logOfShapes;
   private HashMap<String, List<IActions>> logOfActions;
+  private List<IActions> shapeActions;
+
 
   @Override
   public void createShapes(String name, Shape shape, RGB color,
@@ -36,8 +38,9 @@ public class AnimatorModelImpl implements IAnimatorModel{
     }
   }
 
+  // create, move, change Color, scale,
   @Override
-  public void addActionsToShape(IActions action) {
+  public void addActionsToShape(String name, Action action) {
 
   }
 
