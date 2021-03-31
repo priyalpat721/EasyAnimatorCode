@@ -50,4 +50,8 @@ public class RGB {
     this.blue = blue;
   }
 
+  public String toString() {
+    return red + " " + green + " " + blue;
+  }
+
 }
