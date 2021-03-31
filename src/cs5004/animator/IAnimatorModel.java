@@ -12,5 +12,4 @@ public interface IAnimatorModel {
   List<IShape> getShapesAtTicks(int tick);
 
 
-
 }
