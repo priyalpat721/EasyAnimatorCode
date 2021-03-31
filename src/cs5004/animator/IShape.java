@@ -14,7 +14,7 @@ public interface IShape {
 
   void setPosition(int newX, int newY);
 
-  Color getColor();
+  RGB getColor();
 
   void setColor(Color newColor);
 
