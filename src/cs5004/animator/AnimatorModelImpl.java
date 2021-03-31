@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AnimatorModelImpl implements IAnimatorModel{
-  private HashMap<String,IShape> logOfShapes;
+  private HashMap<String,IShape> logOfShapes; //list of all shapes created with current states
   private HashMap<String, List<IActions>> logOfActions;
   private List<IActions> shapeActions;
 
