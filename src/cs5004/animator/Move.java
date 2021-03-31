@@ -4,42 +4,43 @@ package cs5004.animator;
  * Action class for movement.
  */
 public class Move implements IActions{
-  private final double newX;
-  private final double newY;
-  private final int startTime;
-  private final int endTime;
+  private String name;
+  private double newX;
+  private double newY;
+  private Time time;
 
   public Move(String name, double newX, double newY
           , int startTime, int endTime) {
+    this.name = name;
     this.newX = newX;
     this.newY = newY;
-    this.startTime = startTime;
-    this.endTime = endTime;
+    this.time = new Time(startTime, endTime);
   }
 
 
   @Override
   public int getStartTime() {
-    return startTime;
+    return this.time.getStartTime();
   }
 
   @Override
   public int getEndTime() {
-    return endTime;
+    return this.time.getEndTime();
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
-    if (tick <= this.startTime) {
+    if (tick <= this.time.getStartTime()) {
       return shape.copy();
     }
 
-    else if( tick > endTime) {
+    else if( tick > this.time.getEndTime()) {
       return shape.actionMove(newX, newY);
     }
     double oldX = shape.getPosition().getX();
     double oldY = shape.getPosition().getY();
 
-    double percent = (tick - startTime) / (this.endTime - startTime);
+    double percent = (double) (tick - this.time.getStartTime()) /
+            (this.time.getEndTime() - this.time.getStartTime());
     // start time = 5, end time = 10
     // tick is 7
     // 7-5 / 10 -5 = 2/5 into program

@@ -1,35 +1,33 @@
 package cs5004.animator;
 
 public class ChangeColor implements IActions{
-  String name;
-  RGB newColor;
-  int startTime;
-  int endTime;
+  private String name;
+  private RGB newColor;
+  private Time time;
 
   public ChangeColor(String name, RGB newColor, int startTime, int endTime) {
     this.name = name;
     this.newColor = newColor;
-    this.startTime = startTime;
-    this.endTime = endTime;
+    this.time = new Time(startTime, endTime);
   }
 
   @Override
   public int getStartTime() {
-    return startTime;
+    return  this.time.getStartTime();
   }
 
   @Override
   public int getEndTime() {
-    return endTime;
+    return this.time.getEndTime();
   }
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
-    if (tick <= this.startTime) {
+    if (tick <= this.time.getStartTime()) {
       return shape.copy();
     }
 
-    else if( tick > endTime) {
+    else if( tick > this.time.getEndTime()) {
       return shape.actionColor(this.newColor);
     }
 
@@ -37,7 +35,9 @@ public class ChangeColor implements IActions{
     double oldG = shape.getColor().getGreen();
     double oldB = shape.getColor().getBlue();
 
-    double percent = (tick - startTime) / (this.endTime - startTime);
+    double percent = (double) (tick - this.time.getStartTime())
+            / (this.time.getEndTime() - this.time.getStartTime());
+
     // start time = 5, end time = 10
     // tick is 7
     // 7-5 / 10 -5 = 2/5 into program
