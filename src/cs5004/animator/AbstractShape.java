@@ -137,5 +137,33 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
+  public IShape actionMove(double x, double y) {
+    // make color copy to prevent mutation
+    return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
+            x, y,
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  public IShape actionColor(RGB color) {
+    return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+            this.getPosition().getX(), this.getPosition().getY(),
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  // scale
+  // make color copy to prevent mutation
+  public IShape actionMove(double x, double y, double width, double height) {
+    return new Rectangle(this.name, this.color, width, height, x, y,
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  // This needs to be redone. Maybe have a flag for visibility where if false = disappear,
+  // true = appear and the controller decides what to do based on the flag
+  // appear or disappear use a flag
+  public IShape actionMove() {
+    return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+            this.getPosition().getX(), this.getPosition().getY(),
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
 
 }

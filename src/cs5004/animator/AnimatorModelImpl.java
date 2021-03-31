@@ -44,14 +44,15 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void move(String name, double newX, double newY, int startTime, int endTime) {
-    IActions moved = new Move(name, newX, newY, startTime, endTime);
-    addActionsToShape(name, moved);
+    IActions newMove = new Move(name, newX, newY, startTime, endTime);
+    addActionsToShape(name, newMove);
   }
 
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
-
+    IActions changedColor = new ChangeColor(name, newColor, startTime, endTime);
+    addActionsToShape(name, changedColor);
   }
 
   @Override
@@ -76,7 +77,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   // one frame, tick 3 is the third frame
   // tick != seconds
-
   @Override
   public List<IShape> getShapesAtTicks(int tick) {
     // if time lapsed 10% (at time 1)

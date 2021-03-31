@@ -35,4 +35,6 @@ public interface IShape {
   IShape copy();
 
   IShape actionMove(double newX, double newY);
+
+  IShape actionColor(RGB newColor);
 }

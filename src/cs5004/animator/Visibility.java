@@ -13,4 +13,9 @@ public class Visibility implements IActions{
   public int getEndTime() {
     return 0;
   }
+
+  @Override
+  public IShape getShapeAtTick(int tick, IShape accumulatorShape) {
+    return null;
+  }
 }
