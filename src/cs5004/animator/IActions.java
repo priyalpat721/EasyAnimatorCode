@@ -5,4 +5,6 @@ public interface IActions {
   int getStartTime();
 
   int getEndTime();
+
+  IShape getShapeAtTick(int tick, IShape accumulatorShape);
 }

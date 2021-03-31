@@ -9,6 +9,8 @@ public class Rectangle extends AbstractShape {
     this.type = Shape.RECTANGLE;
   }
 
+  // use only oval and rectangle
+  // add to interface
   @Override
   public IShape copy() {
     return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
@@ -16,4 +18,30 @@ public class Rectangle extends AbstractShape {
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
+  public IShape actionMove(double x, double y) {
+    // make color copy to prevent mutation
+    return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
+            x, y,
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  public IShape actionMove(RGB color) {
+    return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+            this.getPosition().getX(), this.getPosition().getY(),
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  // scale
+  public IShape actionMove() {
+    return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+            this.getPosition().getX(), this.getPosition().getY(),
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
+
+  // appear or disappear use a flag
+  public IShape actionMove() {
+    return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+            this.getPosition().getX(), this.getPosition().getY(),
+            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+  }
 }
