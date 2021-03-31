@@ -16,12 +16,6 @@ public interface IShape {
 
   void setColor(RGB newColor);
 
-  // For circles and squares (radius and length)
-  double getSize();
-
-  void setSize(double newSize);
-
-  // For the rest
   double getWidth();
 
   double getHeight();
@@ -30,7 +24,14 @@ public interface IShape {
 
   void setHeight(double newHeight);
 
-  // For all
+  double getRadius();
+
+  void setRadius(double newRadius);
+
+  double getLength();
+
+  void setLength(double newLength);
+
   IShape copy();
 
 }
