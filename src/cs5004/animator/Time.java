@@ -5,8 +5,21 @@ public class Time {
   private int endTime;
 
   public Time(int startTime, int endTime) {
-    this.startTime = startTime;
-    this.endTime = endTime;
+    if (startTime > endTime) {
+      throw new IllegalArgumentException("Start time cannot be greater than end time.");
+    }
+    if (startTime < 0) {
+      throw new IllegalArgumentException("Start time cannot be negative.");
+    }
+    else {
+      this.startTime = startTime;
+    }
+    if (endTime < 0) {
+      throw new IllegalArgumentException("End time cannot be negative.");
+    }
+    else {
+      this.endTime = endTime;
+    }
   }
 
   public int getStartTime() {

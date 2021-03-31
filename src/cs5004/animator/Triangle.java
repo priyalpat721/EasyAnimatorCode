@@ -3,7 +3,7 @@ package cs5004.animator;
 public class Triangle extends AbstractShape {
 
   public Triangle(String name, RGB color, double width, double height,
-                  int x, int y, int startTime, int endTime) {
+                  double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);
 
     this.type = Shape.TRIANGLE;

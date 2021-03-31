@@ -21,20 +21,20 @@ public class AnimatorModelImpl implements IAnimatorModel{
     }
 
     if (shape == Shape.CIRCLE) {
-      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
     }
 
     else if (shape == Shape.SQUARE) {
-      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
     }
     if (shape == Shape.RECTANGLE) {
-      logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
     } else if (shape == Shape.TRIANGLE) {
-      logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
     } else if (shape == Shape.RHOMBUS) {
-      logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime));
     } else if (shape == Shape.OVAL) {
-      logOfShapes.put(name, new Oval(name, color, width, height, x, y, startTime, endTime);
+      logOfShapes.put(name, new Oval(name, color, width, height, x, y, startTime, endTime));
     }
   }
 

@@ -4,7 +4,7 @@ public class Circle extends AbstractShape {
 
 
   public Circle(String name, RGB color, double width, double height,
-                int x, int y, int startTime, int endTime) {
+                double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);
 
     this.radius = width;
