@@ -54,6 +54,6 @@ public class RGB {
     return red + " " + green + " " + blue;
   }
 
-  //This is a new comment
+
 
 }
