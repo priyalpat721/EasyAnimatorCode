@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface IAnimatorModel {
 
-  void createShapes(IShape shape, String name, RGB color, double size, double x, double y);
+  void createShapes(String name, Shape shape, RGB color,
+                    double width, double height, double x, double y);
 
   void addActionsToShape(IActions action);
 
