@@ -1,7 +1,5 @@
 package cs5004.animator;
 
-import java.awt.Color;
-
 public class Oval extends AbstractShape {
 
   public Oval(String name, RGB color, double width, double height,

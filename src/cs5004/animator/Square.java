@@ -1,7 +1,5 @@
 package cs5004.animator;
 
-import java.awt.Color;
-
 public class Square extends AbstractShape {
 
   public Square(String name, RGB color, double size,

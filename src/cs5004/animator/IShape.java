@@ -1,7 +1,5 @@
 package cs5004.animator;
 
-import java.awt.Color;
-
 public interface IShape {
 
   String getName();
