@@ -3,6 +3,13 @@ package cs5004.animator;
 public class Circle extends AbstractShape {
 
 
+  public Circle(String name, RGB color, double size,
+                int x, int y, int startTime, int endTime) {
+    super(name, color, size, x, y, startTime, endTime);
+
+    this.radius = size;
+    this.type = Shape.CIRCLE;
+  }
 
   @Override
   public IShape copy() {

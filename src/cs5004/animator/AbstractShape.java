@@ -14,6 +14,10 @@ public abstract class AbstractShape implements IShape {
   // Square and Circle
   public AbstractShape(String name, RGB color, double size,
                        int x, int y, int startTime, int endTime) {
+    if (size <= 0) {
+      throw new IllegalArgumentException("Invalid size");
+    }
+
     this.name = name;
     this.color = color;
     this.position = new Position(x, y);
@@ -25,6 +29,12 @@ public abstract class AbstractShape implements IShape {
   // Rectangle, Triangle, Rhombus, and Oval
   public AbstractShape(String name, RGB color, double width, double height,
                        int x, int y, int startTime, int endTime) {
+    if (width <= 0) {
+      throw new IllegalArgumentException("Invalid width");
+    } else if (height <= 0) {
+      throw new IllegalArgumentException("Invalid height");
+    }
+
     this.name = name;
     this.color = color;
     this.position = new Position(x, y);
