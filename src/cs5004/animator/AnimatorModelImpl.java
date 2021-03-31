@@ -9,7 +9,7 @@ public class AnimatorModelImpl implements IAnimatorModel{
 
   @Override
   public void createShapes(String name, Shape shape, RGB color,
-                           double width, double height, double x, double y) {
+                           double width, double height, double x, double y, int startTime, int endTime) {
     if (name == null || shape == null || color == null) {
       throw new IllegalArgumentException("The object's name, type or color cannot be empty");
     }
@@ -19,9 +19,21 @@ public class AnimatorModelImpl implements IAnimatorModel{
     }
 
     if (shape == Shape.CIRCLE) {
-      logOfShapes.put(name, new Circle())
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime);
     }
 
+    else if (shape == Shape.SQUARE) {
+      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime);
+    }
+    if (shape == Shape.RECTANGLE) {
+      logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime);
+    } else if (shape == Shape.TRIANGLE) {
+      logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime);
+    } else if (shape == Shape.RHOMBUS) {
+      logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime);
+    } else if (shape == Shape.OVAL) {
+      logOfShapes.put(name, new Oval(name, color, width, height, x, y, startTime, endTime);
+    }
   }
 
   @Override
