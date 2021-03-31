@@ -50,7 +50,4 @@ public class RGB {
     this.blue = blue;
   }
 
-  public double
-
-
 }
