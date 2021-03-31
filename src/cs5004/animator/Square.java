@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Square extends AbstractShape {
 
-  public Square(String name, Color color, double size,
+  public Square(String name, RGB color, double size,
                 int initX, int initY, int startTime, int endTime) {
     super(name, color, size, initX, initY, startTime, endTime);
 

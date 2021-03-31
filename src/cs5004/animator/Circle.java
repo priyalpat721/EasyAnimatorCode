@@ -1,10 +1,8 @@
 package cs5004.animator;
 
-import java.awt.Color;
-
 public class Circle extends AbstractShape {
 
-  public Circle(String name, Color color, double size,
+  public Circle(String name, RGB color, double size,
                 int initX, int initY, int startTime, int endTime) {
     super(name, color, size, initX, initY, startTime, endTime);
 

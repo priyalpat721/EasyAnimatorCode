@@ -1,20 +1,18 @@
 package cs5004.animator;
 
-import java.awt.Color;
-
 public abstract class AbstractShape implements IShape {
   protected String name;
   protected Shape type;
   protected Position position;
   protected Time totalTime;
-  protected Color color;
+  protected RGB color;
   protected double length;
   protected double radius;
   protected double width;
   protected double height;
 
   // Square and circle
-  public AbstractShape(String name, Color color, double size,
+  public AbstractShape(String name, RGB color, double size,
                        int x, int y, int startTime, int endTime) {
     this.name = name;
     this.color = color;
@@ -23,7 +21,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   // Rectangle, Triangle, Rhombus, and Oval
-  public AbstractShape(String name, Color color, double width, double height,
+  public AbstractShape(String name, RGB color, double width, double height,
                        int x, int y, int startTime, int endTime) {
     this.name = name;
     this.color = color;
@@ -61,12 +59,12 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Color getColor() {
+  public RGB getColor() {
     return this.color;
   }
 
   @Override
-  public void setColor(Color newColor) {
+  public void setColor(RGB newColor) {
     this.color = newColor;
   }
 

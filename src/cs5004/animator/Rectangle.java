@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Rectangle extends AbstractShape {
 
-  public Rectangle(String name, Color color, double width, double height,
+  public Rectangle(String name, RGB color, double width, double height,
                    int initX, int initY, int startTime, int endTime) {
     super(name, color, width, height, initX, initY, startTime, endTime);
 
