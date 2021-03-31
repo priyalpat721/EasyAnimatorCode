@@ -11,22 +11,7 @@ public abstract class AbstractShape implements IShape {
   protected double width;
   protected double height;
 
-  // Square and Circle
-  public AbstractShape(String name, RGB color, double size,
-                       int x, int y, int startTime, int endTime) {
-    if (size <= 0) {
-      throw new IllegalArgumentException("Invalid size");
-    }
-
-    this.name = name;
-    this.color = color;
-    this.position = new Position(x, y);
-    this.totalTime = new Time(startTime, endTime);
-
-  }
-
-
-  // Rectangle, Triangle, Rhombus, and Oval
+  // The width is the radius of a circle and the length of a square
   public AbstractShape(String name, RGB color, double width, double height,
                        int x, int y, int startTime, int endTime) {
     if (width <= 0) {
@@ -81,17 +66,6 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public double getSize() {
-    if (this.type == Shape.CIRCLE) {
-      return this.radius;
-    } else if (this.type == Shape.SQUARE) {
-      return this.length;
-    } else {
-      throw new IllegalArgumentException("Invalid shape");
-    }
-  }
-
-  @Override
   public double getWidth() {
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       return this.width;
@@ -110,17 +84,6 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setSize(double newSize) {
-    if (this.type == Shape.CIRCLE) {
-      this.radius = newSize;
-    } else if (this.type == Shape.SQUARE) {
-      this.length = newSize;
-    } else {
-      throw new IllegalArgumentException("Invalid shape");
-    }
-  }
-
-  @Override
   public void setWidth(double newWidth) {
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       this.width = newWidth;
@@ -133,6 +96,42 @@ public abstract class AbstractShape implements IShape {
   public void setHeight(double newHeight) {
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       this.height = newHeight;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public double getRadius() {
+    if (this.type == Shape.CIRCLE) {
+      return this.radius;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setRadius(double newRadius) {
+    if (this.type == Shape.CIRCLE) {
+      this.radius = newRadius;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public double getLength() {
+    if (this.type == Shape.SQUARE) {
+      return this.radius;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setLength(double newLength) {
+    if (this.type == Shape.SQUARE) {
+      this.length = newLength;
     } else {
       throw new IllegalArgumentException("Invalid shape");
     }
