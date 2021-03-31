@@ -14,7 +14,7 @@ public interface IShape {
 
   RGB getColor();
 
-  void setColor(Color newColor);
+  void setColor(RGB newColor);
 
   // For circles and squares (radius and length)
   double getSize();
