@@ -3,8 +3,8 @@ package cs5004.animator;
 public class Oval extends AbstractShape {
 
   public Oval(String name, RGB color, double width, double height,
-              int initX, int initY, int startTime, int endTime) {
-    super(name, color, width, height, initX, initY, startTime, endTime);
+              int x, int y, int startTime, int endTime) {
+    super(name, color, width, height, x, y, startTime, endTime);
 
     this.type = Shape.OVAL;
   }

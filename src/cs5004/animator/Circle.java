@@ -2,11 +2,14 @@ package cs5004.animator;
 
 public class Circle extends AbstractShape {
 
-  public Circle(String name, RGB color, double size,
-                int initX, int initY, int startTime, int endTime) {
-    super(name, color, size, initX, initY, startTime, endTime);
+  public Circle(String name, RGB color, double radius,
+                int x, int y, int startTime, int endTime) {
+    this.name = name;
+    this.color = color;
+    this.position = new Position(x, y);
+    this.totalTime = new Time(startTime, endTime);
 
-    this.radius = size;
+    this.radius = radius;
     this.type = Shape.CIRCLE;
   }
 

@@ -3,8 +3,8 @@ package cs5004.animator;
 public class Square extends AbstractShape {
 
   public Square(String name, RGB color, double size,
-                int initX, int initY, int startTime, int endTime) {
-    super(name, color, size, initX, initY, startTime, endTime);
+                int x, int y, int startTime, int endTime) {
+    super(name, color, size, x, y, startTime, endTime);
 
     this.length = size;
     this.type = Shape.SQUARE;
