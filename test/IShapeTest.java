@@ -315,11 +315,11 @@ public class IShapeTest {
   @Test
   public void testToString() {
     assertEquals("""
-            Name: I
-            Type: Circle
-            Center: (0.0,0.0) Radius: 10.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100""",circle.toString());
+       Name: I
+       Type: Circle
+       Center: (0.0,0.0) Radius: 10.0, Color: (1.0,1.0,1.0)
+       Appears at t=1
+       Disappears at t=100""",circle.toString());
     assertEquals("""
         Name: T
         Type: Triangle
