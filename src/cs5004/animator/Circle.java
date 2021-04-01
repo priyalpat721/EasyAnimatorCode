@@ -1,5 +1,10 @@
 package cs5004.animator;
 
+/**
+ * This class represents a Circle.
+ * It extends the abstract class AbstractShape.
+ * The circle is of type Shape.CIRCLE.
+ */
 public class Circle extends AbstractShape {
 
   public Circle(String name, RGB color, double width, double height,

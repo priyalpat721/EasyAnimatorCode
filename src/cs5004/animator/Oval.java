@@ -1,5 +1,10 @@
 package cs5004.animator;
 
+/**
+ * This class represents an Oval.
+ * It extends the abstract class AbstractShape.
+ * The circle is of type Shape.OVAL.
+ */
 public class Oval extends AbstractShape {
 
   public Oval(String name, RGB color, double width, double height,

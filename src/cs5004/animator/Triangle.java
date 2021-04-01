@@ -1,5 +1,10 @@
 package cs5004.animator;
 
+/**
+ * This class represents a Triangle.
+ * It extends the abstract class AbstractShape.
+ * The circle is of type Shape.TRIANGLE.
+ */
 public class Triangle extends AbstractShape {
 
   public Triangle(String name, RGB color, double width, double height,
