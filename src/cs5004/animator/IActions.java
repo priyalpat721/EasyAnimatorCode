@@ -8,5 +8,4 @@ public interface IActions {
 
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
 
-  String toString();
 }

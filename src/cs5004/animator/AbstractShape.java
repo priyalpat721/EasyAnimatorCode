@@ -127,7 +127,7 @@ public abstract class AbstractShape implements IShape {
     @Override
     public double getLength () {
       if (this.type == Shape.SQUARE) {
-        return this.radius;
+        return this.length;
       } else {
         throw new IllegalArgumentException("Invalid shape");
       }
@@ -141,4 +141,46 @@ public abstract class AbstractShape implements IShape {
         throw new IllegalArgumentException("Invalid shape");
       }
     }
+
+    public IShape actionMove ( double x, double y){
+      return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(), x, y,
+              this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+    }
+
+    public IShape actionColor (RGB color){
+      return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+              this.getPosition().getX(), this.getPosition().getY(),
+              this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+    }
+
+    public IShape actionScale ( double width, double height){
+      return new Rectangle(this.name, this.color, width, height,
+              this.getPosition().getX(), this.getPosition().getY(),
+              this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+    }
+
+    // This needs to be redone. Maybe have a flag for visibility where if false = disappear,
+    // true = appear and the controller decides what to do based on the flag
+    // appear or disappear use a flag
+    public IShape actionMove () {
+      return new Rectangle(this.name, color, this.getWidth(), this.getHeight(),
+              this.getPosition().getX(), this.getPosition().getY(),
+              this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+    }
+
+  //Name: R
+  //Type: rectangle
+  //Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+  //Appears at t=1
+  //Disappears at t=100
+
+  public String toString() {
+    return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Min corner: " + "("
+        + this.getPosition().getX() + "," + this.getPosition().getY() + "), "
+        + "Width: " + this.getWidth() + "," + "Height: " + this.getHeight()
+        + "Color: " + "(" + this.color + ")\n"
+        + "Appears at t=" + this.getTotalTime().getStartTime() + "\n"
+        + "Disappears at t=" + this.getTotalTime().getEndTime() + "\n";
+  }
+
   }
