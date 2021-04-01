@@ -17,20 +17,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public void createShape(String name, Shape shape, RGB color,
-                           double width, double height, double x, double y, int startTime, int endTime) {
-    if (name == null || shape == null || color == null) {
-      throw new IllegalArgumentException("The object's name, type or color cannot be empty");
-    }
-
-    if (width < 0 || height < 0) {
-      throw new IllegalArgumentException("The object's width or height cannot be negative");
-    }
-
+  public void createShape(String name, Shape shape, RGB color, double width, double height,
+                          double x, double y, int startTime, int endTime) {
     if (shape == Shape.CIRCLE) {
-      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.put(name, new Circle(name, color, width, width, x, y, startTime, endTime));
     } else if (shape == Shape.SQUARE) {
-      logOfShapes.put(name, new Circle(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.put(name, new Square(name, color, width, width, x, y, startTime, endTime));
     } else if (shape == Shape.RECTANGLE) {
       logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
     } else if (shape == Shape.TRIANGLE) {
