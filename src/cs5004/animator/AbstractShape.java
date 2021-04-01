@@ -175,7 +175,7 @@ public abstract class AbstractShape implements IShape {
   //Disappears at t=100
 
   public String toString() {
-    return "Name: " + this.name + "\n" + "Type: " + this.type + "\n" + "Min corner: " + "("
+    return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Min corner: " + "("
         + this.getPosition().getX() + "," + this.getPosition().getY() + "), "
         + "Width: " + this.getWidth() + "," + "Height: " + this.getHeight()
         + "Color: " + "(" + this.color + ")\n"
