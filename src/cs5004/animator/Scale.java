@@ -3,7 +3,7 @@ package cs5004.animator;
 /**
  * Action class for scaling.
  */
-public class Scale implements IActions {
+public class Scale implements IAction {
   private String name;
   private double newWidth;
   private double newHeight;

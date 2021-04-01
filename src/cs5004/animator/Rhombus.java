@@ -1,5 +1,10 @@
 package cs5004.animator;
 
+/**
+ * This class represents a Rhombus.
+ * It extends the abstract class AbstractShape.
+ * The circle is of type Shape.RHOMBUS.
+ */
 public class Rhombus extends AbstractShape {
 
   public Rhombus(String name, RGB color, double width, double height,
