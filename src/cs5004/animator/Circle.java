@@ -33,7 +33,7 @@ public class Circle extends AbstractShape {
   public String toString() {
     return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Center: "
         + this.position.toString() + " Radius: " + radius + ", " + "Color: " + this.color
-        + "\nAppears at t=" + this.getTotalTime().getStartTime()
-        + "\nDisappears at t=" + this.getTotalTime().getEndTime();
+        + "\nAppears at t=" + this.totalTime.getStartTime()
+        + "\nDisappears at t=" + this.totalTime.getEndTime();
   }
 }
