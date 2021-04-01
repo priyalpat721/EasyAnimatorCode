@@ -52,4 +52,6 @@ public class Move implements IActions{
     double currentY = (percent * (newY - oldY)) + oldY;
     return shape.actionMove(currentX, currentY);
   }
+
+
 }

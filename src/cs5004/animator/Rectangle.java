@@ -18,4 +18,5 @@ public class Rectangle extends AbstractShape {
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
+
 }
