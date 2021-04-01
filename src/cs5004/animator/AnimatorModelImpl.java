@@ -75,8 +75,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     logOfActions.put(name, shapeActions);
   }
 
-  // one frame, tick 3 is the third frame
-  // tick != seconds
+  // one frame, tick = 3 is the third frame
+  // tick != seconds -> 50 ticks per second
   @Override
   public List<IShape> getShapesAtTicks(int tick) {
     // if time lapsed 10% (at time 1)

@@ -37,4 +37,6 @@ public interface IShape {
   IShape actionMove(double newX, double newY);
 
   IShape actionColor(RGB newColor);
+
+  IShape actionScale(double newWidth, double newHeight);
 }

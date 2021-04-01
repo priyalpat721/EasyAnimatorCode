@@ -138,9 +138,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   public IShape actionMove(double x, double y) {
-    // make color copy to prevent mutation
-    return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
-            x, y,
+    return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(), x, y,
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
@@ -150,10 +148,9 @@ public abstract class AbstractShape implements IShape {
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
-  // scale
-  // make color copy to prevent mutation
-  public IShape actionMove(double x, double y, double width, double height) {
-    return new Rectangle(this.name, this.color, width, height, x, y,
+  public IShape actionScale(double width, double height) {
+    return new Rectangle(this.name, this.color, width, height,
+            this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 

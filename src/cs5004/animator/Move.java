@@ -33,7 +33,7 @@ public class Move implements IActions{
       return shape.copy();
     }
 
-    else if( tick > this.time.getEndTime()) {
+    else if(tick > this.time.getEndTime()) {
       return shape.actionMove(newX, newY);
     }
     double oldX = shape.getPosition().getX();
