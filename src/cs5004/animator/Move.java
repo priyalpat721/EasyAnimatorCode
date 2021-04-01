@@ -53,10 +53,10 @@ public class Move implements IAction {
       copy.setPosition(newX, newY);
       return copy;
     }
-    else {
+    else  {
       oldX = shape.getPosition().getX();
       oldY = shape.getPosition().getY();
-    } else {
+
       double oldX = shape.getPosition().getX();
       double oldY = shape.getPosition().getY();
 
