@@ -78,5 +78,9 @@ public interface IAnimatorModel {
    */
   List<IShape> getShapesAtTicks(int tick);
 
-
+  /**
+   * A formatted representation of the modelImpl as a string.
+   * @return a formatted string.
+   */
+  String toString();
 }

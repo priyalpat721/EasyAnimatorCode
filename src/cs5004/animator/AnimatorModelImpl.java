@@ -9,6 +9,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
   private HashMap<String, List<IAction>> logOfActions;
   private List<IAction> shapeActions;
+  // chronological order of actions for toString method
   private List<IAction> chronologicalOrderOfActions;
 
   public AnimatorModelImpl() {
@@ -93,5 +94,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
 
     return frameOfShapes;
+  }
+
+  @Override
+  public String toString() {
+    return null;
   }
 }
