@@ -17,7 +17,6 @@ public class Move implements IActions{
     this.time = new Time(startTime, endTime);
   }
 
-
   @Override
   public int getStartTime() {
     return this.time.getStartTime();
@@ -29,38 +28,28 @@ public class Move implements IActions{
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
+    IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
-      return shape.copy();
+      return copy;
     }
 
     else if(tick > this.time.getEndTime()) {
-      return shape.actionMove(newX, newY);
+      copy.setPosition(newX, newY);
+      return copy;
     }
-    double oldX = shape.getPosition().getX();
-    double oldY = shape.getPosition().getY();
+    else {
+      double oldX = shape.getPosition().getX();
+      double oldY = shape.getPosition().getY();
 
-    double percent = (double) (tick - this.time.getStartTime()) /
-            (this.time.getEndTime() - this.time.getStartTime());
-    // start time = 5, end time = 10
-    // tick is 7
-    // 7-5 / 10 -5 = 2/5 into program
+      double percent = (double) (tick - this.time.getStartTime()) /
+              (this.time.getEndTime() - this.time.getStartTime());
 
-    // 0, 10 to 10, 10
-    // 2/5 * 10 + 0 = 4 for x
-    // 2/5 * 0 + 10 = 10 for y
-    IShape copy = shape.copy();
+      double currentX = (percent * (newX - oldX)) + oldX;
+      double currentY = (percent * (newY - oldY)) + oldY;
 
-    double currentX = (percent * (newX - oldX)) + oldX;
-    double currentY = (percent * (newY - oldY)) + oldY;
+      copy.setPosition(currentX, currentY);
 
-    copy.setPosition(currentX, currentY);
-
-    return copy;
-
-    //return shape.actionMove(currentX, currentY);
+      return copy;
+    }
   }
-
-
-
-
 }

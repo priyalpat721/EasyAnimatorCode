@@ -23,35 +23,31 @@ public class ChangeColor implements IActions{
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
+    IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();
     }
 
     else if( tick > this.time.getEndTime()) {
-      return shape.actionColor(this.newColor);
+      copy.setColor(newColor);
+      return copy;
     }
 
-    double oldR = shape.getColor().getRed();
-    double oldG = shape.getColor().getGreen();
-    double oldB = shape.getColor().getBlue();
+    else {
+      double oldR = shape.getColor().getRed();
+      double oldG = shape.getColor().getGreen();
+      double oldB = shape.getColor().getBlue();
 
-    double percent = (double) (tick - this.time.getStartTime())
-            / (this.time.getEndTime() - this.time.getStartTime());
+      double percent = (double) (tick - this.time.getStartTime())
+              / (this.time.getEndTime() - this.time.getStartTime());
 
-    // start time = 5, end time = 10
-    // tick is 7
-    // 7-5 / 10 -5 = 2/5 into program
+      double currentR = (percent * (newColor.getRed() - oldR)) + oldR;
+      double currentG = (percent * (newColor.getBlue() - oldB)) + oldB;
+      double currentB = (percent * (newColor.getGreen() - oldG)) + oldG;
 
-    // 0, 0, 0 to 255, 255, 255
-    // 2/5 * 255 + 0 = 102 for r
-    // 2/5 * 255 + 0 = 102 for g
-    // 2/5 * 255 + 0 = 102 for g
-
-    double currentR = (percent * (newColor.getRed() - oldR)) + oldR;
-    double currentG = (percent * (newColor.getBlue() - oldB)) + oldB;
-    double currentB = (percent * (newColor.getGreen() - oldG)) + oldG;
-
-    return shape.actionColor(new RGB(currentR, currentG, currentB));
+      copy.setColor(new RGB(currentR, currentG, currentB));
+      return copy;
+    }
   }
 
 }

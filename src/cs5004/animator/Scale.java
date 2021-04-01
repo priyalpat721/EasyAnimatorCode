@@ -29,24 +29,25 @@ public class Scale implements IActions {
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
+    IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();
     } else if (tick > this.getEndTime()) {
-      return shape.actionScale(newWidth, newHeight);
+      copy.setWidth(newWidth);
+      copy.setHeight(newHeight);
+      return copy;
     }
 
     double oldWidth = shape.getWidth();
     double oldHeight = shape.getHeight();
-
-    // start frame = 2 end frame = 10 | 2 --4------ 10
-    // frame 4
-    // tick - startTime / endTime - startTime = 0.25
 
     double percent = (double) (tick - this.time.getStartTime()) /
             (this.time.getEndTime() - this.time.getStartTime());
 
     double currentWidth = (percent * (newWidth - oldWidth) + oldWidth);
     double currentHeight = (percent * (newHeight - oldHeight) + oldHeight);
-    return shape.actionScale(currentWidth, currentHeight);
+    copy.setWidth(currentWidth);
+    copy.setHeight(currentHeight);
+    return copy;
   }
 }
