@@ -158,18 +158,13 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
-  //Name: R
-  //Type: rectangle
-  //Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
-  //Appears at t=1
-  //Disappears at t=100
   public String toString() {
-    return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Min corner: " + "("
-        + this.getPosition().getX() + "," + this.getPosition().getY() + "), "
-        + "Width: " + this.getWidth() + "," + "Height: " + this.getHeight()
-        + "Color: " + "(" + this.color + ")\n"
-        + "Appears at t=" + this.getTotalTime().getStartTime() + "\n"
-        + "Disappears at t=" + this.getTotalTime().getEndTime() + "\n";
+    return String.format("Name: %s" + "\nType: %s" + "\nMin corner: (%.1f,%.1f), "
+        + "Width: %.1f, Height: %.1f, Color: " + this.color + "\nAppears at t="
+            + this.getTotalTime().getStartTime()
+        + "\nDisappears at t=" + this.getTotalTime().getEndTime(),
+        this.name, this.type.toString(), this.getPosition().getX(), this.getPosition().getY(),
+        this.getWidth(), this.getHeight());
   }
 
 }

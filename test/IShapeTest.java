@@ -312,4 +312,44 @@ public class IShapeTest {
     assertEquals(60, newRectangle.getPosition().getY(), 0.01);
   }
 
+  @Test
+  public void testToString() {
+    assertEquals("""
+            Name: I
+            Type: Circle
+            Center: (0.0,0.0) Radius: 10.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100""",circle.toString());
+    assertEquals("""
+        Name: T
+        Type: Triangle
+        Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
+        Appears at t=1
+        Disappears at t=50""",triangle.toString());
+    assertEquals("""
+        Name: S
+        Type: Square
+        Min corner: (0.0,0.0) Length: 40.0, Color: (0.0,1.0,0.0)
+        Appears at t=10
+        Disappears at t=100""",square.toString());
+    assertEquals("""
+        Name: R
+        Type: Rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+        Appears at t=1
+        Disappears at t=100""",rectangle.toString());
+    assertEquals("""
+        Name: H
+        Type: Rhombus
+        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+        Appears at t=1
+        Disappears at t=80""", rhombus.toString());
+    assertEquals("""
+        Name: C
+        Type: Oval
+        Min corner: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
+        Appears at t=6
+        Disappears at t=100""", oval.toString());
+  }
+
 }
