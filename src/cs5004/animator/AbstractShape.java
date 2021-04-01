@@ -1,12 +1,9 @@
 package cs5004.animator;
 
 /**
- * This class represents a shape.
- * It implements the interface IShape.
- * A shape has a name, a type, a position, a total time of existence, and a color.
- * If the shape is a square, it has a length.
- * If the shape is a circle, it has a radius.
- * Else, the shape has a width and a height.
+ * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
+ * position, a total time of existence, and a color. If the shape is a square, it has a length. If
+ * the shape is a circle, it has a radius. Else, the shape has a width and a height.
  */
 public abstract class AbstractShape implements IShape {
   protected String name;
@@ -20,30 +17,34 @@ public abstract class AbstractShape implements IShape {
   protected double height;
 
   /**
-   * Constructs an IShape object.
-   * If the shape to construct is a circle or a square, the width and height are equal.
-   * They represent the radius and the length respectively.
-   * The type field is initialized in the concrete class of the shape.
-   * @param name the name of the shape.
-   * @param color the color of the shape.
-   * @param width the width of the shape.
-   * @param height the height of the shape.
-   * @param x the X position of the shape.
-   * @param y the Y position of the shape.
+   * Constructs an IShape object. If the shape to construct is a circle or a square, the width and
+   * height are equal. They represent the radius and the length respectively. The type field is
+   * initialized in the concrete class of the shape.
+   *
+   * @param name      the name of the shape.
+   * @param color     the color of the shape.
+   * @param width     the width of the shape.
+   * @param height    the height of the shape.
+   * @param x         the X position of the shape.
+   * @param y         the Y position of the shape.
    * @param startTime the start time of existence of the shape.
-   * @param endTime the end time of existence of the shape.
+   * @param endTime   the end time of existence of the shape.
    */
   public AbstractShape(String name, RGB color, double width, double height,
                        double x, double y, int startTime, int endTime) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
-    } else if (name.isBlank()) {
+    }
+    if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
     }
-
+    if (color == null) {
+      throw new IllegalArgumentException("Color cannot be null");
+    }
     if (width <= 0) {
       throw new IllegalArgumentException("Invalid width");
-    } else if (height <= 0) {
+    }
+    if (height <= 0) {
       throw new IllegalArgumentException("Invalid height");
     }
 
@@ -82,12 +83,15 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public RGB getColor () {
+  public RGB getColor() {
     return this.color;
   }
 
   @Override
   public void setColor(RGB newColor) {
+    if (newColor == null) {
+      throw new IllegalArgumentException("Color cannot be null");
+    }
     this.color = newColor;
   }
 
@@ -110,7 +114,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setWidth (double newWidth) {
+  public void setWidth(double newWidth) {
     if (newWidth <= 0) {
       throw new IllegalArgumentException("New width cannot be negative");
     }
@@ -123,7 +127,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setHeight (double newHeight) {
+  public void setHeight(double newHeight) {
     if (newHeight <= 0) {
       throw new IllegalArgumentException("New height cannot be negative");
     }
@@ -136,7 +140,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public double getRadius () {
+  public double getRadius() {
     if (this.type == Shape.CIRCLE) {
       return this.radius;
     } else {
@@ -145,7 +149,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setRadius ( double newRadius){
+  public void setRadius(double newRadius) {
     if (newRadius <= 0) {
       throw new IllegalArgumentException("New radius cannot be negative");
     }
@@ -158,7 +162,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public double getLength () {
+  public double getLength() {
     if (this.type == Shape.SQUARE) {
       return this.length;
     } else {
@@ -167,7 +171,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setLength ( double newLength){
+  public void setLength(double newLength) {
     if (newLength <= 0) {
       throw new IllegalArgumentException("New length cannot be negative");
     }
@@ -182,12 +186,12 @@ public abstract class AbstractShape implements IShape {
   @Override
   public String toString() {
     return "Name: " + this.name + "\n"
-        + "Type: " + this.type.toString() + "\n"
-        + "Min corner: " + this.position.toString()
-        + ", Width: " + this.width + ", Height: " + this.height
-        + ", Color: " + this.color.toString() + "\n"
-        + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-        + "Disappears at t=" + this.totalTime.getEndTime();
+            + "Type: " + this.type.toString() + "\n"
+            + "Min corner: " + this.position.toString()
+            + ", Width: " + this.width + ", Height: " + this.height
+            + ", Color: " + this.color.toString() + "\n"
+            + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+            + "Disappears at t=" + this.totalTime.getEndTime();
   }
 
 }

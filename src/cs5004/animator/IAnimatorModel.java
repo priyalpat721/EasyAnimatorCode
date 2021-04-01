@@ -17,8 +17,8 @@ public interface IAnimatorModel {
    *                  same.
    * @param height    the height of the shape. For squares and circles, the width and height are the
    *                  same.
-   * @param x         the shape's bottom left corner's x coordinates.
-   * @param y         the shape's bottom left corner's y coordinates.
+   * @param x         the shape's top left corner's x coordinates.
+   * @param y         the shape's top left corner's y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    */
@@ -29,8 +29,8 @@ public interface IAnimatorModel {
    * Moves an object by the specified new x and new y coordinates.
    *
    * @param name      name of the shape that is associated with a specific type of shape.
-   * @param newX      the shape's bottom left corner's new x coordinates.
-   * @param newY      the shape's bottom left corner's new y coordinates.
+   * @param newX      the shape's top left corner's new x coordinates.
+   * @param newY      the shape's top left corner's new y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    */

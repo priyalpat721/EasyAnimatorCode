@@ -11,6 +11,15 @@ public class Scale implements IAction {
 
 
   public Scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+    if (newWidth <= 0 || newHeight <= 0) {
+      throw new IllegalArgumentException("Width or height cannot be negative or zero");
+    }
     this.name = name;
     this.newHeight = newHeight;
     this.newWidth = newWidth;
@@ -29,6 +38,12 @@ public class Scale implements IAction {
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
+    if (tick < 0) {
+      throw new IllegalArgumentException("Ticks cannot be negative");
+    }
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape cannot be null");
+    }
     IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();

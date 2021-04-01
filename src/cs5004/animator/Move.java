@@ -11,6 +11,16 @@ public class Move implements IAction {
 
   public Move(String name, double newX, double newY
           , int startTime, int endTime) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+    if (newX < 0 || newY < 0) {
+      throw new IllegalArgumentException("Coordinates cannot be negative");
+    }
+
     this.name = name;
     this.newX = newX;
     this.newY = newY;
@@ -28,16 +38,19 @@ public class Move implements IAction {
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
+    if (tick < 0) {
+      throw new IllegalArgumentException("Ticks cannot be negative");
+    }
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape cannot be null");
+    }
     IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return copy;
-    }
-
-    else if(tick > this.time.getEndTime()) {
+    } else if (tick > this.time.getEndTime()) {
       copy.setPosition(newX, newY);
       return copy;
-    }
-    else {
+    } else {
       double oldX = shape.getPosition().getX();
       double oldY = shape.getPosition().getY();
 

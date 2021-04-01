@@ -9,6 +9,15 @@ public class ChangeColor implements IAction{
   private Time time;
 
   public ChangeColor(String name, RGB newColor, int startTime, int endTime) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+    if (newColor == null) {
+      throw new IllegalArgumentException("Color cannot be null");
+    }
     this.name = name;
     this.newColor = newColor;
     this.time = new Time(startTime, endTime);
@@ -26,6 +35,12 @@ public class ChangeColor implements IAction{
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
+    if (tick < 0) {
+      throw new IllegalArgumentException("Ticks cannot be negative");
+    }
+    if (shape == null) {
+      throw new IllegalArgumentException("Shape cannot be null");
+    }
     IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();

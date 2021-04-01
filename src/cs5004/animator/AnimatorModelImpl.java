@@ -9,11 +9,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
   private HashMap<String, List<IAction>> logOfActions;
   private List<IAction> shapeActions;
+  private List<IAction> chronologicalOrderOfActions;
 
   public AnimatorModelImpl() {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.shapeActions = new LinkedList<>();
+    this.chronologicalOrderOfActions = new LinkedList<>();
   }
 
   @Override
@@ -38,45 +40,52 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IAction newMove = new Move(name, newX, newY, startTime, endTime);
     addActionToShape(name, newMove);
+    chronologicalOrderOfActions.add(newMove);
   }
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
     IAction newChangeColor = new ChangeColor(name, newColor, startTime, endTime);
     addActionToShape(name, newChangeColor);
+    chronologicalOrderOfActions.add(newChangeColor);
   }
 
   @Override
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
-
+    IAction newScale = new Scale(name, newWidth, newHeight, startTime, endTime);
+    addActionToShape(name, newScale);
+    chronologicalOrderOfActions.add(newScale);
   }
 
   // adds any action
   public void addActions(String name, IAction actions) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+    if (actions == null) {
+      throw new IllegalArgumentException("Actions cannot be null");
+    }
     addActionToShape(name, actions);
+    chronologicalOrderOfActions.add(actions);
   }
 
   // create, move, change Color, scale
   private void addActionToShape(String name, IAction action) {
-    if (action == null || name.equals("")) {
-      throw new IllegalArgumentException("Not a valid action");
-    }
     shapeActions.add(action);
     logOfActions.put(name, shapeActions);
   }
 
-  // one frame, tick = 3 is the third frame
-  // tick != seconds -> 50 ticks per second
   @Override
   public List<IShape> getShapesAtTicks(int tick) {
-    // if time lapsed 10% (at time 1)
-    // action proportional to time
     List<IShape> frameOfShapes = new LinkedList<>();
 
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       IShape accumulatorShape = objects.getValue().copy();
 
-      for(IAction actions : logOfActions.get(objects.getKey())) {
+      for (IAction actions : logOfActions.get(objects.getKey())) {
         accumulatorShape = actions.getShapeAtTick(tick, accumulatorShape);
       }
 
