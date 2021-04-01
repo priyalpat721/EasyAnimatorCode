@@ -37,14 +37,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IAction newMove = new Move(name, newX, newY, startTime, endTime);
-    addActionsToShape(name, newMove);
-    }
-
+    addActionToShape(name, newMove);
+  }
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
-    IAction changedColor = new ChangeColor(name, newColor, startTime, endTime);
-    addActionsToShape(name, changedColor);
+    IAction newChangeColor = new ChangeColor(name, newColor, startTime, endTime);
+    addActionToShape(name, newChangeColor);
   }
 
   @Override
@@ -54,11 +53,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   // adds any action
   public void addActions(String name, IAction actions) {
-    addActionsToShape(name, actions);
+    addActionToShape(name, actions);
   }
 
   // create, move, change Color, scale
-  private void addActionsToShape(String name, IAction action) {
+  private void addActionToShape(String name, IAction action) {
     if (action == null || name.equals("")) {
       throw new IllegalArgumentException("Not a valid action");
 
