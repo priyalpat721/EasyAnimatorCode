@@ -7,11 +7,11 @@ public class RGB {
 
   public RGB(double red, double green, double blue) {
     if (red < 0 || red > 255) {
-      throw new IllegalArgumentException("Red has to be within 0-255 range.");
+      throw new IllegalArgumentException("Red has to be within 0-255 range");
     } else if (green < 0 || green > 255) {
-      throw new IllegalArgumentException("Green has to be within 0-255 range.");
+      throw new IllegalArgumentException("Green has to be within 0-255 range");
     } else if (blue < 0 || blue > 255) {
-      throw new IllegalArgumentException("Blue has to be within 0-255 range.");
+      throw new IllegalArgumentException("Blue has to be within 0-255 range");
     }
 
       this.red = red;
@@ -31,16 +31,28 @@ public class RGB {
     return blue;
   }
 
-  public void setRed(double red) {
-    this.red = red;
+  public void setRed(double newRed) {
+    if (newRed < 0 || newRed > 255) {
+      throw new IllegalArgumentException("New red has to be within 0-255 range");
+    }
+
+    this.red = newRed;
   }
 
-  public void setGreen(double green) {
-    this.green = green;
+  public void setGreen(double newGreen) {
+    if (newGreen < 0 || newGreen > 2500) {
+      throw new IllegalArgumentException("New green has to be within 0-255 range");
+    }
+
+    this.green = newGreen;
   }
 
-  public void setBlue(double blue) {
-    this.blue = blue;
+  public void setBlue(double newBlue) {
+    if (newBlue < 0 || newBlue > 2500) {
+      throw new IllegalArgumentException("New blue has to be within 0-255 range");
+    }
+
+    this.blue = newBlue;
   }
 
   public String toString() {
