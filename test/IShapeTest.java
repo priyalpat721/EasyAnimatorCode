@@ -42,6 +42,24 @@ public class IShapeTest {
             2, 2, 1, 80);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalName() {
+    IShape r1 = new Rectangle(" ", new RGB(1, 0, 0), 50, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalWidth() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), -50, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalHeight() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, -100,
+            200, 200, 1, 100);
+  }
+
   @Test
   public void testGetName() {
     assertEquals("R", rectangle.getName());
@@ -67,12 +85,36 @@ public class IShapeTest {
     assertEquals(100, oval.getTotalTime().getEndTime());
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalStartTime() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, 200, -1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalEndTime() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, 200, 1, -100);
+  }
+
   @Test
   public void testGetPosition() {
     assertEquals(200, rectangle.getPosition().getX(), 0.01);
     assertEquals(200, rectangle.getPosition().getY(), 0.01);
     assertEquals(500, oval.getPosition().getX(), 0.01);
     assertEquals(100, oval.getPosition().getY(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalX() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            -200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalY() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, -200, 1, 100);
   }
 
   @Test
@@ -82,11 +124,39 @@ public class IShapeTest {
     assertEquals(100, rectangle.getPosition().getY(), 0.01);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetPositionX() {
+    rectangle.setPosition(-100, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetPositionY() {
+    rectangle.setPosition(100, -100);
+  }
+
   @Test
   public void testGetColor() {
     assertEquals(1, rectangle.getColor().getRed(), 0.01);
     assertEquals(0, rectangle.getColor().getGreen(), 0.01);
     assertEquals(0, rectangle.getColor().getBlue(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalColorR() {
+    IShape r1 = new Rectangle("R", new RGB(-1, 0, 0), 50, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalColorG() {
+    IShape r1 = new Rectangle("R", new RGB(1, -1, 0), 50, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalColorB() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 256), 50, 100,
+            200, 200, 1, 100);
   }
 
   @Test
@@ -95,6 +165,21 @@ public class IShapeTest {
     assertEquals(2, rectangle.getColor().getRed(), 0.01);
     assertEquals(2, rectangle.getColor().getGreen(), 0.01);
     assertEquals(2, rectangle.getColor().getBlue(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetColorR() {
+    rectangle.setColor(new RGB(-1, 0, 0));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetColorG() {
+    rectangle.setColor(new RGB(1, 256, 0));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetColorB() {
+    rectangle.setColor(new RGB(1, 255, -1));
   }
 
   @Test

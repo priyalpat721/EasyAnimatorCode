@@ -31,30 +31,6 @@ public class RGB {
     return blue;
   }
 
-  public void setRed(double newRed) {
-    if (newRed < 0 || newRed > 255) {
-      throw new IllegalArgumentException("New red has to be within 0-255 range");
-    }
-
-    this.red = newRed;
-  }
-
-  public void setGreen(double newGreen) {
-    if (newGreen < 0 || newGreen > 2500) {
-      throw new IllegalArgumentException("New green has to be within 0-255 range");
-    }
-
-    this.green = newGreen;
-  }
-
-  public void setBlue(double newBlue) {
-    if (newBlue < 0 || newBlue > 2500) {
-      throw new IllegalArgumentException("New blue has to be within 0-255 range");
-    }
-
-    this.blue = newBlue;
-  }
-
   public String toString() {
     return String.format("(%.1f,%.1f,%.1f)", this.red, this.green, this.blue);
   }

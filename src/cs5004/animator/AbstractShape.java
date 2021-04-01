@@ -14,16 +14,17 @@ public abstract class AbstractShape implements IShape {
   // The width is the radius of a circle and the length of a square
   public AbstractShape(String name, RGB color, double width, double height,
                        double x, double y, int startTime, int endTime) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    } else if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+
     if (width <= 0) {
       throw new IllegalArgumentException("Invalid width");
     } else if (height <= 0) {
       throw new IllegalArgumentException("Invalid height");
-    } else if (startTime < 0) {
-      throw new IllegalArgumentException("Invalid start time");
-    } else if (endTime < 0) {
-      throw new IllegalArgumentException("Invalid end time");
     }
-
 
     this.name = name;
     this.color = color;
@@ -55,9 +56,8 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setPosition ( double newX, double newY){
-    this.position.setX(newX);
-    this.position.setY(newY);
+  public void setPosition (double newX, double newY) {
+    this.position = new Position(newX, newY);
   }
 
   @Override
@@ -89,7 +89,11 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setWidth ( double newWidth){
+  public void setWidth (double newWidth) {
+    if (newWidth < 0) {
+      throw new IllegalArgumentException("New width cannot be negative");
+    }
+
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       this.width = newWidth;
     } else {
@@ -99,6 +103,10 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setHeight ( double newHeight){
+    if (newHeight < 0) {
+      throw new IllegalArgumentException("New width cannot be negative");
+    }
+
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       this.height = newHeight;
     } else {

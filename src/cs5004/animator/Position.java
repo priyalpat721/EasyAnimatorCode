@@ -23,22 +23,6 @@ public class Position {
     return this.y;
   }
 
-  public void setX(double newX) {
-    if (x < 0) {
-      throw new IllegalArgumentException("X cannot be less than zero");
-    }
-
-    this.x = newX;
-  }
-
-  public void setY(double newY) {
-    if (y < 0) {
-      throw new IllegalArgumentException("Y cannot be less than zero");
-    }
-
-    this.y = newY;
-  }
-
   public String toString() {
     return String.format("(%.1f,%.1f)", this.x, this.y);
   }
