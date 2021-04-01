@@ -179,6 +179,7 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
+  @Override
   public String toString() {
     return "Name: " + this.name + "\n"
         + "Type: " + this.type.toString() + "\n"

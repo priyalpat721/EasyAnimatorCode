@@ -322,25 +322,25 @@ public class IShapeTest {
        Type: Circle
        Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
        Appears at t=1
-       Disappears at t=100""",circle.toString());
+       Disappears at t=100""", circle.toString());
     assertEquals("""
         Name: T
         Type: Triangle
         Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
         Appears at t=1
-        Disappears at t=50""",triangle.toString());
+        Disappears at t=50""", triangle.toString());
     assertEquals("""
         Name: S
         Type: Square
         Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
         Appears at t=10
-        Disappears at t=100""",square.toString());
+        Disappears at t=100""", square.toString());
     assertEquals("""
         Name: R
         Type: Rectangle
         Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
         Appears at t=1
-        Disappears at t=100""",rectangle.toString());
+        Disappears at t=100""", rectangle.toString());
     assertEquals("""
         Name: H
         Type: Rhombus
