@@ -73,6 +73,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
     // if time lapsed 10% (at time 1)
     // action proportional to time
     List<IShape> frameOfShapes = new LinkedList<>();
+
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       IShape accumulatorShape = objects.getValue().copy();
 
