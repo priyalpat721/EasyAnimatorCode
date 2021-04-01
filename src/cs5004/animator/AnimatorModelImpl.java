@@ -69,7 +69,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private void addActionsToShape(String name, IAction action) {
     if (action == null || name.equals("")) {
       throw new IllegalArgumentException("Not a valid action");
-
     }
     shapeActions.add(action);
     logOfActions.put(name, shapeActions);

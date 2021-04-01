@@ -3,7 +3,7 @@ package cs5004.animator;
 /**
  * Action class for color change.
  */
-public class ChangeColor implements IActions{
+public class ChangeColor implements IAction{
   private String name;
   private RGB newColor;
   private Time time;
