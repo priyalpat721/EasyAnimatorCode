@@ -1,5 +1,12 @@
 package cs5004.animator;
 
+/**
+ * This class represents a shape.
+ * A shape has a name, a type, a position, a total time of existence, and a color.
+ * If the shape is a square, it has a length.
+ * If the shape is a circle, it has a radius.
+ * Else, the shape has a width and a height.
+ */
 public abstract class AbstractShape implements IShape {
   protected String name;
   protected Shape type;
@@ -11,7 +18,20 @@ public abstract class AbstractShape implements IShape {
   protected double width;
   protected double height;
 
-  // The width is the radius of a circle and the length of a square
+  /**
+   * Constructs a new shape.
+   * If the shape to construct is a circle, the width represents the radius.
+   * If the shape to construct is a square, the width represents the length.
+   * The type field is initialized in the concrete class of the shape.
+   * @param name the name of the shape.
+   * @param color the color of the shape.
+   * @param width the width of the shape.
+   * @param height the height of the shape.
+   * @param x the X position of the shape.
+   * @param y the Y position of the shape.
+   * @param startTime the start time of existence of the shape.
+   * @param endTime the end time of existence of the shape.
+   */
   public AbstractShape(String name, RGB color, double width, double height,
                        double x, double y, int startTime, int endTime) {
     if (name == null) {
