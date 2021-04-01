@@ -38,7 +38,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IAction newMove = new Move(name, newX, newY, startTime, endTime);
     addActionsToShape(name, newMove);
-  }
+    }
 
 
   @Override
