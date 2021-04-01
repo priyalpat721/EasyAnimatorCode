@@ -25,4 +25,7 @@ public interface IAction {
    * @return
    */
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
+
+  String toString();
+
 }
