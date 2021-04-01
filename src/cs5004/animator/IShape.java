@@ -53,10 +53,4 @@ public interface IShape {
   void setLength(double newLength);
 
   IShape copy();
-
-  IShape actionMove(double newX, double newY);
-
-  IShape actionColor(RGB newColor);
-
-  IShape actionScale(double newWidth, double newHeight);
 }
