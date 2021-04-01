@@ -5,11 +5,9 @@ package cs5004.animator;
  */
 public class Move implements IAction {
   private String name;
-  private double newX;
-  private double newY;
+  private Position newPosition;
   private Time time;
-  double oldX;
-  double oldY;
+  private Position oldPosition;
 
   public Move(String name, double newX, double newY
           , int startTime, int endTime) {
@@ -19,24 +17,10 @@ public class Move implements IAction {
     if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
     }
-    if (newX < 0 || newY < 0) {
-      throw new IllegalArgumentException("Coordinates cannot be negative");
-    }
 
     this.name = name;
-    this.newX = newX;
-    this.newY = newY;
+    this.newPosition = new Position(newX, newY);
     this.time = new Time(startTime, endTime);
-  }
-
-  @Override
-  public int getStartTime() {
-    return this.time.getStartTime();
-  }
-
-  @Override
-  public int getEndTime() {
-    return this.time.getEndTime();
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
@@ -50,12 +34,10 @@ public class Move implements IAction {
     if (tick <= this.time.getStartTime()) {
       return copy;
     } else if (tick > this.time.getEndTime()) {
-      copy.setPosition(newX, newY);
+      copy.setPosition(newPosition.getX(), newPosition.getY());
       return copy;
-    }
-    else  {
-      oldX = shape.getPosition().getX();
-      oldY = shape.getPosition().getY();
+    } else {
+      this.oldPosition = new Position(shape.getPosition().getX(), shape.getPosition().getY());
 
       double oldX = shape.getPosition().getX();
       double oldY = shape.getPosition().getY();
@@ -63,8 +45,10 @@ public class Move implements IAction {
       double percent = (double) (tick - this.time.getStartTime()) /
               (this.time.getEndTime() - this.time.getStartTime());
 
-      double currentX = (percent * (newX - oldX)) + oldX;
-      double currentY = (percent * (newY - oldY)) + oldY;
+      double currentX = (percent * (newPosition.getX() - oldPosition.getX()))
+              + oldPosition.getX();
+      double currentY = (percent * (newPosition.getY() - oldPosition.getY()))
+              + oldPosition.getY();
 
       copy.setPosition(currentX, currentY);
 
@@ -77,8 +61,9 @@ public class Move implements IAction {
 
   @Override
   public String toString() {
-    return this.name + " moves from " + "(" + oldX + ", " + oldY + ") to ("
-        + this.newX + ", " + this.newY + ") " + "from time t="
-        + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+    return this.name + " moves from " + "(" + oldPosition.getX() + ", "
+            + oldPosition.getY() + ") to ("
+            + newPosition.getX() + ", " + newPosition.getY() + ") " + "from time t="
+            + this.time.getStartTime() + " to t=" + this.time.getEndTime();
   }
 }

@@ -13,13 +13,14 @@ public class Time {
    * @param startTime the start time.
    * @param endTime   the end time.
    * @throws IllegalArgumentException if the start time is less than zero. if the start time is
-   *                                  greater than the end time. if the end time is less than zero.
+   *                                  greater than the end time. if the end time is less than or
+   *                                  equal to zero.
    */
   public Time(int startTime, int endTime) {
-    if (startTime < 0) {
-      throw new IllegalArgumentException("Start time cannot be less than to zero");
-    } else if (endTime < 0) {
-      throw new IllegalArgumentException("End time cannot be less than zero.");
+    if (startTime <= 0) {
+      throw new IllegalArgumentException("Start time cannot be less than or equal to zero");
+    } else if (endTime <= 0) {
+      throw new IllegalArgumentException("End time cannot be less than or equal to zero.");
     } else if (startTime > endTime) {
       throw new IllegalArgumentException("Start time cannot be greater than end time.");
     }

@@ -27,16 +27,6 @@ public class Scale implements IAction {
   }
 
   @Override
-  public int getStartTime() {
-    return this.time.getStartTime();
-  }
-
-  @Override
-  public int getEndTime() {
-    return this.time.getEndTime();
-  }
-
-  @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
       throw new IllegalArgumentException("Ticks cannot be negative");
@@ -47,7 +37,7 @@ public class Scale implements IAction {
     IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();
-    } else if (tick > this.getEndTime()) {
+    } else if (tick > this.time.getEndTime()) {
       copy.setWidth(newWidth);
       copy.setHeight(newHeight);
       return copy;

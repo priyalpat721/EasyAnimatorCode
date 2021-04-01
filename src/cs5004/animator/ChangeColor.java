@@ -24,16 +24,6 @@ public class ChangeColor implements IAction{
   }
 
   @Override
-  public int getStartTime() {
-    return  this.time.getStartTime();
-  }
-
-  @Override
-  public int getEndTime() {
-    return this.time.getEndTime();
-  }
-
-  @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
       throw new IllegalArgumentException("Ticks cannot be negative");
