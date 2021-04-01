@@ -39,4 +39,8 @@ public class Position {
     this.y = newY;
   }
 
+  public String toString() {
+    return String.format("(%.1f,%.1f)", this.x, this.y);
+  }
+
 }

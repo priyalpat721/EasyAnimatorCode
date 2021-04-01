@@ -56,7 +56,7 @@ public class RGB {
   }
 
   public String toString() {
-    return red + " " + green + " " + blue;
+    return String.format("(%.1f,%.1f,%.1f)", this.red, this.green, this.blue);
   }
 
 
