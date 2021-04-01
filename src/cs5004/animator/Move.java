@@ -48,9 +48,16 @@ public class Move implements IActions{
     // 0, 10 to 10, 10
     // 2/5 * 10 + 0 = 4 for x
     // 2/5 * 0 + 10 = 10 for y
+    IShape copy = shape.copy();
+
     double currentX = (percent * (newX - oldX)) + oldX;
     double currentY = (percent * (newY - oldY)) + oldY;
-    return shape.actionMove(currentX, currentY);
+
+    copy.setPosition(currentX, currentY);
+
+    return copy;
+
+    //return shape.actionMove(currentX, currentY);
   }
 
 
