@@ -68,7 +68,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   // one frame, tick = 3 is the third frame
   // tick != seconds -> 50 ticks per second
   @Override
-  public List<IShape> getShapesAtTick(int tick) {
+  public List<IShape> getShapesAtTicks(int tick) {
     // if time lapsed 10% (at time 1)
     // action proportional to time
     List<IShape> frameOfShapes = new LinkedList<>();
