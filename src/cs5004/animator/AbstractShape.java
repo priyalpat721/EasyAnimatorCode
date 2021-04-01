@@ -180,12 +180,13 @@ public abstract class AbstractShape implements IShape {
   }
 
   public String toString() {
-    return "Name: " + this.name +"\nType: " + this.type.toString()
-        + "\nMin corner: " + this.position.toString()
+    return "Name: " + this.name + "\n"
+        + "Type: " + this.type.toString() + "\n"
+        + "Min corner: " + this.position.toString()
         + ", Width: " + this.width + ", Height: " + this.height
-        + ", Color: " + this.color.toString() + "\nAppears at t="
-        + this.totalTime.getStartTime()
-        + "\nDisappears at t=" + this.totalTime.getEndTime();
+        + ", Color: " + this.color.toString() + "\n"
+        + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+        + "Disappears at t=" + this.totalTime.getEndTime();
   }
 
 }

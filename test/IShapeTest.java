@@ -320,7 +320,7 @@ public class IShapeTest {
     assertEquals("""
        Name: I
        Type: Circle
-       Center: (0.0,0.0) Radius: 10.0, Color: (1.0,1.0,1.0)
+       Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
        Appears at t=1
        Disappears at t=100""",circle.toString());
     assertEquals("""
@@ -332,7 +332,7 @@ public class IShapeTest {
     assertEquals("""
         Name: S
         Type: Square
-        Min corner: (0.0,0.0) Length: 40.0, Color: (0.0,1.0,0.0)
+        Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
         Appears at t=10
         Disappears at t=100""",square.toString());
     assertEquals("""
