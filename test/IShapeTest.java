@@ -13,6 +13,9 @@ import cs5004.animator.Triangle;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * A JUnit test class for the IShape interface.
+ */
 public class IShapeTest {
   private IShape rectangle;
   private IShape oval;
