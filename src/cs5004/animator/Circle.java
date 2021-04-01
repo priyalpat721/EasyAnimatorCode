@@ -4,13 +4,17 @@ package cs5004.animator;
  * This class represents a Circle.
  * It extends the abstract class AbstractShape.
  * The circle is of type Shape.CIRCLE.
- * The circle has its width as its radius.
+ * For a circle, the width and the height are equal.
  */
 public class Circle extends AbstractShape {
 
   public Circle(String name, RGB color, double width, double height,
                 double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);
+
+    if (width != height) {
+      throw new IllegalArgumentException("Width and height must be equal");
+    }
 
     this.radius = width;
     this.type = Shape.CIRCLE;
@@ -23,12 +27,6 @@ public class Circle extends AbstractShape {
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
-  //Name: C
-  //Type: circle
-  //Center: (500.0,100.0), Radius: 60.0, Color: (0.0,0.0,1.0)
-  //Appears at t=6
-  //Disappears at t=100
-
   @Override
   public String toString() {
     return "Name: " + this.name + "\n"
@@ -39,4 +37,5 @@ public class Circle extends AbstractShape {
             + "Appears at t=" + this.totalTime.getStartTime() + "\n"
             + "Disappears at t=" + this.totalTime.getEndTime();
   }
+
 }

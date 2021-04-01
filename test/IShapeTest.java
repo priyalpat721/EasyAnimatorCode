@@ -46,6 +46,18 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCircle() {
+    IShape c1 = new Circle("I", new RGB(1, 1, 1), 20, 10,
+            0, 0, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSquare() {
+    IShape s1 = new Square("I", new RGB(1, 1, 1), 30, 40,
+            0, 0, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testIllegalNameEmpty() {
     IShape r1 = new Rectangle(" ", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
