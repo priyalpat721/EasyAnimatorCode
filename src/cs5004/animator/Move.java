@@ -9,8 +9,8 @@ public class Move implements IAction {
   private Time time;
   private Position oldPosition;
 
-  public Move(String name, double newX, double newY
-          , int startTime, int endTime) {
+  public Move(String name, double newX, double newY,
+              int startTime, int endTime) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
     }
