@@ -7,4 +7,6 @@ public interface IActions {
   int getEndTime();
 
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
+
+  String toString();
 }
