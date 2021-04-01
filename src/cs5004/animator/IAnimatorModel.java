@@ -13,10 +13,9 @@ public interface IAnimatorModel {
    * @param name      name of the shape that is associated with a specific type of shape.
    * @param shape     a specific type of the shape class.
    * @param color     a color type of the RGB class.
-   * @param width     the width of the shape. For squares and circles, the width and height are the
-   *                  same.
-   * @param height    the height of the shape. *              For squares and circles, the width and
-   *                  height are the same.
+   * @param width     the width of the shape.
+   *                  For squares and circles, the width is the radius and the length respectively.
+   * @param height    the height of the shape.
    * @param x         the shape's bottom left corner's x coordinates.
    * @param y         the shape's bottom left corner's y coordinates.
    * @param startTime the start time of when the shape will appear.
