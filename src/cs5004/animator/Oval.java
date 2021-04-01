@@ -21,11 +21,6 @@ public class Oval extends AbstractShape {
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
 
-  //Name: C
-  //Type: oval
-  //Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
-  //Appears at t=6
-  //Disappears at t=100
   public String toString() {
     return "Name: " + this.name + "\n"
             + "Type: " + this.type.toString() + "\n"

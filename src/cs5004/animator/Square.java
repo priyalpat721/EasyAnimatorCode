@@ -4,13 +4,17 @@ package cs5004.animator;
  * This class represents a Square.
  * It extends the abstract class AbstractShape.
  * The circle is of type Shape.SQUARE.
- * The square has its width as its length.
+ * For a square, the width and the height are equal.
  */
 public class Square extends AbstractShape {
 
   public Square(String name, RGB color, double width, double height,
                 double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);
+
+    if (width != height) {
+      throw new IllegalArgumentException("Width and height must be equal");
+    }
 
     this.length = width;
     this.type = Shape.SQUARE;

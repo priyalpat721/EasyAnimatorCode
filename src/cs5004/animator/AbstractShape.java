@@ -21,8 +21,8 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * Constructs an IShape object.
-   * If the shape to construct is a circle, the width represents the radius.
-   * If the shape to construct is a square, the width represents the length.
+   * If the shape to construct is a circle or a square, the width and height are equal.
+   * They represent the radius and the length respectively.
    * The type field is initialized in the concrete class of the shape.
    * @param name the name of the shape.
    * @param color the color of the shape.
