@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.shape;
 
 public enum Shape { CIRCLE("Circle"),
                     OVAL("Oval"),

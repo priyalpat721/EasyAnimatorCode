@@ -2,6 +2,10 @@ package cs5004.animator;
 
 import java.util.List;
 
+import cs5004.shape.IShape;
+import cs5004.shape.RGB;
+import cs5004.shape.Shape;
+
 /**
  * An interface for the animator model.
  */

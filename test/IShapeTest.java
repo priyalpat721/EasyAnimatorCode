@@ -1,15 +1,15 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.animator.Circle;
-import cs5004.animator.IShape;
-import cs5004.animator.Oval;
-import cs5004.animator.Rectangle;
-import cs5004.animator.RGB;
-import cs5004.animator.Rhombus;
-import cs5004.animator.Shape;
-import cs5004.animator.Square;
-import cs5004.animator.Triangle;
+import cs5004.shape.Circle;
+import cs5004.shape.IShape;
+import cs5004.shape.Oval;
+import cs5004.shape.Rectangle;
+import cs5004.shape.RGB;
+import cs5004.shape.Rhombus;
+import cs5004.shape.Shape;
+import cs5004.shape.Square;
+import cs5004.shape.Triangle;
 
 import static org.junit.Assert.assertEquals;
 

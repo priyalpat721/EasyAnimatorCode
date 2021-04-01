@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.shape;
 
 /**
  * This interface represents all the operations supported by a shape.

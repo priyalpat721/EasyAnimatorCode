@@ -1,5 +1,9 @@
 package cs5004.animator;
 
+import cs5004.shape.IShape;
+import cs5004.shape.Position;
+import cs5004.shape.Time;
+
 /**
  * Action class for movement.
  */
