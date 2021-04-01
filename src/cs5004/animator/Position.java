@@ -42,7 +42,7 @@ public class Position {
   }
 
   /**
-   * String representation of a Position.
+   * String representation of a Position object.
    * @return the string representation of the Position.
    */
   public String toString() {

@@ -4,6 +4,7 @@ package cs5004.animator;
  * This class represents a Square.
  * It extends the abstract class AbstractShape.
  * The circle is of type Shape.SQUARE.
+ * The square has its width as its length.
  */
 public class Square extends AbstractShape {
 
