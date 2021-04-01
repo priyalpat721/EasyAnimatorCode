@@ -36,27 +36,27 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public String getName () {
+  public String getName() {
     return this.name;
   }
 
   @Override
-  public Shape getType () {
+  public Shape getType() {
     return this.type;
   }
 
   @Override
-  public Time getTotalTime () {
+  public Time getTotalTime() {
     return this.totalTime;
   }
 
   @Override
-  public Position getPosition () {
+  public Position getPosition() {
     return this.position;
   }
 
   @Override
-  public void setPosition (double newX, double newY) {
+  public void setPosition(double newX, double newY) {
     this.position = new Position(newX, newY);
   }
 
@@ -66,12 +66,12 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setColor (RGB newColor){
+  public void setColor(RGB newColor) {
     this.color = newColor;
   }
 
   @Override
-  public double getWidth () {
+  public double getWidth() {
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       return this.width;
     } else {
@@ -80,7 +80,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public double getHeight () {
+  public double getHeight() {
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
       return this.height;
     } else {
@@ -102,9 +102,9 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void setHeight ( double newHeight){
+  public void setHeight (double newHeight) {
     if (newHeight < 0) {
-      throw new IllegalArgumentException("New width cannot be negative");
+      throw new IllegalArgumentException("New height cannot be negative");
     }
 
     if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
@@ -125,6 +125,10 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setRadius ( double newRadius){
+    if (newRadius < 0) {
+      throw new IllegalArgumentException("New radius cannot be negative");
+    }
+
     if (this.type == Shape.CIRCLE) {
       this.radius = newRadius;
     } else {
@@ -143,6 +147,10 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setLength ( double newLength){
+    if (newLength < 0) {
+      throw new IllegalArgumentException("New length cannot be negative");
+    }
+
     if (this.type == Shape.SQUARE) {
       this.length = newLength;
     } else {
