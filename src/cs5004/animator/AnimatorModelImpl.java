@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
-  private HashMap<String, List<IActions>> logOfActions;
-  private List<IActions> shapeActions;
+  private HashMap<String, List<IAction>> logOfActions;
+  private List<IAction> shapeActions;
 
   public AnimatorModelImpl() {
     this.logOfShapes = new HashMap<>();
@@ -17,7 +17,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public void createShapes(String name, Shape shape, RGB color,
+  public void createShape(String name, Shape shape, RGB color,
                            double width, double height, double x, double y, int startTime, int endTime) {
     if (name == null || shape == null || color == null) {
       throw new IllegalArgumentException("The object's name, type or color cannot be empty");
@@ -44,14 +44,14 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void move(String name, double newX, double newY, int startTime, int endTime) {
-    IActions newMove = new Move(name, newX, newY, startTime, endTime);
+    IAction newMove = new Move(name, newX, newY, startTime, endTime);
     addActionsToShape(name, newMove);
   }
 
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
-    IActions changedColor = new ChangeColor(name, newColor, startTime, endTime);
+    IAction changedColor = new ChangeColor(name, newColor, startTime, endTime);
     addActionsToShape(name, changedColor);
   }
 
@@ -61,12 +61,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   // adds any action
-  public void addActions(String name, IActions actions) {
+  public void addActions(String name, IAction actions) {
     addActionsToShape(name, actions);
   }
 
   // create, move, change Color, scale
-  private void addActionsToShape(String name, IActions action) {
+  private void addActionsToShape(String name, IAction action) {
     if (action == null || name.equals("")) {
       throw new IllegalArgumentException("Not a valid action");
 
@@ -85,7 +85,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       IShape accumulatorShape = objects.getValue().copy();
 
-      for(IActions actions : logOfActions.get(objects.getKey())) {
+      for(IAction actions : logOfActions.get(objects.getKey())) {
         accumulatorShape = actions.getShapeAtTick(tick, accumulatorShape);
       }
 
