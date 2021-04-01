@@ -127,7 +127,7 @@ public abstract class AbstractShape implements IShape {
     @Override
     public double getLength () {
       if (this.type == Shape.SQUARE) {
-        return this.radius;
+        return this.length;
       } else {
         throw new IllegalArgumentException("Invalid shape");
       }
