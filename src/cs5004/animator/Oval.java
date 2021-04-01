@@ -27,10 +27,14 @@ public class Oval extends AbstractShape {
   //Appears at t=6
   //Disappears at t=100
   public String toString() {
-    return "Name: " + this.name + "\nType: " + this.type.toString()
-            + "\nMin corner: " + this.position + ", X radius: " + this.width +
-            ", Y radius: " + this.height + ", Color: " + this.color + "\nAppears at t="
-            + this.getTotalTime().getStartTime()
-            + "\nDisappears at t=" + this.getTotalTime().getEndTime();
+    return "Name: " + this.name + "\n"
+            + "Type: " + this.type.toString() + "\n"
+            + "Min corner: " + this.position.toString()
+            + ", X radius: " + this.width
+            + ", Y radius: " + this.height
+            + ", Color: " + this.color.toString() + "\n"
+            + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+            + "Disappears at t=" + this.totalTime.getEndTime();
   }
+
 }
