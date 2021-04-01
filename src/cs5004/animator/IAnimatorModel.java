@@ -13,6 +13,6 @@ public interface IAnimatorModel {
 
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
-  List<IShape> getShapesAtTicks(int tick);
+  List<IShape> getShapesAtTick(int tick);
 
 }
