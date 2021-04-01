@@ -20,7 +20,7 @@ public abstract class AbstractShape implements IShape {
   protected double height;
 
   /**
-   * Constructs a new shape.
+   * Constructs an IShape object.
    * If the shape to construct is a circle, the width represents the radius.
    * If the shape to construct is a square, the width represents the length.
    * The type field is initialized in the concrete class of the shape.
