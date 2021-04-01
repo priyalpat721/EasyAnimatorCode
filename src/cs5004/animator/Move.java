@@ -3,7 +3,7 @@ package cs5004.animator;
 /**
  * Action class for movement.
  */
-public class Move implements IActions{
+public class Move implements IAction {
   private String name;
   private double newX;
   private double newY;

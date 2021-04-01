@@ -1,6 +1,6 @@
 package cs5004.animator;
 
-public class ChangeColor implements IActions{
+public class ChangeColor implements IAction {
   private String name;
   private RGB newColor;
   private Time time;
