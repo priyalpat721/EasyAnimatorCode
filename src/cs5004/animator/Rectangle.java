@@ -9,12 +9,11 @@ public class Rectangle extends AbstractShape {
     this.type = Shape.RECTANGLE;
   }
 
-  // use only oval and rectangle
-  // add to interface
   @Override
   public IShape copy() {
     return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
+
 }

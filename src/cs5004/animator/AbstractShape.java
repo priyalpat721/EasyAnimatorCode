@@ -25,135 +25,135 @@ public abstract class AbstractShape implements IShape {
     }
 
 
-      this.name = name;
-      this.color = color;
-      this.position = new Position(x, y);
-      this.totalTime = new Time(startTime, endTime);
+    this.name = name;
+    this.color = color;
+    this.position = new Position(x, y);
+    this.totalTime = new Time(startTime, endTime);
 
-      this.width = width;
-      this.height = height;
-    }
-
-    @Override
-    public String getName () {
-      return this.name;
-    }
-
-    @Override
-    public Shape getType () {
-      return this.type;
-    }
-
-    @Override
-    public Time getTotalTime () {
-      return this.totalTime;
-    }
-
-    @Override
-    public Position getPosition () {
-      return this.position;
-    }
-
-    @Override
-    public void setPosition ( double newX, double newY){
-      this.position.setX(newX);
-      this.position.setY(newY);
-    }
-
-    @Override
-    public RGB getColor () {
-      return this.color;
-    }
-
-    @Override
-    public void setColor (RGB newColor){
-      this.color = newColor;
-    }
-
-    @Override
-    public double getWidth () {
-      if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
-        return this.width;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public double getHeight () {
-      if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
-        return this.height;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public void setWidth ( double newWidth){
-      if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
-        this.width = newWidth;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public void setHeight ( double newHeight){
-      if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
-        this.height = newHeight;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public double getRadius () {
-      if (this.type == Shape.CIRCLE) {
-        return this.radius;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public void setRadius ( double newRadius){
-      if (this.type == Shape.CIRCLE) {
-        this.radius = newRadius;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public double getLength () {
-      if (this.type == Shape.SQUARE) {
-        return this.length;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    @Override
-    public void setLength ( double newLength){
-      if (this.type == Shape.SQUARE) {
-        this.length = newLength;
-      } else {
-        throw new IllegalArgumentException("Invalid shape");
-      }
-    }
-
-    //Name: R
-    //Type: rectangle
-    //Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
-    //Appears at t=1
-    //Disappears at t=100
-    public String toString() {
-      return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Min corner: " + "("
-          + this.getPosition().getX() + "," + this.getPosition().getY() + "), "
-          + "Width: " + this.getWidth() + "," + "Height: " + this.getHeight()
-          + "Color: " + "(" + this.color + ")\n"
-          + "Appears at t=" + this.getTotalTime().getStartTime() + "\n"
-          + "Disappears at t=" + this.getTotalTime().getEndTime() + "\n";
-    }
-
+    this.width = width;
+    this.height = height;
   }
+
+  @Override
+  public String getName () {
+    return this.name;
+  }
+
+  @Override
+  public Shape getType () {
+    return this.type;
+  }
+
+  @Override
+  public Time getTotalTime () {
+    return this.totalTime;
+  }
+
+  @Override
+  public Position getPosition () {
+    return this.position;
+  }
+
+  @Override
+  public void setPosition ( double newX, double newY){
+    this.position.setX(newX);
+    this.position.setY(newY);
+  }
+
+  @Override
+  public RGB getColor () {
+    return this.color;
+  }
+
+  @Override
+  public void setColor (RGB newColor){
+    this.color = newColor;
+  }
+
+  @Override
+  public double getWidth () {
+    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+      return this.width;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public double getHeight () {
+    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+      return this.height;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setWidth ( double newWidth){
+    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+      this.width = newWidth;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setHeight ( double newHeight){
+    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+      this.height = newHeight;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public double getRadius () {
+    if (this.type == Shape.CIRCLE) {
+      return this.radius;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setRadius ( double newRadius){
+    if (this.type == Shape.CIRCLE) {
+      this.radius = newRadius;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public double getLength () {
+    if (this.type == Shape.SQUARE) {
+      return this.length;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  @Override
+  public void setLength ( double newLength){
+    if (this.type == Shape.SQUARE) {
+      this.length = newLength;
+    } else {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+  }
+
+  //Name: R
+  //Type: rectangle
+  //Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+  //Appears at t=1
+  //Disappears at t=100
+  public String toString() {
+    return "Name: " + this.name + "\n" + "Type: " + this.type.toString() + "\n" + "Min corner: " + "("
+        + this.getPosition().getX() + "," + this.getPosition().getY() + "), "
+        + "Width: " + this.getWidth() + "," + "Height: " + this.getHeight()
+        + "Color: " + "(" + this.color + ")\n"
+        + "Appears at t=" + this.getTotalTime().getStartTime() + "\n"
+        + "Disappears at t=" + this.getTotalTime().getEndTime() + "\n";
+  }
+
+}

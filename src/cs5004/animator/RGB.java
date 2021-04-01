@@ -59,5 +59,4 @@ public class RGB {
     return String.format("(%.1f,%.1f,%.1f)", this.red, this.green, this.blue);
   }
 
-
 }
