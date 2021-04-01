@@ -90,7 +90,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setWidth (double newWidth) {
-    if (newWidth < 0) {
+    if (newWidth <= 0) {
       throw new IllegalArgumentException("New width cannot be negative");
     }
 
@@ -103,7 +103,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setHeight (double newHeight) {
-    if (newHeight < 0) {
+    if (newHeight <= 0) {
       throw new IllegalArgumentException("New height cannot be negative");
     }
 
@@ -125,7 +125,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setRadius ( double newRadius){
-    if (newRadius < 0) {
+    if (newRadius <= 0) {
       throw new IllegalArgumentException("New radius cannot be negative");
     }
 
@@ -147,7 +147,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setLength ( double newLength){
-    if (newLength < 0) {
+    if (newLength <= 0) {
       throw new IllegalArgumentException("New length cannot be negative");
     }
 

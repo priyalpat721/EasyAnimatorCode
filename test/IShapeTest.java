@@ -11,7 +11,7 @@ import cs5004.animator.Shape;
 import cs5004.animator.Square;
 import cs5004.animator.Triangle;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class IShapeTest {
   private IShape rectangle;
@@ -43,20 +43,38 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalName() {
+  public void testIllegalNameEmpty() {
     IShape r1 = new Rectangle(" ", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalWidth() {
+  public void testIllegalNameNull() {
+    IShape r1 = new Rectangle(null, new RGB(1, 0, 0), 50, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalWidthNegative() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), -50, 100,
             200, 200, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalHeight() {
+  public void testIllegalWidthZero() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 0, 100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalHeightNegative() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, -100,
+            200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalHeightZero() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 0,
             200, 200, 1, 100);
   }
 
@@ -86,9 +104,21 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalStartTime() {
+  public void testIllegalTime() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, 200, 20, 10);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalStartTimeNegative() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, -1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalStartTimeZero() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, 200, 0, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -206,12 +236,22 @@ public class IShapeTest {
     assertEquals(30, oval.getWidth(), 0.01);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetWidth() {
+    rectangle.setWidth(0);
+  }
+
   @Test
   public void testSetHeight() {
     rectangle.setHeight(40);
     oval.setHeight(50);
     assertEquals(40, rectangle.getHeight(), 0.01);
     assertEquals(50, oval.getHeight(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetHeight() {
+    rectangle.setHeight(-10);
   }
 
   @Test
@@ -225,6 +265,11 @@ public class IShapeTest {
     assertEquals(20, circle.getRadius(), 0.01);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetRadius() {
+    circle.setRadius(-10);
+  }
+
   @Test
   public void testGetLength() {
     assertEquals(40, square.getLength(), 0.01);
@@ -234,6 +279,11 @@ public class IShapeTest {
   public void testSetLength() {
     square.setLength(30);
     assertEquals(30, square.getLength(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetLength() {
+    square.setLength(0);
   }
 
   @Test
@@ -261,8 +311,5 @@ public class IShapeTest {
     assertEquals(60, newRectangle.getPosition().getX(), 0.01);
     assertEquals(60, newRectangle.getPosition().getY(), 0.01);
   }
-
-
-
 
 }

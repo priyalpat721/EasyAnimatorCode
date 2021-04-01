@@ -5,8 +5,8 @@ public class Time {
   private int endTime;
 
   public Time(int startTime, int endTime) {
-    if (startTime < 0) {
-      throw new IllegalArgumentException("Start time cannot be negative.");
+    if (startTime <= 0) {
+      throw new IllegalArgumentException("Start time cannot be less than or equal to zero");
     } else if (endTime < 0) {
       throw new IllegalArgumentException("End time cannot be negative.");
     } else if (startTime > endTime) {
