@@ -50,4 +50,6 @@ public class Scale implements IAction {
     copy.setHeight(currentHeight);
     return copy;
   }
+  //  C changes from blue to green from time t=50 to t=80
+  //  R changes width from 50 to 25 from time t=51 to t=70
 }

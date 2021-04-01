@@ -8,6 +8,8 @@ public class Move implements IAction {
   private double newX;
   private double newY;
   private Time time;
+  double oldX;
+  double oldY;
 
   public Move(String name, double newX, double newY
           , int startTime, int endTime) {
@@ -38,8 +40,8 @@ public class Move implements IAction {
       return copy;
     }
     else {
-      double oldX = shape.getPosition().getX();
-      double oldY = shape.getPosition().getY();
+      oldX = shape.getPosition().getX();
+      oldY = shape.getPosition().getY();
 
       double percent = (double) (tick - this.time.getStartTime()) /
               (this.time.getEndTime() - this.time.getStartTime());
@@ -51,5 +53,15 @@ public class Move implements IAction {
 
       return copy;
     }
+  }
+
+  //R moves from (200,200) to (300,300) from time t=10 to t=50
+  //C moves from (500,100) to (500,400) from time t=20 to t=70
+
+  @Override
+  public String toString() {
+    return this.name + " moves from " + "(" + oldX + ", " + oldY + ") to ("
+        + this.newX + ", " + this.newY + ") " + "from time t="
+        + this.time.getStartTime() + " to t=" + this.time.getEndTime();
   }
 }
