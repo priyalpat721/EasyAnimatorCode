@@ -5,7 +5,7 @@ import cs5004.shape.RGB;
 import cs5004.shape.Time;
 
 /**
- * Action class for color change.
+ * Action class for color change. Stores the current state of the shape.
  */
 public class ChangeColor implements IAction {
   private String name;
