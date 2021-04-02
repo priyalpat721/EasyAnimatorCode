@@ -5,6 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import cs5004.shape.Circle;
+import cs5004.shape.IShape;
+import cs5004.shape.Oval;
+import cs5004.shape.RGB;
+import cs5004.shape.Rectangle;
+import cs5004.shape.Rhombus;
+import cs5004.shape.Shape;
+import cs5004.shape.Square;
+import cs5004.shape.Triangle;
+
 public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
   private HashMap<String, List<IAction>> logOfActions;

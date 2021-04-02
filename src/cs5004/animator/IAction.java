@@ -1,5 +1,7 @@
 package cs5004.animator;
 
+import cs5004.shape.IShape;
+
 /**
  * An interface for the actions classes that make changes specified by the user to the shape.
  */
@@ -12,7 +14,5 @@ public interface IAction {
    * @return
    */
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
-
-  String toString();
 
 }

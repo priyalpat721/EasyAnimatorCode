@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.shape;
 
 /**
  * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
