@@ -7,12 +7,14 @@ import cs5004.shape.Time;
 /**
  * Action class for color change.
  */
-public class ChangeColor implements IAction{
+public class ChangeColor implements IAction {
   private String name;
+  private IShape currentShape;
   private RGB newColor;
   private Time time;
+  private RGB oldColor;
 
-  public ChangeColor(String name, RGB newColor, int startTime, int endTime) {
+  public ChangeColor(String name, IShape currentShape, RGB newColor, int startTime, int endTime) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
     }
@@ -23,8 +25,11 @@ public class ChangeColor implements IAction{
       throw new IllegalArgumentException("Color cannot be null");
     }
     this.name = name;
+    this.currentShape = currentShape;
     this.newColor = newColor;
     this.time = new Time(startTime, endTime);
+    this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
+            currentShape.getColor().getBlue());
   }
 
   @Override
@@ -38,24 +43,18 @@ public class ChangeColor implements IAction{
     IShape copy = shape.copy();
     if (tick <= this.time.getStartTime()) {
       return shape.copy();
-    }
-
-    else if( tick > this.time.getEndTime()) {
+    } else if (tick > this.time.getEndTime()) {
       copy.setColor(newColor);
       return copy;
-    }
-
-    else {
-      double oldR = shape.getColor().getRed();
-      double oldG = shape.getColor().getGreen();
-      double oldB = shape.getColor().getBlue();
+    } else {
 
       double percent = (double) (tick - this.time.getStartTime())
               / (this.time.getEndTime() - this.time.getStartTime());
 
-      double currentR = (percent * (newColor.getRed() - oldR)) + oldR;
-      double currentG = (percent * (newColor.getBlue() - oldB)) + oldB;
-      double currentB = (percent * (newColor.getGreen() - oldG)) + oldG;
+      double currentR = (percent * (newColor.getRed() - oldColor.getRed())) + oldColor.getRed();
+      double currentG = (percent * (newColor.getBlue() - oldColor.getBlue())) + oldColor.getBlue();
+      double currentB = (percent * (newColor.getGreen() - oldColor.getGreen()))
+              + oldColor.getGreen();
 
       copy.setColor(new RGB(currentR, currentG, currentB));
       return copy;

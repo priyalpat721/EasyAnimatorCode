@@ -8,22 +8,29 @@ import cs5004.shape.Time;
  */
 public class Scale implements IAction {
   private String name;
+  private IShape currentShape;
+  private double oldWidth;
+  private double oldHeight;
   private double newWidth;
   private double newHeight;
   private Time time;
 
 
-  public Scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
+  public Scale(String name, IShape currentShape, double newWidth, double newHeight, int startTime, int endTime) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
     }
     if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
     }
+
     if (newWidth <= 0 || newHeight <= 0) {
       throw new IllegalArgumentException("Width or height cannot be negative or zero");
     }
     this.name = name;
+    this.currentShape = currentShape;
+    this.oldWidth = currentShape.getWidth();
+    this.oldHeight = currentShape.getHeight();
     this.newHeight = newHeight;
     this.newWidth = newWidth;
     this.time = new Time(startTime, endTime);
@@ -45,9 +52,6 @@ public class Scale implements IAction {
       copy.setHeight(newHeight);
       return copy;
     }
-
-    double oldWidth = shape.getWidth();
-    double oldHeight = shape.getHeight();
 
     double percent = (double) (tick - this.time.getStartTime()) /
             (this.time.getEndTime() - this.time.getStartTime());

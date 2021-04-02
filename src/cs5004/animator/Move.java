@@ -9,11 +9,12 @@ import cs5004.shape.Time;
  */
 public class Move implements IAction {
   private String name;
+  private IShape currentShape;
   private Position newPosition;
   private Time time;
   private Position oldPosition;
 
-  public Move(String name, double newX, double newY,
+  public Move(String name, IShape currentShape, double newX, double newY,
               int startTime, int endTime) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
@@ -23,8 +24,11 @@ public class Move implements IAction {
     }
 
     this.name = name;
+    this.currentShape = currentShape;
     this.newPosition = new Position(newX, newY);
     this.time = new Time(startTime, endTime);
+    this.oldPosition = new Position(currentShape.getPosition().getX(),
+            currentShape.getPosition().getY());
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
@@ -41,7 +45,6 @@ public class Move implements IAction {
       copy.setPosition(newPosition.getX(), newPosition.getY());
       return copy;
     } else {
-      this.oldPosition = new Position(shape.getPosition().getX(), shape.getPosition().getY());
 
       double percent = (double) (tick - this.time.getStartTime()) /
               (this.time.getEndTime() - this.time.getStartTime());

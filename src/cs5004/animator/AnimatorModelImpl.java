@@ -49,21 +49,33 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void move(String name, double newX, double newY, int startTime, int endTime) {
-    IAction newMove = new Move(name, newX, newY, startTime, endTime);
+    IShape currentShape = logOfShapes.get(name);
+    if (currentShape == null) {
+      throw new IllegalStateException("Shape with this name does not exist");
+    }
+    IAction newMove = new Move(name, currentShape, newX, newY, startTime, endTime);
     addActionToShape(name, newMove);
     chronologicalOrderOfActions.add(newMove);
   }
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
-    IAction newChangeColor = new ChangeColor(name, newColor, startTime, endTime);
+    IShape currentShape = logOfShapes.get(name);
+    if (currentShape == null) {
+      throw new IllegalStateException("Shape with this name does not exist");
+    }
+    IAction newChangeColor = new ChangeColor(name, currentShape, newColor, startTime, endTime);
     addActionToShape(name, newChangeColor);
     chronologicalOrderOfActions.add(newChangeColor);
   }
 
   @Override
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
-    IAction newScale = new Scale(name, newWidth, newHeight, startTime, endTime);
+    IShape currentShape = logOfShapes.get(name);
+    if (currentShape == null) {
+      throw new IllegalStateException("Shape with this name does not exist");
+    }
+    IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
     addActionToShape(name, newScale);
     chronologicalOrderOfActions.add(newScale);
   }
