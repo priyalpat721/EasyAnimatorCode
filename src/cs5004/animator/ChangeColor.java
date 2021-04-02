@@ -63,8 +63,8 @@ public class ChangeColor implements IAction {
 
   @Override
   public String toString() {
-    return name + " changes from " + "old color "
-        + " to " + "new color " + "from time t= " + this.time.getStartTime()
+    return name + " changes color from " + oldColor.toString()
+        + " to " + newColor.toString() + "from time t= " + this.time.getStartTime()
         + " to t=" + this.time.getEndTime();
   }
 

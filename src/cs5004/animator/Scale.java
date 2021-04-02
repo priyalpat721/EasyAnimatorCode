@@ -68,24 +68,25 @@ public class Scale implements IAction {
   @Override
   public String toString() {
     if (currentShape.getType() == Shape.OVAL) {
-      return name + " changes from X radius " + oldWidth + "and Y radius "
-          + oldHeight + " to X radius " + newWidth + " and Y radius "
+      return name + " scales from X radius:, " + oldWidth + "Y radius: "
+          + oldHeight + " to X radius, " + newWidth + "Y radius "
           + newHeight + "from time t="
           + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     } else if (currentShape.getType() == Shape.CIRCLE) {
-      return name + " changes from radius " + oldWidth + " to radius "
-          + newWidth + " and Y radius " + newHeight + "from time t="
+      return name + " scales from Radius: " + oldWidth + " to Radius: "
+          + newWidth + ", Y radius " + newHeight + "from time t="
           + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     } else if (currentShape.getType() == Shape.SQUARE) {
-      return name + " changes from length " + oldWidth + " to length "
+      return name + " scales from Length: " + oldWidth + " to Length: "
           + newWidth + "from time t=" + this.time.getStartTime()
           + " to t=" + this.time.getEndTime();
     } else {
-      return name + " changes from width " + oldWidth + " and height "
-          + oldHeight + " to width " + newWidth + " and height "
-          + newHeight + " to height " + newWidth + "from time t="
+      return name + " scales from Width: " + oldWidth + ", Height: "
+          + oldHeight + " to Width: " + newWidth + ", Height: "
+          + newHeight + " to Height: " + newWidth + "from time t="
           + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     }
   }
+  //Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
 
 }

@@ -375,12 +375,21 @@ public class IShapeTest {
         50, 100, 200, 200, 1, 100);
     Model1.createShape("C", Shape.OVAL, new RGB(0,0,1), 60,
         30, 500, 100, 6, 100);
+    Model1.move("R", 300, 300, 10, 50);
+    Model1.move("C", 500, 400, 20, 70);
+    Model1.changeColor("C", new RGB(0,1,0),50, 80);
+    Model1.scale("R", 25, 100, 51, 70);
 
     System.out.println(Model1.toString());
 
+    //String name, RGB newColor, int startTime, int endTime)
 
-    //String name, Shape shape, RGB color, double width, double height,
-    //                          double x, double y, int startTime, int endTime
+
+    //Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
+    //Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70
+    //Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) from t=50 to t=80
+    //Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
+    //Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100
 
   }
 
