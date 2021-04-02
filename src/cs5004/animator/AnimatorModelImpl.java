@@ -125,8 +125,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
-    for (IAction shapeAction: shapeActions) {
-      accString.append(shapeAction.toString());
+    for (Map.Entry shape: logOfShapes.entrySet()) {
+      accString.append(shape.getValue().toString());
       accString.append("\n");
     }
     for (IAction action : chronologicalOrderOfActions) {

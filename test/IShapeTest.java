@@ -1,3 +1,4 @@
+import cs5004.animator.AnimatorModelImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -365,6 +366,22 @@ public class IShapeTest {
         Min corner: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
         Appears at t=6
         Disappears at t=100""", oval.toString());
+  }
+
+  @Test
+  public void testToStringShapesAndActions() {
+    AnimatorModelImpl Model1 = new AnimatorModelImpl();
+    Model1.createShape("R",  Shape.RECTANGLE, new RGB(1, 0, 0 ),
+        50, 100, 200, 200, 1, 100);
+    Model1.createShape("C", Shape.OVAL, new RGB(0,0,1), 60,
+        30, 500, 100, 6, 100);
+
+    System.out.println(Model1.toString());
+
+
+    //String name, Shape shape, RGB color, double width, double height,
+    //                          double x, double y, int startTime, int endTime
+
   }
 
 }
