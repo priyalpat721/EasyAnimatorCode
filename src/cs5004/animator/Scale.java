@@ -65,8 +65,6 @@ public class Scale implements IAction {
     return copy;
   }
 
-  //  R changes width from 50 to 25 from time t=51 to t=70
-
   @Override
   public String toString() {
     if (currentShape.getType() == Shape.OVAL) {

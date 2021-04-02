@@ -120,18 +120,15 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public String toString() {
-    // MOVE SCALE MOVE
-    // accumulator string:
-    // for each action: action.toString
-    // acc += action.toString
-
-    //accumulator string:
-    //for each action: action.toString
-    //acc += action.toString
 
     //print log of shapes at create
 
     StringBuilder accString = new StringBuilder();
+    accString.append("Shapes:\n");
+    for (IAction shapeAction: shapeActions) {
+      accString.append(shapeAction.toString());
+      accString.append("\n");
+    }
     for (IAction action : chronologicalOrderOfActions) {
       accString.append(action.toString());
       accString.append("\n");

@@ -61,7 +61,6 @@ public class ChangeColor implements IAction {
     }
   }
 
-//  C changes from blue to green from time t=50 to t=80
   @Override
   public String toString() {
     return name + " changes from " + "old color "
