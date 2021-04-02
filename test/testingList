@@ -1,0 +1,112 @@
+setUp:
+rectangle
+oval
+
+CreateShapes:
+Parameters: String name, Shape shape, RGB color, double width, double height,
+                                      double x, double y, int startTime, int endTime)
+legal testing
+1. create regular shapes - have a test for each shape
+Shapes:
+Rectangle
+Oval
+Square
+Circle
+Triangle
+Rhombus
+
+exception testing:
+1. name = null
+2. name = ""
+3. name = " "
+2. shape = null
+3. color = null
+4. width: negative
+5. width: 0
+6. height: negative
+7. height: 0
+8. x: negative
+9. y: negative
+10. start time: negative
+11. end time : 0
+12. end time : negative
+13. end time < start time
+14. start time > end time
+
+2. move
+Parameters: String name, double newX, double newY, int startTime, int endTime
+1. move from x,y to same x, y
+2. all legal parameters
+
+exceptions:
+1. name = null
+2. name = ""
+3. name = " "
+4. newX: negative
+6. newY: negative
+10. start time: negative
+11. end time : 0
+12. end time : negative
+13. end time < start time
+14. start time > end time
+
+3. changeColor
+Parameters: String name, RGB newColor, int startTime, int endTime
+legal testing:
+1. color to same color
+2. legal parameters
+
+exceptions:
+1. name = null
+2. name = ""
+3. name = " "
+3. color = null
+4. color red = negative
+5. color green = negative
+6. color blue = negative
+7. color red = > 255
+8. color green = > 255
+9. color blue = > 255
+10. color all negative
+11. color all > 255
+10. start time: negative
+11. end time : 0
+12. end time : negative
+13. end time < start time
+14. start time > end time
+
+4. scale
+Parameters: String name, double newWidth, double newHeight, int startTime, int endTime
+legal testing:
+1. w, h to same w, h
+2. all legal parameters
+
+Exceptions:
+1. name = null
+2. name = ""
+3. name = " "
+4. newWidth: negative
+5. newWidth: 0
+6. newHeight: negative
+7. newHeight: 0
+10. start time: negative
+11. end time : 0
+12. end time : negative
+13. end time < start time
+14. start time > end time
+
+5.  getShapesAtTicks
+Parameters: int tick
+Legal testing:
+check tick at 9
+move from 10 to 15
+test check tick starting at 10 and ending at 15 inclusive
+check tick at 16
+
+exceptions:
+1. negative tick
+2. tick 0
+
+6. toString
+1. test rectangle
+2. test oval

@@ -46,6 +46,45 @@ public class IShapeTest {
             2, 2, 1, 80);
   }
 
+  @Test public void constructorTest() {
+    rectangle = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+            200, 200, 1, 100);
+    assertEquals("""
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+            Appears at t=1
+            Disappears at t=100""", rectangle.toString());
+
+    oval = new Oval("C", new RGB(0, 0, 1), 60, 30,
+            500, 100, 6, 100);
+    assertEquals("""
+            Name: C
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
+            Appears at t=6
+            Disappears at t=100""", oval.toString());
+
+    square = new Square("S", new RGB(0, 1, 0), 40, 40,
+            0, 0, 10, 100);
+    assertEquals("""
+            Name: S
+            Type: square
+            Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
+            Appears at t=10
+            Disappears at t=100""", square.toString());
+
+    ////////////////////////////assert equals///////////////////////////////////
+    circle = new Circle("I", new RGB(1, 1, 1), 10, 10,
+            0, 0, 1, 100);
+
+    triangle = new Triangle("T", new RGB(5, 5, 5), 20, 30,
+            40, 50, 1, 50);
+
+    rhombus = new Rhombus("H", new RGB(20, 20, 20), 50, 60,
+            2, 2, 1, 80);
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCircle() {
     IShape c1 = new Circle("I", new RGB(1, 1, 1), 20, 10,
@@ -332,70 +371,40 @@ public class IShapeTest {
   public void testToString() {
     assertEquals("""
        Name: I
-       Type: Circle
+       Type: circle
        Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
        Appears at t=1
        Disappears at t=100""", circle.toString());
     assertEquals("""
         Name: T
-        Type: Triangle
+        Type: triangle
         Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
         Appears at t=1
         Disappears at t=50""", triangle.toString());
     assertEquals("""
         Name: S
-        Type: Square
+        Type: square
         Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
         Appears at t=10
         Disappears at t=100""", square.toString());
     assertEquals("""
         Name: R
-        Type: Rectangle
+        Type: rectangle
         Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
         Appears at t=1
         Disappears at t=100""", rectangle.toString());
     assertEquals("""
         Name: H
-        Type: Rhombus
+        Type: rhombus
         Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
         Appears at t=1
         Disappears at t=80""", rhombus.toString());
     assertEquals("""
         Name: C
-        Type: Oval
+        Type: oval
         Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
         Appears at t=6
         Disappears at t=100""", oval.toString());
-  }
-
-  @Test
-  public void testToStringShapesAndActions() {
-    AnimatorModelImpl Model1 = new AnimatorModelImpl();
-    Model1.createShape("R",  Shape.RECTANGLE, new RGB(1, 0, 0 ),
-        50, 100, 200, 200, 1, 100);
-    Model1.createShape("C", Shape.OVAL, new RGB(0,0,1), 60,
-        30, 500, 100, 6, 100);
-    Model1.move("R", 300, 300, 10, 50);
-    System.out.printf("Testing getShapesAtTicks");
-    System.out.println(Model1.getShapesAtTicks(11));
-    Model1.move("C", 500, 400, 20, 70);
-    Model1.changeColor("C", new RGB(0,1,0),50, 80);
-    Model1.scale("R", 25, 100, 51, 70);
-    Model1.move("R",200,200,70,100);
-    Model1.move("C",0,0,70,100);
-
-    System.out.println("Testing toString");
-    System.out.println(Model1.toString());
-
-    //String name, RGB newColor, int startTime, int endTime)
-
-
-    //Shape R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50
-    //Shape C moves from (500.0,100.0) to (500.0,400.0) from t=20 to t=70
-    //Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) from t=50 to t=80
-    //Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
-    //Shape R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100
-
   }
 
 }
