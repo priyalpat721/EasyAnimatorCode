@@ -83,7 +83,7 @@ public class Scale implements IAction {
     } else {
       return name + " scales from Width: " + oldWidth + ", Height: "
           + oldHeight + " to Width: " + newWidth + ", Height: "
-          + newHeight + " to Height: " + newWidth + "from time t="
+          + newHeight  + " from time t="
           + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     }
   }

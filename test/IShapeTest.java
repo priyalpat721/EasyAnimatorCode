@@ -379,6 +379,7 @@ public class IShapeTest {
     Model1.move("C", 500, 400, 20, 70);
     Model1.changeColor("C", new RGB(0,1,0),50, 80);
     Model1.scale("R", 25, 100, 51, 70);
+    Model1.move("R",200,200,70,100);
 
     System.out.println(Model1.toString());
 

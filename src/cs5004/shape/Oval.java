@@ -24,7 +24,7 @@ public class Oval extends AbstractShape {
   public String toString() {
     return "Name: " + this.name + "\n"
             + "Type: " + this.type.toString() + "\n"
-            + "Min corner: " + this.position.toString()
+            + "Center: " + this.position.toString()
             + ", X radius: " + this.width
             + ", Y radius: " + this.height
             + ", Color: " + this.color.toString() + "\n"
