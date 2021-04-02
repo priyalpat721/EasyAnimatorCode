@@ -1,6 +1,7 @@
 package cs5004.animator;
 
 import cs5004.shape.IShape;
+import cs5004.shape.Shape;
 import cs5004.shape.Time;
 
 /**
@@ -53,6 +54,7 @@ public class Scale implements IAction {
       return copy;
     }
 
+
     double percent = (double) (tick - this.time.getStartTime()) /
             (this.time.getEndTime() - this.time.getStartTime());
 
@@ -62,6 +64,30 @@ public class Scale implements IAction {
     copy.setHeight(currentHeight);
     return copy;
   }
-  //  C changes from blue to green from time t=50 to t=80
+
   //  R changes width from 50 to 25 from time t=51 to t=70
+
+  @Override
+  public String toString() {
+    if (currentShape.getType() == Shape.OVAL) {
+      return name + " changes from X radius " + oldWidth + "and Y radius "
+          + oldHeight + " to X radius " + newWidth + " and Y radius "
+          + newHeight + "from time t="
+          + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+    } else if (currentShape.getType() == Shape.CIRCLE) {
+      return name + " changes from radius " + oldWidth + " to radius "
+          + newWidth + " and Y radius " + newHeight + "from time t="
+          + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+    } else if (currentShape.getType() == Shape.SQUARE) {
+      return name + " changes from length " + oldWidth + " to length "
+          + newWidth + "from time t=" + this.time.getStartTime()
+          + " to t=" + this.time.getEndTime();
+    } else {
+      return name + " changes from width " + oldWidth + " and height "
+          + oldHeight + " to width " + newWidth + " and height "
+          + newHeight + " to height " + newWidth + "from time t="
+          + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+    }
+  }
+
 }

@@ -124,6 +124,18 @@ public class AnimatorModelImpl implements IAnimatorModel {
     // accumulator string:
     // for each action: action.toString
     // acc += action.toString
-    return null;
+
+    //accumulator string:
+    //for each action: action.toString
+    //acc += action.toString
+
+    //print log of shapes at create
+
+    StringBuilder accString = new StringBuilder();
+    for (IAction action : chronologicalOrderOfActions) {
+      accString.append(action.toString());
+      accString.append("\n");
+    }
+    return accString.toString();
   }
 }

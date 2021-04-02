@@ -21,6 +21,11 @@ public class Circle extends AbstractShape {
   }
 
   @Override
+  public Shape getType() {
+    return super.getType();
+  }
+
+  @Override
   public IShape copy() {
     return new Circle(this.name, this.color, this.radius, this.radius,
             this.getPosition().getX(), this.getPosition().getY(),

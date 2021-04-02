@@ -5,7 +5,7 @@ import cs5004.shape.RGB;
 import cs5004.shape.Time;
 
 /**
- * Action class for color change. Stores the current state of the shape.
+ * Action class for color change.
  */
 public class ChangeColor implements IAction {
   private String name;
@@ -29,7 +29,7 @@ public class ChangeColor implements IAction {
     this.newColor = newColor;
     this.time = new Time(startTime, endTime);
     this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
-            currentShape.getColor().getBlue());
+        currentShape.getColor().getBlue());
   }
 
   @Override
@@ -49,16 +49,24 @@ public class ChangeColor implements IAction {
     } else {
 
       double percent = (double) (tick - this.time.getStartTime())
-              / (this.time.getEndTime() - this.time.getStartTime());
+          / (this.time.getEndTime() - this.time.getStartTime());
 
       double currentR = (percent * (newColor.getRed() - oldColor.getRed())) + oldColor.getRed();
       double currentG = (percent * (newColor.getBlue() - oldColor.getBlue())) + oldColor.getBlue();
       double currentB = (percent * (newColor.getGreen() - oldColor.getGreen()))
-              + oldColor.getGreen();
+          + oldColor.getGreen();
 
       copy.setColor(new RGB(currentR, currentG, currentB));
       return copy;
     }
+  }
+
+//  C changes from blue to green from time t=50 to t=80
+  @Override
+  public String toString() {
+    return name + " changes from " + "old color "
+        + " to " + "new color " + "from time t= " + this.time.getStartTime()
+        + " to t=" + this.time.getEndTime();
   }
 
 }
