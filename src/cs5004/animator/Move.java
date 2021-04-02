@@ -39,9 +39,6 @@ public class Move implements IAction {
     } else {
       this.oldPosition = new Position(shape.getPosition().getX(), shape.getPosition().getY());
 
-      double oldX = shape.getPosition().getX();
-      double oldY = shape.getPosition().getY();
-
       double percent = (double) (tick - this.time.getStartTime()) /
               (this.time.getEndTime() - this.time.getStartTime());
 

@@ -98,6 +98,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public String toString() {
+    // MOVE SCALE MOVE
+    // accumulator string:
+    // for each action: action.toString
+    // acc += action.toString
     return null;
   }
 }
