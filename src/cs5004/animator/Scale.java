@@ -35,6 +35,12 @@ public class Scale implements IAction {
     this.newHeight = newHeight;
     this.newWidth = newWidth;
     this.time = new Time(startTime, endTime);
+    this.currentShape.setWidth(newWidth);
+    this.currentShape.setHeight(newHeight);
+  }
+
+  public IShape getCurrentShape() {
+    return currentShape;
   }
 
   @Override

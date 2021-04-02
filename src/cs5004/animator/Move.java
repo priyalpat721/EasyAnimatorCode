@@ -29,6 +29,11 @@ public class Move implements IAction {
     this.time = new Time(startTime, endTime);
     this.oldPosition = new Position(currentShape.getPosition().getX(),
             currentShape.getPosition().getY());
+    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
+  }
+
+  public IShape getCurrentShape() {
+    return currentShape;
   }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
@@ -55,7 +60,6 @@ public class Move implements IAction {
               + oldPosition.getY();
 
       copy.setPosition(currentX, currentY);
-
       return copy;
     }
   }

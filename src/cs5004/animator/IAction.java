@@ -15,4 +15,5 @@ public interface IAction {
    */
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
 
+  IShape getCurrentShape();
 }

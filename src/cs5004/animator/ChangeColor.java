@@ -30,6 +30,11 @@ public class ChangeColor implements IAction {
     this.time = new Time(startTime, endTime);
     this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
         currentShape.getColor().getBlue());
+    this.currentShape.setColor(newColor);
+  }
+
+  public IShape getCurrentShape() {
+    return currentShape;
   }
 
   @Override

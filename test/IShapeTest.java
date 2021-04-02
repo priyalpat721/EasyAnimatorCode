@@ -363,7 +363,7 @@ public class IShapeTest {
     assertEquals("""
         Name: C
         Type: Oval
-        Min corner: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
+        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
         Appears at t=6
         Disappears at t=100""", oval.toString());
   }
@@ -376,11 +376,15 @@ public class IShapeTest {
     Model1.createShape("C", Shape.OVAL, new RGB(0,0,1), 60,
         30, 500, 100, 6, 100);
     Model1.move("R", 300, 300, 10, 50);
+    System.out.printf("Testing getShapesAtTicks");
+    System.out.println(Model1.getShapesAtTicks(11));
     Model1.move("C", 500, 400, 20, 70);
     Model1.changeColor("C", new RGB(0,1,0),50, 80);
     Model1.scale("R", 25, 100, 51, 70);
     Model1.move("R",200,200,70,100);
+    Model1.move("C",0,0,70,100);
 
+    System.out.println("Testing toString");
     System.out.println(Model1.toString());
 
     //String name, RGB newColor, int startTime, int endTime)
