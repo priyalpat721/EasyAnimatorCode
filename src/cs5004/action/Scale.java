@@ -1,12 +1,11 @@
-package cs5004.animator;
+package cs5004.action;
 
-import cs5004.shape.AbstractShape;
 import cs5004.shape.IShape;
 import cs5004.shape.Shape;
-import cs5004.shape.Time;
 
 /**
  * Action class for scaling.
+ * This action is of type Action.SCALE.
  */
 public class Scale extends AbstractAction {
 

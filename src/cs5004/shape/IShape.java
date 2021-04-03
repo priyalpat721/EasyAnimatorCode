@@ -1,5 +1,9 @@
 package cs5004.shape;
 
+import cs5004.utilities.Position;
+import cs5004.utilities.RGB;
+import cs5004.utilities.Time;
+
 /**
  * This interface represents all the operations supported by a shape.
  */

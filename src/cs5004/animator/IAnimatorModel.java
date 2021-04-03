@@ -2,8 +2,9 @@ package cs5004.animator;
 
 import java.util.List;
 
+import cs5004.action.IAction;
 import cs5004.shape.IShape;
-import cs5004.shape.RGB;
+import cs5004.utilities.RGB;
 import cs5004.shape.Shape;
 
 /**
@@ -17,14 +18,15 @@ public interface IAnimatorModel {
    * @param name      name of the shape that is associated with a specific type of shape.
    * @param shape     a specific type of the shape class.
    * @param color     a color type of the RGB class.
-   * @param width     the width of the shape. For squares and circles, the width and height are the
-   *                  same.
-   * @param height    the height of the shape. For squares and circles, the width and height are the
-   *                  same.
+   * @param width     the width of the shape.
+   *                  For squares and circles, the width and height are the same.
+   * @param height    the height of the shape.
+   *                  For squares and circles, the width and height are the same.
    * @param x         the shape's top left corner's x coordinates.
    * @param y         the shape's top left corner's y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
+   * @throws IllegalArgumentException if the name already exists.
    */
   void createShape(String name, Shape shape, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
@@ -37,6 +39,8 @@ public interface IAnimatorModel {
    * @param newY      the shape's top left corner's new y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
+   * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if there is a time overlap.
    */
   void move(String name, double newX, double newY, int startTime, int endTime);
 
@@ -47,6 +51,9 @@ public interface IAnimatorModel {
    * @param newColor  new color of the shape.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
+   * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if the new color is null.
+   *                                  if there is a time overlap.
    */
   void changeColor(String name, RGB newColor, int startTime, int endTime);
 
@@ -58,6 +65,8 @@ public interface IAnimatorModel {
    * @param newHeight the new height of the shape.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
+   * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if there is a time overlap.
    */
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
@@ -65,9 +74,9 @@ public interface IAnimatorModel {
    * A general function that takes in an action from the user and adds it to the hashmap.
    *
    * @param name    name of the shape that is associated with a specific type of shape.
-   * @param actions is one of the IAction: Move, ChangeColor or Scale.
+   * @param action is one of the IAction: Move, ChangeColor or Scale.
    */
-  void addActions(String name, IAction actions);
+  void addAction(String name, IAction action);
 
   /**
    * A function that returns a list of shapes at the specified frame. The function works by

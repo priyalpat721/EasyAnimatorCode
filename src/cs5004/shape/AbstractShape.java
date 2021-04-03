@@ -1,9 +1,16 @@
 package cs5004.shape;
 
+import cs5004.utilities.Position;
+import cs5004.utilities.RGB;
+import cs5004.utilities.Time;
+
 /**
- * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
- * position, a total time of existence, and a color. If the shape is a square, it has a length. If
- * the shape is a circle, it has a radius. Else, the shape has a width and a height.
+ * This class represents a shape.
+ * It implements the interface IShape.
+ * A shape has a name, a type, a position, a total time of existence, and a color.
+ * If the shape is a square, it has a length.
+ * If the shape is a circle, it has a radius.
+ * Else, the shape has a width and a height.
  */
 public abstract class AbstractShape implements IShape {
   protected String name;
@@ -17,9 +24,10 @@ public abstract class AbstractShape implements IShape {
   protected double height;
 
   /**
-   * Constructs an IShape object. If the shape to construct is a circle or a square, the width and
-   * height are equal. They represent the radius and the length respectively. The type field is
-   * initialized in the concrete class of the shape.
+   * Constructs an IShape object.
+   * If the shape to construct is a circle or a square, the width and height are equal. They
+   * represent the radius and the length respectively.
+   * The type field is initialized in the concrete class of the shape.
    *
    * @param name      the name of the shape.
    * @param color     the color of the shape.

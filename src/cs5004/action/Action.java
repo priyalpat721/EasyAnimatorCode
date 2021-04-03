@@ -1,5 +1,8 @@
-package cs5004.animator;
+package cs5004.action;
 
+/**
+ * This enum represents all the types that an IAction object can have.
+ */
 public enum Action { MOVE("moves"),
                     CHANGECOLOR("changes"),
                     SCALE("scales");
