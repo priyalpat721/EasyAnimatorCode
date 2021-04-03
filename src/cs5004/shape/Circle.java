@@ -34,13 +34,13 @@ public class Circle extends AbstractShape {
 
   @Override
   public String toString() {
-    return String.format("Name: " + this.name + "\n"
+    return "Name: " + this.name + "\n"
             + "Type: " + this.type.toString() + "\n"
             + "Center: " + this.position.toString()
-            + ", Radius: %.1f"
+            + String.format(", Radius: %.1f", this.radius)
             + ", Color: " + this.color.toString() + "\n"
             + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime(), this.radius);
+            + "Disappears at t=" + this.totalTime.getEndTime();
   }
 
 }

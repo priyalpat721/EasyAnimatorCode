@@ -29,11 +29,12 @@ public class Square extends AbstractShape {
 
   @Override
   public String toString() {
-    return String.format("Name: " + this.name + "\n" +
+    return "Name: " + this.name + "\n" +
             "Type: " + this.type.toString() + "\n"
             + "Min corner: " + this.position.toString()
-            + ", Length: %.1f" + ", Color: " + this.color.toString() + "\n"
+            + String.format(", Length: %.1f", this.length)
+            + ", Color: " + this.color.toString() + "\n"
             + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime(), this.length);
+            + "Disappears at t=" + this.totalTime.getEndTime();
   }
 }
