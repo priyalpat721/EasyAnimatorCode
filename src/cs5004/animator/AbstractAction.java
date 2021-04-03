@@ -34,6 +34,8 @@ public abstract class AbstractAction implements IAction {
     this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
             currentShape.getColor().getBlue());
     this.currentShape.setColor(newColor);
+
+    this.type = Action.CHANGE;
   }
 
   // For move and scale
