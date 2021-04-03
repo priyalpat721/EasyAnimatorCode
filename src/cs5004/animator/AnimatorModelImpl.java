@@ -245,13 +245,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
    * @param endTime the end time of the new action being tested.
    * @throws IllegalArgumentException if the action is out of range.
    */
-  private boolean checkRange(String name, int startTime, int endTime) {
+  private void checkRange(String name, int startTime, int endTime) {
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getKey().equals(name)) {
         IShape shape = entry.getValue();
         if (startTime < shape.getTotalTime().getStartTime() ||
                 endTime > shape.getTotalTime().getEndTime()) {
-          throw new IllegalArgumentException("Action is not within range");
+          throw new IllegalArgumentException("Action is out of range");
         }
       }
     }
