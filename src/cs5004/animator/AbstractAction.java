@@ -42,22 +42,6 @@ public abstract class AbstractAction implements IAction {
     this.name = name;
     this.currentShape = currentShape;
     this.time = new Time(startTime, endTime);
-
-
-//    This goes to the super of move
-//    this.newPosition = new Position(newA, newB);
-//    this.oldPosition = new Position(currentShape.getPosition().getX(),
-//            currentShape.getPosition().getY());
-//    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
-
-
-//    This goes to the super of scale
-//    this.oldWidth = currentShape.getWidth();
-//    this.oldHeight = currentShape.getHeight();
-//    this.newWidth = newA;
-//    this.newHeight = newB;
-//    this.currentShape.setWidth(newA);
-//    this.currentShape.setHeight(newB);
   }
 
   @Override
@@ -65,10 +49,9 @@ public abstract class AbstractAction implements IAction {
     return this.currentShape;
   }
 
-  //@Override
+  @Override
   public Time getTime() {
     return this.time;
   }
-
 
 }

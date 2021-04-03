@@ -8,39 +8,37 @@ import cs5004.shape.Time;
 /**
  * Action class for color change.
  */
-public class ChangeColor implements IAction {
-  private String name;
-  private IShape currentShape;
-  private RGB newColor;
-  private Time time;
-  private RGB oldColor;
+public class ChangeColor extends AbstractAction {
 
-  public ChangeColor(String name, IShape currentShape, RGB newColor, int startTime, int endTime) {
-    if (name == null) {
-      throw new IllegalArgumentException("Name cannot be null");
-    }
-    if (name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty");
-    }
-    if (newColor == null) {
-      throw new IllegalArgumentException("Color cannot be null");
-    }
-    this.name = name;
-    this.currentShape = currentShape;
-    this.newColor = newColor;
-    this.time = new Time(startTime, endTime);
-    this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
-        currentShape.getColor().getBlue());
-    this.currentShape.setColor(newColor);
+  public ChangeColor(String name, IShape currentShape, RGB newColor,
+                     int startTime, int endTime) {
+    super(name, currentShape, newColor, startTime, endTime);
   }
 
-  public IShape getCurrentShape() {
-    return currentShape;
-  }
+//  private String name;
+//  private IShape currentShape;
+//  private RGB newColor;
+//  private Time time;
+//  private RGB oldColor;
 
-  public Time getTime() {
-    return this.time;
-  }
+//  public ChangeColor(String name, IShape currentShape, RGB newColor, int startTime, int endTime) {
+//    if (name == null) {
+//      throw new IllegalArgumentException("Name cannot be null");
+//    }
+//    if (name.isBlank()) {
+//      throw new IllegalArgumentException("Name cannot be empty");
+//    }
+//    if (newColor == null) {
+//      throw new IllegalArgumentException("Color cannot be null");
+//    }
+//    this.name = name;
+//    this.currentShape = currentShape;
+//    this.newColor = newColor;
+//    this.time = new Time(startTime, endTime);
+//    this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
+//        currentShape.getColor().getBlue());
+//    this.currentShape.setColor(newColor);
+//  }
 
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
