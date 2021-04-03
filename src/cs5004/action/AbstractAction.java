@@ -1,9 +1,9 @@
-package cs5004.animator;
+package cs5004.action;
 
 import cs5004.shape.IShape;
-import cs5004.shape.Position;
-import cs5004.shape.RGB;
-import cs5004.shape.Time;
+import cs5004.utilities.Position;
+import cs5004.utilities.RGB;
+import cs5004.utilities.Time;
 
 public abstract class AbstractAction implements IAction {
   protected String name;

@@ -1,7 +1,7 @@
-package cs5004.animator;
+package cs5004.action;
 
 import cs5004.shape.IShape;
-import cs5004.shape.Time;
+import cs5004.utilities.Time;
 
 /**
  * An interface for the actions classes that make changes specified by the user to the shape.
