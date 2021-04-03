@@ -1,6 +1,5 @@
 package cs5004.animator;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -224,6 +223,4 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
     return true;
   }
-
-
 }
