@@ -98,18 +98,17 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   // NEEDS TO MODIFY
   // adds any action
-  public void addActions(String name, IAction actions) {
+  public void addAction(String name, IAction action) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
-    }
-    if (name.isBlank()) {
+    } else if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
-    }
-    if (actions == null) {
+    } else if (action == null) {
       throw new IllegalArgumentException("Actions cannot be null");
     }
-    addActionToShape(name, actions);
-    chronologicalOrderOfActions.add(actions.toString());
+
+    addActionToShape(name, action);
+    chronologicalOrderOfActions.add(action.toString());
   }
 
   // create, move, change Color, scale
