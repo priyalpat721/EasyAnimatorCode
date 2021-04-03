@@ -16,9 +16,21 @@ public interface IAction {
    */
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
 
+  /**
+   * Gets the current shape of the Action object.
+   * @return the current shape of the Action object.
+   */
   IShape getCurrentShape();
 
+  /**
+   * Gets the time of the Action object.
+   * @return the time of the Action object.
+   */
   Time getTime();
 
+  /**
+   * Gets the type of the Action object.
+   * @return the type of the Action object.
+   */
   Action getType();
 }
