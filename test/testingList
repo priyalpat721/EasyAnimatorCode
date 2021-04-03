@@ -2,6 +2,13 @@ setUp:
 rectangle
 oval
 
+OVERALL:
+use decimals
+use whole numbers
+use large numbers
+use numbers with many decimal places
+
+
 CreateShapes:
 Parameters: String name, Shape shape, RGB color, double width, double height,
                                       double x, double y, int startTime, int endTime)
