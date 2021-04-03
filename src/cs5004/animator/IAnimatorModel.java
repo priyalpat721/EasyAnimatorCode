@@ -45,6 +45,7 @@ public interface IAnimatorModel {
    * @throws IllegalArgumentException if the name of the shape does not exist.
    *                                  if the name is null or empty.
    *                                  if there is a time overlap.
+   *                                  if the action is out of range.
    */
   void move(String name, double newX, double newY, int startTime, int endTime);
 
@@ -59,6 +60,7 @@ public interface IAnimatorModel {
    *                                  if the name is null or empty.
    *                                  if the new color is null.
    *                                  if there is a time overlap.
+   *                                  if the action is out of range.
    */
   void changeColor(String name, RGB newColor, int startTime, int endTime);
 
@@ -73,6 +75,7 @@ public interface IAnimatorModel {
    * @throws IllegalArgumentException if the name of the shape does not exist.
    *                                  if the name is null or empty.
    *                                  if there is a time overlap.
+   *                                  if the action is out of range.
    */
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 

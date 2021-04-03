@@ -77,6 +77,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
+    checkRange(name, startTime, endTime);
+
     if (!checkOverlap(name, Action.MOVE, startTime, endTime)) {
       throw new IllegalArgumentException("Move overlap");
     }
@@ -94,6 +96,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Invalid color");
     }
 
+    checkRange(name, startTime, endTime);
+
     if (!checkOverlap(name, Action.CHANGECOLOR, startTime, endTime)) {
       throw new IllegalArgumentException("Change color overlap");
     }
@@ -106,6 +110,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
+
+    checkRange(name, startTime, endTime);
 
     if (!checkOverlap(name, Action.SCALE, startTime, endTime)) {
       throw new IllegalArgumentException("Scale overlap");
@@ -231,4 +237,25 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
     return true;
   }
+
+  /**
+   * Private method to determine if an action is within the range of execution of a shape.
+   * @param name name of the Shape.
+   * @param startTime the start time of the new action being tested.
+   * @param endTime the end time of the new action being tested.
+   * @throws IllegalArgumentException if the action is out of range.
+   */
+  private boolean checkRange(String name, int startTime, int endTime) {
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        IShape shape = entry.getValue();
+        if (startTime < shape.getTotalTime().getStartTime() ||
+                endTime > shape.getTotalTime().getEndTime()) {
+          throw new IllegalArgumentException("Action is not within range");
+        }
+      }
+    }
+  }
+
+
 }
