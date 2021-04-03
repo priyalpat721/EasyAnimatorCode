@@ -56,11 +56,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-//    getCurrentShape takes care of this
-//    if (currentShape == null) {
-//      throw new IllegalStateException("Shape does not exist");
-//    }
-
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
         List<IAction> actions = entry.getValue();
@@ -87,11 +82,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-//    getCurrentShape takes care of this
-//    if (currentShape == null) {
-//      throw new IllegalStateException("Shape with this name does not exist");
-//    }
-
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
         List<IAction> actions = entry.getValue();
@@ -114,11 +104,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
-
-//    getCurrentShape takes care of this
-//    if (currentShape == null) {
-//      throw new IllegalStateException("Shape with this name does not exist");
-//    }
 
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
@@ -192,7 +177,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
         return accumulatorShape;
       }
     }
-    //return null;
+
     throw new IllegalArgumentException("Shape does not exist");
   }
 
