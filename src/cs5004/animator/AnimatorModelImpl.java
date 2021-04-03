@@ -107,7 +107,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
     chronologicalOrderOfActions.add(actions.toString());
   }
 
-  // create, move, change Color, scale
+  /**
+   * A helper function that adds the action of an individual shape into the hashmap in a
+   * chronological order.
+   * @param name the string name of the shape that is the key of the hashmap.
+   * @param action the IAction class that corresponds to the actions and it is added to the value
+   *               of
+   */
   private void addActionToShape(String name, IAction action) {
     if (logOfActions.get(name) == null) {
       logOfActions.put(name, new LinkedList<>());
