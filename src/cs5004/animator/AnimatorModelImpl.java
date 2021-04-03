@@ -21,12 +21,20 @@ import cs5004.shape.Shape;
 import cs5004.shape.Square;
 import cs5004.shape.Triangle;
 
+/**
+ * This class represents the Model component of an animator.
+ * The class implements the interface IAnimatorModel.
+ * The class has a log of shapes, a log of actions, and a chronological order of actions.
+ */
 public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
   private HashMap<String, List<IAction>> logOfActions;
   // chronological order of actions for toString method
   private List<String> chronologicalOrderOfActions;
 
+  /**
+   * Constructs an animator model object.
+   */
   public AnimatorModelImpl() {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
