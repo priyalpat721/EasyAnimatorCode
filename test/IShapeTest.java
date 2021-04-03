@@ -445,7 +445,89 @@ public class IShapeTest {
         Disappears at t=52""", rh2.toString());
   }
 
-  //2. Extremely large numbers
+  @Test
+  public void testShapesWithLongNumbers() {
+    //highest RGB numbers, large position, large dimensions
+    r2 = new Rectangle("R2", new RGB(255, 255, 255), 8000, 6000,
+        200, 200, 1, 100);
+    assertEquals("""
+        Name: R2
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 8000.0, Height: 6000.0, Color: (255.0,255.0,255.0)
+        Appears at t=1
+        Disappears at t=100""", r2.toString());
+
+    t2 = new Triangle("T2", new RGB(255, 255, 255), 25000, 30000,
+        4000, 5023, 1, 50);
+    assertEquals("""
+        Name: T2
+        Type: triangle
+        Min corner: (4000.0,5023.0), Width: 25000.0, Height: 30000.0, Color: (255.0,255.0,255.0)
+        Appears at t=1
+        Disappears at t=50""", t2.toString());
+
+    s2 = new Square("S2", new RGB(255, 255, 255), 11999, 11999,
+        20000, 30000, 10, 100);
+    assertEquals("""
+        Name: S2
+        Type: square
+        Min corner: (20000.0,30000.0), Length: 11999.0, Color: (255.0,255.0,255.0)
+        Appears at t=10
+        Disappears at t=100""", s2.toString());
+
+    //highest RGB numbers, large position, large dimensions, long time
+    o2 = new Oval("C2", new RGB(255, 255, 255), 6023, 3001,
+        5000, 10000, 6, 10000);
+    assertEquals("""
+        Name: C2
+        Type: oval
+        Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, Color: (255.0,255.0,255.0)
+        Appears at t=6
+        Disappears at t=10000""", o2.toString());
+
+    rh2 = new Rhombus("RH2", new RGB(20, 20, 20), 50, 60,
+        2, 2, 1, 80000);
+    assertEquals("""
+        Name: RH2
+        Type: rhombus
+        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+        Appears at t=1
+        Disappears at t=80000""", rh2.toString());
+
+    c2 = new Circle("C2", new RGB(255, 255, 255), 30000, 30000,
+        2073, 3250, 1, 10023);
+    assertEquals("""
+        Name: C2
+        Type: circle
+        Center: (2073.0,3250.0), Radius: 30000.0, Color: (255.0,255.0,255.0)
+        Appears at t=1
+        Disappears at t=10023""", c2.toString());
+  }
+
+  @Test
+  public void testHighlyPreciseArgs() {
+    r2 = new Rectangle("R2",
+        new RGB(1.8738278238233284, 0.293282738942, 0.98283748289232),
+        50.29871267374283, 100.87982379336470,
+        200.7632290839923472, 200.9292839298928327, 1, 100);
+    assertEquals("""
+        Name: R2
+        Type: rectangle
+        Min corner: (200.8,200.9), Width: 50.29871267374283, Height: 100.8798237933647, Color: (1.9,0.3,1.0)
+        Appears at t=1
+        Disappears at t=100""", r2.toString());
+
+    o2 = new Oval("O2", new RGB(0, 0, 1), 60, 30,
+        500, 100, 6, 100);
+
+
+
+    c2 = new Circle("C2", new RGB(1, 1, 1), 10, 10,
+        0, 0, 1, 100);
+
+
+
+  }
 
   @Test
   public void testToString() {
