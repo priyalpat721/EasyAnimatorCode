@@ -1,8 +1,8 @@
-package cs5004.action;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import cs5004.action.IAction;
+import cs5004.action.Move;
 import cs5004.shape.IShape;
 import cs5004.shape.Rectangle;
 import cs5004.utilities.RGB;
@@ -14,7 +14,7 @@ public class IActionTest {
   IAction move;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     rectangle1 = new Rectangle("R",  new RGB(1.0, 1.0, 1.0),
             50, 100, 200, 200, 1, 100);
     move = new Move("Rectangle1", rectangle1,
@@ -63,6 +63,11 @@ public class IActionTest {
 
   @Test
   public void moveGetCurrentShapeTest() {
+    IShape currentShape = rectangle1;
+    for (int i = 1; i <= 3; i++) {
+      currentShape = move.getShapeAtTick(i, currentShape);
+    }
+    System.out.println(move.getCurrentShape());
   }
 
   @Test
@@ -71,5 +76,10 @@ public class IActionTest {
 
   @Test
   public void moveGetTypeTest() {
+  }
+
+  @Test
+  public void moveToStringTest() {
+
   }
 }
