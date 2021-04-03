@@ -11,15 +11,12 @@ public abstract class AbstractAction implements IAction {
   protected RGB newColor;
   protected Time time;
   protected RGB oldColor;
-
   protected Position newPosition;
   protected Position oldPosition;
-
   protected double oldWidth;
   protected double oldHeight;
   protected double newWidth;
   protected double newHeight;
-
   protected Action type;
 
   // For color change
