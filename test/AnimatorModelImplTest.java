@@ -47,38 +47,39 @@ public class AnimatorModelImplTest {
   public void testMove() {
     model1.move("R", 350, 375, 10, 50);
     assertEquals("""
-        Shapes:
-        Name: R
-        Type: rectangle
-        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-        Appears at t=1
-        Disappears at t=100
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
 
-        Name: S
-        Type: square
-        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=35
-        Disappears at t=36
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=35
+            Disappears at t=36
 
-        Name: T
-        Type: triangle
-        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
-        Appears at t=23
-        Disappears at t=75
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
 
-        Name: RH
-        Type: rhombus
-        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
-        Appears at t=98
-        Disappears at t=99
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
 
-        Name: O
-        Type: oval
-        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
-        Appears at t=6
-        Disappears at t=100
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
 
-        Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50\n""", model1.toString());
+            Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50
+            """, model1.toString());
   }
 
   @Test

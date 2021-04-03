@@ -53,7 +53,7 @@ public class Move extends AbstractAction {
       throw new IllegalArgumentException("Shape cannot be null");
     }
     IShape copy = shape.copy();
-    if (tick <= this.time.getStartTime()) {
+    if (tick < this.time.getStartTime()) {
       return copy;
     } else if (tick > this.time.getEndTime()) {
       copy.setPosition(newPosition.getX(), newPosition.getY());
