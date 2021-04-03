@@ -116,27 +116,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     chronologicalOrderOfActions.add(newScale.toString());
   }
 
-  // NEEDS TO MODIFY
-  public void addAction(String name, IAction action) {
-    if (name == null) {
-      throw new IllegalArgumentException("Name cannot be null");
-    } else if (name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty");
-    } else if (action == null) {
-      throw new IllegalArgumentException("Actions cannot be null");
-    }
-
-    addActionToShape(name, action);
-    chronologicalOrderOfActions.add(action.toString());
-  }
-
-  private void addActionToShape(String name, IAction action) {
-    if (logOfActions.get(name) == null) {
-      logOfActions.put(name, new LinkedList<>());
-    }
-    logOfActions.get(name).add(action);
-  }
-
   @Override
   public List<IShape> getShapesAtTicks(int tick) {
     List<IShape> frameOfShapes = new LinkedList<>();
@@ -153,25 +132,18 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
-  private IShape getCurrentShape(String name) {
-    if (name == null || name.isBlank()) {
-      throw new IllegalArgumentException("Invalid name");
+  // NEEDS TO MODIFY
+  public void addAction(String name, IAction action) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    } else if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    } else if (action == null) {
+      throw new IllegalArgumentException("Actions cannot be null");
     }
 
-    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
-      if (objects.getKey().equals(name)) {
-        IShape accumulatorShape = objects.getValue().copy();
-
-        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
-          for (IAction actions : logOfActions.get(objects.getKey())) {
-            accumulatorShape = actions.getCurrentShape();
-          }
-        }
-        return accumulatorShape;
-      }
-    }
-
-    throw new IllegalArgumentException("Shape does not exist");
+    addActionToShape(name, action);
+    chronologicalOrderOfActions.add(action.toString());
   }
 
   @Override
@@ -193,7 +165,47 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   /**
-   * Helper method to determine if an action overlaps with another of the same type.
+   * Private method that adds an action to the log.
+   * @param name name of the shape.
+   * @param action action to add to the log.
+   */
+  private void addActionToShape(String name, IAction action) {
+    if (logOfActions.get(name) == null) {
+      logOfActions.put(name, new LinkedList<>());
+    }
+    logOfActions.get(name).add(action);
+  }
+
+  /**
+   * Private method that returns a shape from the log.
+   * @param name the name of the shape.
+   * @return the shape from the log.
+   * @throws IllegalArgumentException if name is null or empty.
+   *                                  if the shape does not exist in the log.
+   */
+  private IShape getCurrentShape(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
+    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
+      if (objects.getKey().equals(name)) {
+        IShape accumulatorShape = objects.getValue().copy();
+
+        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
+          for (IAction actions : logOfActions.get(objects.getKey())) {
+            accumulatorShape = actions.getCurrentShape();
+          }
+        }
+        return accumulatorShape;
+      }
+    }
+
+    throw new IllegalArgumentException("Shape does not exist");
+  }
+
+  /**
+   * Private method to determine if an action overlaps with another of the same type.
    * @param name name of the Shape.
    * @param type type of the Action.
    * @param startTime the start time of the new action being tested.
