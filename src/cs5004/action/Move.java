@@ -13,10 +13,11 @@ public class Move extends AbstractAction {
               int startTime, int endTime) {
     super(name, currentShape, newX, newY, startTime, endTime);
 
-    this.newPosition = new Position(newX, newY);
     this.oldPosition = new Position(currentShape.getPosition().getX(),
             currentShape.getPosition().getY());
-    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
+    this.newPosition = new Position(newX, newY);
+    //this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
+    this.currentShape.setPosition(newX, newY);
 
     this.type = Action.MOVE;
   }
@@ -44,11 +45,6 @@ public class Move extends AbstractAction {
 //            currentShape.getPosition().getY());
 //    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
 //  }
-
-  @Override
-  public IShape getCurrentShape() {
-    return this.currentShape;
-  }
 
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
