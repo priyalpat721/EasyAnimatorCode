@@ -40,11 +40,6 @@ public class ChangeColor extends AbstractAction {
 //  }
 
   @Override
-  public IShape getCurrentShape() {
-    return this.currentShape;
-  }
-
-  @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
       throw new IllegalArgumentException("Ticks cannot be negative");

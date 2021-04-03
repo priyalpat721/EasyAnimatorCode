@@ -70,6 +70,11 @@ public abstract class AbstractAction implements IAction {
   }
 
   @Override
+  public IShape getCurrentShape() {
+    return this.currentShape;
+  }
+
+  @Override
   public Time getTime() {
     return this.time;
   }

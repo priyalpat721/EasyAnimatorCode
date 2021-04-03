@@ -45,11 +45,6 @@ public class Move extends AbstractAction {
 //    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
 //  }
 
-  @Override
-  public IShape getCurrentShape() {
-    return this.currentShape;
-  }
-
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
       throw new IllegalArgumentException("Ticks cannot be negative");
