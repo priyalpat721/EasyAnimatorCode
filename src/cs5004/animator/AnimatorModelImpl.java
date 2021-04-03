@@ -30,6 +30,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void createShape(String name, Shape shape, RGB color, double width, double height,
                           double x, double y, int startTime, int endTime) {
+
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      if (entry.getValue().getName().equals(name)) {
+        throw new IllegalArgumentException("Name already exists");
+      }
+    }
+
     if (shape == Shape.CIRCLE) {
       logOfShapes.put(name, new Circle(name, color, width, width, x, y, startTime, endTime));
     } else if (shape == Shape.SQUARE) {
