@@ -118,7 +118,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   // NEEDS TO MODIFY
-  // adds any action
   public void addAction(String name, IAction action) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
@@ -132,7 +131,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     chronologicalOrderOfActions.add(action.toString());
   }
 
-  // create, move, change Color, scale
   private void addActionToShape(String name, IAction action) {
     if (logOfActions.get(name) == null) {
       logOfActions.put(name, new LinkedList<>());
@@ -196,7 +194,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   /**
-   * Helper method to check if an action overlaps with another of the same type.
+   * Helper method to determine if an action overlaps with another of the same type.
    * @param name name of the Shape.
    * @param type type of the Action.
    * @param startTime the start time of the new action being tested.
