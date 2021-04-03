@@ -1,6 +1,7 @@
 package cs5004.animator;
 
 import cs5004.shape.IShape;
+import cs5004.shape.Time;
 
 /**
  * An interface for the actions classes that make changes specified by the user to the shape.
@@ -16,4 +17,5 @@ public interface IAction {
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
 
   IShape getCurrentShape();
+
 }

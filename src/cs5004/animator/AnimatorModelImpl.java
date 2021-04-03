@@ -55,9 +55,29 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
-    if (currentShape == null) {
-      throw new IllegalStateException("Shape with this name does not exist");
+
+//    getCurrentShape takes care of this
+//    if (currentShape == null) {
+//      throw new IllegalStateException("Shape does not exist");
+//    }
+
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          // I dont like this
+          if (action instanceof Move) {
+            // Had to put a getter in every action since we dont have an abstract class
+            // and cast down to use it
+            if (startTime > ((Move) action).getTime().getStartTime() &&
+                    startTime < ((Move) action).getTime().getEndTime()) {
+              throw new IllegalArgumentException("Move overlap");
+            }
+          }
+        }
+      }
     }
+
     IAction newMove = new Move(name, currentShape, newX, newY, startTime, endTime);
     addActionToShape(name, newMove);
     chronologicalOrderOfActions.add(newMove.toString());
@@ -66,9 +86,26 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
-    if (currentShape == null) {
-      throw new IllegalStateException("Shape with this name does not exist");
+
+//    getCurrentShape takes care of this
+//    if (currentShape == null) {
+//      throw new IllegalStateException("Shape with this name does not exist");
+//    }
+
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          if (action instanceof ChangeColor) {
+            if (startTime > ((ChangeColor) action).getTime().getStartTime() &&
+                    startTime < ((ChangeColor) action).getTime().getEndTime()) {
+              throw new IllegalArgumentException("Change color overlap");
+            }
+          }
+        }
+      }
     }
+
     IAction newChangeColor = new ChangeColor(name, currentShape, newColor, startTime, endTime);
     addActionToShape(name, newChangeColor);
     chronologicalOrderOfActions.add(newChangeColor.toString());
@@ -77,9 +114,26 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
-    if (currentShape == null) {
-      throw new IllegalStateException("Shape with this name does not exist");
+
+//    getCurrentShape takes care of this
+//    if (currentShape == null) {
+//      throw new IllegalStateException("Shape with this name does not exist");
+//    }
+
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          if (action instanceof Scale) {
+            if (startTime > ((Scale) action).getTime().getStartTime() &&
+                    startTime < ((Scale) action).getTime().getEndTime()) {
+              throw new IllegalArgumentException("Scale overlap");
+            }
+          }
+        }
+      }
     }
+
     IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
     addActionToShape(name, newScale);
     chronologicalOrderOfActions.add(newScale.toString());
@@ -138,8 +192,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
         return accumulatorShape;
       }
     }
-    return null;
+    //return null;
+    throw new IllegalArgumentException("Shape does not exist");
   }
+
 
   @Override
   public String toString() {

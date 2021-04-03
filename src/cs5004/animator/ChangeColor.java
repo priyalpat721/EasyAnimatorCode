@@ -1,5 +1,6 @@
 package cs5004.animator;
 
+import cs5004.shape.AbstractShape;
 import cs5004.shape.IShape;
 import cs5004.shape.RGB;
 import cs5004.shape.Time;
@@ -35,6 +36,10 @@ public class ChangeColor implements IAction {
 
   public IShape getCurrentShape() {
     return currentShape;
+  }
+
+  public Time getTime() {
+    return this.time;
   }
 
   @Override
