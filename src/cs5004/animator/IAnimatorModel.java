@@ -27,6 +27,9 @@ public interface IAnimatorModel {
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    * @throws IllegalArgumentException if the name already exists.
+   *                                  if the name is null or empty.
+   *                                  if the shape is null.
+   *                                  if the color is null.
    */
   void createShape(String name, Shape shape, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
@@ -40,6 +43,7 @@ public interface IAnimatorModel {
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if the name is null or empty.
    *                                  if there is a time overlap.
    */
   void move(String name, double newX, double newY, int startTime, int endTime);
@@ -52,6 +56,7 @@ public interface IAnimatorModel {
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if the name is null or empty.
    *                                  if the new color is null.
    *                                  if there is a time overlap.
    */
@@ -66,6 +71,7 @@ public interface IAnimatorModel {
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
    * @throws IllegalArgumentException if the name of the shape does not exist.
+   *                                  if the name is null or empty.
    *                                  if there is a time overlap.
    */
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);

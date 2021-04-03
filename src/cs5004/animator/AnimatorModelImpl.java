@@ -88,11 +88,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
+    IShape currentShape = getCurrentShape(name);
+
     if (newColor == null) {
       throw new IllegalArgumentException("Invalid color");
     }
-
-    IShape currentShape = getCurrentShape(name);
 
     if (!checkOverlap(name, Action.CHANGECOLOR, startTime, endTime)) {
       throw new IllegalArgumentException("Change color overlap");
