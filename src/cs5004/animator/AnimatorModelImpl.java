@@ -56,21 +56,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
-      if (entry.getKey().equals(name)) {
-        List<IAction> actions = entry.getValue();
-        for (IAction action : actions) {
-          // I dont like this
-          if (action instanceof Move) {
-            // Had to put a getter in every action since we dont have an abstract class
-            // and cast down to use it
-            if (startTime > ((Move) action).getTime().getStartTime() &&
-                    startTime < ((Move) action).getTime().getEndTime()) {
-              throw new IllegalArgumentException("Move overlap");
-            }
-          }
-        }
-      }
+    if (!checkOverlap(name, Action.MOVE, startTime)) {
+      throw new IllegalArgumentException("Move overlap");
     }
 
     IAction newMove = new Move(name, currentShape, newX, newY, startTime, endTime);
@@ -82,18 +69,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
-      if (entry.getKey().equals(name)) {
-        List<IAction> actions = entry.getValue();
-        for (IAction action : actions) {
-          if (action instanceof ChangeColor) {
-            if (startTime > ((ChangeColor) action).getTime().getStartTime() &&
-                    startTime < ((ChangeColor) action).getTime().getEndTime()) {
-              throw new IllegalArgumentException("Change color overlap");
-            }
-          }
-        }
-      }
+    if (!checkOverlap(name, Action.CHANGECOLOR, startTime)) {
+      throw new IllegalArgumentException("Change color overlap");
     }
 
     IAction newChangeColor = new ChangeColor(name, currentShape, newColor, startTime, endTime);
@@ -105,18 +82,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
-      if (entry.getKey().equals(name)) {
-        List<IAction> actions = entry.getValue();
-        for (IAction action : actions) {
-          if (action instanceof Scale) {
-            if (startTime > ((Scale) action).getTime().getStartTime() &&
-                    startTime < ((Scale) action).getTime().getEndTime()) {
-              throw new IllegalArgumentException("Scale overlap");
-            }
-          }
-        }
-      }
+    if (!checkOverlap(name, Action.SCALE, startTime)) {
+      throw new IllegalArgumentException("Scale overlap");
     }
 
     IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
@@ -181,12 +148,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     throw new IllegalArgumentException("Shape does not exist");
   }
 
-
   @Override
   public String toString() {
-
-    //print log of shapes at create
-
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
     for (Map.Entry shape : logOfShapes.entrySet()) {
@@ -199,4 +162,23 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
     return accString.toString();
   }
+
+  private boolean checkOverlap(String name, Action type, int startTime) {
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          if (action.getType() == type) {
+            if (startTime > action.getTime().getStartTime() &&
+                    startTime < action.getTime().getEndTime()) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+
 }

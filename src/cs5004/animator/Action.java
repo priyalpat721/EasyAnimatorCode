@@ -1,7 +1,7 @@
 package cs5004.animator;
 
 public enum Action { MOVE("moves"),
-                    CHANGE("changes"),
+                    CHANGECOLOR("changes"),
                     SCALE("scales");
 
   private final String desc;

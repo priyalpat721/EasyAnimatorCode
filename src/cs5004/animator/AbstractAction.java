@@ -35,7 +35,7 @@ public abstract class AbstractAction implements IAction {
             currentShape.getColor().getBlue());
     this.currentShape.setColor(newColor);
 
-    this.type = Action.CHANGE;
+    this.type = Action.CHANGECOLOR;
   }
 
   // For move and scale
@@ -55,6 +55,11 @@ public abstract class AbstractAction implements IAction {
   @Override
   public Time getTime() {
     return this.time;
+  }
+
+  @Override
+  public Action getType() {
+    return this.type;
   }
 
 }
