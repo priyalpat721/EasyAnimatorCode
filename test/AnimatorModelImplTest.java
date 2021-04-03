@@ -1,25 +1,15 @@
-import static org.junit.Assert.assertEquals;
-
-import cs5004.action.Move;
-import cs5004.animator.IAnimatorModel;
-import cs5004.shape.Circle;
-import cs5004.shape.IShape;
-import cs5004.shape.Oval;
-import cs5004.shape.Rectangle;
-import cs5004.shape.Rhombus;
-import cs5004.shape.Square;
-import cs5004.shape.Triangle;
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import cs5004.animator.AnimatorModelImpl;
-import cs5004.utilities.RGB;
 import cs5004.shape.Shape;
+import cs5004.utilities.RGB;
+
+import static org.junit.Assert.assertEquals;
 
 public class AnimatorModelImplTest {
   AnimatorModelImpl model1;
+  AnimatorModelImpl model2;
 
 
   @Before
@@ -35,6 +25,13 @@ public class AnimatorModelImplTest {
         15,15,125, 34, 35,36);
     model1.createShape("RH", Shape.RHOMBUS, new RGB(2,3,4),
         20, 20, 45, 15, 98, 99);
+
+    model2 = new AnimatorModelImpl();
+    model2.createShape("P1", Shape.RECTANGLE, new RGB(1, 1, 1),
+            50, 100, 200, 200, 1, 100);
+    model2.move("P1", 150.0, 150.0, 1, 5);
+    model2.scale("P1",100, 200, 5, 10);
+    model2.changeColor("P1", new RGB(10, 10, 10), 10, 15);
   }
 
   @Test
@@ -142,6 +139,7 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testToStringShapesAndActions() {
+    System.out.println(model2.toString());
 //    AnimatorModelImpl model2 = new AnimatorModelImpl();
 //    model2.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
 //            50, 100, 200, 200, 1, 100);
