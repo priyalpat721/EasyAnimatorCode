@@ -25,7 +25,7 @@ public class Oval extends AbstractShape {
     return String.format("Name: " + this.name + "\n"
             + "Type: " + this.type.toString() + "\n"
             + "Center: " + this.position.toString()
-            + ", X radius: %.1f" + ", Y radius: %1f"
+            + ", X radius: %.1f, Y radius: %.1f"
             + ", Color: " + this.color.toString() + "\n"
             + "Appears at t=" + this.totalTime.getStartTime() + "\n"
             + "Disappears at t=" + this.totalTime.getEndTime(), this.width, this.height);

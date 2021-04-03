@@ -213,6 +213,11 @@ public class IShapeTest {
     rectangle.setPosition(100, 100);
     assertEquals(100, rectangle.getPosition().getX(), 0.01);
     assertEquals(100, rectangle.getPosition().getY(), 0.01);
+
+    //setting position with highly precise arguments
+    circle.setPosition(0.9999999999999999, 99.9999999999999999);
+    assertEquals(0.9999999999999999, circle.getPosition().getX(), 0.01);
+    assertEquals(99.9999999999999999, circle.getPosition().getY(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -256,6 +261,14 @@ public class IShapeTest {
     assertEquals(2, rectangle.getColor().getRed(), 0.01);
     assertEquals(2, rectangle.getColor().getGreen(), 0.01);
     assertEquals(2, rectangle.getColor().getBlue(), 0.01);
+
+    //setting color with highly precise arguments
+    circle.setColor(new RGB(254.9999999999999999, 254.9999999999999999,
+        254.9999999999999999));
+    assertEquals(254.9999999999999999, circle.getColor().getRed(), 0.01);
+    assertEquals(254.9999999999999999, circle.getColor().getGreen(), 0.01);
+    assertEquals(254.9999999999999999, circle.getColor().getBlue(), 0.01);
+
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -517,16 +530,27 @@ public class IShapeTest {
         Appears at t=1
         Disappears at t=100""", r2.toString());
 
-    o2 = new Oval("O2", new RGB(0, 0, 1), 60, 30,
-        500, 100, 6, 100);
+    o2 = new Oval("O2", new RGB(100.283748378, 200.842734820, 10.1728387172),
+        60.92837817303429883984829483, 30.987238482783782834274,
+        500.823748278432934892920, 100.93829480929483287428, 6, 100);
+    assertEquals("""
+        Name: O2
+        Type: oval
+        Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, Color: (100.3,200.8,10.2)
+        Appears at t=6
+        Disappears at t=100""", o2.toString());
 
-
-
-    c2 = new Circle("C2", new RGB(1, 1, 1), 10, 10,
-        0, 0, 1, 100);
-
-
-
+    c2 = new Circle("C2",
+        new RGB(254.9999999999999999999, 254.9999999999999999999,
+            254.9999999999999999999),
+        19238938.2938489284232893494, 19238938.2938489284232893494,
+        0.8129398848932894938949283498, 200.9284928578758278329890, 1, 100);
+    assertEquals("""
+        Name: C2
+        Type: circle
+        Center: (0.8,200.9), Radius: 19238938.3, Color: (255.0,255.0,255.0)
+        Appears at t=1
+        Disappears at t=100""", c2.toString());
   }
 
   @Test

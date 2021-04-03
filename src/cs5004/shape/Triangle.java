@@ -20,5 +20,4 @@ public class Triangle extends AbstractShape {
             this.getPosition().getX(), this.getPosition().getY(),
             this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
   }
-
 }
