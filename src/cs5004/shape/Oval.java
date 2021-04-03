@@ -22,14 +22,13 @@ public class Oval extends AbstractShape {
   }
 
   public String toString() {
-    return "Name: " + this.name + "\n"
+    return String.format("Name: " + this.name + "\n"
             + "Type: " + this.type.toString() + "\n"
             + "Center: " + this.position.toString()
-            + ", X radius: " + this.width
-            + ", Y radius: " + this.height
+            + ", X radius: %.1f" + ", Y radius: %1f"
             + ", Color: " + this.color.toString() + "\n"
             + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime();
+            + "Disappears at t=" + this.totalTime.getEndTime(), this.width, this.height);
   }
 
 }

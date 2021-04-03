@@ -513,7 +513,7 @@ public class IShapeTest {
     assertEquals("""
         Name: R2
         Type: rectangle
-        Min corner: (200.8,200.9), Width: 50.29871267374283, Height: 100.8798237933647, Color: (1.9,0.3,1.0)
+        Min corner: (200.8,200.9), Width: 50.3, Height: 100.9, Color: (1.9,0.3,1.0)
         Appears at t=1
         Disappears at t=100""", r2.toString());
 
