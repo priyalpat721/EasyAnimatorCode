@@ -20,6 +20,8 @@ public class Scale extends AbstractAction {
     this.newHeight = newB;
     this.currentShape.setWidth(newA);
     this.currentShape.setHeight(newB);
+
+    this.type = Action.SCALE;
   }
 
 //  private String name;

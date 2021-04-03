@@ -18,6 +18,8 @@ public class Move extends AbstractAction {
     this.oldPosition = new Position(currentShape.getPosition().getX(),
             currentShape.getPosition().getY());
     this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
+
+    this.type = Action.MOVE;
   }
 
 //  private String name;

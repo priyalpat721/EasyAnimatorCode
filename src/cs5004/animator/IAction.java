@@ -19,4 +19,6 @@ public interface IAction {
   IShape getCurrentShape();
 
   Time getTime();
+
+  Action getType();
 }
