@@ -308,6 +308,11 @@ public class IShapeTest {
     oval.setWidth(30);
     assertEquals(20, rectangle.getWidth(), 0.01);
     assertEquals(30, oval.getWidth(), 0.01);
+
+    //setting width with long decimal numbers
+    rhombus.setWidth(30.823787428394928399);
+    assertEquals(30.823787428394928399, rhombus.getWidth(), 0.01);
+
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -321,6 +326,12 @@ public class IShapeTest {
     oval.setHeight(50);
     assertEquals(40, rectangle.getHeight(), 0.01);
     assertEquals(50, oval.getHeight(), 0.01);
+
+    //setting height to large decimal number
+    rectangle.setHeight(60.2384782742874);
+    oval.setHeight(50.9829348920293);
+    assertEquals(60.2384782742874, rectangle.getHeight(), 0.01);
+    assertEquals(50.9829348920293, oval.getHeight(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -337,6 +348,10 @@ public class IShapeTest {
   public void testSetRadius() {
     circle.setRadius(20);
     assertEquals(20, circle.getRadius(), 0.01);
+
+    //setting radius to long decimal number
+    circle.setRadius(77.82934829849239);
+    assertEquals(77.82934829849239, circle.getRadius(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -353,6 +368,10 @@ public class IShapeTest {
   public void testSetLength() {
     square.setLength(30);
     assertEquals(30, square.getLength(), 0.01);
+
+    //setting length to large decimal number
+    square.setLength(82.9384920493029389424);
+    assertEquals(82.9384920493029389424, square.getLength(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
