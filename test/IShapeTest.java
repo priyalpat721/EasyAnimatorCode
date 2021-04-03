@@ -24,6 +24,12 @@ public class IShapeTest {
   private IShape circle;
   private IShape triangle;
   private IShape rhombus;
+  private IShape r2;
+  private IShape o2;
+  private IShape s2;
+  private IShape c2;
+  private IShape t2;
+  private IShape rh2;
 
   @Before
   public void setUp() {
@@ -366,6 +372,80 @@ public class IShapeTest {
     assertEquals(60, newRectangle.getPosition().getX(), 0.01);
     assertEquals(60, newRectangle.getPosition().getY(), 0.01);
   }
+
+  @Test
+  public void testCreateLegalRectangle() {
+    r2 = new Rectangle("R2", new RGB(2, 35, 250), 30, 75,
+        150, 100, 5, 105);
+    assertEquals("""
+        Name: R2
+        Type: rectangle
+        Min corner: (150.0,100.0), Width: 30.0, Height: 75.0, Color: (2.0,35.0,250.0)
+        Appears at t=5
+        Disappears at t=105""", r2.toString());
+  }
+
+  @Test
+  public void testCreateLegalOval() {
+    o2 = new Oval("O2", new RGB(255, 255, 255), 55, 15,
+        300, 200, 1, 96);
+    assertEquals("""
+        Name: O2
+        Type: oval
+        Center: (300.0,200.0), X radius: 55.0, Y radius: 15.0, Color: (255.0,255.0,255.0)
+        Appears at t=1
+        Disappears at t=96""", o2.toString());
+  }
+
+  @Test
+  public void testCreateLegalSquare() {
+    s2 = new Square("S2", new RGB(10, 10, 10), 55, 55,
+        0, 0, 10, 100);
+    assertEquals("""
+        Name: S2
+        Type: square
+        Min corner: (0.0,0.0), Length: 55.0, Color: (10.0,10.0,10.0)
+        Appears at t=10
+        Disappears at t=100""",s2.toString());
+  }
+
+  @Test
+  public void testCreateLegalCircle() {
+    c2 = new Circle("C2", new RGB(40, 178, 222), 30, 30,
+        167, 0, 45, 49);
+    assertEquals("""
+        Name: C2
+        Type: circle
+        Center: (167.0,0.0), Radius: 30.0, Color: (40.0,178.0,222.0)
+        Appears at t=45
+        Disappears at t=49""",c2.toString());
+  }
+
+  @Test
+  public void testCreateLegalTriangle() {
+    t2 = new Triangle("T2", new RGB(15, 50, 125), 40, 81,
+        4, 11, 11, 22);
+    assertEquals("""
+        Name: T2
+        Type: triangle
+        Min corner: (4.0,11.0), Width: 40.0, Height: 81.0, Color: (15.0,50.0,125.0)
+        Appears at t=11
+        Disappears at t=22""",t2.toString());
+  }
+
+  @Test
+  public void testCreateLegalRhombus() {
+    rh2 = new Rhombus("RH2", new RGB(102, 51, 98), 21, 44,
+        20, 230, 25, 52);
+    assertEquals("""
+        Name: RH2
+        Type: rhombus
+        Min corner: (20.0,230.0), Width: 21.0, Height: 44.0, Color: (102.0,51.0,98.0)
+        Appears at t=25
+        Disappears at t=52""", rh2.toString());
+  }
+
+  //2. Extremely large numbers
 
   @Test
   public void testToString() {

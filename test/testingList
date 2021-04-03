@@ -15,12 +15,12 @@ Parameters: String name, Shape shape, RGB color, double width, double height,
 legal testing
 1. create regular shapes - have a test for each shape
 Shapes:
-Rectangle
-Oval
-Square
-Circle
-Triangle
-Rhombus
+Rectangle  AJA
+Oval       AJA
+Square     AJA
+Circle     AJA
+Triangle   AJA
+Rhombus     AJA
 2. Extremely large numbers
 
 exception testing:
