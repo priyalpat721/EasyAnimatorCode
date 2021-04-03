@@ -56,7 +56,6 @@ public abstract class AbstractAction implements IAction {
 //    this.newHeight = newB;
 //    this.currentShape.setWidth(newA);
 //    this.currentShape.setHeight(newB);
-
   }
 
   @Override
