@@ -10,15 +10,15 @@ import cs5004.utilities.RGB;
  */
 public class Circle extends AbstractShape {
 
-  public Circle(String name, RGB color, double width, double height,
+  public Circle(String name, RGB color, double radius, double radiusB,
                 double x, double y, int startTime, int endTime) {
-    super(name, color, width, height, x, y, startTime, endTime);
+    super(name, color, radius, radiusB, x, y, startTime, endTime);
 
-    if (width != height) {
-      throw new IllegalArgumentException("Width and height must be equal");
+    if (radius != radiusB) {
+      throw new IllegalArgumentException("Radius and RadiusB must be equal");
     }
 
-    this.radius = width;
+    this.radius = radius;
     this.type = Shape.CIRCLE;
   }
 

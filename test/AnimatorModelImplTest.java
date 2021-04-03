@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 
+import cs5004.action.Move;
 import cs5004.animator.IAnimatorModel;
 import cs5004.shape.Circle;
 import cs5004.shape.IShape;
