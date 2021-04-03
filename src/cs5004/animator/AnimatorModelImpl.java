@@ -78,7 +78,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    if (!checkOverlap(name, Action.MOVE, startTime)) {
+    if (!checkOverlap(name, Action.MOVE, startTime, endTime)) {
       throw new IllegalArgumentException("Move overlap");
     }
 
@@ -95,7 +95,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IShape currentShape = getCurrentShape(name);
 
-    if (!checkOverlap(name, Action.CHANGECOLOR, startTime)) {
+    if (!checkOverlap(name, Action.CHANGECOLOR, startTime, endTime)) {
       throw new IllegalArgumentException("Change color overlap");
     }
 
@@ -108,7 +108,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    if (!checkOverlap(name, Action.SCALE, startTime)) {
+    if (!checkOverlap(name, Action.SCALE, startTime, endTime)) {
       throw new IllegalArgumentException("Scale overlap");
     }
 
@@ -198,16 +198,19 @@ public class AnimatorModelImpl implements IAnimatorModel {
    * @param name name of the Shape.
    * @param type type of the Action.
    * @param startTime the start time of the new action being tested.
+   * @param endTime the end time of the new action being tested.
    * @return true if there is no overlap; false otherwise.
    */
-  private boolean checkOverlap(String name, Action type, int startTime) {
+  private boolean checkOverlap(String name, Action type, int startTime, int endTime) {
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime > action.getTime().getStartTime() &&
-                    startTime < action.getTime().getEndTime()) {
+            if (startTime >= action.getTime().getStartTime() &&
+                    startTime <= action.getTime().getEndTime() ||
+                    endTime >= action.getTime().getStartTime() &&
+                            endTime <= action.getTime().getEndTime()) {
               return false;
             }
           }
