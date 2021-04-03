@@ -37,23 +37,15 @@ public abstract class AbstractShape implements IShape {
    * @param y         the Y position of the shape.
    * @param startTime the start time of existence of the shape.
    * @param endTime   the end time of existence of the shape.
+   * @throws IllegalArgumentException if the name is null or empty.
+   *                                  if the color is null.
    */
   public AbstractShape(String name, RGB color, double width, double height,
                        double x, double y, int startTime, int endTime) {
-    if (name == null) {
-      throw new IllegalArgumentException("Name cannot be null");
-    }
-    if (name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty");
-    }
-    if (color == null) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    } else if (color == null) {
       throw new IllegalArgumentException("Color cannot be null");
-    }
-    if (width <= 0) {
-      throw new IllegalArgumentException("Invalid width");
-    }
-    if (height <= 0) {
-      throw new IllegalArgumentException("Invalid height");
     }
 
     this.name = name;

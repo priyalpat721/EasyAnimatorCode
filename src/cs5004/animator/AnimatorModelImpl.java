@@ -32,7 +32,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private List<String> chronologicalOrderOfActions;
 
   /**
-   * Constructs an Animator Model object.
+   * Constructs an Animator model object.
    */
   public AnimatorModelImpl() {
     this.logOfShapes = new HashMap<>();
@@ -77,7 +77,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    if (!checkOverlap(name, Action.MOVE, startTime)) {
+    if (!checkOverlap(name, Action.MOVE, startTime, endTime)) {
       throw new IllegalArgumentException("Move overlap");
     }
 
@@ -88,13 +88,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
+    IShape currentShape = getCurrentShape(name);
+
     if (newColor == null) {
       throw new IllegalArgumentException("Invalid color");
     }
 
-    IShape currentShape = getCurrentShape(name);
-
-    if (!checkOverlap(name, Action.CHANGECOLOR, startTime)) {
+    if (!checkOverlap(name, Action.CHANGECOLOR, startTime, endTime)) {
       throw new IllegalArgumentException("Change color overlap");
     }
 
@@ -107,42 +107,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    if (!checkOverlap(name, Action.SCALE, startTime)) {
+    if (!checkOverlap(name, Action.SCALE, startTime, endTime)) {
       throw new IllegalArgumentException("Scale overlap");
     }
 
     IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
     addActionToShape(name, newScale);
     chronologicalOrderOfActions.add(newScale.toString());
-  }
-
-  // NEEDS TO MODIFY
-  // adds any action
-  public void addAction(String name, IAction action) {
-    if (name == null) {
-      throw new IllegalArgumentException("Name cannot be null");
-    } else if (name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty");
-    } else if (action == null) {
-      throw new IllegalArgumentException("Actions cannot be null");
-    }
-
-    addActionToShape(name, action);
-    chronologicalOrderOfActions.add(action.toString());
-  }
-
-  /**
-   * A helper function that adds the action of an individual shape into the hashmap in a
-   * chronological order.
-   * @param name the string name of the shape that is the key of the hashmap.
-   * @param action the IAction class that corresponds to the actions and it is added to the value
-   *               of
-   */
-  private void addActionToShape(String name, IAction action) {
-    if (logOfActions.get(name) == null) {
-      logOfActions.put(name, new LinkedList<>());
-    }
-    logOfActions.get(name).add(action);
   }
 
   @Override
@@ -161,25 +132,19 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
-  private IShape getCurrentShape(String name) {
-    if (name == null || name.isBlank()) {
-      throw new IllegalArgumentException("Invalid name");
+  // NEEDS TO MODIFY
+  // adds any action
+  public void addAction(String name, IAction action) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    } else if (name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    } else if (action == null) {
+      throw new IllegalArgumentException("Actions cannot be null");
     }
 
-    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
-      if (objects.getKey().equals(name)) {
-        IShape accumulatorShape = objects.getValue().copy();
-
-        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
-          for (IAction actions : logOfActions.get(objects.getKey())) {
-            accumulatorShape = actions.getCurrentShape();
-          }
-        }
-        return accumulatorShape;
-      }
-    }
-
-    throw new IllegalArgumentException("Shape does not exist");
+    addActionToShape(name, action);
+    chronologicalOrderOfActions.add(action.toString());
   }
 
   @Override
@@ -201,20 +166,63 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   /**
-   * Helper method to check if an action overlaps with another of the same type.
+   * Private method that adds an action to the log.
+   * @param name name of the shape.
+   * @param action action to add to the log.
+   */
+  private void addActionToShape(String name, IAction action) {
+    if (logOfActions.get(name) == null) {
+      logOfActions.put(name, new LinkedList<>());
+    }
+    logOfActions.get(name).add(action);
+  }
+
+  /**
+   * Private method that returns a shape from the log.
+   * @param name the name of the shape.
+   * @return the shape from the log.
+   * @throws IllegalArgumentException if name is null or empty.
+   *                                  if the shape does not exist in the log.
+   */
+  private IShape getCurrentShape(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
+    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
+      if (objects.getKey().equals(name)) {
+        IShape accumulatorShape = objects.getValue().copy();
+
+        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
+          for (IAction actions : logOfActions.get(objects.getKey())) {
+            accumulatorShape = actions.getCurrentShape();
+          }
+        }
+        return accumulatorShape;
+      }
+    }
+
+    throw new IllegalArgumentException("Shape does not exist");
+  }
+
+  /**
+   * Private method to determine if an action overlaps with another of the same type.
    * @param name name of the Shape.
    * @param type type of the Action.
    * @param startTime the start time of the new action being tested.
+   * @param endTime the end time of the new action being tested.
    * @return true if there is no overlap; false otherwise.
    */
-  private boolean checkOverlap(String name, Action type, int startTime) {
+  private boolean checkOverlap(String name, Action type, int startTime, int endTime) {
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime > action.getTime().getStartTime() &&
-                    startTime < action.getTime().getEndTime()) {
+            if (startTime >= action.getTime().getStartTime() &&
+                    startTime <= action.getTime().getEndTime() ||
+                    endTime >= action.getTime().getStartTime() &&
+                            endTime <= action.getTime().getEndTime()) {
               return false;
             }
           }
