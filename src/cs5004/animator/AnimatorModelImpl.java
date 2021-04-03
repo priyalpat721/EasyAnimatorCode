@@ -5,10 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import cs5004.action.Action;
+import cs5004.action.ChangeColor;
+import cs5004.action.IAction;
+import cs5004.action.Move;
+import cs5004.action.Scale;
 import cs5004.shape.Circle;
 import cs5004.shape.IShape;
 import cs5004.shape.Oval;
-import cs5004.shape.RGB;
+import cs5004.utilities.RGB;
 import cs5004.shape.Rectangle;
 import cs5004.shape.Rhombus;
 import cs5004.shape.Shape;

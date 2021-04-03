@@ -2,8 +2,9 @@ package cs5004.animator;
 
 import java.util.List;
 
+import cs5004.action.IAction;
 import cs5004.shape.IShape;
-import cs5004.shape.RGB;
+import cs5004.utilities.RGB;
 import cs5004.shape.Shape;
 
 /**

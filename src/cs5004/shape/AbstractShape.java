@@ -1,5 +1,9 @@
 package cs5004.shape;
 
+import cs5004.utilities.Position;
+import cs5004.utilities.RGB;
+import cs5004.utilities.Time;
+
 /**
  * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
  * position, a total time of existence, and a color. If the shape is a square, it has a length. If

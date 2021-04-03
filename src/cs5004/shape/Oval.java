@@ -1,5 +1,7 @@
 package cs5004.shape;
 
+import cs5004.utilities.RGB;
+
 /**
  * This class represents an Oval.
  * It extends the abstract class AbstractShape.

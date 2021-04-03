@@ -1,4 +1,4 @@
-package cs5004.shape;
+package cs5004.utilities;
 
 /**
  * This class represents a color in format RGB.
