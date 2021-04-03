@@ -10,15 +10,15 @@ import cs5004.utilities.RGB;
  */
 public class Square extends AbstractShape {
 
-  public Square(String name, RGB color, double width, double height,
+  public Square(String name, RGB color, double length, double lengthB,
                 double x, double y, int startTime, int endTime) {
-    super(name, color, width, height, x, y, startTime, endTime);
+    super(name, color, length, lengthB, x, y, startTime, endTime);
 
-    if (width != height) {
-      throw new IllegalArgumentException("Width and height must be equal");
+    if (length != lengthB) {
+      throw new IllegalArgumentException("Length and LengthB must be equal");
     }
 
-    this.length = width;
+    this.length = length;
     this.type = Shape.SQUARE;
   }
 

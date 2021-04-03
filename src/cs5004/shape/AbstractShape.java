@@ -48,6 +48,12 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalArgumentException("Color cannot be null");
     }
 
+    if (width <= 0) {
+      throw new IllegalArgumentException("Width cannot be less than or equal to zero");
+    } else if (height <= 0) {
+      throw new IllegalArgumentException("Height cannot be less than or equal to zero");
+    }
+
     this.name = name;
     this.color = color;
     this.position = new Position(x, y);
