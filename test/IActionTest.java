@@ -39,7 +39,12 @@ public class IActionTest {
     oval1 = new Oval("Oval1", new RGB(1.0, 1.0, 1.0),
             50, 100, 200, 200, 1, 100);
     scale = new Scale("Oval1", oval1,
-            300.8, 300.156, 1, 5);
+            300.8, 300.156, 10, 15);
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void negativeTickGetShapeAtTick() {
+    move.getShapeAtTick(-1, rectangle1);
   }
 
   // tests the getShapesAtTick for the Move class over an interval
@@ -119,20 +124,50 @@ public class IActionTest {
   public void changeColorGetShapeAtTickTest() {
     StringBuilder intervals = new StringBuilder();
     IShape currentShape = circle1;
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 16; i <= 20; i++) {
       currentShape = color.getShapeAtTick(i, currentShape);
       intervals.append(currentShape.toString());
-      if (i != 5) {
+      if (i != 20) {
         intervals.append("\n");
       }
     }
     assertEquals("""
                     Name: Circle1
                     Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)
+                    Center: (100.0,50.0), Radius: 12.0, Color: (44.1,120.2,44.1)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Circle1
+                    Type: circle
+                    Center: (100.0,50.0), Radius: 12.0, Color: (83.1,140.4,83.2)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Circle1
+                    Type: circle
+                    Center: (100.0,50.0), Radius: 12.0, Color: (122.1,160.6,122.3)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Circle1
+                    Type: circle
+                    Center: (100.0,50.0), Radius: 12.0, Color: (161.2,180.8,161.4)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Circle1
+                    Type: circle
+                    Center: (100.0,50.0), Radius: 12.0, Color: (200.3,201.0,200.5)
                     Appears at t=1
                     Disappears at t=100"""
-           , color.getCurrentShape().toString());
+            , intervals.toString());
+  }
+
+  @Test
+  public void changeColorGetCurrentShapeTest() {
+    assertEquals("""
+            Name: Circle1
+            Type: circle
+            Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)
+            Appears at t=1
+            Disappears at t=100""", color.getCurrentShape().toString());
   }
 
   @Test
@@ -150,5 +185,72 @@ public class IActionTest {
   public void changeColorToStringTest() {
     assertEquals("Circle1 changes color from (5.0,5.0,100.0) "
             + "to (200.3,200.5,201.0) from time t= 15 to t=20", color.toString());
+  }
+
+  @Test
+  public void scaleGetShapeAtTickTest() {
+    StringBuilder intervals = new StringBuilder();
+    IShape currentShape = oval1;
+    for (int i = 11; i <= 15; i++) {
+      currentShape = scale.getShapeAtTick(i, currentShape);
+      intervals.append(currentShape.toString());
+      if (i != 15) {
+        intervals.append("\n");
+      }
+    }
+    assertEquals("""
+                    Name: Oval1
+                    Type: oval
+                    Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Oval1
+                    Type: oval
+                    Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Oval1
+                    Type: oval
+                    Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Oval1
+                    Type: oval
+                    Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100
+                    Name: Oval1
+                    Type: oval
+                    Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100"""
+            , intervals.toString());
+  }
+
+  @Test
+  public void scaleGetCurrentShapeTest() {
+    assertEquals("""
+            Name: Oval1
+            Type: oval
+            Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100""", scale.getCurrentShape().toString());
+  }
+
+  @Test
+  public void scaleGetTimeTest() {
+    assertEquals(10, scale.getTime().getStartTime());
+    assertEquals(15, scale.getTime().getEndTime());
+  }
+
+  @Test
+  public void scaleGetTypeTest() {
+    assertEquals("SCALE", scale.getType().toString());
+  }
+
+  @Test
+  public void scaleToStringTest() {
+    assertEquals("Oval1 scales from X radius:, 50.0Y radius: 100.0 to X " +
+            "radius, 300.8Y radius 300.156from time t=10 to t=15", scale.toString());
   }
 }

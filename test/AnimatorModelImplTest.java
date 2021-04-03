@@ -280,7 +280,7 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testToStringShapesAndActions() {
-    System.out.println(model2.toString());
+    //System.out.println(model2.toString());
 //    AnimatorModelImpl model2 = new AnimatorModelImpl();
 //    model2.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
 //            50, 100, 200, 200, 1, 100);
