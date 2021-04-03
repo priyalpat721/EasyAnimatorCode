@@ -1,5 +1,6 @@
 package cs5004.animator;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +36,14 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void createShape(String name, Shape shape, RGB color, double width, double height,
                           double x, double y, int startTime, int endTime) {
+
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    } else if (shape == null) {
+      throw new IllegalArgumentException("Invalid shape");
+    } else if (color == null) {
+      throw new IllegalArgumentException("Invalid color");
+    }
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getValue().getName().equals(name)) {
@@ -72,6 +81,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public void changeColor(String name, RGB newColor, int startTime, int endTime) {
+    if (newColor == null) {
+      throw new IllegalArgumentException("Invalid color");
+    }
+
     IShape currentShape = getCurrentShape(name);
 
     if (!checkOverlap(name, Action.CHANGECOLOR, startTime)) {
@@ -136,6 +149,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   private IShape getCurrentShape(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       if (objects.getKey().equals(name)) {
         IShape accumulatorShape = objects.getValue().copy();
