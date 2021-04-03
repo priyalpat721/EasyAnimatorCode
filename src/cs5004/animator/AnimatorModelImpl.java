@@ -33,7 +33,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private List<String> chronologicalOrderOfActions;
 
   /**
-   * Constructs an animator model object.
+   * Constructs an Animator Model object.
    */
   public AnimatorModelImpl() {
     this.logOfShapes = new HashMap<>();
