@@ -5,6 +5,7 @@ import cs5004.utilities.RGB;
 
 /**
  * Action class for color change.
+ * This action is of type Action.CHANGECOLOR.
  */
 public class ChangeColor extends AbstractAction {
 

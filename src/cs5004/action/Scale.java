@@ -5,6 +5,7 @@ import cs5004.shape.Shape;
 
 /**
  * Action class for scaling.
+ * This action is of type Action.SCALE.
  */
 public class Scale extends AbstractAction {
 

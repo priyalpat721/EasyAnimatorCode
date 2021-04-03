@@ -5,6 +5,7 @@ import cs5004.utilities.Position;
 
 /**
  * Action class for movement.
+ * This action is of type Action.MOVE.
  */
 public class Move extends AbstractAction {
 
