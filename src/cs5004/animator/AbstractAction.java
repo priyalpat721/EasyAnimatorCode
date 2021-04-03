@@ -20,6 +20,8 @@ public abstract class AbstractAction implements IAction {
   protected double newWidth;
   protected double newHeight;
 
+  protected Action type;
+
   // For color change
   public AbstractAction(String name, IShape currentShape, RGB newColor,
                         int startTime, int endTime) {
