@@ -66,9 +66,9 @@ public interface IAnimatorModel {
    * A general function that takes in an action from the user and adds it to the hashmap.
    *
    * @param name    name of the shape that is associated with a specific type of shape.
-   * @param actions is one of the IAction: Move, ChangeColor or Scale.
+   * @param action is one of the IAction: Move, ChangeColor or Scale.
    */
-  void addActions(String name, IAction actions);
+  void addAction(String name, IAction action);
 
   /**
    * A function that returns a list of shapes at the specified frame. The function works by
