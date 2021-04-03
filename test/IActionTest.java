@@ -36,9 +36,9 @@ public class IActionTest {
             15, 20);
 
     // for the scale class
-    oval1 = new Oval("R", new RGB(1.0, 1.0, 1.0),
+    oval1 = new Oval("Oval1", new RGB(1.0, 1.0, 1.0),
             50, 100, 200, 200, 1, 100);
-    scale = new Scale("Rectangle1", rectangle1,
+    scale = new Scale("Oval1", oval1,
             300.8, 300.156, 1, 5);
   }
 
