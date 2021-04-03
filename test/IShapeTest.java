@@ -213,22 +213,9 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalTimeZero() {
-    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
-        200, 200, 0, 0);
-  }
-
-
-  @Test(expected = IllegalArgumentException.class)
   public void testIllegalStartTimeNegative() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, -1, 100);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalStartTimeZero() {
-    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
-            200, 200, 0, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
