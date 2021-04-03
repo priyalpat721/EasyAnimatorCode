@@ -187,6 +187,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return accString.toString();
   }
 
+  /**
+   * Helper method to check if an action overlaps with another of the same type.
+   * @param name name of the Shape.
+   * @param type type of the Action.
+   * @param startTime the start time of the new action being tested.
+   * @return true if there is no overlap; false otherwise.
+   */
   private boolean checkOverlap(String name, Action type, int startTime) {
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
