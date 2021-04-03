@@ -401,6 +401,11 @@ public class IShapeTest {
     circle.setRadius(-10);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetRadiusWithSetWidth() {
+    circle.setWidth(5);
+  }
+
   @Test
   public void testGetLength() {
     assertEquals(40, square.getLength(), 0.01);
@@ -419,6 +424,11 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalSetLength() {
     square.setLength(0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSetLengthWithSetWidth() {
+    square.setWidth(14);
   }
 
   @Test

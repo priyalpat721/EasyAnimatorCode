@@ -33,7 +33,7 @@ exception testing:
 1. name = null Juan
 2. name = "" AJA
 3. name = " " Juan
-2. shape = null
+2. shape = null Probably unnecessary since we have an enum class
 3. color = null AJA
 4. width: negative Juan
 	-radius: negative AJA
@@ -48,6 +48,8 @@ exception testing:
 12. end time : negative Juan
 13. end time < start time AJA
 14. start time > end time Juan
+15. IllegalArgumentExceptionTest for trying to use setWidth() for circle AJA
+15. IllegalArgumentExceptionTest for trying to use setWidth() for square AJA
 
 2. move
 Parameters: String name, double newX, double newY, int startTime, int endTime
