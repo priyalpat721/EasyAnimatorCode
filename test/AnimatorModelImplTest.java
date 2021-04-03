@@ -22,7 +22,7 @@ public class AnimatorModelImplTest {
     model1.createShape("T", Shape.TRIANGLE, new RGB(34,0, 1),
         45.12,30.54, 78, 234, 23, 75);
     model1.createShape("S", Shape.SQUARE, new RGB(1,1,1),
-        15,15,125, 34, 35,36);
+        15,15,125, 34, 30,60);
     model1.createShape("RH", Shape.RHOMBUS, new RGB(2,3,4),
         20, 20, 45, 15, 98, 99);
 
@@ -79,8 +79,8 @@ public class AnimatorModelImplTest {
         Name: S
         Type: square
         Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=35
-        Disappears at t=36
+        Appears at t=30
+        Disappears at t=60
 
         Name: C
         Type: circle
@@ -123,8 +123,8 @@ public class AnimatorModelImplTest {
             Name: S
             Type: square
             Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-            Appears at t=35
-            Disappears at t=36
+            Appears at t=30
+            Disappears at t=60
 
             Name: T
             Type: triangle
@@ -160,8 +160,8 @@ public class AnimatorModelImplTest {
         Name: S
         Type: square
         Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=35
-        Disappears at t=36
+        Appears at t=30
+        Disappears at t=60
 
         Name: T
         Type: triangle
@@ -201,8 +201,8 @@ public class AnimatorModelImplTest {
         Name: S
         Type: square
         Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=35
-        Disappears at t=36
+        Appears at t=30
+        Disappears at t=60
 
         Name: T
         Type: triangle
@@ -240,8 +240,8 @@ public class AnimatorModelImplTest {
         Name: S
         Type: square
         Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=35
-        Disappears at t=36
+        Appears at t=30
+        Disappears at t=60
 
         Name: T
         Type: triangle
