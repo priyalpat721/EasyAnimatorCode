@@ -28,8 +28,9 @@ public abstract class AbstractAction implements IAction {
 
     this.name = name;
     this.currentShape = currentShape;
-    this.newColor = newColor;
     this.time = new Time(startTime, endTime);
+
+    this.newColor = newColor;
     this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
             currentShape.getColor().getBlue());
     this.currentShape.setColor(newColor);
