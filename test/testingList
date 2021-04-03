@@ -8,10 +8,15 @@ use whole numbers
 use large numbers
 use numbers with many decimal places
 
-
 CreateShapes:
 Parameters: String name, Shape shape, RGB color, double width, double height,
                                       double x, double y, int startTime, int endTime)
+
+Shape setters:
+RGB color, double width, double height, double x, double y
+int input   Juan
+decimal input AJA
+
 legal testing
 1. create regular shapes - have a test for each shape
 Shapes:
@@ -24,22 +29,25 @@ Rhombus     AJA
 2. Extremely large numbers AJA
 
 exception testing:
-1. name = null
-2. name = ""
-3. name = " "
+0. IllegalShapeType AJA
+1. name = null Juan
+2. name = "" AJA
+3. name = " " Juan
 2. shape = null
-3. color = null
-4. width: negative
-5. width: 0
-6. height: negative
-7. height: 0
-8. x: negative
-9. y: negative
-10. start time: negative
-11. end time : 0
-12. end time : negative
-13. end time < start time
-14. start time > end time
+3. color = null AJA
+4. width: negative Juan
+	-radius: negative AJA
+	-length(Square): negative AJA
+5. width: 0 Juan
+6. height: negative Juan
+7. height: 0 Juan
+8. x: negative Juan
+9. y: negative Juan
+10. start time: negative Juan
+11. end time : 0 AJA
+12. end time : negative Juan
+13. end time < start time AJA
+14. start time > end time Juan
 
 2. move
 Parameters: String name, double newX, double newY, int startTime, int endTime

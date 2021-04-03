@@ -80,15 +80,33 @@ public class IShapeTest {
             Appears at t=10
             Disappears at t=100""", square.toString());
 
-    ////////////////////////////assert equals///////////////////////////////////
     circle = new Circle("I", new RGB(1, 1, 1), 10, 10,
             0, 0, 1, 100);
+    assertEquals("""
+        Name: I
+        Type: circle
+        Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100""", circle.toString());
 
     triangle = new Triangle("T", new RGB(5, 5, 5), 20, 30,
             40, 50, 1, 50);
 
+    assertEquals("""
+        Name: T
+        Type: triangle
+        Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
+        Appears at t=1
+        Disappears at t=50""", triangle.toString());
+
     rhombus = new Rhombus("H", new RGB(20, 20, 20), 50, 60,
             2, 2, 1, 80);
+    assertEquals("""
+        Name: H
+        Type: rhombus
+        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+        Appears at t=1
+        Disappears at t=80""", rhombus.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -98,13 +116,31 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCircleNegativeRadius() {
+    IShape c1 = new Circle("I", new RGB(1, 1, 1), -5, -5,
+        0, 0, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testIllegalSquare() {
     IShape s1 = new Square("I", new RGB(1, 1, 1), 30, 40,
             0, 0, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testIllegalSquareNegativeLength() {
+    IShape s1 = new Square("I", new RGB(1, 1, 1), -10, -10,
+        0, 0, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testIllegalNameEmpty() {
+    IShape r1 = new Rhombus("", new RGB(1, 0, 0), 50, 100,
+        100, 100, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalNameSpaceCharacter() {
     IShape r1 = new Rectangle(" ", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
   }
@@ -165,10 +201,23 @@ public class IShapeTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalTime() {
+  public void testIllegalTimeStartGreaterThanEnding() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, 20, 10);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalTimeEndingLessThanStart() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+        200, 200, 4, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalTimeZero() {
+    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
+        200, 200, 0, 0);
+  }
+
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalStartTimeNegative() {
@@ -235,6 +284,12 @@ public class IShapeTest {
     assertEquals(1, rectangle.getColor().getRed(), 0.01);
     assertEquals(0, rectangle.getColor().getGreen(), 0.01);
     assertEquals(0, rectangle.getColor().getBlue(), 0.01);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalColorNull() {
+    IShape r1 = new Oval("R", null, 50, 100,
+        200, 200, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
