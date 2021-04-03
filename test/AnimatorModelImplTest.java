@@ -34,11 +34,79 @@ public class AnimatorModelImplTest {
     model2.changeColor("P1", new RGB(10, 10, 10), 10, 15);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateShapeNegativeStart() {
+    model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
+        12, 12, 100, 50, -1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateShapeNegativeEndTime() {
+    model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
+        12, 12, 100, 50, 1, -40);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateShapeStartBeforeEnd() {
+    model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
+        12, 12, 100, 50, 6, 4);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateShapeEmptyName() {
+    model1.createShape("", Shape.CIRCLE, new RGB(1, 1, 1),
+        12, 12, 100, 50, 6, 4);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateShapeEmptyNameWithSpace() {
+    model1.createShape(" ", Shape.CIRCLE, new RGB(1, 1, 1),
+        12, 12, 100, 50, 6, 4);
+  }
+
   @Test
   public void testCreateShape() {
     model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
         12, 12, 100, 50, 1, 100);
-    model1.toString();
+    assertEquals("""
+        Shapes:
+        Name: R
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100
+
+        Name: S
+        Type: square
+        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+        Appears at t=35
+        Disappears at t=36
+
+        Name: C
+        Type: circle
+        Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100
+
+        Name: T
+        Type: triangle
+        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+        Appears at t=23
+        Disappears at t=75
+
+        Name: RH
+        Type: rhombus
+        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+        Appears at t=98
+        Disappears at t=99
+
+        Name: O
+        Type: oval
+        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+        Appears at t=6
+        Disappears at t=100
+
+        """, model1.toString());
   }
 
   @Test
@@ -78,6 +146,44 @@ public class AnimatorModelImplTest {
 
             Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50
             """, model1.toString());
+
+    //move back to previous position
+    model1.move("R", 200, 200, 51, 53);
+    assertEquals("""
+        Shapes:
+        Name: R
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100
+
+        Name: S
+        Type: square
+        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+        Appears at t=35
+        Disappears at t=36
+
+        Name: T
+        Type: triangle
+        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+        Appears at t=23
+        Disappears at t=75
+
+        Name: RH
+        Type: rhombus
+        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+        Appears at t=98
+        Disappears at t=99
+
+        Name: O
+        Type: oval
+        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+        Appears at t=6
+        Disappears at t=100
+
+        Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50
+        Shape R moves from (350.0, 375.0) to (200.0, 200.0) from time t=51 to t=53
+        """, model1.toString());
   }
 
   @Test
@@ -122,6 +228,41 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testScale() {
+    model1.scale("T",47,51.75,23, 25);
+    assertEquals("""
+        Shapes:
+        Name: R
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100
+
+        Name: S
+        Type: square
+        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+        Appears at t=35
+        Disappears at t=36
+
+        Name: T
+        Type: triangle
+        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+        Appears at t=23
+        Disappears at t=75
+
+        Name: RH
+        Type: rhombus
+        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+        Appears at t=98
+        Disappears at t=99
+
+        Name: O
+        Type: oval
+        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+        Appears at t=6
+        Disappears at t=100
+
+        Shape T scales from Width: 45.12, Height: 30.54 to Width: 47.0, Height: 51.75 from time t=23 to t=25
+        """, model1.toString());
   }
 
   @Test
