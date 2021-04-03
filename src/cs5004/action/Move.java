@@ -13,9 +13,9 @@ public class Move extends AbstractAction {
               int startTime, int endTime) {
     super(name, currentShape, newX, newY, startTime, endTime);
 
-    this.newPosition = new Position(newX, newY);
     this.oldPosition = new Position(currentShape.getPosition().getX(),
             currentShape.getPosition().getY());
+    this.newPosition = new Position(newX, newY);
     this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
 
     this.type = Action.MOVE;
