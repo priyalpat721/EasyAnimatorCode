@@ -9,16 +9,16 @@ import cs5004.shape.Shape;
  */
 public class Scale extends AbstractAction {
 
-  public Scale(String name, IShape currentShape, double newA, double newB,
+  public Scale(String name, IShape currentShape, double newWidth, double newHeight,
                int startTime, int endTime) {
-    super(name, currentShape, newA, newB, startTime, endTime);
+    super(name, currentShape, newWidth, newHeight, startTime, endTime);
 
     this.oldWidth = currentShape.getWidth();
     this.oldHeight = currentShape.getHeight();
-    this.newWidth = newA;
-    this.newHeight = newB;
-    this.currentShape.setWidth(newA);
-    this.currentShape.setHeight(newB);
+    this.newWidth = newWidth;
+    this.newHeight = newHeight;
+    this.currentShape.setWidth(newWidth);
+    this.currentShape.setHeight(newHeight);
 
     this.type = Action.SCALE;
   }

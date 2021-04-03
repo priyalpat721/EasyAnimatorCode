@@ -9,11 +9,11 @@ import cs5004.utilities.Position;
  */
 public class Move extends AbstractAction {
 
-  public Move(String name, IShape currentShape, double newA, double newB,
+  public Move(String name, IShape currentShape, double newX, double newY,
               int startTime, int endTime) {
-    super(name, currentShape, newA, newB, startTime, endTime);
+    super(name, currentShape, newX, newY, startTime, endTime);
 
-    this.newPosition = new Position(newA, newB);
+    this.newPosition = new Position(newX, newY);
     this.oldPosition = new Position(currentShape.getPosition().getX(),
             currentShape.getPosition().getY());
     this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
