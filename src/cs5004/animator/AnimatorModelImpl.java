@@ -148,7 +148,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     } else if (action == null) {
       throw new IllegalArgumentException("Actions cannot be null");
     }
-
     addActionToShape(name, action);
     chronologicalOrderOfActions.add(action.toString());
   }
@@ -163,11 +162,20 @@ public class AnimatorModelImpl implements IAnimatorModel {
       accString.append("\n\n");
     }
 
-    for (String action : chronologicalOrderOfActions) {
-      accString.append("Shape " + action);
-      accString.append("\n");
-    }
+//    for (String action : chronologicalOrderOfActions) {
+//      accString.append("Shape " + action);
+//      accString.append("\n");
+//    }
 
+    for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
+      if (i != chronologicalOrderOfActions.size() - 1) {
+        accString.append("Shape " +chronologicalOrderOfActions.get(i));
+        accString.append("\n");
+      }
+      else{
+        accString.append("Shape " +chronologicalOrderOfActions.get(i));
+      }
+    }
     return accString.toString();
   }
 
@@ -225,8 +233,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime >= action.getTime().getStartTime() &&
-                    startTime <= action.getTime().getEndTime() ||
+            if (startTime > action.getTime().getStartTime() &&
+                    startTime < action.getTime().getEndTime() ||
                     endTime >= action.getTime().getStartTime() &&
                             endTime <= action.getTime().getEndTime()) {
               return false;

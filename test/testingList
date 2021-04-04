@@ -53,20 +53,21 @@ exception testing:
 
 2. move
 Parameters: String name, double newX, double newY, int startTime, int endTime
-1. move from x,y to same x, y
+1. move from x,y to same x, y - done
 2. all legal parameters
 
 exceptions:
-1. name = null
-2. name = ""
-3. name = " "
-4. newX: negative
-6. newY: negative
-10. start time: negative
-11. end time : 0
-12. end time : negative
-13. end time < start time
-14. start time > end time
+1. name = null - done
+2. name = "" - done
+3. name = " " - done
+4. newX: negative - done
+6. newY: negative - done
+10. start time: negative - done
+11. end time : 0 - done
+12. end time : negative - done
+13. end time < start time - done
+14. start time > end time - done
+15. overlapping move - done
 
 3. changeColor
 Parameters: String name, RGB newColor, int startTime, int endTime
@@ -75,43 +76,44 @@ legal testing:
 2. legal parameters
 
 exceptions:
-1. name = null
-2. name = ""
-3. name = " "
-3. color = null
-4. color red = negative
-5. color green = negative
-6. color blue = negative
-7. color red = > 255
-8. color green = > 255
-9. color blue = > 255
-10. color all negative
-11. color all > 255
-10. start time: negative
-11. end time : 0
-12. end time : negative
-13. end time < start time
-14. start time > end time
+1. name = null - done
+2. name = "" - done
+3. name = " " - done
+3. color = null - done
+4. color red = negative - done
+5. color green = negative - done
+6. color blue = negative - done
+7. color red = > 255 - done
+8. color green = > 255 - done
+9. color blue = > 255 - done
+10. color all negative - done
+11. color all > 255 - done
+10. start time: negative - done
+11. end time : 0 - done
+12. end time : negative - done
+13. start time > end time - done
+14. overlapping time color - done
 
 4. scale
 Parameters: String name, double newWidth, double newHeight, int startTime, int endTime
 legal testing:
-1. w, h to same w, h
-2. all legal parameters
+1. w, h to same w, h - done
+2. all legal parameters - done
 
 Exceptions:
-1. name = null
-2. name = ""
-3. name = " "
-4. newWidth: negative
-5. newWidth: 0
-6. newHeight: negative
-7. newHeight: 0
-10. start time: negative
-11. end time : 0
-12. end time : negative
-13. end time < start time
-14. start time > end time
+1. name = null - done
+2. name = "" - done
+3. name = " " - done
+4. newWidth: negative - done
+5. newWidth: 0 - done
+6. newHeight: negative - done
+7. newHeight: 0 - done
+10. start time: negative - done
+11. end time : 0 - done
+12. end time : negative - done
+13. end time < start time -done
+14. overlapping - done
+
 
 5.  getShapesAtTicks
 Parameters: int tick
