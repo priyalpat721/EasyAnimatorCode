@@ -12,7 +12,9 @@ public interface IAction {
    * is in proportion to where the tick is in the action's interval (between start and end time).
    * @param tick an int that represents the frame of the animation per unit of time.
    * @param accumulatorShape
-   * @return
+   * @return the shape at the tick.
+   * @throws IllegalArgumentException if the tick is negative.
+   *                                  if the shape is null.
    */
   IShape getShapeAtTick(int tick, IShape accumulatorShape);
 
