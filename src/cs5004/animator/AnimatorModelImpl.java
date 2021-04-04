@@ -124,6 +124,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public List<IShape> getShapesAtTicks(int tick) {
+    if (tick < 1) {
+      throw new IllegalArgumentException("Tick must be greater than 0.");
+    }
     List<IShape> frameOfShapes = new LinkedList<>();
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       IShape accumulatorShape = objects.getValue().copy();

@@ -781,8 +781,40 @@ public class AnimatorModelImplTest {
             Shape RTest moves from (200.0, 1.0) to (17.56, 23.245) from time t=0 to t=10""", model1.toString());
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalGetShapesAtTickNegativeTick() {
+    model1.getShapesAtTicks(-1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalGetShapesAtTickZero() {
+    model1.getShapesAtTicks(0);
+  }
+
   @Test
   public void testGetShapesAtTicks() {
+    assertEquals("""
+        [Name: R
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100, Name: S
+        Type: square
+        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+        Appears at t=30
+        Disappears at t=60, Name: T
+        Type: triangle
+        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+        Appears at t=23
+        Disappears at t=75, Name: RH
+        Type: rhombus
+        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+        Appears at t=98
+        Disappears at t=99, Name: O
+        Type: oval
+        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+        Appears at t=6
+        Disappears at t=100]""", model1.getShapesAtTicks(1).toString());
   }
 
   @Test
@@ -836,7 +868,7 @@ public class AnimatorModelImplTest {
 
 
   @Test
-  public void testToStringShapesAndActions() {
+  public void testToStringCreateAndActionsRectangleAndOval() {
     AnimatorModelImpl model3 = new AnimatorModelImpl();
     model3.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
             50, 100, 200, 200, 1, 100);
@@ -870,7 +902,5 @@ public class AnimatorModelImplTest {
             Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100
             Shape C moves from (500.0, 400.0) to (0.0, 0.0) from time t=70 to t=100 """
             ,model3.toString());
-
   }
-
 }
