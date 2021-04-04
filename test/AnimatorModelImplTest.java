@@ -33,6 +33,8 @@ public class AnimatorModelImplTest {
             20, 20, 45, 15, 98, 99);
 
     model2 = new AnimatorModelImpl();
+
+    // P1 moves backwards. scales to a bigger size and changes color
     model2.createShape("P1", Shape.RECTANGLE, new RGB(1, 1, 1),
             50, 100, 200, 200, 1, 100);
     model2.move("P1", 150.0, 150.0, 1, 5);
