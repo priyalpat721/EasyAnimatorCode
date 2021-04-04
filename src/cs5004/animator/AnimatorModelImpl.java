@@ -142,8 +142,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
-  // NEEDS TO MODIFY
-  // adds any action
   public void addAction(String name, IAction action) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
@@ -165,11 +163,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
       accString.append(shape.getValue().toString());
       accString.append("\n\n");
     }
-
-//    for (String action : chronologicalOrderOfActions) {
-//      accString.append("Shape " + action);
-//      accString.append("\n");
-//    }
 
     for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
       if (i != chronologicalOrderOfActions.size() - 1) {
