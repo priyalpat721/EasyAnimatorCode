@@ -29,7 +29,6 @@ public class Scale extends AbstractAction {
     this.newWidth = newWidth;
     this.newHeight = newHeight;
 
-
     this.type = Action.SCALE;
   }
 
@@ -49,7 +48,6 @@ public class Scale extends AbstractAction {
       copy.setHeight(newHeight);
       return copy;
     }
-
 
     double percent = (double) (tick - this.time.getStartTime()) /
             (this.time.getEndTime() - this.time.getStartTime());

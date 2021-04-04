@@ -36,15 +36,16 @@ public abstract class AbstractAction implements IAction {
   public AbstractAction(String name, IShape currentShape, RGB newColor,
                         int startTime, int endTime) {
 
-    if (name.isBlank() || name.equals("") || name.equals(" ")) {
+    if (currentShape == null) {
+      throw new IllegalArgumentException("currentShape shape");
+    }
+    if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty/ invalid name");
     }
     if (!name.equals(currentShape.getName())) {
       throw new IllegalArgumentException("The action is not for the shape specified");
     }
-    if (currentShape == null) {
-      throw new IllegalArgumentException("currentShape is invalid");
-    }
+
     this.name = name;
     this.currentShape = currentShape;
     this.time = new Time(startTime, endTime);
@@ -70,14 +71,14 @@ public abstract class AbstractAction implements IAction {
   public AbstractAction(String name, IShape currentShape, double newA, double newB,
                         int startTime, int endTime) {
 
-    if (name.isBlank() || name.equals("") || name.equals(" ")) {
+    if (currentShape == null) {
+      throw new IllegalArgumentException("currentShape is invalid");
+    }
+    if (name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty/ invalid name");
     }
     if (!name.equals(currentShape.getName())) {
       throw new IllegalArgumentException("The action is not for the shape specified");
-    }
-    if (currentShape == null) {
-      throw new IllegalArgumentException("currentShape is invalid");
     }
 
     this.name = name;
