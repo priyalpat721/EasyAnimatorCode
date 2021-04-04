@@ -15,6 +15,7 @@ public class AnimatorModelImplTest {
   AnimatorModelImpl model1;
   AnimatorModelImpl model2;
   AnimatorModelImpl model3;
+  AnimatorModelImpl modelEmpty;
 
 
   @Before
@@ -39,6 +40,7 @@ public class AnimatorModelImplTest {
     model2.changeColor("P1", new RGB(10, 10, 10), 10, 15);
 
     model3 = new AnimatorModelImpl();
+    modelEmpty = new AnimatorModelImpl();
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -791,30 +793,55 @@ public class AnimatorModelImplTest {
     model1.getShapesAtTicks(0);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalGetShapesAtZeroEmptyModel() {
+    modelEmpty.getShapesAtTicks(1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalGetShapesTickNumberOutOfRange() {
+    model2.getShapesAtTicks(2);
+  }
+
   @Test
-  public void testGetShapesAtTicks() {
+  public void testGetShapesAtTicksFirstTick() {
     assertEquals("""
-        [Name: R
+        [Name: P1
         Type: rectangle
         Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
         Appears at t=1
-        Disappears at t=100, Name: S
-        Type: square
-        Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
-        Appears at t=30
-        Disappears at t=60, Name: T
-        Type: triangle
-        Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
-        Appears at t=23
-        Disappears at t=75, Name: RH
-        Type: rhombus
-        Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
-        Appears at t=98
-        Disappears at t=99, Name: O
+        Disappears at t=100]""", model2.getShapesAtTicks(1).toString());
+  }
+
+  @Test
+  public void testGetShapesAtTickAfterFewActions() {
+    model2.createShape("O3", Shape.OVAL, new RGB(3, 34, 16),
+        32, 16,45,67,50,100 );
+    model2.move("O3",50, 75, 51, 70);
+    model2.scale("O3",40, 20,52,54);
+    model2.createShape("R3", Shape.RECTANGLE, new RGB (254, 45, 130),
+        18, 15,0, 0, 80, 99);
+    model2.changeColor("R3", new RGB(3, 3, 3), 81, 99);
+    model2.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
+        50, 50, 30, 12,3, 50);
+    assertEquals("""
+        [Name: P1
+        Type: rectangle
+        Min corner: (187.5,187.5), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100, Name: R3
+        Type: rectangle
+        Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (254.0,45.0,130.0)
+        Appears at t=80
+        Disappears at t=99, Name: O3
         Type: oval
-        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
-        Appears at t=6
-        Disappears at t=100]""", model1.getShapesAtTicks(1).toString());
+        Center: (45.0,67.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)
+        Appears at t=50
+        Disappears at t=100, Name: T3
+        Type: triangle
+        Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)
+        Appears at t=3
+        Disappears at t=50]""",model2.getShapesAtTicks(2).toString());
   }
 
   @Test

@@ -127,6 +127,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
     if (tick < 1) {
       throw new IllegalArgumentException("Tick must be greater than 0.");
     }
+    if (logOfActions.size() == 0 || tick > logOfActions.size()) {
+      throw new IllegalArgumentException("Tick not found.");
+    }
     List<IShape> frameOfShapes = new LinkedList<>();
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       IShape accumulatorShape = objects.getValue().copy();
