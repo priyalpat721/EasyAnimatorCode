@@ -553,7 +553,7 @@ public class AnimatorModelImplTest {
             model1.toString());
 
     model1.changeColor("R", new RGB(1.0, 1.0, 1.0),
-            44, 55);
+            45, 55);
     assertEquals("""
             Shapes:
             Name: R
@@ -587,7 +587,7 @@ public class AnimatorModelImplTest {
             Disappears at t=100
 
             Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44
-            Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 44 to t=55"""
+            Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=55"""
             , model1.toString());
   }
 
@@ -912,7 +912,6 @@ public class AnimatorModelImplTest {
     model3.changeColor("C", new RGB(0, 1, 0), 50, 80);
     model3.scale("R", 25, 100, 51, 70);
     model3.move("R", 200, 200, 70, 100);
-    model3.move("C", 0, 0, 70, 100);
 
     assertEquals("""
             Shapes:
@@ -932,8 +931,7 @@ public class AnimatorModelImplTest {
             Shape C moves from (500.0, 100.0) to (500.0, 400.0) from time t=20 to t=70
             Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) from time t= 50 to t=80
             Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from time t=51 to t=70
-            Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100
-            Shape C moves from (500.0, 400.0) to (0.0, 0.0) from time t=70 to t=100 """
+            Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100"""
             ,model3.toString());
   }
 }
