@@ -20,7 +20,7 @@ public class Time {
       throw new IllegalArgumentException("Start time cannot be negative");
     } else if (endTime < 0) {
       throw new IllegalArgumentException("End time cannot be negative");
-    } else if (startTime >= endTime) {
+    } else if (startTime > endTime) {
       throw new IllegalArgumentException("Start time cannot be greater than or equal to end time");
     }
 
