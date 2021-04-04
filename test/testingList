@@ -28,46 +28,50 @@ Triangle   AJA
 Rhombus     AJA
 2. Extremely large numbers AJA
 
-exception testing:
-0. IllegalShapeType AJA
-1. name = null Juan
-2. name = "" AJA
-3. name = " " Juan
-2. shape = null Probably unnecessary since we have an enum class
-3. color = null AJA
-4. width: negative Juan
-	-radius: negative AJA
-	-length(Square): negative AJA
-5. width: 0 Juan
-6. height: negative Juan
-7. height: 0 Juan
-8. x: negative Juan
-9. y: negative Juan
-10. start time: negative Juan
-11. end time : 0 AJA
-12. end time : negative Juan
-13. end time < start time AJA
-14. start time > end time Juan
-15. IllegalArgumentExceptionTest for trying to use setWidth() for circle AJA
-15. IllegalArgumentExceptionTest for trying to use setWidth() for square AJA
+1. CreateShape
+2. Parameters: String name, Shape shape, RGB color, double width, double height,
+                        double x, double y, int startTime, int endTime
+1. all legal parameters
+2. exceptions:
+3. Shape = null AJA
+4. RGB = null AJA
+5. name = null AJA
+6. name = "" AJA
+7. name = " " AJA
+8. Name = name already created AJA
+9. Height = negative
+10. Width = negative
+11. newX: negative
+12. newY: negative
+13. start time: negative AJA
+14. end time : 0 not sure if Illegal
+15. end time : negative AJA
+16. end time < start time AJA
+17. Duplicate create AJA
 
 2. move
 Parameters: String name, double newX, double newY, int startTime, int endTime
-1. move from x,y to same x, y - done
+1. move from x,y to same x, y
 2. all legal parameters
 
 exceptions:
-1. name = null - done
-2. name = "" - done
-3. name = " " - done
-4. newX: negative - done
-6. newY: negative - done
-10. start time: negative - done
-11. end time : 0 - done
-12. end time : negative - done
-13. end time < start time - done
-14. start time > end time - done
-15. overlapping move - done
+1. name = null AJA
+2. name = "" AJA
+3. name = " " AJA
+4. newX: negative AJA
+6. newY: negative AJA
+10. start time: negative AJA
+11. end time : 0 not sure if Illegal
+12. end time : negative AJA
+13. end time < start time AJA
+14. start time > end time
+15. Move  before start time AJA
+16. Move after end time AJA
+17. Move start before end AJA
+18. Move to same position AJA
+19. Move overlapping in time: Same start and ending time AJA
+20. Move overlapping in time: 2nd color change within previous time range AJA
+21. Duplicate mve AJA
 
 3. changeColor
 Parameters: String name, RGB newColor, int startTime, int endTime
@@ -76,29 +80,32 @@ legal testing:
 2. legal parameters
 
 exceptions:
-1. name = null - done
-2. name = "" - done
-3. name = " " - done
-3. color = null - done
-4. color red = negative - done
-5. color green = negative - done
-6. color blue = negative - done
-7. color red = > 255 - done
-8. color green = > 255 - done
-9. color blue = > 255 - done
-10. color all negative - done
-11. color all > 255 - done
-10. start time: negative - done
-11. end time : 0 - done
-12. end time : negative - done
-13. start time > end time - done
-14. overlapping time color - done
+1. name = null AJA
+2. name = "" AJA
+3. name = " " AJA
+3. color = null AJA
+4. color red = negative AJA
+5. color green = negative AJA
+6. color blue = negative AJA
+7. color red = > 255 AJA
+8. color green = > 255 AJA
+9. color blue = > 255 AJA
+10. color all negative AJA
+11. color all > 255 AJA
+10. start time: negative AJA
+11. end time : 0
+12. end time : negative AJA
+13. end time < start time AJA
+14. start time > end time
+15. Overlapping action: Same start and ending time
+16. Overlapping action: 2nd color change within previous time range
+17. Duplicate color change AJA
 
 4. scale
 Parameters: String name, double newWidth, double newHeight, int startTime, int endTime
 legal testing:
-1. w, h to same w, h - done
-2. all legal parameters - done
+1. w, h to same w, h
+2. all legal parameters
 
 Exceptions:
 1. name = null - done
@@ -111,9 +118,11 @@ Exceptions:
 10. start time: negative - done
 11. end time : 0 - done
 12. end time : negative - done
-13. end time < start time -done
-14. overlapping - done
-
+13. end time < start time - done
+14. start time > end time - done
+15. Overlapping times: same start and end - done
+16. Overlapping times: attempting scale within previous time - done
+17. Duplicate scaling - done
 
 5.  getShapesAtTicks
 Parameters: int tick

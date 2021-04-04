@@ -66,6 +66,12 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testIllegalCreateDuplicateCreate() {
+    model1.createShape("R", Shape.RECTANGLE, new RGB(1, 1, 1),
+        50, 100, 200, 200, 1, 100);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNullShape() {
     model1.createShape("B", null, new RGB(1, 1, 1),
             12, 12, 100, 50, 0, 100);
@@ -257,9 +263,21 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  public void testIllegalMoveDuplicateMove() {
+    model1.move("R", 324, 75, 10, 50);
+    model1.move("R", 324, 75, 10, 50);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveOverlappingMove() {
-    model1.move("R", 350, 375, 10, 50);
+    model1.move("R", 335, 375, 10, 50);
     model1.move("R", 20, 14, 10, 50);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalMoveOverlappingMoveWithinPreviousMove() {
+    model1.move("R", 340, 375, 10, 50);
+    model1.move("R", 20, 14, 35, 40);
   }
 
   @Test
@@ -425,10 +443,26 @@ public class AnimatorModelImplTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorOverlappingColorChange() {
-    model1.changeColor("R", new RGB(254.16, 35.44, 122),
+    model1.changeColor("R", new RGB(220.16, 36, 120),
             33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
             33, 44);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalChangeColorOverlappingColorChangeTwo() {
+    model1.changeColor("R", new RGB(230, 35.44, 121),
+        33, 44);
+    model1.changeColor("R", new RGB(3, 4, 5),
+        40, 41);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalChangeColorDuplicateColorChange() {
+    model1.changeColor("R", new RGB(100, 100, 100),
+        33, 44);
+    model1.changeColor("R", new RGB(100, 100, 100),
+          33, 44);
   }
 
   @Test
@@ -607,7 +641,19 @@ public class AnimatorModelImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalScaleOverlappingTimes() {
     model1.scale("R", 4.25, 3.5, 0, 10);
+    model1.scale("R", 16, 34, 0, 10);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalScaleOverlappingTimeTwo() {
+    model1.scale("R", 3.25, 7.5, 0, 10);
     model1.scale("R", 4.25, 3.5, 5, 8);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalScaleDuplicateScale() {
+    model1.scale("R", 40, 35, 0, 10);
+    model1.scale("R", 40, 35, 0, 10);
   }
 
   @Test
