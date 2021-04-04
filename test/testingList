@@ -51,7 +51,7 @@ Rhombus     AJA
 
 2. move
 Parameters: String name, double newX, double newY, int startTime, int endTime
-1. move from x,y to same x, y
+1. move from x,y to same x, y - done
 2. all legal parameters
 
 exceptions:
@@ -71,12 +71,14 @@ exceptions:
 18. Move to same position AJA
 19. Move overlapping in time: Same start and ending time AJA
 20. Move overlapping in time: 2nd color change within previous time range AJA
-21. Duplicate mve AJA
+21. Overlapping same end of previous action and start of next -done
+22. Duplicate mve AJA
+23. Overlapping actions (move, scale, changeColor) - done
 
 3. changeColor
 Parameters: String name, RGB newColor, int startTime, int endTime
 legal testing:
-1. color to same color
+1. color to same color - done
 2. legal parameters
 
 exceptions:
@@ -97,15 +99,16 @@ exceptions:
 12. end time : negative AJA
 13. end time < start time AJA
 14. start time > end time
-15. Overlapping action: Same start and ending time
-16. Overlapping action: 2nd color change within previous time range
+15. Overlapping action: Same start and ending time -done
+16. Overlapping action: 2nd color change within previous time range - done
 17. Duplicate color change AJA
+18. Overlapping end of previous action and start of next - done
 
 4. scale
 Parameters: String name, double newWidth, double newHeight, int startTime, int endTime
 legal testing:
-1. w, h to same w, h
-2. all legal parameters
+1. w, h to same w, h - done
+2. all legal parameters -done
 
 Exceptions:
 1. name = null - done
@@ -123,19 +126,23 @@ Exceptions:
 15. Overlapping times: same start and end - done
 16. Overlapping times: attempting scale within previous time - done
 17. Duplicate scaling - done
+18. Overlapping same ending time as the start of next - done
 
 5.  getShapesAtTicks
 Parameters: int tick
 Legal testing:
-check tick at 9
+check tick at 0 - done
+check tick at 1 - done
+check tick at 2 after a few actions - done
 move from 10 to 15
 test check tick starting at 10 and ending at 15 inclusive
 check tick at 16
 
 exceptions:
-1. negative tick
-2. tick 0
+1. tick 0 - done
+2. tick negative - done
+
 
 6. toString
-1. test rectangle
-2. test oval
+1. test rectangle - done
+2. test oval - done

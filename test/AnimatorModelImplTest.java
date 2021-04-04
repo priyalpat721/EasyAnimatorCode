@@ -273,7 +273,7 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveOverlappingMove() {
+  public void testIllegalMoveOverlappingMoveSameStartAndEnd() {
     model1.move("R", 335, 375, 10, 50);
     model1.move("R", 20, 14, 10, 50);
   }
@@ -285,7 +285,7 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveOverlappingEndAndBeginning() {
+  public void testIllegalMoveOverlappingEndTimeAndStartOfNext() {
     model1.move("R", 340, 375, 2, 5);
     model1.move("R", 20, 14, 5, 8);
   }
@@ -365,6 +365,26 @@ public class AnimatorModelImplTest {
             Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50
             Shape R moves from (350.0, 375.0) to (200.0, 200.0) from time t=51 to t=53"""
             , model1.toString());
+  }
+
+  @Test
+  public void testMoveOverlappingActions() {
+    model3.createShape("F1", Shape.TRIANGLE, new RGB(0, 0, 0),
+        35, 50, 30, 60, 1,80);
+    model3.move("F1", 34, 65, 20, 33);
+    model3.changeColor("F1", new RGB(13, 13, 43), 23,30);
+    model3.scale("F1", 108, 180, 23, 30);
+    assertEquals("""
+        Shapes:
+        Name: F1
+        Type: triangle
+        Min corner: (30.0,60.0), Width: 35.0, Height: 50.0, Color: (0.0,0.0,0.0)
+        Appears at t=1
+        Disappears at t=80
+
+        Shape F1 moves from (30.0, 60.0) to (34.0, 65.0) from time t=20 to t=33
+        Shape F1 changes color from (0.0,0.0,0.0) to (13.0,13.0,43.0) from time t= 23 to t=30
+        Shape F1 scales from Width: 35.0, Height: 50.0 to Width: 108.0, Height: 180.0 from time t=23 to t=30""", model3.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -452,7 +472,7 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalChangeColorOverlappingColorChange() {
+  public void testIllegalChangeColorOverlappingSameStartAndEnd() {
     model1.changeColor("R", new RGB(220.16, 36, 120),
             33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
@@ -460,7 +480,15 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalChangeColorOverlappingColorChangeTwo() {
+  public void testIllegalChangeColorOverlappingWithinPreviousColorChange() {
+    model1.changeColor("R", new RGB(230, 35.44, 121),
+        33, 44);
+    model1.changeColor("R", new RGB(3, 4, 5),
+        40, 41);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalChangeColorOverlappingEndTimeAndStartOfNext() {
     model1.changeColor("R", new RGB(230, 35.44, 121),
         33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
@@ -513,6 +541,45 @@ public class AnimatorModelImplTest {
 
                     Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44"""
             , model1.toString());
+
+    // changing color back to previous color
+    model1.changeColor("R", new RGB(1, 1, 1),
+        45, 50);
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44
+            Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=50"""
+        , model1.toString());
   }
 
   @Test
@@ -649,13 +716,19 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalScaleOverlappingTimes() {
+  public void testIllegalScaleOverlappingTimesStartAndEnd() {
     model1.scale("R", 4.25, 3.5, 0, 10);
     model1.scale("R", 16, 34, 0, 10);
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalScaleOverlappingTimeTwo() {
+  public void testIllegalScaleOverlappingWithinPreviousScale() {
+    model1.scale("R", 3.25, 7.5, 0, 10);
+    model1.scale("R", 4.25, 3.5, 10, 12);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalScaleOverlappingOverlappingEndTimeAndStartOfNext() {
     model1.scale("R", 3.25, 7.5, 0, 10);
     model1.scale("R", 4.25, 3.5, 5, 8);
   }
@@ -796,13 +869,19 @@ public class AnimatorModelImplTest {
     model1.getShapesAtTicks(-1);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalGetShapesAtTickZero() {
-    model1.getShapesAtTicks(0);
+  @Test
+  public void testGetShapesAtTicksZero() {
+    assertEquals("""
+        [Name: P1
+        Type: rectangle
+        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+        Appears at t=1
+        Disappears at t=100]""", model2.getShapesAtTicks(0).toString());
+    assertEquals("[]", model3.getShapesAtTicks(0).toString());
   }
 
   @Test
-  public void testGetShapesAtTicksFirstTick() {
+  public void testGetShapesAtTicksTickOne() {
     assertEquals("""
         [Name: P1
         Type: rectangle
@@ -877,6 +956,8 @@ public class AnimatorModelImplTest {
             Disappears at t=100
 
             """,model1.toString());
+
+    //test toString() for rectangle actions
     assertEquals("""
             Shapes:
             Name: P1
