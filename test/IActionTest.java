@@ -9,6 +9,7 @@ import cs5004.shape.Circle;
 import cs5004.shape.IShape;
 import cs5004.shape.Oval;
 import cs5004.shape.Rectangle;
+import cs5004.shape.Square;
 import cs5004.utilities.RGB;
 
 import static org.junit.Assert.assertEquals;
@@ -20,11 +21,18 @@ public class IActionTest {
   IAction color;
   IShape oval1;
   IAction scale;
+  IShape square1;
+  IAction move2;
+  IAction move3;
+  IAction color2;
+  IAction color3;
+  IAction scale2;
+  IAction scale3;
 
   @Before
   public void setUp() {
     // for the move class
-    rectangle1 = new Rectangle("R", new RGB(1.0, 1.0, 1.0),
+    rectangle1 = new Rectangle("Rectangle1", new RGB(1.0, 1.0, 1.0),
             50, 100, 200, 200, 1, 100);
     move = new Move("Rectangle1", rectangle1,
             300.8, 300.156, 1, 5);
@@ -42,9 +50,100 @@ public class IActionTest {
             300.8, 300.156, 10, 15);
   }
 
-  @Test (expected = IllegalArgumentException.class)
-  public void negativeTickGetShapeAtTick() {
+  @Test
+  public void constructorMoveTest() {
+    square1 = new Square("Square1", new RGB(10, 15, 20),
+            4, 4, 0, 0, 1, 50);
+    move2 = new Move("Square1", square1, 100, 0, 1, 5);
+    assertEquals("Square1 moves from (0.0, 0.0) to (100.0, 0.0) "
+            + "from time t=1 to t=5", move2.toString());
+    move3 = new Move("Square1", square1, 100, 100, 5, 10);
+    assertEquals("Square1 moves from (100.0, 0.0) to (100.0, 100.0) "
+            + "from time t=5 to t=10", move3.toString());
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameMoveConstructorTest() {
+    move2 = new Move("Square1", oval1, 100, 100, 1,10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameSpaceMoveConstructorTest() {
+    move2 = new Move(" ", circle1, 100, 100, 1, 10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameEmptyMoveConstructorTest() {
+    move2 = new Move("", rectangle1, 100, 100, 1, 10);
+  }
+
+  @Test
+  public void constructorChangeColorTest() {
+    square1 = new Square("Square1", new RGB(10, 15, 20),
+            4, 4, 0, 0, 1, 50);
+    color2 = new ChangeColor("Square1", square1, new RGB(12, 15, 18),
+            0, 1);
+    assertEquals("Square1 changes color from (10.0,15.0,20.0) "
+            + "to (12.0,15.0,18.0) from time t= 0 to t=1", color2.toString());
+    color3 = new ChangeColor("Square1", square1, new RGB(200, 215, 218),
+            0, 1);
+    assertEquals("Square1 changes color from (12.0,15.0,18.0) "
+            + "to (200.0,215.0,218.0) from time t= 0 to t=1", color3.toString());
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameChangeColorConstructorTest() {
+    color2 = new ChangeColor("Square1", oval1, new RGB(200, 215, 218),
+            1, 10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameSpaceChangeColorConstructorTest() {
+    color2 = new ChangeColor(" ", rectangle1, new RGB(200, 215, 218),
+            1, 10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameEmptyChangeColorConstructorTest() {
+    color3 = new ChangeColor("", oval1, new RGB(200, 215, 218),
+            1, 10);
+  }
+
+  @Test
+  public void constructorScaleTest() {
+    square1 = new Square("Square1", new RGB(10, 15, 20),
+            4, 4, 0, 0, 1, 50);
+    scale2 = new Scale("Square1", square1, 8, 8, 0, 1);
+    assertEquals("Square1 changes color from (10.0,15.0,20.0) "
+            + "to (12.0,15.0,18.0) from time t= 0 to t=1", scale2.toString());
+    scale3 = new ChangeColor("Square1", square1, new RGB(200, 215, 218),
+            0, 1);
+    assertEquals("Square1 changes color from (12.0,15.0,18.0) "
+            + "to (200.0,215.0,218.0) from time t= 0 to t=1", scale3.toString());
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameScaleConstructorTest() {
+    scale2 = new Scale("Square1", oval1, 24,38, 1, 10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameSpaceScaleConstructorTest() {
+    scale3 = new Scale(" ", rectangle1, 12, 15, 1, 10);
+  }
+
+  @Test (expected=IllegalArgumentException.class)
+  public void illegalNameEmptyScaleConstructorTest() {
+    scale3 = new Scale("", oval1, 16, 10, 1, 10);
+  }
+  @Test(expected = IllegalArgumentException.class)
+  public void negativeMoveTickGetShapeAtTick() {
     move.getShapeAtTick(-1, rectangle1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void nullShapeMoveTickGetShapeAtTick() {
+    move.getShapeAtTick(10, null);
   }
 
   // tests the getShapesAtTick for the Move class over an interval
@@ -60,27 +159,27 @@ public class IActionTest {
       }
     }
     assertEquals("""
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
             Disappears at t=100
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (225.2,225.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
             Disappears at t=100
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (250.4,250.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
             Disappears at t=100
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (275.6,275.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
             Disappears at t=100
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
@@ -91,7 +190,7 @@ public class IActionTest {
   @Test
   public void moveGetCurrentShapeTest() {
     assertEquals("""
-            Name: R
+            Name: Rectangle1
             Type: rectangle
             Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
             Appears at t=1
@@ -118,6 +217,15 @@ public class IActionTest {
             + "from time t=1 to t=5", move.toString());
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void negativeChangeColorTickGetShapeAtTick() {
+    color.getShapeAtTick(-1, circle1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void nullShapeChangeColorTickGetShapeAtTick() {
+    color.getShapeAtTick(10, null);
+  }
 
   // tests the getShapesAtTick for the changeColor class over an interval
   @Test
@@ -187,6 +295,16 @@ public class IActionTest {
             + "to (200.3,200.5,201.0) from time t= 15 to t=20", color.toString());
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void negativeScaleTickGetShapeAtTick() {
+    scale.getShapeAtTick(-1, circle1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void nullShapeScaleTickGetShapeAtTick() {
+    scale.getShapeAtTick(10, null);
+  }
+
   @Test
   public void scaleGetShapeAtTickTest() {
     StringBuilder intervals = new StringBuilder();
@@ -253,4 +371,5 @@ public class IActionTest {
     assertEquals("Oval1 scales from X radius:, 50.0Y radius: 100.0 to X " +
             "radius, 300.8Y radius 300.156from time t=10 to t=15", scale.toString());
   }
+
 }

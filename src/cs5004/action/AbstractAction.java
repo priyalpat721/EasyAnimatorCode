@@ -6,10 +6,9 @@ import cs5004.utilities.RGB;
 import cs5004.utilities.Time;
 
 /**
- * This class represents an action.
- * It implements the interface IAction.
- * The action has a name, a current shape, an old color, a new color, a time, an old position,
- * a new position, and old width, an old height, a new width, a new height, and a type.
+ * This class represents an action. It implements the interface IAction. The action has a name, a
+ * current shape, an old color, a new color, a time, an old position, a new position, and old width,
+ * an old height, a new width, a new height, and a type.
  */
 public abstract class AbstractAction implements IAction {
   protected String name;
@@ -26,17 +25,26 @@ public abstract class AbstractAction implements IAction {
   protected Action type;
 
   /**
-   * Constructs an IAction object.
-   * This constructor is used by the ChangeColor class.
-   * @param name the name of the shape.
+   * Constructs an IAction object. This constructor is used by the ChangeColor class.
+   *
+   * @param name         the name of the shape.
    * @param currentShape the current state of the shape.
-   * @param newColor the new color of the shape.
-   * @param startTime the start time of execution of the action.
-   * @param endTime the end time of execution of the action.
+   * @param newColor     the new color of the shape.
+   * @param startTime    the start time of execution of the action.
+   * @param endTime      the end time of execution of the action.
    */
   public AbstractAction(String name, IShape currentShape, RGB newColor,
                         int startTime, int endTime) {
 
+    if (name.isBlank() || name.equals("") || name.equals(" ")) {
+      throw new IllegalArgumentException("Name cannot be empty/ invalid name");
+    }
+    if (!name.equals(currentShape.getName())) {
+      throw new IllegalArgumentException("The action is not for the shape specified");
+    }
+    if (currentShape == null) {
+      throw new IllegalArgumentException("currentShape is invalid");
+    }
     this.name = name;
     this.currentShape = currentShape;
     this.time = new Time(startTime, endTime);
@@ -50,19 +58,27 @@ public abstract class AbstractAction implements IAction {
   }
 
   /**
-   * Constructs an IAction object.
-   * This constructor is used by the Move and Scale classes.
-   * @param name the name of the shape.
+   * Constructs an IAction object. This constructor is used by the Move and Scale classes.
+   *
+   * @param name         the name of the shape.
    * @param currentShape the current state of the shape.
-   * @param newA for the move class: the x coordinate.
-   *             for the scale class: the width.
-   * @param newB for the move class: the y coordinate.
-   *             for the scale class: the height.
-   * @param startTime the start time of execution of the action.
-   * @param endTime the end time of execution of the action.
+   * @param newA         for the move class: the x coordinate. for the scale class: the width.
+   * @param newB         for the move class: the y coordinate. for the scale class: the height.
+   * @param startTime    the start time of execution of the action.
+   * @param endTime      the end time of execution of the action.
    */
   public AbstractAction(String name, IShape currentShape, double newA, double newB,
                         int startTime, int endTime) {
+
+    if (name.isBlank() || name.equals("") || name.equals(" ")) {
+      throw new IllegalArgumentException("Name cannot be empty/ invalid name");
+    }
+    if (!name.equals(currentShape.getName())) {
+      throw new IllegalArgumentException("The action is not for the shape specified");
+    }
+    if (currentShape == null) {
+      throw new IllegalArgumentException("currentShape is invalid");
+    }
 
     this.name = name;
     this.currentShape = currentShape;

@@ -14,31 +14,6 @@ public class ChangeColor extends AbstractAction {
     super(name, currentShape, newColor, startTime, endTime);
   }
 
-//  private String name;
-//  private IShape currentShape;
-//  private RGB newColor;
-//  private Time time;
-//  private RGB oldColor;
-
-//  public ChangeColor(String name, IShape currentShape, RGB newColor, int startTime, int endTime) {
-//    if (name == null) {
-//      throw new IllegalArgumentException("Name cannot be null");
-//    }
-//    if (name.isBlank()) {
-//      throw new IllegalArgumentException("Name cannot be empty");
-//    }
-//    if (newColor == null) {
-//      throw new IllegalArgumentException("Color cannot be null");
-//    }
-//    this.name = name;
-//    this.currentShape = currentShape;
-//    this.newColor = newColor;
-//    this.time = new Time(startTime, endTime);
-//    this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
-//        currentShape.getColor().getBlue());
-//    this.currentShape.setColor(newColor);
-//  }
-
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {

@@ -22,30 +22,6 @@ public class Move extends AbstractAction {
     this.type = Action.MOVE;
   }
 
-//  private String name;
-//  private IShape currentShape;
-//  private Position newPosition;
-//  private Time time;
-//  private Position oldPosition;
-
-//  public Move(String name, IShape currentShape, double newX, double newY,
-//              int startTime, int endTime) {
-//    if (name == null) {
-//      throw new IllegalArgumentException("Name cannot be null");
-//    }
-//    if (name.isBlank()) {
-//      throw new IllegalArgumentException("Name cannot be empty");
-//    }
-//
-//    this.name = name;
-//    this.currentShape = currentShape;
-//    this.newPosition = new Position(newX, newY);
-//    this.time = new Time(startTime, endTime);
-//    this.oldPosition = new Position(currentShape.getPosition().getX(),
-//            currentShape.getPosition().getY());
-//    this.currentShape.setPosition(newPosition.getX(), newPosition.getY());
-//  }
-
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
       throw new IllegalArgumentException("Ticks cannot be negative");

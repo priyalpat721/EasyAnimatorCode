@@ -23,36 +23,6 @@ public class Scale extends AbstractAction {
     this.type = Action.SCALE;
   }
 
-//  private String name;
-//  private IShape currentShape;
-//  private double oldWidth;
-//  private double oldHeight;
-//  private double newWidth;
-//  private double newHeight;
-//  private Time time;
-
-//  public Scale(String name, IShape currentShape, double newWidth, double newHeight, int startTime, int endTime) {
-//    if (name == null) {
-//      throw new IllegalArgumentException("Name cannot be null");
-//    }
-//    if (name.isBlank()) {
-//      throw new IllegalArgumentException("Name cannot be empty");
-//    }
-//
-//    if (newWidth <= 0 || newHeight <= 0) {
-//      throw new IllegalArgumentException("Width or height cannot be negative or zero");
-//    }
-//    this.name = name;
-//    this.currentShape = currentShape;
-//    this.oldWidth = currentShape.getWidth();
-//    this.oldHeight = currentShape.getHeight();
-//    this.newWidth = newWidth;
-//    this.newHeight = newHeight;
-//    this.time = new Time(startTime, endTime);
-//    this.currentShape.setWidth(newWidth);
-//    this.currentShape.setHeight(newHeight);
-//  }
-
   @Override
   public IShape getShapeAtTick(int tick, IShape shape) {
     if (tick < 0) {
