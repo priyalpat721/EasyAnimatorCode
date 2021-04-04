@@ -801,16 +801,6 @@ public class AnimatorModelImplTest {
     model1.getShapesAtTicks(0);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalGetShapesAtZeroEmptyModel() {
-    modelEmpty.getShapesAtTicks(1);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalGetShapesTickNumberOutOfRange() {
-    model2.getShapesAtTicks(2);
-  }
-
   @Test
   public void testGetShapesAtTicksFirstTick() {
     assertEquals("""
