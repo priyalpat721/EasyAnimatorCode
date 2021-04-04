@@ -142,6 +142,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
+  /**
+   * Adds an action to chronological order of actions.
+   * @param name   the name of the shape.
+   * @param action the action.
+   */
   public void addAction(String name, IAction action) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
