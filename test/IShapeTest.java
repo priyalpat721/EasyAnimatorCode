@@ -51,7 +51,8 @@ public class IShapeTest {
             2, 2, 1, 80);
   }
 
-  @Test public void constructorTest() {
+  @Test
+  public void constructorTest() {
     rectangle = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
     assertEquals("""
@@ -82,30 +83,30 @@ public class IShapeTest {
     circle = new Circle("I", new RGB(1, 1, 1), 10, 10,
             0, 0, 1, 100);
     assertEquals("""
-        Name: I
-        Type: circle
-        Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
-        Appears at t=1
-        Disappears at t=100""", circle.toString());
+            Name: I
+            Type: circle
+            Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100""", circle.toString());
 
     triangle = new Triangle("T", new RGB(5, 5, 5), 20, 30,
             40, 50, 1, 50);
 
     assertEquals("""
-        Name: T
-        Type: triangle
-        Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
-        Appears at t=1
-        Disappears at t=50""", triangle.toString());
+            Name: T
+            Type: triangle
+            Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
+            Appears at t=1
+            Disappears at t=50""", triangle.toString());
 
     rhombus = new Rhombus("H", new RGB(20, 20, 20), 50, 60,
             2, 2, 1, 80);
     assertEquals("""
-        Name: H
-        Type: rhombus
-        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
-        Appears at t=1
-        Disappears at t=80""", rhombus.toString());
+            Name: H
+            Type: rhombus
+            Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+            Appears at t=1
+            Disappears at t=80""", rhombus.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -117,7 +118,7 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCircleNegativeRadius() {
     IShape c1 = new Circle("I", new RGB(1, 1, 1), -5, -5,
-        0, 0, 1, 100);
+            0, 0, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -129,13 +130,13 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalSquareNegativeLength() {
     IShape s1 = new Square("I", new RGB(1, 1, 1), -10, -10,
-        0, 0, 1, 100);
+            0, 0, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalNameEmpty() {
     IShape r1 = new Rhombus("", new RGB(1, 0, 0), 50, 100,
-        100, 100, 1, 100);
+            100, 100, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -208,7 +209,7 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalTimeEndingLessThanStart() {
     IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
-        200, 200, 4, 0);
+            200, 200, 4, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -275,7 +276,7 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalColorNull() {
     IShape r1 = new Oval("R", null, 50, 100,
-        200, 200, 1, 100);
+            200, 200, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -305,7 +306,7 @@ public class IShapeTest {
 
     //setting color with highly precise arguments
     circle.setColor(new RGB(254.9999999999999999, 254.9999999999999999,
-        254.9999999999999999));
+            254.9999999999999999));
     assertEquals(254.9999999999999999, circle.getColor().getRed(), 0.01);
     assertEquals(254.9999999999999999, circle.getColor().getGreen(), 0.01);
     assertEquals(254.9999999999999999, circle.getColor().getBlue(), 0.01);
@@ -459,208 +460,208 @@ public class IShapeTest {
   @Test
   public void testCreateLegalRectangle() {
     r2 = new Rectangle("R2", new RGB(2, 35, 250), 30, 75,
-        150, 100, 5, 105);
+            150, 100, 5, 105);
     assertEquals("""
-        Name: R2
-        Type: rectangle
-        Min corner: (150.0,100.0), Width: 30.0, Height: 75.0, Color: (2.0,35.0,250.0)
-        Appears at t=5
-        Disappears at t=105""", r2.toString());
+            Name: R2
+            Type: rectangle
+            Min corner: (150.0,100.0), Width: 30.0, Height: 75.0, Color: (2.0,35.0,250.0)
+            Appears at t=5
+            Disappears at t=105""", r2.toString());
   }
 
   @Test
   public void testCreateLegalOval() {
     o2 = new Oval("O2", new RGB(255, 255, 255), 55, 15,
-        300, 200, 1, 96);
+            300, 200, 1, 96);
     assertEquals("""
-        Name: O2
-        Type: oval
-        Center: (300.0,200.0), X radius: 55.0, Y radius: 15.0, Color: (255.0,255.0,255.0)
-        Appears at t=1
-        Disappears at t=96""", o2.toString());
+            Name: O2
+            Type: oval
+            Center: (300.0,200.0), X radius: 55.0, Y radius: 15.0, Color: (255.0,255.0,255.0)
+            Appears at t=1
+            Disappears at t=96""", o2.toString());
   }
 
   @Test
   public void testCreateLegalSquare() {
     s2 = new Square("S2", new RGB(10, 10, 10), 55, 55,
-        0, 0, 10, 100);
+            0, 0, 10, 100);
     assertEquals("""
-        Name: S2
-        Type: square
-        Min corner: (0.0,0.0), Length: 55.0, Color: (10.0,10.0,10.0)
-        Appears at t=10
-        Disappears at t=100""",s2.toString());
+            Name: S2
+            Type: square
+            Min corner: (0.0,0.0), Length: 55.0, Color: (10.0,10.0,10.0)
+            Appears at t=10
+            Disappears at t=100""", s2.toString());
   }
 
   @Test
   public void testCreateLegalCircle() {
     c2 = new Circle("C2", new RGB(40, 178, 222), 30, 30,
-        167, 0, 45, 49);
+            167, 0, 45, 49);
     assertEquals("""
-        Name: C2
-        Type: circle
-        Center: (167.0,0.0), Radius: 30.0, Color: (40.0,178.0,222.0)
-        Appears at t=45
-        Disappears at t=49""",c2.toString());
+            Name: C2
+            Type: circle
+            Center: (167.0,0.0), Radius: 30.0, Color: (40.0,178.0,222.0)
+            Appears at t=45
+            Disappears at t=49""", c2.toString());
   }
 
   @Test
   public void testCreateLegalTriangle() {
     t2 = new Triangle("T2", new RGB(15, 50, 125), 40, 81,
-        4, 11, 11, 22);
+            4, 11, 11, 22);
     assertEquals("""
-        Name: T2
-        Type: triangle
-        Min corner: (4.0,11.0), Width: 40.0, Height: 81.0, Color: (15.0,50.0,125.0)
-        Appears at t=11
-        Disappears at t=22""",t2.toString());
+            Name: T2
+            Type: triangle
+            Min corner: (4.0,11.0), Width: 40.0, Height: 81.0, Color: (15.0,50.0,125.0)
+            Appears at t=11
+            Disappears at t=22""", t2.toString());
   }
 
   @Test
   public void testCreateLegalRhombus() {
     rh2 = new Rhombus("RH2", new RGB(102, 51, 98), 21, 44,
-        20, 230, 25, 52);
+            20, 230, 25, 52);
     assertEquals("""
-        Name: RH2
-        Type: rhombus
-        Min corner: (20.0,230.0), Width: 21.0, Height: 44.0, Color: (102.0,51.0,98.0)
-        Appears at t=25
-        Disappears at t=52""", rh2.toString());
+            Name: RH2
+            Type: rhombus
+            Min corner: (20.0,230.0), Width: 21.0, Height: 44.0, Color: (102.0,51.0,98.0)
+            Appears at t=25
+            Disappears at t=52""", rh2.toString());
   }
 
   @Test
   public void testShapesWithLongNumbers() {
     //highest RGB numbers, large position, large dimensions
     r2 = new Rectangle("R2", new RGB(255, 255, 255), 8000, 6000,
-        200, 200, 1, 100);
+            200, 200, 1, 100);
     assertEquals("""
-        Name: R2
-        Type: rectangle
-        Min corner: (200.0,200.0), Width: 8000.0, Height: 6000.0, Color: (255.0,255.0,255.0)
-        Appears at t=1
-        Disappears at t=100""", r2.toString());
+            Name: R2
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 8000.0, Height: 6000.0, Color: (255.0,255.0,255.0)
+            Appears at t=1
+            Disappears at t=100""", r2.toString());
 
     t2 = new Triangle("T2", new RGB(255, 255, 255), 25000, 30000,
-        4000, 5023, 1, 50);
+            4000, 5023, 1, 50);
     assertEquals("""
-        Name: T2
-        Type: triangle
-        Min corner: (4000.0,5023.0), Width: 25000.0, Height: 30000.0, Color: (255.0,255.0,255.0)
-        Appears at t=1
-        Disappears at t=50""", t2.toString());
+            Name: T2
+            Type: triangle
+            Min corner: (4000.0,5023.0), Width: 25000.0, Height: 30000.0, Color: (255.0,255.0,255.0)
+            Appears at t=1
+            Disappears at t=50""", t2.toString());
 
     s2 = new Square("S2", new RGB(255, 255, 255), 11999, 11999,
-        20000, 30000, 10, 100);
+            20000, 30000, 10, 100);
     assertEquals("""
-        Name: S2
-        Type: square
-        Min corner: (20000.0,30000.0), Length: 11999.0, Color: (255.0,255.0,255.0)
-        Appears at t=10
-        Disappears at t=100""", s2.toString());
+            Name: S2
+            Type: square
+            Min corner: (20000.0,30000.0), Length: 11999.0, Color: (255.0,255.0,255.0)
+            Appears at t=10
+            Disappears at t=100""", s2.toString());
 
     //highest RGB numbers, large position, large dimensions, long time
     o2 = new Oval("C2", new RGB(255, 255, 255), 6023, 3001,
-        5000, 10000, 6, 10000);
+            5000, 10000, 6, 10000);
     assertEquals("""
-        Name: C2
-        Type: oval
-        Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, Color: (255.0,255.0,255.0)
-        Appears at t=6
-        Disappears at t=10000""", o2.toString());
+            Name: C2
+            Type: oval
+            Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, Color: (255.0,255.0,255.0)
+            Appears at t=6
+            Disappears at t=10000""", o2.toString());
 
     rh2 = new Rhombus("RH2", new RGB(20, 20, 20), 50, 60,
-        2, 2, 1, 80000);
+            2, 2, 1, 80000);
     assertEquals("""
-        Name: RH2
-        Type: rhombus
-        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
-        Appears at t=1
-        Disappears at t=80000""", rh2.toString());
+            Name: RH2
+            Type: rhombus
+            Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+            Appears at t=1
+            Disappears at t=80000""", rh2.toString());
 
     c2 = new Circle("C2", new RGB(255, 255, 255), 30000, 30000,
-        2073, 3250, 1, 10023);
+            2073, 3250, 1, 10023);
     assertEquals("""
-        Name: C2
-        Type: circle
-        Center: (2073.0,3250.0), Radius: 30000.0, Color: (255.0,255.0,255.0)
-        Appears at t=1
-        Disappears at t=10023""", c2.toString());
+            Name: C2
+            Type: circle
+            Center: (2073.0,3250.0), Radius: 30000.0, Color: (255.0,255.0,255.0)
+            Appears at t=1
+            Disappears at t=10023""", c2.toString());
   }
 
   @Test
   public void testHighlyPreciseArgs() {
     r2 = new Rectangle("R2",
-        new RGB(1.8738278238233284, 0.293282738942, 0.98283748289232),
-        50.29871267374283, 100.87982379336470,
-        200.7632290839923472, 200.9292839298928327, 1, 100);
+            new RGB(1.8738278238233284, 0.293282738942, 0.98283748289232),
+            50.29871267374283, 100.87982379336470,
+            200.7632290839923472, 200.9292839298928327, 1, 100);
     assertEquals("""
-        Name: R2
-        Type: rectangle
-        Min corner: (200.8,200.9), Width: 50.3, Height: 100.9, Color: (1.9,0.3,1.0)
-        Appears at t=1
-        Disappears at t=100""", r2.toString());
+            Name: R2
+            Type: rectangle
+            Min corner: (200.8,200.9), Width: 50.3, Height: 100.9, Color: (1.9,0.3,1.0)
+            Appears at t=1
+            Disappears at t=100""", r2.toString());
 
     o2 = new Oval("O2", new RGB(100.283748378, 200.842734820, 10.1728387172),
-        60.92837817303429883984829483, 30.987238482783782834274,
-        500.823748278432934892920, 100.93829480929483287428, 6, 100);
+            60.92837817303429883984829483, 30.987238482783782834274,
+            500.823748278432934892920, 100.93829480929483287428, 6, 100);
     assertEquals("""
-        Name: O2
-        Type: oval
-        Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, Color: (100.3,200.8,10.2)
-        Appears at t=6
-        Disappears at t=100""", o2.toString());
+            Name: O2
+            Type: oval
+            Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, Color: (100.3,200.8,10.2)
+            Appears at t=6
+            Disappears at t=100""", o2.toString());
 
     c2 = new Circle("C2",
-        new RGB(254.9999999999999999999, 254.9999999999999999999,
-            254.9999999999999999999),
-        19238938.2938489284232893494, 19238938.2938489284232893494,
-        0.8129398848932894938949283498, 200.9284928578758278329890, 1, 100);
+            new RGB(254.9999999999999999999, 254.9999999999999999999,
+                    254.9999999999999999999),
+            19238938.2938489284232893494, 19238938.2938489284232893494,
+            0.8129398848932894938949283498, 200.9284928578758278329890, 1, 100);
     assertEquals("""
-        Name: C2
-        Type: circle
-        Center: (0.8,200.9), Radius: 19238938.3, Color: (255.0,255.0,255.0)
-        Appears at t=1
-        Disappears at t=100""", c2.toString());
+            Name: C2
+            Type: circle
+            Center: (0.8,200.9), Radius: 19238938.3, Color: (255.0,255.0,255.0)
+            Appears at t=1
+            Disappears at t=100""", c2.toString());
   }
 
   @Test
   public void testToString() {
     assertEquals("""
-       Name: I
-       Type: circle
-       Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
-       Appears at t=1
-       Disappears at t=100""", circle.toString());
+            Name: I
+            Type: circle
+            Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100""", circle.toString());
     assertEquals("""
-        Name: T
-        Type: triangle
-        Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
-        Appears at t=1
-        Disappears at t=50""", triangle.toString());
+            Name: T
+            Type: triangle
+            Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
+            Appears at t=1
+            Disappears at t=50""", triangle.toString());
     assertEquals("""
-        Name: S
-        Type: square
-        Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
-        Appears at t=10
-        Disappears at t=100""", square.toString());
+            Name: S
+            Type: square
+            Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
+            Appears at t=10
+            Disappears at t=100""", square.toString());
     assertEquals("""
-        Name: R
-        Type: rectangle
-        Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
-        Appears at t=1
-        Disappears at t=100""", rectangle.toString());
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+            Appears at t=1
+            Disappears at t=100""", rectangle.toString());
     assertEquals("""
-        Name: H
-        Type: rhombus
-        Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
-        Appears at t=1
-        Disappears at t=80""", rhombus.toString());
+            Name: H
+            Type: rhombus
+            Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
+            Appears at t=1
+            Disappears at t=80""", rhombus.toString());
     assertEquals("""
-        Name: C
-        Type: oval
-        Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
-        Appears at t=6
-        Disappears at t=100""", oval.toString());
+            Name: C
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
+            Appears at t=6
+            Disappears at t=100""", oval.toString());
   }
 
 }

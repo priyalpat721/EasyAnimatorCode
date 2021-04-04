@@ -9,6 +9,7 @@ import cs5004.shape.Circle;
 import cs5004.shape.IShape;
 import cs5004.shape.Oval;
 import cs5004.shape.Rectangle;
+import cs5004.shape.Rhombus;
 import cs5004.shape.Square;
 import cs5004.utilities.RGB;
 
@@ -26,6 +27,7 @@ public class IActionTest {
   IAction move3;
   IAction color2;
   IAction color3;
+  IShape rhombus1;
   IAction scale2;
   IAction scale3;
 
@@ -110,16 +112,28 @@ public class IActionTest {
   }
 
   @Test
-  public void constructorScaleTest() {
+  public void constructorSquareScaleTest() {
     square1 = new Square("Square1", new RGB(10, 15, 20),
             4, 4, 0, 0, 1, 50);
-    scale2 = new Scale("Square1", square1, 8, 8, 0, 1);
-    assertEquals("Square1 changes color from (10.0,15.0,20.0) "
-            + "to (12.0,15.0,18.0) from time t= 0 to t=1", scale2.toString());
-    scale3 = new ChangeColor("Square1", square1, new RGB(200, 215, 218),
+    scale2 = new Scale("Square1", square1, 8, 8,1 , 5);
+    assertEquals("Square1 scales from Length: 4.0 "
+            + "to Length: 8.0from time t=1 to t=5", scale2.toString());
+    scale3 = new Scale("Square1", square1, 20, 20,
             0, 1);
-    assertEquals("Square1 changes color from (12.0,15.0,18.0) "
-            + "to (200.0,215.0,218.0) from time t= 0 to t=1", scale3.toString());
+    assertEquals("Square1 scales from Length: 8.0 to Length: 20.0"
+            + "from time t=0 to t=1", scale3.toString());
+  }
+
+  @Test
+  public void constructorScaleTest() {
+    rhombus1 = new Rhombus("Rhombus1", new RGB(10, 15, 20),
+            4, 4, 0, 0, 1, 50);
+    scale2 = new Scale("Rhombus1", rhombus1, 8, 8, 0, 1);
+    assertEquals("Rhombus1 scales from Width: 4.0, Height: 4.0 "
+            + "to Width: 8.0, Height: 8.0 from time t=0 to t=1", scale2.toString());
+    scale3 = new Scale("Rhombus1", rhombus1,16, 16, 0, 1);
+    assertEquals("Rhombus1 scales from Width: 8.0, Height: 8.0 "
+            + "to Width: 16.0, Height: 16.0 from time t=0 to t=1", scale3.toString());
   }
 
   @Test (expected=IllegalArgumentException.class)
