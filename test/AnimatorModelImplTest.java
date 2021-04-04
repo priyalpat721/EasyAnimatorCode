@@ -797,16 +797,33 @@ public class AnimatorModelImplTest {
     model3.createShape("C", Shape.OVAL, new RGB(0, 0, 1), 60,
             30, 500, 100, 6, 100);
     model3.move("R", 300, 300, 10, 50);
-    System.out.printf("Testing getShapesAtTicks\n");
-    System.out.println(model3.getShapesAtTicks(11));
     model3.move("C", 500, 400, 20, 70);
     model3.changeColor("C", new RGB(0, 1, 0), 50, 80);
     model3.scale("R", 25, 100, 51, 70);
     model3.move("R", 200, 200, 70, 100);
     model3.move("C", 0, 0, 70, 100);
 
-    System.out.println("Testing toString");
-    System.out.println(model3.toString());
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: C
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
+            Appears at t=6
+            Disappears at t=100
+
+            Shape R moves from (200.0, 200.0) to (300.0, 300.0) from time t=10 to t=50
+            Shape C moves from (500.0, 100.0) to (500.0, 400.0) from time t=20 to t=70
+            Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) from time t= 50 to t=80
+            Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from time t=51 to t=70
+            Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100
+            Shape C moves from (500.0, 400.0) to (0.0, 0.0) from time t=70 to t=100 """
+            ,model3.toString());
 
   }
 
