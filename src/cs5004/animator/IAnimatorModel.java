@@ -84,6 +84,8 @@ public interface IAnimatorModel {
    *
    * @param name    name of the shape that is associated with a specific type of shape.
    * @param action is one of the IAction: Move, ChangeColor or Scale.
+   * @throws IllegalArgumentException if the name is null or empty.
+   *                                  if the action is null.
    */
   void addAction(String name, IAction action);
 
@@ -97,6 +99,7 @@ public interface IAnimatorModel {
    *             the animation is currently in/
    * @return a list of shapes in their specific states at a certain tick. Each list return
    * represents a specific frame in the animation.
+   * @throws IllegalArgumentException if the tick is negative.
    */
   List<IShape> getShapesAtTicks(int tick);
 
