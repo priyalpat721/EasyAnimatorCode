@@ -28,7 +28,6 @@ import cs5004.shape.Triangle;
 public class AnimatorModelImpl implements IAnimatorModel {
   private HashMap<String, IShape> logOfShapes;
   private HashMap<String, List<IAction>> logOfActions;
-  // chronological order of actions for toString method
   private List<String> chronologicalOrderOfActions;
 
   /**
@@ -142,11 +141,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
-  /**
-   * Adds an action to chronological order of actions.
-   * @param name   the name of the shape.
-   * @param action the action.
-   */
   public void addAction(String name, IAction action) {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
