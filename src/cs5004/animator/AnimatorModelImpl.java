@@ -239,8 +239,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime > action.getTime().getStartTime() &&
-                    startTime < action.getTime().getEndTime() ||
+            if (startTime >= action.getTime().getStartTime() &&
+                    startTime <= action.getTime().getEndTime() ||
                     endTime >= action.getTime().getStartTime() &&
                             endTime <= action.getTime().getEndTime()) {
               return false;
