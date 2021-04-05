@@ -175,43 +175,41 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("""
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (225.2,225.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (250.4,250.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (275.6,275.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100""", intervals.toString());
+    assertEquals("Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (225.2,225.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (250.4,250.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (275.6,275.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", intervals.toString());
   }
 
   // tests the get current shape function for move
   @Test
   public void moveGetCurrentShapeTest() {
-    assertEquals("""
-            Name: Rectangle1
-            Type: rectangle
-            Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100""", move.getCurrentShape().toString());
+    assertEquals("Name: Rectangle1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", move.getCurrentShape().toString());
   }
 
   // tests the get time function for move
@@ -256,43 +254,41 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("""
-                    Name: Circle1
-                    Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (44.1,120.2,44.1)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Circle1
-                    Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (83.1,140.4,83.2)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Circle1
-                    Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (122.1,160.6,122.3)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Circle1
-                    Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (161.2,180.8,161.4)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Circle1
-                    Type: circle
-                    Center: (100.0,50.0), Radius: 12.0, Color: (200.3,201.0,200.5)
-                    Appears at t=1
-                    Disappears at t=100"""
+    assertEquals("Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (44.1,120.2,44.1)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (83.1,140.4,83.2)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (122.1,160.6,122.3)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (161.2,180.8,161.4)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,201.0,200.5)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100"
             , intervals.toString());
   }
 
   @Test
   public void changeColorGetCurrentShapeTest() {
-    assertEquals("""
-            Name: Circle1
-            Type: circle
-            Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)
-            Appears at t=1
-            Disappears at t=100""", color.getCurrentShape().toString());
+    assertEquals("Name: Circle1\n" +
+                 "Type: circle\n" +
+                 "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", color.getCurrentShape().toString());
   }
 
   @Test
@@ -333,43 +329,41 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("""
-                    Name: Oval1
-                    Type: oval
-                    Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, Color: (1.0,1.0,1.0)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Oval1
-                    Type: oval
-                    Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, Color: (1.0,1.0,1.0)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Oval1
-                    Type: oval
-                    Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, Color: (1.0,1.0,1.0)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Oval1
-                    Type: oval
-                    Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, Color: (1.0,1.0,1.0)
-                    Appears at t=1
-                    Disappears at t=100
-                    Name: Oval1
-                    Type: oval
-                    Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)
-                    Appears at t=1
-                    Disappears at t=100"""
+    assertEquals("Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100\n" +
+                 "Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100"
             , intervals.toString());
   }
 
   @Test
   public void scaleGetCurrentShapeTest() {
-    assertEquals("""
-            Name: Oval1
-            Type: oval
-            Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100""", scale.getCurrentShape().toString());
+    assertEquals("Name: Oval1\n" +
+                 "Type: oval\n" +
+                 "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", scale.getCurrentShape().toString());
   }
 
   @Test
