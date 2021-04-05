@@ -11,7 +11,7 @@ cs5004.animator - encapsulates all the classes related to the model implementati
 
 The animator package is in charge of:
 - Create shapes for the animation
-- Move shapes in the animation, change their dimensions, and color
+- Move shapes in the animation, change their dimensions and color
 - Return a list of updated shapes at a particular moment in time
 - Return a string representation of the entire animation
 
@@ -59,7 +59,7 @@ The utilities	package is in charge of:
 Functionality of the model:
 When the AnimatorModelImpl is initialized, 3 main data structures are created:
 - HashMap<String, IShape> logOfShapes: contains all the original shapes created by the model.
-- HashMap<String, List<IAction> logOfActions: contains all the actions that every shape received through the entire animation.
+- HashMap<String, List<IAction>> logOfActions: contains all the actions that every shape received through the entire animation.
 - List<String> chronologicalOrderOfActions: contains every action in the sequence they occurred.
 
 Creating shapes:
@@ -91,4 +91,4 @@ The method identifies a particular moment in time by an integer called tick.
 7) The method adds the shape to frameOfShapes and returns the list.
 
 String representation of the animation:
-The model implementation offers a string representation of the entire animation for devices that cannot visually display the play or for visually impaired users. It does so by calling the method 'toString'.
+The model implementation offers a string representation of the entire animation for devices that cannot display the play or for visually impaired users. It does so by calling the method 'toString'.
