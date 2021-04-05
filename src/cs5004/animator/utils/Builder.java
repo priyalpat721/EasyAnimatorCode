@@ -5,9 +5,10 @@ import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Shape;
 
 public class Builder implements AnimationBuilder<IAnimatorModel> {
+  private IAnimatorModel model;
 
   public Builder() {
-
+    this.model = new AnimatorModelImpl();
   }
 
   @Override
