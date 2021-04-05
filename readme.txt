@@ -15,10 +15,9 @@ The animator package is in charge of:
 - Return a list of updated shapes at a particular moment in time
 - Return a string representation of the entire animation
 
-
 cs5004.action - encapsulates all the classes related to the actions that the model implementation supports:
 - (I) IAction: interface with all the operations that an action supports.
-- (A) AbstractAction: abstract class that implements IAction to enhance code reusability.
+- (A) AbstractAction: abstract class that implements IAction to enhance code re-usability.
 - (E) Action: enum that includes the types of actions.
 - (C) Move: concrete class of the move action that extends AbstractAction.
 - (C) Scale: concrete class of the scale action that extends AbstractAction.
@@ -33,7 +32,7 @@ The action package is in charge of:
 
 cs5004.shape - encapsulates all the classes related to the shapes that the model uses:
 - (I) IShape: interface with all the operations that a shape supports.
-- (A) AbstractShape: abstract class that implements IShape to enhance code reusability.
+- (A) AbstractShape: abstract class that implements IShape to enhance code re-usability.
 - (E) Shape: enum that includes the types of shapes.
 - (C) Rectangle: concrete class for the rectangle shape that extends AbstractShape.
 - (C) Oval: concrete class for the oval shape that extends AbstractShape.
@@ -92,4 +91,4 @@ The method identifies a particular moment in time by an integer called tick.
 7) The method adds the shape to frameOfShapes and returns the list.
 
 String representation of the animation:
-The model implementation offers a string representation of the entire animation for devices that cannot show the play or for visually impaired users. It does so by calling the method 'toString'.
+The model implementation offers a string representation of the entire animation for devices that cannot visually display the play or for visually impaired users. It does so by calling the method 'toString'.
