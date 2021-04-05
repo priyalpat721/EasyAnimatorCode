@@ -141,18 +141,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return frameOfShapes;
   }
 
-  public void addAction(String name, IAction action) {
-    if (name == null) {
-      throw new IllegalArgumentException("Name cannot be null");
-    } else if (name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty");
-    } else if (action == null) {
-      throw new IllegalArgumentException("Actions cannot be null");
-    }
-    addActionToShape(name, action);
-    chronologicalOrderOfActions.add(action.toString());
-  }
-
   @Override
   public String toString() {
     StringBuilder accString = new StringBuilder();

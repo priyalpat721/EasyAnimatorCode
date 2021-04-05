@@ -80,16 +80,6 @@ public interface IAnimatorModel {
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
   /**
-   * A general function that takes in an action from the user and adds it to the hashmap.
-   *
-   * @param name    name of the shape that is associated with a specific type of shape.
-   * @param action is one of the IAction: Move, ChangeColor or Scale.
-   * @throws IllegalArgumentException if the name is null or empty.
-   *                                  if the action is null.
-   */
-  void addAction(String name, IAction action);
-
-  /**
    * A function that returns a list of shapes at the specified frame. The function works by
    * identifying the tick of a move at a specified time. If the tick falls within the the interval
    * of event's duration, that specific frame is added to a list and returned back to the
