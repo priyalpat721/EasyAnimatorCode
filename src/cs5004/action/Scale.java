@@ -81,6 +81,5 @@ public class Scale extends AbstractAction {
               + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     }
   }
-  //Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 to t=70
 
 }
