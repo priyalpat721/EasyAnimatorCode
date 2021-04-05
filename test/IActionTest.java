@@ -15,6 +15,9 @@ import cs5004.utilities.RGB;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * JUnit test class for the IAction interface.
+ */
 public class IActionTest {
   IShape rectangle1;
   IAction move;

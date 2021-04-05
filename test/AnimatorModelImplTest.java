@@ -11,12 +11,14 @@ import cs5004.utilities.RGB;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * JUnit test class for the IAnimatorModel interface.
+ */
 public class AnimatorModelImplTest {
   AnimatorModelImpl model1;
   AnimatorModelImpl model2;
   AnimatorModelImpl model3;
   AnimatorModelImpl modelEmpty;
-
 
   @Before
   public void setUp() {
