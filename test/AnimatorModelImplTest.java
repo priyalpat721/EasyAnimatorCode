@@ -119,90 +119,94 @@ public class AnimatorModelImplTest {
   public void testCreateShape() {
     model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
             12, 12, 100, 50, 1, 100);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: C\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n", model1.toString());
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: C
+            Type: circle
+            Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            """, model1.toString());
 
     //create shape with starting and ending time of zero
     model1.createShape("X", Shape.OVAL, new RGB(0, 0, 0), 35, 47,
             234, 16, 0, 0);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: C\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: X\n" +
-                 "Type: oval\n" +
-                 "Center: (234.0,16.0), X radius: 35.0, Y radius: 47.0, Color: (0.0,0.0,0.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=0\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n", model1.toString());
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: C
+            Type: circle
+            Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: X
+            Type: oval
+            Center: (234.0,16.0), X radius: 35.0, Y radius: 47.0, Color: (0.0,0.0,0.0)
+            Appears at t=0
+            Disappears at t=0
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            """, model1.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -501,76 +505,78 @@ public class AnimatorModelImplTest {
   public void testChangeColor() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
             33, 44);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44"
+    assertEquals("""
+                    Shapes:
+                    Name: R
+                    Type: rectangle
+                    Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+                    Appears at t=1
+                    Disappears at t=100
+
+                    Name: S
+                    Type: square
+                    Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+                    Appears at t=30
+                    Disappears at t=60
+
+                    Name: T
+                    Type: triangle
+                    Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+                    Appears at t=23
+                    Disappears at t=75
+
+                    Name: RH
+                    Type: rhombus
+                    Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+                    Appears at t=98
+                    Disappears at t=99
+
+                    Name: O
+                    Type: oval
+                    Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+                    Appears at t=6
+                    Disappears at t=100
+
+                    Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44"""
             , model1.toString());
 
     // changing color back to previous color
     model1.changeColor("R", new RGB(1, 1, 1),
         45, 50);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44\n" +
-                 "Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=50"
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44
+            Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=50"""
         , model1.toString());
   }
 
@@ -578,75 +584,77 @@ public class AnimatorModelImplTest {
   public void testChangeColorBackToPrevious() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
             33, 44);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44",
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44""",
             model1.toString());
 
     model1.changeColor("R", new RGB(1.0, 1.0, 1.0),
             45, 55);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: oval\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n" +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44\n" +
-                 "Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=55"
+    assertEquals("""
+            Shapes:
+            Name: R
+            Type: rectangle
+            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)
+            Appears at t=1
+            Disappears at t=100
+
+            Name: S
+            Type: square
+            Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)
+            Appears at t=30
+            Disappears at t=60
+
+            Name: T
+            Type: triangle
+            Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)
+            Appears at t=23
+            Disappears at t=75
+
+            Name: RH
+            Type: rhombus
+            Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)
+            Appears at t=98
+            Disappears at t=99
+
+            Name: O
+            Type: oval
+            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)
+            Appears at t=6
+            Disappears at t=100
+
+            Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) from time t= 33 to t=44
+            Shape R changes color from (254.2,35.4,122.0) to (1.0,1.0,1.0) from time t= 45 to t=55"""
             , model1.toString());
   }
 

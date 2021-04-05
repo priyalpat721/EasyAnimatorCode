@@ -4,7 +4,8 @@ import cs5004.shape.IShape;
 import cs5004.utilities.RGB;
 
 /**
- * Action class for color change. This action is of type Action.CHANGECOLOR.
+ * Action class for color change.
+ * This action is of type Action.CHANGECOLOR.
  */
 public class ChangeColor extends AbstractAction {
 
@@ -30,12 +31,12 @@ public class ChangeColor extends AbstractAction {
     } else {
 
       double percent = (double) (tick - this.time.getStartTime())
-                       / (this.time.getEndTime() - this.time.getStartTime());
+          / (this.time.getEndTime() - this.time.getStartTime());
 
       double currentR = (percent * (newColor.getRed() - oldColor.getRed())) + oldColor.getRed();
       double currentG = (percent * (newColor.getBlue() - oldColor.getBlue())) + oldColor.getBlue();
       double currentB = (percent * (newColor.getGreen() - oldColor.getGreen()))
-                        + oldColor.getGreen();
+          + oldColor.getGreen();
 
       copy.setColor(new RGB(currentR, currentG, currentB));
       return copy;
@@ -45,8 +46,8 @@ public class ChangeColor extends AbstractAction {
   @Override
   public String toString() {
     return name + " changes color from " + oldColor.toString()
-           + " to " + newColor.toString() + " from time t= " + this.time.getStartTime()
-           + " to t=" + this.time.getEndTime();
+        + " to " + newColor.toString() + " from time t= " + this.time.getStartTime()
+        + " to t=" + this.time.getEndTime();
   }
 
 }

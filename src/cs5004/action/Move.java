@@ -4,7 +4,8 @@ import cs5004.shape.IShape;
 import cs5004.utilities.Position;
 
 /**
- * Action class for movement. This action is of type Action.MOVE.
+ * Action class for movement.
+ * This action is of type Action.MOVE.
  */
 public class Move extends AbstractAction {
 
@@ -36,12 +37,12 @@ public class Move extends AbstractAction {
     } else {
 
       double percent = (double) (tick - this.time.getStartTime()) /
-                       (this.time.getEndTime() - this.time.getStartTime());
+              (this.time.getEndTime() - this.time.getStartTime());
 
       double currentX = (percent * (newPosition.getX() - oldPosition.getX()))
-                        + oldPosition.getX();
+              + oldPosition.getX();
       double currentY = (percent * (newPosition.getY() - oldPosition.getY()))
-                        + oldPosition.getY();
+              + oldPosition.getY();
 
       copy.setPosition(currentX, currentY);
       return copy;
@@ -51,8 +52,8 @@ public class Move extends AbstractAction {
   @Override
   public String toString() {
     return this.name + " moves from " + "(" + oldPosition.getX() + ", "
-           + oldPosition.getY() + ") to ("
-           + newPosition.getX() + ", " + newPosition.getY() + ") " + "from time t="
-           + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+            + oldPosition.getY() + ") to ("
+            + newPosition.getX() + ", " + newPosition.getY() + ") " + "from time t="
+            + this.time.getStartTime() + " to t=" + this.time.getEndTime();
   }
 }

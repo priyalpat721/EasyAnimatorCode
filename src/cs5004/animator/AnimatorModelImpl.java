@@ -13,22 +13,22 @@ import cs5004.action.Scale;
 import cs5004.shape.Circle;
 import cs5004.shape.IShape;
 import cs5004.shape.Oval;
+import cs5004.utilities.RGB;
 import cs5004.shape.Rectangle;
 import cs5004.shape.Rhombus;
 import cs5004.shape.Shape;
 import cs5004.shape.Square;
 import cs5004.shape.Triangle;
-import cs5004.utilities.RGB;
 
 /**
- * This class represents the Model component of an animator. The class implements the interface
- * IAnimatorModel. The class has a log of shapes, a log of actions, and a chronological order of
- * actions.
+ * This class represents the Model component of an animator.
+ * The class implements the interface IAnimatorModel.
+ * The class has a log of shapes, a log of actions, and a chronological order of actions.
  */
 public class AnimatorModelImpl implements IAnimatorModel {
-  private final HashMap<String, IShape> logOfShapes;
-  private final HashMap<String, List<IAction>> logOfActions;
-  private final List<String> chronologicalOrderOfActions;
+  private HashMap<String, IShape> logOfShapes;
+  private HashMap<String, List<IAction>> logOfActions;
+  private List<String> chronologicalOrderOfActions;
 
   /**
    * Constructs an Animator model object.
@@ -153,10 +153,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
       if (i != chronologicalOrderOfActions.size() - 1) {
-        accString.append("Shape " + chronologicalOrderOfActions.get(i));
+        accString.append("Shape " +chronologicalOrderOfActions.get(i));
         accString.append("\n");
-      } else {
-        accString.append("Shape " + chronologicalOrderOfActions.get(i));
+      }
+      else{
+        accString.append("Shape " +chronologicalOrderOfActions.get(i));
       }
     }
     return accString.toString();
@@ -164,8 +165,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method that adds an action to the log.
-   *
-   * @param name   name of the shape.
+   * @param name name of the shape.
    * @param action action to add to the log.
    */
   private void addActionToShape(String name, IAction action) {
@@ -177,11 +177,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method that returns a shape from the log.
-   *
    * @param name the name of the shape.
    * @return the shape from the log.
-   * @throws IllegalArgumentException if name is null or empty. if the shape does not exist in the
-   *                                  log.
+   * @throws IllegalArgumentException if name is null or empty.
+   *                                  if the shape does not exist in the log.
    */
   private IShape getCurrentShape(String name) {
     if (name == null || name.isBlank()) {
@@ -206,11 +205,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method to determine if an action overlaps with another of the same type.
-   *
-   * @param name      name of the Shape.
-   * @param type      type of the Action.
+   * @param name name of the Shape.
+   * @param type type of the Action.
    * @param startTime the start time of the new action being tested.
-   * @param endTime   the end time of the new action being tested.
+   * @param endTime the end time of the new action being tested.
    * @return true if there is no overlap; false otherwise.
    */
   private boolean checkOverlap(String name, Action type, int startTime, int endTime) {
@@ -220,9 +218,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
         for (IAction action : actions) {
           if (action.getType() == type) {
             if (startTime >= action.getTime().getStartTime() &&
-                startTime <= action.getTime().getEndTime() ||
-                endTime >= action.getTime().getStartTime() &&
-                endTime <= action.getTime().getEndTime()) {
+                    startTime <= action.getTime().getEndTime() ||
+                    endTime >= action.getTime().getStartTime() &&
+                            endTime <= action.getTime().getEndTime()) {
               return false;
             }
           }
@@ -234,10 +232,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method to determine if an action is within the range of execution of a shape.
-   *
-   * @param name      name of the Shape.
+   * @param name name of the Shape.
    * @param startTime the start time of the new action being tested.
-   * @param endTime   the end time of the new action being tested.
+   * @param endTime the end time of the new action being tested.
    * @throws IllegalArgumentException if the action is out of range.
    */
   private void checkRange(String name, int startTime, int endTime) {
@@ -245,7 +242,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
       if (entry.getKey().equals(name)) {
         IShape shape = entry.getValue();
         if (startTime < shape.getTotalTime().getStartTime() ||
-            endTime > shape.getTotalTime().getEndTime()) {
+                endTime > shape.getTotalTime().getEndTime()) {
           throw new IllegalArgumentException("Action is out of range");
         }
       }

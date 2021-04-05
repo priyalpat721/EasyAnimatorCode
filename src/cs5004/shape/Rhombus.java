@@ -3,8 +3,9 @@ package cs5004.shape;
 import cs5004.utilities.RGB;
 
 /**
- * This class represents a Rhombus. It extends the abstract class AbstractShape. The circle is of
- * type Shape.RHOMBUS.
+ * This class represents a Rhombus.
+ * It extends the abstract class AbstractShape.
+ * The circle is of type Shape.RHOMBUS.
  */
 public class Rhombus extends AbstractShape {
 

@@ -50,7 +50,7 @@ public class Scale extends AbstractAction {
     }
 
     double percent = (double) (tick - this.time.getStartTime()) /
-                     (this.time.getEndTime() - this.time.getStartTime());
+            (this.time.getEndTime() - this.time.getStartTime());
 
     double currentWidth = (percent * (newWidth - oldWidth) + oldWidth);
     double currentHeight = (percent * (newHeight - oldHeight) + oldHeight);
@@ -63,22 +63,22 @@ public class Scale extends AbstractAction {
   public String toString() {
     if (currentShape.getType() == Shape.OVAL) {
       return name + " scales from X radius:, " + oldWidth + "Y radius: "
-             + oldHeight + " to X radius, " + newWidth + "Y radius "
-             + newHeight + "from time t="
-             + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+              + oldHeight + " to X radius, " + newWidth + "Y radius "
+              + newHeight + "from time t="
+              + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     } else if (currentShape.getType() == Shape.CIRCLE) {
       return name + " scales from Radius: " + oldWidth + " to Radius: "
-             + newWidth + ", Y radius " + newHeight + "from time t="
-             + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+              + newWidth + ", Y radius " + newHeight + "from time t="
+              + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     } else if (currentShape.getType() == Shape.SQUARE) {
       return name + " scales from Length: " + oldWidth + " to Length: "
-             + newWidth + "from time t=" + this.time.getStartTime()
-             + " to t=" + this.time.getEndTime();
+              + newWidth + "from time t=" + this.time.getStartTime()
+              + " to t=" + this.time.getEndTime();
     } else {
       return name + " scales from Width: " + oldWidth + ", Height: "
-             + oldHeight + " to Width: " + newWidth + ", Height: "
-             + newHeight + " from time t="
-             + this.time.getStartTime() + " to t=" + this.time.getEndTime();
+              + oldHeight + " to Width: " + newWidth + ", Height: "
+              + newHeight + " from time t="
+              + this.time.getStartTime() + " to t=" + this.time.getEndTime();
     }
   }
 

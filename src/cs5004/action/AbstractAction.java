@@ -32,8 +32,9 @@ public abstract class AbstractAction implements IAction {
    * @param newColor     the new color of the shape.
    * @param startTime    the start time of execution of the action.
    * @param endTime      the end time of execution of the action.
-   * @throws IllegalArgumentException if the name is null or empty. if the shape is null. if the
-   *                                  color is null.
+   * @throws IllegalArgumentException if the name is null or empty.
+   *                                  if the shape is null.
+   *                                  if the color is null.
    */
   public AbstractAction(String name, IShape currentShape, RGB newColor,
                         int startTime, int endTime) {
@@ -65,7 +66,8 @@ public abstract class AbstractAction implements IAction {
    * @param newB         for the move class: the y coordinate. for the scale class: the height.
    * @param startTime    the start time of execution of the action.
    * @param endTime      the end time of execution of the action.
-   * @throws IllegalArgumentException if the name is null or empty. if the shape is null.
+   * @throws IllegalArgumentException if the name is null or empty.
+   *                                  if the shape is null.
    */
   public AbstractAction(String name, IShape currentShape, double newA, double newB,
                         int startTime, int endTime) {
@@ -94,8 +96,7 @@ public abstract class AbstractAction implements IAction {
 
   /**
    * Private method that throws IllegalArgumentException if the name or the shape are invalid.
-   *
-   * @param name         the name of the shape.
+   * @param name the name of the shape.
    * @param currentShape the shape.
    */
   private void checkArguments(String name, IShape currentShape) {
