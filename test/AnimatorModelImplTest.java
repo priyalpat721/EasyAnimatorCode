@@ -1,11 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.action.IAction;
-import cs5004.action.Move;
 import cs5004.animator.AnimatorModelImpl;
-import cs5004.shape.IShape;
-import cs5004.shape.Rectangle;
 import cs5004.shape.Shape;
 import cs5004.utilities.RGB;
 
