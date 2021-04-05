@@ -1,24 +1,24 @@
-package cs5004.animator;
+package cs5004.animator.model;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import cs5004.action.Action;
-import cs5004.action.ChangeColor;
-import cs5004.action.IAction;
-import cs5004.action.Move;
-import cs5004.action.Scale;
-import cs5004.shape.Circle;
-import cs5004.shape.IShape;
-import cs5004.shape.Oval;
-import cs5004.shape.Rectangle;
-import cs5004.shape.Rhombus;
-import cs5004.shape.Shape;
-import cs5004.shape.Square;
-import cs5004.shape.Triangle;
-import cs5004.utilities.RGB;
+import cs5004.animator.action.Action;
+import cs5004.animator.action.ChangeColor;
+import cs5004.animator.action.IAction;
+import cs5004.animator.action.Move;
+import cs5004.animator.action.Scale;
+import cs5004.animator.shape.Circle;
+import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Rectangle;
+import cs5004.animator.shape.Rhombus;
+import cs5004.animator.shape.Shape;
+import cs5004.animator.shape.Square;
+import cs5004.animator.shape.Triangle;
+import cs5004.animator.tools.RGB;
 
 /**
  * This class represents the Model component of an animator. The class implements the interface

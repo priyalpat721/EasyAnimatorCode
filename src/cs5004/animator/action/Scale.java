@@ -1,7 +1,7 @@
-package cs5004.action;
+package cs5004.animator.action;
 
-import cs5004.shape.IShape;
-import cs5004.shape.Shape;
+import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Shape;
 
 /**
  * Action class for scaling. This action is of type Action.SCALE.

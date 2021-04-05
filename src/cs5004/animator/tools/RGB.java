@@ -1,4 +1,4 @@
-package cs5004.utilities;
+package cs5004.animator.tools;
 
 /**
  * This class represents a color in format RGB. A color has a red component, a green component, and

@@ -1,7 +1,7 @@
-package cs5004.action;
+package cs5004.animator.action;
 
-import cs5004.shape.IShape;
-import cs5004.utilities.Position;
+import cs5004.animator.shape.IShape;
+import cs5004.animator.tools.Position;
 
 /**
  * Action class for movement. This action is of type Action.MOVE.
