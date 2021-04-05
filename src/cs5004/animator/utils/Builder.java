@@ -2,8 +2,7 @@ package cs5004.animator.utils;
 
 import cs5004.animator.model.IAnimatorModel;
 
-public class AnimationBuilderImpl implements AnimationBuilder<IAnimatorModel> {
-
+public class Builder implements AnimationBuilder<IAnimatorModel> {
   @Override
   public IAnimatorModel build() {
     return null;
