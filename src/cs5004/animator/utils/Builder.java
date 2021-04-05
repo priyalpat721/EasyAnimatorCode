@@ -1,8 +1,11 @@
 package cs5004.animator.utils;
 
+import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.shape.Shape;
 
 public class Builder implements AnimationBuilder<IAnimatorModel> {
+
   @Override
   public IAnimatorModel build() {
     return null;
