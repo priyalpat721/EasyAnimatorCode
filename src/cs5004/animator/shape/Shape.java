@@ -1,4 +1,4 @@
-package cs5004.shape;
+package cs5004.animator.shape;
 
 /**
  * This enum represents all the types that an IShape object can have.

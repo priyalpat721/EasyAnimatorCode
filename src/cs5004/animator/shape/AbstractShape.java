@@ -1,8 +1,8 @@
-package cs5004.shape;
+package cs5004.animator.shape;
 
-import cs5004.utilities.Position;
-import cs5004.utilities.RGB;
-import cs5004.utilities.Time;
+import cs5004.animator.tools.Position;
+import cs5004.animator.tools.RGB;
+import cs5004.animator.tools.Time;
 
 /**
  * This class represents a shape.

@@ -1,9 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.animator.AnimatorModelImpl;
-import cs5004.shape.Shape;
-import cs5004.utilities.RGB;
+import cs5004.animator.model.AnimatorModelImpl;
+import cs5004.animator.shape.Shape;
+import cs5004.animator.tools.RGB;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,6 +1,6 @@
-package cs5004.shape;
+package cs5004.animator.shape;
 
-import cs5004.utilities.RGB;
+import cs5004.animator.tools.RGB;
 
 /**
  * This class represents a Rhombus.

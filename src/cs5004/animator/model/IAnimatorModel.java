@@ -1,11 +1,10 @@
-package cs5004.animator;
+package cs5004.animator.model;
 
 import java.util.List;
 
-import cs5004.action.IAction;
-import cs5004.shape.IShape;
-import cs5004.utilities.RGB;
-import cs5004.shape.Shape;
+import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Shape;
+import cs5004.animator.tools.RGB;
 
 /**
  * An interface for the animator model.
@@ -18,18 +17,16 @@ public interface IAnimatorModel {
    * @param name      name of the shape that is associated with a specific type of shape.
    * @param shape     a specific type of the shape class.
    * @param color     a color type of the RGB class.
-   * @param width     the width of the shape.
-   *                  For squares and circles, the width and height are the same.
-   * @param height    the height of the shape.
-   *                  For squares and circles, the width and height are the same.
+   * @param width     the width of the shape. For squares and circles, the width and height are the
+   *                  same.
+   * @param height    the height of the shape. For squares and circles, the width and height are the
+   *                  same.
    * @param x         the shape's top left corner's x coordinates.
    * @param y         the shape's top left corner's y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
-   * @throws IllegalArgumentException if the name already exists.
-   *                                  if the name is null or empty.
-   *                                  if the shape is null.
-   *                                  if the color is null.
+   * @throws IllegalArgumentException if the name already exists. if the name is null or empty. if
+   *                                  the shape is null. if the color is null.
    */
   void createShape(String name, Shape shape, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
@@ -42,10 +39,9 @@ public interface IAnimatorModel {
    * @param newY      the shape's top left corner's new y coordinates.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
-   * @throws IllegalArgumentException if the name of the shape does not exist.
-   *                                  if the name is null or empty.
-   *                                  if there is a time overlap.
-   *                                  if the action is out of range.
+   * @throws IllegalArgumentException if the name of the shape does not exist. if the name is null
+   *                                  or empty. if there is a time overlap. if the action is out of
+   *                                  range.
    */
   void move(String name, double newX, double newY, int startTime, int endTime);
 
@@ -56,11 +52,9 @@ public interface IAnimatorModel {
    * @param newColor  new color of the shape.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
-   * @throws IllegalArgumentException if the name of the shape does not exist.
-   *                                  if the name is null or empty.
-   *                                  if the new color is null.
-   *                                  if there is a time overlap.
-   *                                  if the action is out of range.
+   * @throws IllegalArgumentException if the name of the shape does not exist. if the name is null
+   *                                  or empty. if the new color is null. if there is a time
+   *                                  overlap. if the action is out of range.
    */
   void changeColor(String name, RGB newColor, int startTime, int endTime);
 
@@ -72,10 +66,9 @@ public interface IAnimatorModel {
    * @param newHeight the new height of the shape.
    * @param startTime the start time of when the shape will appear.
    * @param endTime   the end time of when the shape will disappear.
-   * @throws IllegalArgumentException if the name of the shape does not exist.
-   *                                  if the name is null or empty.
-   *                                  if there is a time overlap.
-   *                                  if the action is out of range.
+   * @throws IllegalArgumentException if the name of the shape does not exist. if the name is null
+   *                                  or empty. if there is a time overlap. if the action is out of
+   *                                  range.
    */
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
@@ -95,6 +88,7 @@ public interface IAnimatorModel {
 
   /**
    * A formatted representation of the modelImpl as a string.
+   *
    * @return a formatted string.
    */
   String toString();

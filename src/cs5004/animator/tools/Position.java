@@ -1,4 +1,4 @@
-package cs5004.utilities;
+package cs5004.animator.tools;
 
 /**
  * This class represents a point in the Cartesian coordinate system.

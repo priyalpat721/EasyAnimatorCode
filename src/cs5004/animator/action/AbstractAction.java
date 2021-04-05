@@ -1,9 +1,10 @@
-package cs5004.action;
+package cs5004.animator.action;
 
-import cs5004.shape.IShape;
-import cs5004.utilities.Position;
-import cs5004.utilities.RGB;
-import cs5004.utilities.Time;
+
+import cs5004.animator.shape.IShape;
+import cs5004.animator.tools.Position;
+import cs5004.animator.tools.RGB;
+import cs5004.animator.tools.Time;
 
 /**
  * This class represents an action. It implements the interface IAction. The action has a name, a

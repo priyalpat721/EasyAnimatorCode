@@ -1,7 +1,7 @@
-package cs5004.action;
+package cs5004.animator.action;
 
-import cs5004.shape.IShape;
-import cs5004.utilities.RGB;
+import cs5004.animator.shape.IShape;
+import cs5004.animator.tools.RGB;
 
 /**
  * Action class for color change.
