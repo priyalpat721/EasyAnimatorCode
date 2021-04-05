@@ -6,6 +6,10 @@ import cs5004.animator.shape.Shape;
 
 public class Builder implements AnimationBuilder<IAnimatorModel> {
 
+  public Builder() {
+
+  }
+
   @Override
   public IAnimatorModel build() {
     return null;
