@@ -27,7 +27,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<String> chronologicalOrderOfActions;
-
   private final int[] box;
 
   public Builder() {
