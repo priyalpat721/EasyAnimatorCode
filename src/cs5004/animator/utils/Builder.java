@@ -50,10 +50,10 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       throw new IllegalArgumentException("Invalid height");
     }
 
-    this.box[1] = x;
-    this.box[2] = y;
-    this.box[3] = width;
-    this.box[4] = height;
+    this.box[0] = x;
+    this.box[1] = y;
+    this.box[2] = width;
+    this.box[3] = height;
 
     return this;
   }
@@ -77,9 +77,11 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     for (Shape shape : Shape.values()) {
       if (shape.toString().equalsIgnoreCase(type)) {
         finalType = shape;
-      } else {
-        throw new IllegalArgumentException("Shape does not exist");
       }
+    }
+
+    if (finalType == null) {
+      throw new IllegalArgumentException("Shape does not exist");
     }
 
     switch (finalType) {
@@ -152,8 +154,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     if (newAction != null) {
       addActionToShape(name, newAction);
       chronologicalOrderOfActions.add(newAction.toString());
-    } else {
-      throw new IllegalArgumentException("No action registered");
     }
 
     return this;
