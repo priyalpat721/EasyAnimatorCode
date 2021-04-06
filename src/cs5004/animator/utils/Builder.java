@@ -23,10 +23,13 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<String> chronologicalOrderOfActions;
 
+  private final int[] box;
+
   public Builder() {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
+    this.box = new int[4];
   }
 
   @Override
@@ -36,6 +39,17 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
   @Override
   public AnimationBuilder<IAnimatorModel> setBounds(int x, int y, int width, int height) {
+    if (width <= 0) {
+      throw new IllegalArgumentException("Invalid width");
+    } else if (height <= 0) {
+      throw new IllegalArgumentException("Invalid height");
+    }
+
+    this.box[1] = x;
+    this.box[2] = y;
+    this.box[3] = width;
+    this.box[4] = height;
+
     return this;
   }
 
@@ -83,15 +97,23 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     return this;
   }
 
+  @Override
   public HashMap<String, IShape> getLogOfShapes() {
     return logOfShapes;
   }
 
+  @Override
   public HashMap<String, List<IAction>> getLogOfActions() {
     return logOfActions;
   }
 
+  @Override
   public List<String> getChronologicalOrderOfActions() {
     return chronologicalOrderOfActions;
+  }
+
+  @Override
+  public int[] getBox() {
+    return box;
   }
 }

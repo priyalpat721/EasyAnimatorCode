@@ -32,6 +32,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<String> chronologicalOrderOfActions;
 
+  // This would be our canvas
+  // Array of 4 elements: x, y, width, height
+  private final int[] box;
+
   /**
    * Constructs an Animator model object.
    */
@@ -39,10 +43,16 @@ public class AnimatorModelImpl implements IAnimatorModel {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
+
+    // See later
+    this.box = new int[4];
   }
 
   public AnimatorModelImpl(AnimationBuilder builder) {
+    this.box = builder.getBox();
     this.logOfShapes = builder.getLogOfShapes();
+
+    // TODO
     this.logOfActions = builder.getLogOfActions();
     this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
 
