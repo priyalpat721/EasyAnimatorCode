@@ -48,9 +48,8 @@ public final class EasyAnimator {
     Readable in = new FileReader(inputFile);
 
     IAnimatorModel animation = parseFile(in, builder);
-    
-    
-    
+
+
   }
 
 }
