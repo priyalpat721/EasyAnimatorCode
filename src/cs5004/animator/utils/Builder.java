@@ -99,6 +99,11 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
                                                     int w1, int h1, int r1, int g1, int b1,
                                                     int t2, int x2, int y2, int w2, int h2,
                                                     int r2, int g2, int b2) {
+
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
     // TODO: Action overlap
 
     IShape currentShape = getCurrentShape(name);
