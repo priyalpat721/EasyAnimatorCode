@@ -126,10 +126,9 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
     else {
-      // If all the parameters are equal, it means the instruction in the file
-      // is setting the attributes of a shape that was ONLY created
-      // To set the attributes of the existing shape, we need to work on the original
-      // in log of shapes
+      // TODO: REVIEW THIS
+      // If all the parameters are equal, it means the instruction in the file is setting the attributes of a newly created shape
+      // To set the attributes of the existing shape, we need to work on the original in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
           originalShape = object.getValue();
