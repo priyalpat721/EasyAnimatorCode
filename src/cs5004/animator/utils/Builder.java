@@ -110,8 +110,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     IShape originalShape = null;
     // This is a copy of the shape
     IShape currentShape = getCurrentShape(name);
-
-
+    // This is the action to be added
     IAction newAction = null;
 
     if (x1 != x2 || y1 != y2) {
@@ -127,7 +126,8 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     else {
       // If all the parameters are equal, it means the instruction in the file
       // is setting the attributes of an existing shape
-      // To set the attributes of the existing shape, we need the original
+      // To set the attributes of the existing shape, we need to work on the original
+      // in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
           originalShape = object.getValue();
