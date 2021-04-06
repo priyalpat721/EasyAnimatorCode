@@ -104,28 +104,30 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       throw new IllegalArgumentException("Invalid name");
     }
 
-    // TODO: Action overlap
 
-    // This is the original shape
-    IShape originalShape = null;
     // This is a copy of the shape
     IShape currentShape = getCurrentShape(name);
+    // This is the original shape
+    IShape originalShape = null;
     // This is the action to be added
     IAction newAction = null;
 
     if (x1 != x2 || y1 != y2) {
       newAction = new Move(name, currentShape, x2, y2, t1, t2);
+      checkOverlap(name, Action.MOVE, t1, t2);
     }
     else if (w1 != w2 || h1 != h2) {
       newAction = new Scale(name, currentShape, w2, h2, t1, t2);
+      checkOverlap(name, Action.SCALE, t1, t2);
     }
     else if (r1 != r2 || g1 != g2 || b1 != b2) {
       newAction = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
+      checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
     else {
       // If all the parameters are equal, it means the instruction in the file
-      // is setting the attributes of an existing shape
+      // is setting the attributes of a shape that was ONLY created
       // To set the attributes of the existing shape, we need to work on the original
       // in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
@@ -178,7 +180,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   }
 
   private IShape getCurrentShape(String name) {
-
     for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
       if (objects.getKey().equals(name)) {
         IShape accumulatorShape = objects.getValue().copy();
@@ -202,7 +203,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     logOfActions.get(name).add(action);
   }
 
-  private boolean checkOverlap(String name, Action type, int startTime, int endTime) {
+  private void checkOverlap(String name, Action type, int startTime, int endTime) {
     for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
       if (entry.getKey().equals(name)) {
         List<IAction> actions = entry.getValue();
@@ -212,13 +213,12 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
                     startTime <= action.getTime().getEndTime() ||
                     endTime >= action.getTime().getStartTime() &&
                             endTime <= action.getTime().getEndTime()) {
-              return false;
+              throw new IllegalArgumentException("Action overlap");
             }
           }
         }
       }
     }
-    return true;
   }
 
 }
