@@ -1,5 +1,9 @@
 package cs5004.animator;
 
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
@@ -8,7 +12,7 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public final class EasyAnimator {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     String inputFile = "";
     String outputFile = "";
     String viewType = "";
@@ -41,9 +45,10 @@ public final class EasyAnimator {
       throw new IllegalArgumentException("View type is mandatory");
     }
 
-    Readable in = null;
+    // already throws FileNotFoundException
+    Readable in = new FileReader(inputFile);
 
-    IAnimatorModel model = parseFile(in, builder);
+    IAnimatorModel animation = parseFile(in, builder);
     
     
     
