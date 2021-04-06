@@ -2,6 +2,7 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
@@ -44,13 +45,15 @@ public final class EasyAnimator {
       throw new IllegalArgumentException("View type is mandatory");
     }
 
-    // already throws FileNotFoundException
-    Readable in = new FileReader(inputFile);
+    System.out.println(inputFile);
 
-    IAnimatorModel animation = parseFile(in, builder);
-
-    // Test the result model
-    System.out.println(animation.toString());
+//    // already throws FileNotFoundException
+//    Readable in = new FileReader(inputFile);
+//
+//    IAnimatorModel animation = parseFile(in, builder);
+//
+//    // Test the result model
+//    System.out.println(animation.toString());
 
   }
 
