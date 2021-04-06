@@ -15,6 +15,11 @@ public class Triangle extends AbstractShape {
     this.type = Shape.TRIANGLE;
   }
 
+  public Triangle(String name) {
+    super(name);
+    this.type = Shape.TRIANGLE;
+  }
+
   @Override
   public IShape copy() {
     return new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),

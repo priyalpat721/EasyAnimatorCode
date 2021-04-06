@@ -15,6 +15,11 @@ public class Rhombus extends AbstractShape {
     this.type = Shape.RHOMBUS;
   }
 
+  public Rhombus(String name) {
+    super(name);
+    this.type = Shape.RHOMBUS;
+  }
+
   @Override
   public IShape copy() {
     return new Rhombus(this.name, this.color, this.getWidth(), this.getHeight(),

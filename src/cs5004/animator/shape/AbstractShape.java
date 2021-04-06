@@ -58,6 +58,10 @@ public abstract class AbstractShape implements IShape {
     this.height = height;
   }
 
+  public AbstractShape(String name) {
+    this.name = name;
+  }
+
   @Override
   public String getName() {
     return this.name;

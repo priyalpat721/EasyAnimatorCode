@@ -20,6 +20,11 @@ public class Circle extends AbstractShape {
     this.type = Shape.CIRCLE;
   }
 
+  public Circle(String name) {
+    super(name);
+    this.type = Shape.CIRCLE;
+  }
+
   @Override
   public Shape getType() {
     return super.getType();

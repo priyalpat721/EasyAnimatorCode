@@ -20,6 +20,11 @@ public class Square extends AbstractShape {
     this.type = Shape.SQUARE;
   }
 
+  public Square(String name) {
+    super(name);
+    this.type = Shape.SQUARE;
+  }
+
   @Override
   public IShape copy() {
     return new Square(this.name, this.color, this.length, this.length,

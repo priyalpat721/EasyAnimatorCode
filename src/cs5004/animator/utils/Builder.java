@@ -2,7 +2,13 @@ package cs5004.animator.utils;
 
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.shape.Circle;
+import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Rectangle;
+import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
+import cs5004.animator.shape.Square;
+import cs5004.animator.shape.Triangle;
 
 public class Builder implements AnimationBuilder<IAnimatorModel> {
   private IAnimatorModel model;
@@ -13,7 +19,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
   @Override
   public IAnimatorModel build() {
-    return null;
+    return new AnimatorModelImpl();
   }
 
   @Override
@@ -23,7 +29,21 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
   @Override
   public AnimationBuilder<IAnimatorModel> declareShape(String name, String type) {
-    return null;
+    if (type.equalsIgnoreCase(Shape.CIRCLE.toString())) {
+      model.createShape(name, Shape.CIRCLE);
+    } else if (type.equalsIgnoreCase(Shape.SQUARE.toString())) {
+      model.createShape(name, Shape.SQUARE);
+    } else if (type.equalsIgnoreCase(Shape.RECTANGLE.toString())) {
+      model.createShape(name, Shape.RECTANGLE);
+    } else if (type.equalsIgnoreCase(Shape.TRIANGLE.toString())) {
+      model.createShape(name, Shape.TRIANGLE);
+    } else if (type.equalsIgnoreCase(Shape.RHOMBUS.toString())) {
+      model.createShape(name, Shape.RHOMBUS);
+    } else if (type.equalsIgnoreCase(Shape.OVAL.toString())) {
+      model.createShape(name, Shape.OVAL);
+    }
+
+    return this;
   }
 
   @Override

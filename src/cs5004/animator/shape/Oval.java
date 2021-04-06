@@ -15,6 +15,11 @@ public class Oval extends AbstractShape {
     this.type = Shape.OVAL;
   }
 
+  public Oval(String name) {
+    super(name);
+    this.type = Shape.OVAL;
+  }
+
   @Override
   public IShape copy() {
     return new Oval(this.name, this.color, this.getWidth(), this.getHeight(),
