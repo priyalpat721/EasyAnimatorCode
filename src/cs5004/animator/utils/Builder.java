@@ -67,7 +67,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     }
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getValue().getName().equals(name)) {
+      if (entry.getKey().equals(name)) {
         throw new IllegalArgumentException("Name already exists");
       }
     }

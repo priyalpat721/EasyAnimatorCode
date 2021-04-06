@@ -49,6 +49,8 @@ public final class EasyAnimator {
 
     IAnimatorModel animation = parseFile(in, builder);
 
+    // Test the result model
+    System.out.println(animation.toString());
 
   }
 
