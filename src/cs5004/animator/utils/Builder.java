@@ -3,6 +3,7 @@ package cs5004.animator.utils;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.AnimatorModelImpl;
@@ -40,6 +41,18 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
   @Override
   public AnimationBuilder<IAnimatorModel> declareShape(String name, String type) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    } else if (type == null) {
+      throw new IllegalArgumentException("Invalid shape");
+    }
+
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      if (entry.getValue().getName().equals(name)) {
+        throw new IllegalArgumentException("Name already exists");
+      }
+    }
+
     Shape finalType = null;
 
     for (Shape shape : Shape.values()) {
