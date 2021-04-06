@@ -22,6 +22,10 @@ public class Triangle extends AbstractShape {
 
   @Override
   public IShape copy() {
+    if (this.position == null) {
+      return new Triangle(this.name);
+    }
+
     return new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
             this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());

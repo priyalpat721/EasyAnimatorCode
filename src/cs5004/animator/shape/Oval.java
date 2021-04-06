@@ -22,6 +22,10 @@ public class Oval extends AbstractShape {
 
   @Override
   public IShape copy() {
+    if (this.position == null) {
+      return new Oval(this.name);
+    }
+
     return new Oval(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
             this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
