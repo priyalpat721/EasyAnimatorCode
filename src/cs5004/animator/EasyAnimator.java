@@ -2,7 +2,6 @@ package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
@@ -47,7 +46,7 @@ public final class EasyAnimator {
 
     var fileName = "src/cs5004/animator/" + inputFile;
 
-    // already throws FileNotFoundException
+    // throws FileNotFoundException
     Readable in = new FileReader(fileName);
 
     IAnimatorModel animation = parseFile(in, builder);
