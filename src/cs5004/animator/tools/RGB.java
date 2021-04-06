@@ -1,8 +1,8 @@
 package cs5004.animator.tools;
 
 /**
- * This class represents a color in format RGB.
- * A color has a red component, a green component, and a blue component.
+ * This class represents a color in format RGB. A color has a red component, a green component, and
+ * a blue component.
  */
 public class RGB {
   public double red;
@@ -11,9 +11,10 @@ public class RGB {
 
   /**
    * Constructs an RGB object.
-   * @param red the red component.
+   *
+   * @param red   the red component.
    * @param green the green component.
-   * @param blue the blue component.
+   * @param blue  the blue component.
    * @throws IllegalArgumentException if the components are not within 0-255 range.
    */
   public RGB(double red, double green, double blue) {
@@ -25,13 +26,14 @@ public class RGB {
       throw new IllegalArgumentException("Blue has to be within 0-255 range");
     }
 
-      this.red = red;
-      this.green = green;
-      this.blue = blue;
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
   }
 
   /**
    * Gets the red component.
+   *
    * @return return the red component.
    */
   public double getRed() {
@@ -40,6 +42,7 @@ public class RGB {
 
   /**
    * Gets the green component.
+   *
    * @return the green component.
    */
   public double getGreen() {
@@ -48,6 +51,7 @@ public class RGB {
 
   /**
    * Gets the blue component.
+   *
    * @return the blue component.
    */
   public double getBlue() {
@@ -56,6 +60,7 @@ public class RGB {
 
   /**
    * A String representation of an RGB object.
+   *
    * @return the string representation of an RGB object.
    */
   public String toString() {

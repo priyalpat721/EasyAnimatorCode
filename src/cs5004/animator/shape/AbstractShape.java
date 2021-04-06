@@ -5,12 +5,9 @@ import cs5004.animator.tools.RGB;
 import cs5004.animator.tools.Time;
 
 /**
- * This class represents a shape.
- * It implements the interface IShape.
- * A shape has a name, a type, a position, a total time of existence, and a color.
- * If the shape is a square, it has a length.
- * If the shape is a circle, it has a radius.
- * Else, the shape has a width and a height.
+ * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
+ * position, a total time of existence, and a color. If the shape is a square, it has a length. If
+ * the shape is a circle, it has a radius. Else, the shape has a width and a height.
  */
 public abstract class AbstractShape implements IShape {
   protected String name;
@@ -24,10 +21,9 @@ public abstract class AbstractShape implements IShape {
   protected double height;
 
   /**
-   * Constructs an IShape object.
-   * If the shape to construct is a circle or a square, the width and height are equal. They
-   * represent the radius and the length respectively.
-   * The type field is initialized in the concrete class of the shape.
+   * Constructs an IShape object. If the shape to construct is a circle or a square, the width and
+   * height are equal. They represent the radius and the length respectively. The type field is
+   * initialized in the concrete class of the shape.
    *
    * @param name      the name of the shape.
    * @param color     the color of the shape.
@@ -37,8 +33,7 @@ public abstract class AbstractShape implements IShape {
    * @param y         the Y position of the shape.
    * @param startTime the start time of existence of the shape.
    * @param endTime   the end time of existence of the shape.
-   * @throws IllegalArgumentException if the name is null or empty.
-   *                                  if the color is null.
+   * @throws IllegalArgumentException if the name is null or empty. if the color is null.
    */
   public AbstractShape(String name, RGB color, double width, double height,
                        double x, double y, int startTime, int endTime) {
@@ -192,12 +187,12 @@ public abstract class AbstractShape implements IShape {
   @Override
   public String toString() {
     return "Name: " + this.name + "\n"
-            + "Type: " + this.type.toString() + "\n"
-            + "Min corner: " + this.position.toString()
-            + String.format(", Width: %.1f, Height: %.1f", this.width, this.height)
-            + ", Color: " + this.color.toString() + "\n"
-            + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Type: " + this.type.toString() + "\n"
+           + "Min corner: " + this.position.toString()
+           + String.format(", Width: %.1f, Height: %.1f", this.width, this.height)
+           + ", Color: " + this.color.toString() + "\n"
+           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.totalTime.getEndTime();
   }
 
 }

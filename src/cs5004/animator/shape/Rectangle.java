@@ -3,9 +3,8 @@ package cs5004.animator.shape;
 import cs5004.animator.tools.RGB;
 
 /**
- * This class represents a Rectangle.
- * It extends the abstract class AbstractShape.
- * The circle is of type Shape.RECTANGLE.
+ * This class represents a Rectangle. It extends the abstract class AbstractShape. The circle is of
+ * type Shape.RECTANGLE.
  */
 public class Rectangle extends AbstractShape {
 

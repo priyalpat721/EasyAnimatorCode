@@ -3,9 +3,8 @@ package cs5004.animator.shape;
 import cs5004.animator.tools.RGB;
 
 /**
- * This class represents a Triangle.
- * It extends the abstract class AbstractShape.
- * The circle is of type Shape.TRIANGLE.
+ * This class represents a Triangle. It extends the abstract class AbstractShape. The circle is of
+ * type Shape.TRIANGLE.
  */
 public class Triangle extends AbstractShape {
 

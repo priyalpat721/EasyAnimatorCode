@@ -3,10 +3,8 @@ package cs5004.animator.shape;
 import cs5004.animator.tools.RGB;
 
 /**
- * This class represents a Square.
- * It extends the abstract class AbstractShape.
- * The circle is of type Shape.SQUARE.
- * For a square, the width and the height are equal.
+ * This class represents a Square. It extends the abstract class AbstractShape. The circle is of
+ * type Shape.SQUARE. For a square, the width and the height are equal.
  */
 public class Square extends AbstractShape {
 
@@ -32,11 +30,11 @@ public class Square extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name + "\n" +
-            "Type: " + this.type.toString() + "\n"
-            + "Min corner: " + this.position.toString()
-            + String.format(", Length: %.1f", this.length)
-            + ", Color: " + this.color.toString() + "\n"
-            + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime();
+           "Type: " + this.type.toString() + "\n"
+           + "Min corner: " + this.position.toString()
+           + String.format(", Length: %.1f", this.length)
+           + ", Color: " + this.color.toString() + "\n"
+           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.totalTime.getEndTime();
   }
 }

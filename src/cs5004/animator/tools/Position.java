@@ -1,8 +1,8 @@
 package cs5004.animator.tools;
 
 /**
- * This class represents a point in the Cartesian coordinate system.
- * A position has an x coordinate and a y coordinate.
+ * This class represents a point in the Cartesian coordinate system. A position has an x coordinate
+ * and a y coordinate.
  */
 public class Position {
   public double x;
@@ -10,6 +10,7 @@ public class Position {
 
   /**
    * Constructs a Position object.
+   *
    * @param x the x coordinate.
    * @param y the y coordinate.
    * @throws IllegalArgumentException if the x or y are negative.
@@ -27,6 +28,7 @@ public class Position {
 
   /**
    * Gets the X coordinate.
+   *
    * @return the X coordinate.
    */
   public double getX() {
@@ -35,6 +37,7 @@ public class Position {
 
   /**
    * Gets the Y coordinate.
+   *
    * @return the Y coordinate.
    */
   public double getY() {
@@ -43,6 +46,7 @@ public class Position {
 
   /**
    * String representation of a Position object.
+   *
    * @return the string representation of the Position.
    */
   public String toString() {

@@ -3,10 +3,8 @@ package cs5004.animator.shape;
 import cs5004.animator.tools.RGB;
 
 /**
- * This class represents a Circle.
- * It extends the abstract class AbstractShape.
- * The circle is of type Shape.CIRCLE.
- * For a circle, the width and the height are equal.
+ * This class represents a Circle. It extends the abstract class AbstractShape. The circle is of
+ * type Shape.CIRCLE. For a circle, the width and the height are equal.
  */
 public class Circle extends AbstractShape {
 
@@ -37,12 +35,12 @@ public class Circle extends AbstractShape {
   @Override
   public String toString() {
     return "Name: " + this.name + "\n"
-            + "Type: " + this.type.toString() + "\n"
-            + "Center: " + this.position.toString()
-            + String.format(", Radius: %.1f", this.radius)
-            + ", Color: " + this.color.toString() + "\n"
-            + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-            + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Type: " + this.type.toString() + "\n"
+           + "Center: " + this.position.toString()
+           + String.format(", Radius: %.1f", this.radius)
+           + ", Color: " + this.color.toString() + "\n"
+           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.totalTime.getEndTime();
   }
 
 }
