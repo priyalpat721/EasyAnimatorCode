@@ -1,10 +1,8 @@
 package cs5004.animator;
 
-import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
