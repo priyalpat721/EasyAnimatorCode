@@ -20,11 +20,16 @@ public class Square extends AbstractShape {
     this.type = Shape.SQUARE;
   }
 
+  public Square(String name) {
+    super(name);
+    this.type = Shape.SQUARE;
+  }
+
   @Override
   public IShape copy() {
     return new Square(this.name, this.color, this.length, this.length,
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 
   @Override
@@ -34,7 +39,7 @@ public class Square extends AbstractShape {
            + "Min corner: " + this.position.toString()
            + String.format(", Length: %.1f", this.length)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.beginTime.getEndTime();
   }
 }

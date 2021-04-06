@@ -28,8 +28,10 @@ public interface IAnimatorModel {
    * @throws IllegalArgumentException if the name already exists. if the name is null or empty. if
    *                                  the shape is null. if the color is null.
    */
-  void createShape(String name, Shape shape, RGB color,
+  void createShape(String name, Shape type, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
+
+  void createShape(String name, Shape type);
 
   /**
    * Moves an object by the specified new x and new y coordinates.

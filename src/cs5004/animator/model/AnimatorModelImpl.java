@@ -19,6 +19,7 @@ import cs5004.animator.shape.Shape;
 import cs5004.animator.shape.Square;
 import cs5004.animator.shape.Triangle;
 import cs5004.animator.tools.RGB;
+import cs5004.animator.utils.AnimationBuilder;
 
 /**
  * This class represents the Model component of an animator. The class implements the interface
@@ -30,6 +31,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<String> chronologicalOrderOfActions;
 
+  // This would be our canvas
+  // Array of 4 elements: x, y, width, height
+  private final int[] box;
+
   /**
    * Constructs an Animator model object.
    */
@@ -37,15 +42,28 @@ public class AnimatorModelImpl implements IAnimatorModel {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
+
+    // See later
+    this.box = new int[4];
+  }
+
+  public AnimatorModelImpl(AnimationBuilder builder) {
+    this.box = builder.getBox();
+    this.logOfShapes = builder.getLogOfShapes();
+
+    // TODO
+    this.logOfActions = builder.getLogOfActions();
+    this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
+
   }
 
   @Override
-  public void createShape(String name, Shape shape, RGB color, double width, double height,
+  public void createShape(String name, Shape type, RGB color, double width, double height,
                           double x, double y, int startTime, int endTime) {
 
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
-    } else if (shape == null) {
+    } else if (type == null) {
       throw new IllegalArgumentException("Invalid shape");
     } else if (color == null) {
       throw new IllegalArgumentException("Invalid color");
@@ -57,19 +75,47 @@ public class AnimatorModelImpl implements IAnimatorModel {
       }
     }
 
-    if (shape == Shape.CIRCLE) {
+    if (type == Shape.CIRCLE) {
       logOfShapes.put(name, new Circle(name, color, width, width, x, y, startTime, endTime));
-    } else if (shape == Shape.SQUARE) {
+    } else if (type == Shape.SQUARE) {
       logOfShapes.put(name, new Square(name, color, width, width, x, y, startTime, endTime));
-    } else if (shape == Shape.RECTANGLE) {
+    } else if (type == Shape.RECTANGLE) {
       logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
-    } else if (shape == Shape.TRIANGLE) {
+    } else if (type == Shape.TRIANGLE) {
       logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
-    } else if (shape == Shape.RHOMBUS) {
+    } else if (type == Shape.RHOMBUS) {
       logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime));
-    } else if (shape == Shape.OVAL) {
+    } else if (type == Shape.OVAL) {
       logOfShapes.put(name, new Oval(name, color, width, height, x, y, startTime, endTime));
     }
+  }
+
+  @Override
+  public void createShape(String name, Shape type) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      if (entry.getValue().getName().equals(name)) {
+        throw new IllegalArgumentException("Name already exists");
+      }
+    }
+
+    if (type == Shape.CIRCLE) {
+      logOfShapes.put(name, new Circle(name));
+    } else if (type == Shape.SQUARE) {
+      logOfShapes.put(name, new Square(name));
+    } else if (type == Shape.RECTANGLE) {
+      logOfShapes.put(name, new Rectangle(name));
+    } else if (type == Shape.TRIANGLE) {
+      logOfShapes.put(name, new Triangle(name));
+    } else if (type == Shape.RHOMBUS) {
+      logOfShapes.put(name, new Rhombus(name));
+    } else if (type == Shape.OVAL) {
+      logOfShapes.put(name, new Oval(name));
+    }
+
   }
 
   @Override
@@ -244,8 +290,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getKey().equals(name)) {
         IShape shape = entry.getValue();
-        if (startTime < shape.getTotalTime().getStartTime() ||
-            endTime > shape.getTotalTime().getEndTime()) {
+        if (startTime < shape.getBeginTime().getStartTime() ||
+            endTime > shape.getBeginTime().getEndTime()) {
           throw new IllegalArgumentException("Action is out of range");
         }
       }

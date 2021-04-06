@@ -15,11 +15,16 @@ public class Oval extends AbstractShape {
     this.type = Shape.OVAL;
   }
 
+  public Oval(String name) {
+    super(name);
+    this.type = Shape.OVAL;
+  }
+
   @Override
   public IShape copy() {
     return new Oval(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 
   public String toString() {
@@ -28,8 +33,8 @@ public class Oval extends AbstractShape {
            + "Center: " + this.position.toString()
            + String.format(", X radius: %.1f, Y radius: %.1f", this.width, this.height)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.beginTime.getEndTime();
   }
 
 }

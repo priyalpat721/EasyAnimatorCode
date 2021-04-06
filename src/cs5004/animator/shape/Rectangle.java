@@ -15,11 +15,16 @@ public class Rectangle extends AbstractShape {
     this.type = Shape.RECTANGLE;
   }
 
+  public Rectangle(String name) {
+    super(name);
+    this.type = Shape.RECTANGLE;
+  }
+
   @Override
   public IShape copy() {
     return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 
 }

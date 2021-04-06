@@ -20,6 +20,11 @@ public class Circle extends AbstractShape {
     this.type = Shape.CIRCLE;
   }
 
+  public Circle(String name) {
+    super(name);
+    this.type = Shape.CIRCLE;
+  }
+
   @Override
   public Shape getType() {
     return super.getType();
@@ -29,7 +34,7 @@ public class Circle extends AbstractShape {
   public IShape copy() {
     return new Circle(this.name, this.color, this.radius, this.radius,
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 
   @Override
@@ -39,8 +44,8 @@ public class Circle extends AbstractShape {
            + "Center: " + this.position.toString()
            + String.format(", Radius: %.1f", this.radius)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.beginTime.getEndTime();
   }
 
 }
