@@ -10,6 +10,8 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public final class EasyAnimator {
+
+  // Entry point to our program
   public static void main(String[] args) throws FileNotFoundException {
     String inputFile = "";
     String outputFile = "";
@@ -18,7 +20,6 @@ public final class EasyAnimator {
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
-    // Entry point to our program
     for (int i = 0; i < args.length; i++) {
       if (args[i].equals("-in")) {
         inputFile = args[i + 1];
@@ -32,7 +33,7 @@ public final class EasyAnimator {
         viewType = args[i + 1];
       }
 
-      if (args[i].equals("speed")) {
+      if (args[i].equals("-speed")) {
         speed = Integer.parseInt(args[i + 1]);
       }
     }

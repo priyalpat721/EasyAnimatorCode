@@ -5,7 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import cs5004.animator.action.Action;
+import cs5004.animator.action.ChangeColor;
 import cs5004.animator.action.IAction;
+import cs5004.animator.action.Move;
+import cs5004.animator.action.Scale;
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Circle;
@@ -16,6 +20,7 @@ import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.shape.Square;
 import cs5004.animator.shape.Triangle;
+import cs5004.animator.tools.RGB;
 
 
 public class Builder implements AnimationBuilder<IAnimatorModel> {
@@ -94,6 +99,32 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
                                                     int w1, int h1, int r1, int g1, int b1,
                                                     int t2, int x2, int y2, int w2, int h2,
                                                     int r2, int g2, int b2) {
+    // TODO: Action overlap
+
+    IShape currentShape = getCurrentShape(name);
+
+    IAction newAction = null;
+
+    if (x1 != x2 || y1 != y2) {
+      newAction = new Move(name, currentShape, x2, y2, t1, t2);
+    }
+
+    if (w1 != w2 || h1 != h2) {
+      newAction = new Scale(name, currentShape, w2, h2, t1, t2);
+    }
+
+    if (r1 != r2 || g1 != g2 || b1 != b2) {
+      newAction = new ChangeColor(name, currentShape,
+              new RGB((double) r2, (double) g2, (double) b2), t1, t2);
+    }
+
+    if (newAction != null) {
+      addActionToShape(name, newAction);
+      chronologicalOrderOfActions.add(newAction.toString());
+    } else {
+      throw new IllegalArgumentException("No action registered");
+    }
+
     return this;
   }
 
@@ -116,4 +147,49 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   public int[] getBox() {
     return box;
   }
+
+  private IShape getCurrentShape(String name) {
+
+    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
+      if (objects.getKey().equals(name)) {
+        IShape accumulatorShape = objects.getValue().copy();
+
+        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
+          for (IAction actions : logOfActions.get(objects.getKey())) {
+            accumulatorShape = actions.getCurrentShape();
+          }
+        }
+        return accumulatorShape;
+      }
+    }
+
+    throw new IllegalArgumentException("Shape does not exist");
+  }
+
+  private void addActionToShape(String name, IAction action) {
+    if (logOfActions.get(name) == null) {
+      logOfActions.put(name, new LinkedList<>());
+    }
+    logOfActions.get(name).add(action);
+  }
+
+  private boolean checkOverlap(String name, Action type, int startTime, int endTime) {
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          if (action.getType() == type) {
+            if (startTime >= action.getTime().getStartTime() &&
+                    startTime <= action.getTime().getEndTime() ||
+                    endTime >= action.getTime().getStartTime() &&
+                            endTime <= action.getTime().getEndTime()) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+
 }
