@@ -20,7 +20,6 @@ import cs5004.animator.shape.Square;
 import cs5004.animator.shape.Triangle;
 import cs5004.animator.tools.RGB;
 import cs5004.animator.utils.AnimationBuilder;
-import cs5004.animator.utils.Builder;
 
 /**
  * This class represents the Model component of an animator. The class implements the interface
@@ -291,8 +290,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getKey().equals(name)) {
         IShape shape = entry.getValue();
-        if (startTime < shape.getTotalTime().getStartTime() ||
-            endTime > shape.getTotalTime().getEndTime()) {
+        if (startTime < shape.getBeginTime().getStartTime() ||
+            endTime > shape.getBeginTime().getEndTime()) {
           throw new IllegalArgumentException("Action is out of range");
         }
       }

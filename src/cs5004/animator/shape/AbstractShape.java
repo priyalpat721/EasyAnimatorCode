@@ -13,7 +13,7 @@ public abstract class AbstractShape implements IShape {
   protected String name;
   protected Shape type;
   protected Position position;
-  protected Time totalTime;
+  protected Time beginTime;
   protected RGB color;
   protected double length;
   protected double radius;
@@ -52,14 +52,19 @@ public abstract class AbstractShape implements IShape {
     this.name = name;
     this.color = color;
     this.position = new Position(x, y);
-    this.totalTime = new Time(startTime, endTime);
+    this.beginTime = new Time(startTime, endTime);
 
     this.width = width;
     this.height = height;
   }
 
+  // Constructor for the Builder
   public AbstractShape(String name) {
     this.name = name;
+
+    this.position = null;
+    this.beginTime = null;
+    this.color = null;
   }
 
   @Override
@@ -73,8 +78,13 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Time getTotalTime() {
-    return this.totalTime;
+  public Time getBeginTime() {
+    return this.beginTime;
+  }
+
+  @Override
+  public void setBeginTime(int startTime, int endTime) {
+    this.beginTime = new Time(startTime, endTime);
   }
 
   @Override
@@ -195,8 +205,8 @@ public abstract class AbstractShape implements IShape {
            + "Min corner: " + this.position.toString()
            + String.format(", Width: %.1f, Height: %.1f", this.width, this.height)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.totalTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.totalTime.getEndTime();
+           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.beginTime.getEndTime();
   }
 
 }

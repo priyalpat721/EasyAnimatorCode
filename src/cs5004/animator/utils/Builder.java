@@ -113,14 +113,29 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     if (x1 != x2 || y1 != y2) {
       newAction = new Move(name, currentShape, x2, y2, t1, t2);
     }
-
-    if (w1 != w2 || h1 != h2) {
+    else if (w1 != w2 || h1 != h2) {
       newAction = new Scale(name, currentShape, w2, h2, t1, t2);
     }
-
-    if (r1 != r2 || g1 != g2 || b1 != b2) {
+    else if (r1 != r2 || g1 != g2 || b1 != b2) {
       newAction = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
+    } else {
+      currentShape.setPosition(x1, y1);
+      currentShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
+      switch (currentShape.getType()) {
+        case CIRCLE:
+          currentShape.setRadius(w1);
+          break;
+        case SQUARE:
+          currentShape.setLength(w1);
+          break;
+        default:
+          currentShape.setWidth(w1);
+          currentShape.setHeight(h1);
+      }
+
+      currentShape.setWidth(w1);
+      currentShape.setHeight(h1);
     }
 
     if (newAction != null) {

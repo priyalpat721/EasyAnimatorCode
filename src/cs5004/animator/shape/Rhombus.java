@@ -24,7 +24,7 @@ public class Rhombus extends AbstractShape {
   public IShape copy() {
     return new Rhombus(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 
 }
