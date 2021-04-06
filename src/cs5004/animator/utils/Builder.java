@@ -106,7 +106,11 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
     // TODO: Action overlap
 
+    // This is the original shape
+    IShape originalShape = null;
+    // This is a copy of the shape
     IShape currentShape = getCurrentShape(name);
+
 
     IAction newAction = null;
 
@@ -119,23 +123,28 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     else if (r1 != r2 || g1 != g2 || b1 != b2) {
       newAction = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
-    } else {
-      currentShape.setPosition(x1, y1);
-      currentShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
-      switch (currentShape.getType()) {
-        case CIRCLE:
-          currentShape.setRadius(w1);
-          break;
-        case SQUARE:
-          currentShape.setLength(w1);
-          break;
-        default:
-          currentShape.setWidth(w1);
-          currentShape.setHeight(h1);
+    }
+    else {
+      // If all the parameters are equal, it means the instruction in the file
+      // is setting the attributes of an existing shape
+      // To set the attributes of the existing shape, we need the original
+      for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
+        if (object.getKey().equals(name)) {
+          originalShape = object.getValue();
+        }
       }
 
-      currentShape.setWidth(w1);
-      currentShape.setHeight(h1);
+      originalShape.setPosition(x1, y1);
+      originalShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
+      originalShape.setBeginTime(t1, t2);
+      switch (originalShape.getType()) {
+        case CIRCLE -> originalShape.setRadius(w1);
+        case SQUARE -> originalShape.setLength(w1);
+        default -> {
+          originalShape.setWidth(w1);
+          originalShape.setHeight(h1);
+        }
+      }
     }
 
     if (newAction != null) {
