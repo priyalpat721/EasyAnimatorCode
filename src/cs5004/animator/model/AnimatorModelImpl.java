@@ -20,6 +20,7 @@ import cs5004.animator.shape.Square;
 import cs5004.animator.shape.Triangle;
 import cs5004.animator.tools.RGB;
 import cs5004.animator.utils.AnimationBuilder;
+import cs5004.animator.utils.Builder;
 
 /**
  * This class represents the Model component of an animator. The class implements the interface
@@ -38,14 +39,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
-
   }
 
   public AnimatorModelImpl(AnimationBuilder builder) {
-    this.logOfShapes = new HashMap<>();
-    this.logOfActions = new HashMap<>();
-    this.chronologicalOrderOfActions = new LinkedList<>();
-
+    this.logOfShapes = builder.getLogOfShapes();
+    this.logOfActions = builder.getLogOfActions();
+    this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
 
   }
 

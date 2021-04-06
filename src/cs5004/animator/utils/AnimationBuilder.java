@@ -1,5 +1,11 @@
 package cs5004.animator.utils;
 
+import java.util.HashMap;
+import java.util.List;
+
+import cs5004.animator.action.IAction;
+import cs5004.animator.shape.IShape;
+
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.
@@ -55,4 +61,10 @@ public interface AnimationBuilder<Doc> {
   AnimationBuilder<Doc> addMotion(String name,
                                   int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
                                   int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
+
+  public HashMap<String, IShape> getLogOfShapes();
+
+  public HashMap<String, List<IAction>> getLogOfActions();
+
+  public List<String> getChronologicalOrderOfActions();
 }
