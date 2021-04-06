@@ -15,10 +15,19 @@ public class Triangle extends AbstractShape {
     this.type = Shape.TRIANGLE;
   }
 
+  public Triangle(String name) {
+    super(name);
+    this.type = Shape.TRIANGLE;
+  }
+
   @Override
   public IShape copy() {
+    if (this.position == null) {
+      return new Triangle(this.name);
+    }
+
     return new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getTotalTime().getStartTime(), this.getTotalTime().getEndTime());
+            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
   }
 }

@@ -28,7 +28,7 @@ public interface IShape {
    *
    * @return the total time of existence of the shape.
    */
-  Time getTotalTime();
+  Time getBeginTime();
 
   /**
    * Gets the position of the shape.
@@ -126,6 +126,8 @@ public interface IShape {
    *                                  is not of type square.
    */
   void setLength(double newLength);
+
+  void setBeginTime(int startTime, int endTime);
 
   /**
    * Creates a deep copy of the shape.
