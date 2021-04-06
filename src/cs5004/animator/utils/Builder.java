@@ -106,7 +106,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       throw new IllegalArgumentException("Invalid name");
     }
 
-
     // This is a copy of the shape
     IShape currentShape = getCurrentShape(name);
     // This is the original shape
