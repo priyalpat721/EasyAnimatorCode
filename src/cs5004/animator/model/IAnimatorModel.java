@@ -15,7 +15,7 @@ public interface IAnimatorModel {
    * Creates specific shapes based on what the user inputs.
    *
    * @param name      name of the shape that is associated with a specific type of shape.
-   * @param shape     a specific type of the shape class.
+   * @param type     a specific type of the shape class.
    * @param color     a color type of the RGB class.
    * @param width     the width of the shape. For squares and circles, the width and height are the
    *                  same.
