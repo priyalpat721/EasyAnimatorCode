@@ -44,11 +44,15 @@ public final class EasyAnimator {
       throw new IllegalArgumentException("View type is mandatory");
     }
 
-    // already throws FileNotFoundException
-    Readable in = new FileReader(inputFile);
+    var fileName = "src/cs5004/animator/" + inputFile;
+
+    // throws FileNotFoundException
+    Readable in = new FileReader(fileName);
 
     IAnimatorModel animation = parseFile(in, builder);
 
+    // Test the result model
+    System.out.println(animation.toString());
 
   }
 

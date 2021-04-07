@@ -27,6 +27,10 @@ public class Square extends AbstractShape {
 
   @Override
   public IShape copy() {
+    if (this.position == null) {
+      return new Square(this.name);
+    }
+
     return new Square(this.name, this.color, this.length, this.length,
             this.getPosition().getX(), this.getPosition().getY(),
             this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());

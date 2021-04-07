@@ -50,8 +50,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public AnimatorModelImpl(AnimationBuilder builder) {
     this.box = builder.getBox();
     this.logOfShapes = builder.getLogOfShapes();
-
-    // TODO
     this.logOfActions = builder.getLogOfActions();
     this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
 

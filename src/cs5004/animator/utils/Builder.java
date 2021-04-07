@@ -27,7 +27,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<String> chronologicalOrderOfActions;
-
   private final int[] box;
 
   public Builder() {
@@ -50,10 +49,10 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       throw new IllegalArgumentException("Invalid height");
     }
 
-    this.box[1] = x;
-    this.box[2] = y;
-    this.box[3] = width;
-    this.box[4] = height;
+    this.box[0] = x;
+    this.box[1] = y;
+    this.box[2] = width;
+    this.box[3] = height;
 
     return this;
   }
@@ -67,7 +66,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     }
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getValue().getName().equals(name)) {
+      if (entry.getKey().equals(name)) {
         throw new IllegalArgumentException("Name already exists");
       }
     }
@@ -77,9 +76,11 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     for (Shape shape : Shape.values()) {
       if (shape.toString().equalsIgnoreCase(type)) {
         finalType = shape;
-      } else {
-        throw new IllegalArgumentException("Shape does not exist");
       }
+    }
+
+    if (finalType == null) {
+      throw new IllegalArgumentException("Shape does not exist");
     }
 
     switch (finalType) {
@@ -104,7 +105,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       throw new IllegalArgumentException("Invalid name");
     }
 
-
     // This is a copy of the shape
     IShape currentShape = getCurrentShape(name);
     // This is the original shape
@@ -126,10 +126,9 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
     else {
-      // If all the parameters are equal, it means the instruction in the file
-      // is setting the attributes of a shape that was ONLY created
-      // To set the attributes of the existing shape, we need to work on the original
-      // in log of shapes
+      // TODO: REVIEW THIS
+      // If all the parameters are equal, it means the instruction in the file is setting the attributes of a newly created shape
+      // To set the attributes of the existing shape, we need to work on the original in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
           originalShape = object.getValue();
@@ -152,8 +151,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     if (newAction != null) {
       addActionToShape(name, newAction);
       chronologicalOrderOfActions.add(newAction.toString());
-    } else {
-      throw new IllegalArgumentException("No action registered");
     }
 
     return this;
