@@ -109,4 +109,12 @@ public abstract class AbstractAction implements IAction {
     }
   }
 
+  public String getName() {
+    return this.name;
+  }
+
+  public Position getNewPosition() {
+    return this.newPosition;
+  }
+
 }

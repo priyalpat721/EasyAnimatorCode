@@ -303,5 +303,20 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
   }
 
+  @Override
+  public List<IAction> getChronological() {
+    return this.chronologicalOrderOfActions;
+  }
+
+  @Override
+  public int[] getBox() {
+    return this.box;
+  }
+
+  @Override
+  public HashMap<String, IShape> getLogOfShapes() {
+    return this.logOfShapes;
+  }
+
 
 }
