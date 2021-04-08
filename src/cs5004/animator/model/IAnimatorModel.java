@@ -77,6 +77,14 @@ public interface IAnimatorModel {
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
   /**
+   *
+   * @param name
+   * @param startTime
+   * @param endTime
+   */
+  void stay(String name, int startTime, int endTime);
+
+  /**
    * A function that returns a list of shapes at the specified frame. The function works by
    * identifying the tick of a move at a specified time. If the tick falls within the the interval
    * of event's duration, that specific frame is added to a list and returned back to the

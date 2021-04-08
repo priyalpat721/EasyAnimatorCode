@@ -57,7 +57,7 @@ public class SVGView {
 
               case SCALE:
                 result.append(String.format("<animate attributeType='xml' begin='%dms' dur='%dms' "
-                        + "attributeName='y' from='%d' to='%d' fill='freeze' />\n"))
+                        + "attributeName='y' from='%d' to='%d' fill='freeze' />\n"));
 
             }
 

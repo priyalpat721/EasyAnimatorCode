@@ -78,6 +78,19 @@ public abstract class AbstractAction implements IAction {
     this.time = new Time(startTime, endTime);
   }
 
+  /**
+   * A constructor for stay
+   * @param name
+   * @param currentShape
+   * @param startTime
+   * @param endTime
+   */
+  public AbstractAction(String name, IShape currentShape, int startTime, int endTime) {
+    this.name = name;
+    this.currentShape = currentShape;
+    this.time = new Time(startTime, endTime);
+  }
+
   @Override
   public IShape getCurrentShape() {
     return this.currentShape;

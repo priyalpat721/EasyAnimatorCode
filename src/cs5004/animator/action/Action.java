@@ -6,5 +6,6 @@ package cs5004.animator.action;
 public enum Action {
   MOVE,
   CHANGECOLOR,
-  SCALE
+  SCALE,
+  STAY
 }

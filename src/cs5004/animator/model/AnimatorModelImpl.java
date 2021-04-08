@@ -10,6 +10,7 @@ import cs5004.animator.action.ChangeColor;
 import cs5004.animator.action.IAction;
 import cs5004.animator.action.Move;
 import cs5004.animator.action.Scale;
+import cs5004.animator.action.Stay;
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Oval;
@@ -168,6 +169,21 @@ public class AnimatorModelImpl implements IAnimatorModel {
     addActionToShape(name, newScale);
     //chronologicalOrderOfActions.add(newScale.toString());
     chronologicalOrderOfActions.add(newScale);
+  }
+
+  @Override
+  public void stay(String name, int startTime, int endTime) {
+    IShape currentShape = getCurrentShape(name);
+    checkRange(name, startTime, endTime);
+
+    if (!checkOverlap(name, Action.STAY, startTime, endTime)) {
+      throw new IllegalArgumentException("Stay overlap");
+    }
+
+    IAction newStay = new Stay(name, currentShape, startTime, endTime);
+    addActionToShape(name, newStay);
+    chronologicalOrderOfActions.add(newStay);
+
   }
 
   @Override
