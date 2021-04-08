@@ -1,6 +1,5 @@
 package cs5004.animator.action;
 
-
 import cs5004.animator.shape.IShape;
 import cs5004.animator.tools.Position;
 import cs5004.animator.tools.RGB;
@@ -106,22 +105,6 @@ public abstract class AbstractAction implements IAction {
     return this.type;
   }
 
-  /**
-   * Private method that throws IllegalArgumentException if the name or the shape are invalid.
-   *
-   * @param name         the name of the shape.
-   * @param currentShape the shape.
-   */
-  private void checkArguments(String name, IShape currentShape) {
-    if (currentShape == null) {
-      throw new IllegalArgumentException("Invalid currentShape");
-    } else if (name == null || name.isBlank()) {
-      throw new IllegalArgumentException("Invalid name");
-    } else if (!name.equals(currentShape.getName())) {
-      throw new IllegalArgumentException("The action is not for the shape specified");
-    }
-  }
-
   @Override
   public String getName() {
     return this.name;
@@ -160,6 +143,22 @@ public abstract class AbstractAction implements IAction {
   @Override
   public RGB getNewColor() {
     return this.newColor;
+  }
+
+  /**
+   * Private method that throws IllegalArgumentException if the name or the shape are invalid.
+   *
+   * @param name         the name of the shape.
+   * @param currentShape the shape.
+   */
+  private void checkArguments(String name, IShape currentShape) {
+    if (currentShape == null) {
+      throw new IllegalArgumentException("Invalid currentShape");
+    } else if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    } else if (!name.equals(currentShape.getName())) {
+      throw new IllegalArgumentException("The action is not for the shape specified");
+    }
   }
 
 
