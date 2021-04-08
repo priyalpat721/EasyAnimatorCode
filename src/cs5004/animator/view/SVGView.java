@@ -52,14 +52,14 @@ public class SVGView {
                         + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                         action.getTime().getStartTime() * 100 + "ms",
                         (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getCurrentShape().getPosition().getX(),
+                        (int) action.getOldPosition().getX(),
                         (int) action.getNewPosition().getX()));
 
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                                 + "attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                         action.getTime().getStartTime() * 100 + "ms",
                         (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getCurrentShape().getPosition().getY(),
+                        (int) action.getOldPosition().getY(),
                         (int) action.getNewPosition().getY()));
 
                 break;

@@ -128,6 +128,11 @@ public abstract class AbstractAction implements IAction {
   }
 
   @Override
+  public Position getOldPosition() {
+    return this.oldPosition;
+  }
+
+  @Override
   public Position getNewPosition() {
     return this.newPosition;
   }
