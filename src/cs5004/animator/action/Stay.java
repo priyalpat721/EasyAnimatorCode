@@ -6,6 +6,8 @@ import cs5004.animator.tools.RGB;
 public class Stay extends AbstractAction{
   public Stay(String name, IShape currentShape, int startTime, int endTime) {
     super(name, currentShape, startTime, endTime);
+
+    this.type = Action.STAY;
   }
 
   @Override
