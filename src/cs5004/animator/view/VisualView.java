@@ -1,61 +1,40 @@
 package cs5004.animator.view;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
-import static cs5004.animator.utils.AnimationReader.parseFile;
+import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Random;
-import javax.swing.*;
-import java.awt.*;
 
-public class VisualView extends JFrame {
-  JPanel panel;
-  JLabel label;
-  JScrollPane scrollPane;
-  int panelWidth = 500;
-  int panelHeight = 500;
+import static cs5004.animator.utils.AnimationReader.parseFile;
+
+public class VisualView {
   int ticksPerSecond;
-  Timer timer;
-
-
-  public VisualView() {
-    // window setup
-    label = new JLabel();
-    setTitle("Easy Animator");
-    panel = new JPanel();
-
-    // panel setup
-    setSize(panelWidth, panelHeight);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLocationRelativeTo(null);
-    setVisible(true);
-    timer = new Timer(ticksPerSecond, null);
-    panel.add(label);
-    add(panel);
-
-    scrollPane = new JScrollPane(); //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED
-  }
+  // need start and end up
+  Timer timer = new Timer(ticksPerSecond, null);
+  ShapesPanel newPanel = new ShapesPanel();
 
   public void buildVisualView(IAnimatorModel model) {
-
+    Canvas canvas = new Canvas(model.getBox()[2], model.getBox()[3]);
+    for (int i = 10; i < 51; i++) {
+      System.out.println(model.getShapesAtTicks(i).get(0).getPosition().getX());
+    }
+    canvas.add(newPanel);
   }
 
   public static void main(String args[]) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-//        var fileName = "src/cs5004/animator/demo.txt";
-//        Readable in = new FileReader(fileName);
-//        IAnimatorModel animation = parseFile(in, builder);
+    var fileName = "src/cs5004/animator/demo.txt";
+    Readable in = new FileReader(fileName);
+    IAnimatorModel animation = parseFile(in, builder);
 
 
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        VisualView visual = new VisualView();
-//        visual.buildVisualView(animation);
-      }
+    java.awt.EventQueue.invokeLater(() -> {
+      VisualView visual = new VisualView();
+      visual.buildVisualView(animation);
     });
   }
 }
