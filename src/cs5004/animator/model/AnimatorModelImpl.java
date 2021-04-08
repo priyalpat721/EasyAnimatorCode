@@ -212,8 +212,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
 
-    for (Map.Entry shape : logOfShapes.entrySet()) {
-      accString.append(shape.getValue().toString());
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      int[] timeOfDisplay = timeOfDisplay(entry.getKey());
+      entry.getValue().setBeginTime(timeOfDisplay[0], timeOfDisplay[1]);
+      accString.append(entry.getValue().toString());
       accString.append("\n\n");
     }
 
@@ -338,5 +340,32 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return this.logOfShapes;
   }
 
+  private int[] timeOfDisplay(String name) {
+    int[] result = new int[2];
+
+    int start = -1;
+    int end = -1;
+
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        start = entry.getValue().getBeginTime().getStartTime();
+      }
+    }
+
+    for (Map.Entry<String, List<IAction>> entry : logOfActions.entrySet()) {
+      if (entry.getKey().equals(name)) {
+        List<IAction> actions = entry.getValue();
+        for (IAction action : actions) {
+          if (end == -1 || action.getTime().getEndTime() > end) {
+            end = action.getTime().getEndTime();
+          }
+        }
+      }
+      result[0] = start;
+      result[1] = end;
+    }
+
+    return result;
+  }
 
 }

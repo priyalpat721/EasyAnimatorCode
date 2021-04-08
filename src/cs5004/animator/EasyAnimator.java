@@ -1,5 +1,6 @@
 package cs5004.animator;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -53,6 +54,7 @@ public final class EasyAnimator {
 
     // Test the result model
     System.out.println(animation.toString());
+
 
   }
 
