@@ -40,24 +40,38 @@ public class SVGView {
           if (action.getName().equals(shape.getName())) {
             switch (action.getType()) {
               case MOVE:
-                result.append(String.format("<animate attributeType='xml' begin='%dms' dur='%dms' "
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
                         + "attributeName='x' from='%d' to='%d' fill='freeze' />\n",
-                        action.getTime().getStartTime() * 1000,
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000,
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
                         (int) action.getCurrentShape().getPosition().getX(),
                         (int) action.getNewPosition().getX()));
 
-                result.append(String.format("<animate attributeType='xml' begin='%dms' dur='%dms' "
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
                                 + "attributeName='y' from='%d' to='%d' fill='freeze' />\n",
-                        action.getTime().getStartTime() * 1000,
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000,
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
                         (int) action.getCurrentShape().getPosition().getY(),
                         (int) action.getNewPosition().getY()));
                 break;
 
               case SCALE:
-                result.append(String.format("<animate attributeType='xml' begin='%dms' dur='%dms' "
-                        + "attributeName='y' from='%d' to='%d' fill='freeze' />\n"))
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
+                        + "attributeName='width' from='%d' to='%d' fill='freeze' />\n",
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
+                        (int) action.getCurrentShape().getWidth(),
+                        (int) action.getNewWidth()));
+
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
+                                + "attributeName='height' from='%d' to='%d' fill='freeze' />\n",
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
+                        (int) action.getCurrentShape().getHeight(),
+                        (int) action.getNewHeight()));
+
+              case CHANGECOLOR:
+
 
             }
 

@@ -109,12 +109,24 @@ public abstract class AbstractAction implements IAction {
     }
   }
 
+  @Override
   public String getName() {
     return this.name;
   }
 
+  @Override
   public Position getNewPosition() {
     return this.newPosition;
+  }
+
+  @Override
+  public double getNewWidth() {
+    return this.newWidth;
+  }
+
+  @Override
+  public double getNewHeight() {
+    return this.newHeight;
   }
 
 }

@@ -43,4 +43,8 @@ public interface IAction {
   String getName();
 
   Position getNewPosition();
+
+  double getNewWidth();
+
+  double getNewHeight();
 }
