@@ -1,5 +1,6 @@
 package cs5004.animator.view;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,13 +18,14 @@ public class SVGView {
 
   public void buildSVG(IAnimatorModel model) {
     List<IAction> actions = model.getChronological();
+    HashMap<String, IShape> shapes = model.getLogOfShapes();
 
     result.append(String.format("<svg width='%d' height='%d' "
                     + "version='1.1' xmlns='http://www.w3.org/2000/svg'>\n\n", model.getBox()[2],
                                                                                model.getBox()[3]));
 
 
-    for (Map.Entry<String, IShape> entry : model.getLogOfShapes().entrySet()) {
+    for (Map.Entry<String, IShape> entry : shapes.entrySet()) {
       if (entry.getValue().getType() == Shape.RECTANGLE) {
         IShape shape = entry.getValue();
         result.append(String.format("<rect id='%s' x='%d' y='%d' width='%d' height='%d' "
