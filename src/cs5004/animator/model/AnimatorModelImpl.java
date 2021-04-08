@@ -29,7 +29,9 @@ import cs5004.animator.utils.AnimationBuilder;
 public class AnimatorModelImpl implements IAnimatorModel {
   private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
-  private final List<String> chronologicalOrderOfActions;
+  //private final List<String> chronologicalOrderOfActions;
+
+  private final List<IAction> chronologicalOrderOfActions;
 
   // This would be our canvas
   // Array of 4 elements: x, y, width, height
@@ -128,7 +130,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newMove = new Move(name, currentShape, newX, newY, startTime, endTime);
     addActionToShape(name, newMove);
-    chronologicalOrderOfActions.add(newMove.toString());
+    //chronologicalOrderOfActions.add(newMove.toString());
+    chronologicalOrderOfActions.add(newMove);
   }
 
   @Override
@@ -147,7 +150,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newChangeColor = new ChangeColor(name, currentShape, newColor, startTime, endTime);
     addActionToShape(name, newChangeColor);
-    chronologicalOrderOfActions.add(newChangeColor.toString());
+    //chronologicalOrderOfActions.add(newChangeColor.toString());
+    chronologicalOrderOfActions.add(newChangeColor);
   }
 
   @Override
@@ -162,7 +166,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
     addActionToShape(name, newScale);
-    chronologicalOrderOfActions.add(newScale.toString());
+    //chronologicalOrderOfActions.add(newScale.toString());
+    chronologicalOrderOfActions.add(newScale);
   }
 
   @Override
@@ -197,10 +202,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
       if (i != chronologicalOrderOfActions.size() - 1) {
-        accString.append("Shape " + chronologicalOrderOfActions.get(i));
+        //accString.append("Shape " + chronologicalOrderOfActions.get(i));
+        accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
         accString.append("\n");
       } else {
-        accString.append("Shape " + chronologicalOrderOfActions.get(i));
+        //accString.append("Shape " + chronologicalOrderOfActions.get(i));
+        accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
       }
     }
     return accString.toString();

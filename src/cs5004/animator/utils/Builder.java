@@ -26,7 +26,7 @@ import cs5004.animator.tools.RGB;
 public class Builder implements AnimationBuilder<IAnimatorModel> {
   private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
-  private final List<String> chronologicalOrderOfActions;
+  private final List<IAction> chronologicalOrderOfActions;
   private final int[] box;
 
   public Builder() {
@@ -150,7 +150,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
 
     if (newAction != null) {
       addActionToShape(name, newAction);
-      chronologicalOrderOfActions.add(newAction.toString());
+      chronologicalOrderOfActions.add(newAction);
     }
 
     return this;
@@ -167,7 +167,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
   }
 
   @Override
-  public List<String> getChronologicalOrderOfActions() {
+  public List<IAction> getChronologicalOrderOfActions() {
     return chronologicalOrderOfActions;
   }
 
