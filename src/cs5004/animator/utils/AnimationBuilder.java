@@ -66,7 +66,7 @@ public interface AnimationBuilder<Doc> {
 
   HashMap<String, List<IAction>> getLogOfActions();
 
-  List<String> getChronologicalOrderOfActions();
+  List<IAction> getChronologicalOrderOfActions();
 
   int[] getBox();
 }

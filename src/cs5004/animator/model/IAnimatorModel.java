@@ -1,7 +1,9 @@
 package cs5004.animator.model;
 
+import java.util.HashMap;
 import java.util.List;
 
+import cs5004.animator.action.IAction;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.tools.RGB;
@@ -94,4 +96,10 @@ public interface IAnimatorModel {
    * @return a formatted string.
    */
   String toString();
+
+  HashMap<String, IShape> getLogOfShapes();
+
+  List<IAction> getChronological();
+
+  int[] getBox();
 }

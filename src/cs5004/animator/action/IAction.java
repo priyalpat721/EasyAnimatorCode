@@ -1,6 +1,7 @@
 package cs5004.animator.action;
 
 import cs5004.animator.shape.IShape;
+import cs5004.animator.tools.Position;
 import cs5004.animator.tools.Time;
 
 /**
@@ -38,4 +39,8 @@ public interface IAction {
    * @return the type of the Action object.
    */
   Action getType();
+
+  String getName();
+
+  Position getNewPosition();
 }

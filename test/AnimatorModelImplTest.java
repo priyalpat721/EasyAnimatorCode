@@ -1,7 +1,6 @@
 import static org.junit.Assert.assertEquals;
 
 import cs5004.animator.model.AnimatorModelImpl;
-import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.tools.RGB;
 import org.junit.Before;
@@ -864,127 +863,6 @@ public class AnimatorModelImplTest {
                  "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
                  "Appears at t=3\n" +
                  "Disappears at t=50]", model2.getShapesAtTicks(2).toString());
-  }
-
-  @Test
-  public void testGetShapesAtTickAllTicks() {
-    IAnimatorModel model4 = new AnimatorModelImpl();
-    model4.createShape("O3", Shape.OVAL, new RGB(3, 34, 16),
-            32, 16, 45, 67, 0, 5);
-    model4.move("O3", 50, 75, 1, 3);
-    model4.scale("O3", 40, 20, 4, 5);
-    model4.createShape("R3", Shape.RECTANGLE, new RGB(254, 45, 130),
-            18, 15, 0, 0, 1, 6);
-    model4.changeColor("R3", new RGB(3, 3, 3), 1, 3);
-    model4.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
-            50, 50, 30, 12, 4, 6);
-    StringBuilder frames = new StringBuilder();
-
-    for (int i = 0; i < 7; i++) {
-      frames.append("Frame number: " + i + "\n");
-      frames.append(model4.getShapesAtTicks(i).toString());
-      if (i < 6) {
-        frames.append("\n");
-      }
-    }
-    assertEquals("Frame number: 0\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (254.0,45.0,130.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (45.0,67.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 1\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (254.0,45.0,130.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (45.0,67.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 2\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (128.5,66.5,24.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (47.5,71.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 3\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (3.0,3.0,3.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (50.0,75.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 4\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (3.0,3.0,3.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (50.0,75.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 5\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (3.0,3.0,3.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (50.0,75.0), X radius: 40.0, Y radius: 20.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]\n" +
-                 "Frame number: 6\n" +
-                 "[Name: R3\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (3.0,3.0,3.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=6, Name: O3\n" +
-                 "Type: oval\n" +
-                 "Center: (50.0,75.0), X radius: 40.0, Y radius: 20.0, Color: (3.0,34.0,16.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=5, Name: T3\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n" +
-                 "Appears at t=4\n" +
-                 "Disappears at t=6]", frames.toString());
   }
 
   @Test
