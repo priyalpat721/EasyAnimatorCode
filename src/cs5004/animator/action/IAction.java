@@ -47,6 +47,10 @@ public interface IAction {
 
   Position getNewPosition();
 
+  double getOldWidth();
+
+  double getOldHeight();
+
   double getNewWidth();
 
   double getNewHeight();

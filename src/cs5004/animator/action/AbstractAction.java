@@ -138,6 +138,16 @@ public abstract class AbstractAction implements IAction {
   }
 
   @Override
+  public double getOldWidth() {
+    return this.oldWidth;
+  }
+
+  @Override
+  public double getOldHeight() {
+    return this.newHeight;
+  }
+
+  @Override
   public double getNewWidth() {
     return this.newWidth;
   }
