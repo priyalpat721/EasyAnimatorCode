@@ -53,6 +53,7 @@ public class SVGView {
                         (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
                         (int) action.getCurrentShape().getPosition().getY(),
                         (int) action.getNewPosition().getY()));
+
                 break;
 
               case SCALE:
@@ -70,7 +71,31 @@ public class SVGView {
                         (int) action.getCurrentShape().getHeight(),
                         (int) action.getNewHeight()));
 
+                break;
+
               case CHANGECOLOR:
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
+                                + "attributeName='r' from='%d' to='%d' fill='freeze' />\n",
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
+                        (int) action.getCurrentShape().getColor().getRed(),
+                        (int) action.getNewColor().getRed()));
+
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
+                                + "attributeName='g' from='%d' to='%d' fill='freeze' />\n",
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
+                        (int) action.getCurrentShape().getColor().getGreen(),
+                        (int) action.getNewColor().getGreen()));
+
+                result.append(String.format("<animate attributeType='xml' begin='%s' dur='%s' "
+                                + "attributeName='g' from='%d' to='%d' fill='freeze' />\n",
+                        action.getTime().getStartTime() * 1000 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 1000 + "ms",
+                        (int) action.getCurrentShape().getColor().getBlue(),
+                        (int) action.getNewColor().getBlue()));
+
+                break;
 
 
             }

@@ -2,6 +2,7 @@ package cs5004.animator.action;
 
 import cs5004.animator.shape.IShape;
 import cs5004.animator.tools.Position;
+import cs5004.animator.tools.RGB;
 import cs5004.animator.tools.Time;
 
 /**
@@ -47,4 +48,6 @@ public interface IAction {
   double getNewWidth();
 
   double getNewHeight();
+
+  RGB getNewColor();
 }

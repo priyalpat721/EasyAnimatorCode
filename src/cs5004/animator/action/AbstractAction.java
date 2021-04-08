@@ -129,4 +129,10 @@ public abstract class AbstractAction implements IAction {
     return this.newHeight;
   }
 
+  @Override
+  public RGB getNewColor() {
+    return this.newColor;
+  }
+
+
 }
