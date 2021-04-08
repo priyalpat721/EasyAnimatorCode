@@ -10,6 +10,7 @@ import cs5004.animator.action.ChangeColor;
 import cs5004.animator.action.IAction;
 import cs5004.animator.action.Move;
 import cs5004.animator.action.Scale;
+import cs5004.animator.action.Stay;
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Circle;
@@ -125,26 +126,32 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
+    // If the values in the start column and in the end column are equal (no motion)
     else {
-      // TODO: REVIEW THIS
-      // If all the parameters are equal, it means the instruction in the file is setting the attributes of a newly created shape
-      // To set the attributes of the existing shape, we need to work on the original in log of shapes
+      // We get the original shape in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
           originalShape = object.getValue();
         }
       }
 
-      originalShape.setPosition(x1, y1);
-      originalShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
-      originalShape.setBeginTime(t1, t2);
-      switch (originalShape.getType()) {
-        case CIRCLE -> originalShape.setRadius(w1);
-        case SQUARE -> originalShape.setLength(w1);
-        default -> {
-          originalShape.setWidth(w1);
-          originalShape.setHeight(h1);
+      // If the original shape has its attributes set to null, it means we are setting its attributes
+      if (originalShape.getPosition() == null) {
+        originalShape.setPosition(x1, y1);
+        originalShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
+        originalShape.setBeginTime(t1, t2);
+        switch (originalShape.getType()) {
+          case CIRCLE -> originalShape.setRadius(w1);
+          case SQUARE -> originalShape.setLength(w1);
+          default -> {
+            originalShape.setWidth(w1);
+            originalShape.setHeight(h1);
+          }
         }
+        // If the original shape already has attributes, it means it is a "Stand still" action
+      } else {
+        newAction = new Stay(name, currentShape, t1, t2);
+        checkOverlap(name, Action.STAY, t1, t2);
       }
     }
 

@@ -36,7 +36,7 @@ public class SVGView {
       if (entry.getValue().getType() == Shape.RECTANGLE) {
         IShape shape = entry.getValue();
         result.append(String.format("<rect id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" "
-                + "fill=rgb(\"%d\",\"%d\",\"%d\") visibility=\"visible\" >\n", shape.getName(),
+                + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", shape.getName(),
                                                                (int) shape.getPosition().getX(),
                                                                (int) shape.getPosition().getY(),
                                                                (int) shape.getWidth(),
