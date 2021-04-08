@@ -123,7 +123,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void move(String name, double newX, double newY, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    checkRange(name, startTime, endTime);
+    //checkRange(name, startTime, endTime);
 
     if (!checkOverlap(name, Action.MOVE, startTime, endTime)) {
       throw new IllegalArgumentException("Move overlap");
@@ -143,7 +143,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Invalid color");
     }
 
-    checkRange(name, startTime, endTime);
+    //checkRange(name, startTime, endTime);
 
     if (!checkOverlap(name, Action.CHANGECOLOR, startTime, endTime)) {
       throw new IllegalArgumentException("Change color overlap");
@@ -159,7 +159,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void scale(String name, double newWidth, double newHeight, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 
-    checkRange(name, startTime, endTime);
+    //checkRange(name, startTime, endTime);
 
     if (!checkOverlap(name, Action.SCALE, startTime, endTime)) {
       throw new IllegalArgumentException("Scale overlap");
@@ -174,7 +174,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   @Override
   public void stay(String name, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
-    checkRange(name, startTime, endTime);
+
+    //checkRange(name, startTime, endTime);
 
     if (!checkOverlap(name, Action.STAY, startTime, endTime)) {
       throw new IllegalArgumentException("Stay overlap");
