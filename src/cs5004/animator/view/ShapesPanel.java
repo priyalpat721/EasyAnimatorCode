@@ -1,17 +1,19 @@
 package cs5004.animator.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
+import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Shape;
+
+
 public class ShapesPanel extends JPanel  {
-  int seconds = 0;
+//  int seconds = 0;
   int x = 0;
   int y = 0;
-  int velocityX = 1;
-  int velocityY = 1;
+  Color color;
+  int width;
+  int height;
 
   public ShapesPanel() {
 
@@ -23,10 +25,22 @@ public class ShapesPanel extends JPanel  {
 
     Graphics2D g2D = (Graphics2D) g;
 
-    g2D.setColor(Color.getHSBColor(255, 0, 0));
-    g2D.fillRect(200, 200, 50, 100);
+    g2D.setColor(color);
+    g2D.fillRect(x, y, width, height);
   }
 
+  public void setShapes(IShape shape) {
+    if (shape.getType() == Shape.RECTANGLE) {
+      x = (int) shape.getPosition().getX();
+      y = (int) shape.getPosition().getY();
+      color = Color.getHSBColor((float)shape.getColor().getRed(),
+              (float)shape.getColor().getGreen(),
+              (float)shape.getColor().getBlue());
+
+      width = (int)shape.getWidth();
+      height = (int)shape.getHeight();
+    }
+  }
 
 //    seconds++;
 //    System.out.println(seconds + " second/s have passed.");

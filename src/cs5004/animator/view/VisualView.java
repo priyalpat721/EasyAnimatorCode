@@ -3,6 +3,7 @@ package cs5004.animator.view;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+
 import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
@@ -14,15 +15,18 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 public class VisualView {
   int ticksPerSecond;
   // need start and end up
-  Timer timer = new Timer(ticksPerSecond, null);
-  ShapesPanel newPanel = new ShapesPanel();
 
-  public void buildVisualView(IAnimatorModel model) {
+  public void buildVisualView(IAnimatorModel model) throws InterruptedException {
     Canvas canvas = new Canvas(model.getBox()[2], model.getBox()[3]);
-    for (int i = 10; i < 51; i++) {
-      System.out.println(model.getShapesAtTicks(i).get(0).getPosition().getX());
+    for (int i = 1; i < 51; i++) {
+      try {
+        Thread.sleep(1000);
+        System.out.println(model.getShapesAtTicks(i).get(0).getPosition().getX());
+        canvas.setShapes(model.getShapesAtTicks(i));
+      }
+      catch (InterruptedException e) {
+      }
     }
-    canvas.add(newPanel);
   }
 
   public static void main(String args[]) throws FileNotFoundException {
@@ -34,7 +38,11 @@ public class VisualView {
 
     java.awt.EventQueue.invokeLater(() -> {
       VisualView visual = new VisualView();
-      visual.buildVisualView(animation);
+      try {
+        visual.buildVisualView(animation);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     });
   }
 }
