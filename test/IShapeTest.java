@@ -55,58 +55,52 @@ public class IShapeTest {
   public void constructorTest() {
     rectangle = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
-    assertEquals("""
-            Name: R
-            Type: rectangle
-            Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)
-            Appears at t=1
-            Disappears at t=100""", rectangle.toString());
+    assertEquals("Name: R\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,0.0,0.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", rectangle.toString());
 
     oval = new Oval("C", new RGB(0, 0, 1), 60, 30,
             500, 100, 6, 100);
-    assertEquals("""
-            Name: C
-            Type: oval
-            Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)
-            Appears at t=6
-            Disappears at t=100""", oval.toString());
+    assertEquals("Name: C\n" +
+                 "Type: oval\n" +
+                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)\n" +
+                 "Appears at t=6\n" +
+                 "Disappears at t=100", oval.toString());
 
     square = new Square("S", new RGB(0, 1, 0), 40, 40,
             0, 0, 10, 100);
-    assertEquals("""
-            Name: S
-            Type: square
-            Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)
-            Appears at t=10
-            Disappears at t=100""", square.toString());
+    assertEquals("Name: S\n" +
+                 "Type: square\n" +
+                 "Min corner: (0.0,0.0), Length: 40.0, Color: (0.0,1.0,0.0)\n" +
+                 "Appears at t=10\n" +
+                 "Disappears at t=100", square.toString());
 
     circle = new Circle("I", new RGB(1, 1, 1), 10, 10,
             0, 0, 1, 100);
-    assertEquals("""
-            Name: I
-            Type: circle
-            Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)
-            Appears at t=1
-            Disappears at t=100""", circle.toString());
+    assertEquals("Name: I\n" +
+                 "Type: circle\n" +
+                 "Center: (0.0,0.0), Radius: 10.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100", circle.toString());
 
     triangle = new Triangle("T", new RGB(5, 5, 5), 20, 30,
             40, 50, 1, 50);
 
-    assertEquals("""
-            Name: T
-            Type: triangle
-            Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)
-            Appears at t=1
-            Disappears at t=50""", triangle.toString());
+    assertEquals("Name: T\n" +
+                 "Type: triangle\n" +
+                 "Min corner: (40.0,50.0), Width: 20.0, Height: 30.0, Color: (5.0,5.0,5.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=50", triangle.toString());
 
     rhombus = new Rhombus("H", new RGB(20, 20, 20), 50, 60,
             2, 2, 1, 80);
-    assertEquals("""
-            Name: H
-            Type: rhombus
-            Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)
-            Appears at t=1
-            Disappears at t=80""", rhombus.toString());
+    assertEquals("Name: H\n" +
+                 "Type: rhombus\n" +
+                 "Min corner: (2.0,2.0), Width: 50.0, Height: 60.0, Color: (20.0,20.0,20.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=80", rhombus.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -519,8 +513,8 @@ public class IShapeTest {
             20, 230, 25, 52);
     assertEquals("Name: RH2\n" +
                  "Type: rhombus\n" +
-                 "Min corner: (20.0,230.0), Width: 21.0, Height: 44.0, Color: (102.0,51.0,98.0)\n" +
-                 "Appears at t=25\n" +
+                 "Min corner: (20.0,230.0), Width: 21.0, Height: 44.0, "
+                 + "Color: (102.0,51.0,98.0)\n" + "Appears at t=25\n" +
                  "Disappears at t=52", rh2.toString());
   }
 
@@ -531,16 +525,16 @@ public class IShapeTest {
             200, 200, 1, 100);
     assertEquals("Name: R2\n" +
                  "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 8000.0, Height: 6000.0, Color: (255.0,255.0,255.0)\n" +
-                 "Appears at t=1\n" +
+                 "Min corner: (200.0,200.0), Width: 8000.0, Height: 6000.0, "
+                 + "Color: (255.0,255.0,255.0)\n" + "Appears at t=1\n" +
                  "Disappears at t=100", r2.toString());
 
     t2 = new Triangle("T2", new RGB(255, 255, 255), 25000, 30000,
             4000, 5023, 1, 50);
     assertEquals("Name: T2\n" +
                  "Type: triangle\n" +
-                 "Min corner: (4000.0,5023.0), Width: 25000.0, Height: 30000.0, Color: (255.0,255.0,255.0)\n" +
-                 "Appears at t=1\n" +
+                 "Min corner: (4000.0,5023.0), Width: 25000.0, Height: 30000.0, "
+                 + "Color: (255.0,255.0,255.0)\n" + "Appears at t=1\n" +
                  "Disappears at t=50", t2.toString());
 
     s2 = new Square("S2", new RGB(255, 255, 255), 11999, 11999,
@@ -556,8 +550,8 @@ public class IShapeTest {
             5000, 10000, 6, 10000);
     assertEquals("Name: C2\n" +
                  "Type: oval\n" +
-                 "Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, Color: (255.0,255.0,255.0)\n" +
-                 "Appears at t=6\n" +
+                 "Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, "
+                 + "Color: (255.0,255.0,255.0)\n" + "Appears at t=6\n" +
                  "Disappears at t=10000",
             o2.toString());
 
@@ -595,8 +589,8 @@ public class IShapeTest {
             500.823748278432934892920, 100.93829480929483287428, 6, 100);
     assertEquals("Name: O2\n" +
                  "Type: oval\n" +
-                 "Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, Color: (100.3,200.8,10.2)\n" +
-                 "Appears at t=6\n" +
+                 "Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, "
+                 + "Color: (100.3,200.8,10.2)\n" + "Appears at t=6\n" +
                  "Disappears at t=100", o2.toString());
 
     c2 = new Circle("C2",
