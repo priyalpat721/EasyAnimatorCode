@@ -3,6 +3,8 @@ package cs5004.animator.view;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import javax.swing.*;
+
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
@@ -11,20 +13,27 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class VisualView {
 
-  public void buildVisualView(IAnimatorModel model) throws InterruptedException {
+  public void buildVisualView(IAnimatorModel model) {
     // creates the JFrame = canvas
     Canvas canvas = new Canvas(model.getBox()[0], model.getBox()[1],
             model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
+    canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    try {
-      // controls the frame
-      for (int i = 1; i < 10; i++) {
-        canvas.currentView(model.getShapesAtTicks(i));
-        Thread.sleep(500);
+    int count = 0;
+    // controls the frame
+    while (count < 1) {
+      canvas.currentView(model.getShapesAtTicks(count));
+      System.out.println(model.getShapesAtTicks(count));
+      count++;
+      System.out.println(count);
+      try {
+        Thread.sleep(10000);
         //System.out.println(model.getShapesAtTicks(i));
-      }
 
-    } catch (InterruptedException e) {
+
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
     }
   }
 
@@ -37,11 +46,7 @@ public class VisualView {
 
     java.awt.EventQueue.invokeLater(() -> {
       VisualView visual = new VisualView();
-      try {
-        visual.buildVisualView(animation);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+      visual.buildVisualView(animation);
     });
   }
 }

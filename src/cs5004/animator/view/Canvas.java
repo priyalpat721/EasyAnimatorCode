@@ -8,25 +8,22 @@ import cs5004.animator.shape.IShape;
 
 public class Canvas extends JFrame {
   ShapesPanel panel;
-  JLabel label;
   JScrollPane scrollPane;
 
   // displaying the panel with the shapes
   public Canvas(int x, int y, double width, double height, List<IShape> model) {
-
-    label = new JLabel();
-    setTitle("Easy Animator");
-    this.panel = new ShapesPanel(model);
+    super("Easy Animator");
     setSize((int) width * 2, (int) height * 2);
     setLocation(x, y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLocationRelativeTo(null);
+    this.panel = new ShapesPanel(model);
     this.setVisible(true);
-    panel.setVisible(true);
     this.add(this.panel);
+    panel.setVisible(true);
+
 
     //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shape panel in scroll pane
-    scrollPane = new JScrollPane();
+    //scrollPane = new JScrollPane();
   }
 
   public void currentView(List<IShape> currentShapes) {
@@ -34,9 +31,4 @@ public class Canvas extends JFrame {
     panel.setShapes(currentShapes);
     this.repaint();
   }
-
-  // buttons
-
-  // setShapes -> pass through on shapepanel
-  // repaint
 }
