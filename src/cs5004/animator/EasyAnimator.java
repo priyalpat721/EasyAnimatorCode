@@ -48,7 +48,7 @@ public final class EasyAnimator {
     }
 
     if (outputFile.length == 1) {
-      if (!outputFile[0].equals("")) {
+      if (!outputFile[0].isBlank()) {
         throw new IllegalArgumentException("Invalid name for output file");
       } else {
         System.out.println(content);
