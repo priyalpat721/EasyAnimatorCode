@@ -19,7 +19,8 @@ public final class EasyAnimator {
     String[] commands = parseCommands(args);
     String inputFile = commands[0];
     String viewType = commands[1];
-    String outputFile = commands[2];
+    String[] outputFile = commands[2].split("\\.");
+
     int speed = 1;
     if (!commands[3].equals("")) {
       speed = Integer.parseInt(commands[3]);
@@ -49,10 +50,14 @@ public final class EasyAnimator {
       }
     }
 
-    if (outputFile.equals("")) {
-      System.out.println(content);
+    if (outputFile.length == 1) {
+      if (!outputFile[0].equals("")) {
+        throw new IllegalArgumentException("Invalid name for output file");
+      } else {
+        System.out.println(content);
+      }
     } else {
-      createFile(outputFile, format, content);
+      createFile(outputFile[0], outputFile[1], content);
     }
 
   }

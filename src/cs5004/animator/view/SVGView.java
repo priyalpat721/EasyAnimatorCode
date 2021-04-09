@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -167,16 +168,22 @@ public class SVGView {
 
 
   public static void main(String[] args) throws IOException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
-    Readable in = new FileReader(fileName);
-    IAnimatorModel animation = parseFile(in, builder);
-
-    SVGView svg = new SVGView();
-    svg.create(animation, 1);
-    System.out.println(svg.build());
+//    AnimationBuilder<IAnimatorModel> builder = new Builder();
+//    var fileName = "src/cs5004/animator/demo.txt";
+//    Readable in = new FileReader(fileName);
+//    IAnimatorModel animation = parseFile(in, builder);
+//
+//    SVGView svg = new SVGView();
+//    svg.create(animation, 1);
+//    System.out.println(svg.build());
 
     //createFile("test", "svg", svg.toString());
+
+    String test = "test.svg";
+
+    String[] split = test.split("\\.");
+
+    System.out.println(Arrays.toString(split));
   }
 
 }

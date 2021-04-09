@@ -221,14 +221,16 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
       if (chronologicalOrderOfActions.get(i).getType() != Action.STAY) {
-        if (i != chronologicalOrderOfActions.size() - 1) {
-          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
-          accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
-          accString.append("\n");
-        } else {
-          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
-          accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
-        }
+//        if (i != chronologicalOrderOfActions.size() - 1) {
+//          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
+//          accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
+//          accString.append("\n");
+//        } else {
+//          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
+//          accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
+//        }
+        accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
+        accString.append("\n");
       }
     }
 
