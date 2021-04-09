@@ -22,7 +22,7 @@ public class SVGView {
     this.result = new StringBuilder();
   }
 
-  public void create(IAnimatorModel model) {
+  public void create(IAnimatorModel model, int speed) {
 
     HashMap<String, IShape> shapes = model.getLogOfShapes();
     List<IAction> actions = model.getChronological();
@@ -100,14 +100,15 @@ public class SVGView {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
-                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100) / speed + "ms",
                       attributes[0],
                       (int) action.getOldPosition().getX(),
                       (int) action.getNewPosition().getX()));
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
-                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                              / speed + "ms",
                       attributes[1],
                       (int) action.getOldPosition().getY(),
                       (int) action.getNewPosition().getY()));
@@ -116,7 +117,8 @@ public class SVGView {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
-                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                              / speed + "ms",
                       attributes[2],
                       (int) action.getOldWidth(),
                       (int) action.getNewWidth()));
@@ -124,7 +126,8 @@ public class SVGView {
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                                 + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                         action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                        ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                                / speed + "ms",
                         attributes[3],
                         (int) action.getOldHeight(),
                         (int) action.getNewHeight()));
@@ -133,7 +136,8 @@ public class SVGView {
             case CHANGECOLOR -> result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                             + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
                     action.getTime().getStartTime() * 100 + "ms",
-                    (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                    ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                            / speed + "ms",
                     (int) action.getOldColor().getRed(),
                     (int) action.getOldColor().getGreen(),
                     (int) action.getOldColor().getBlue(),
@@ -161,7 +165,7 @@ public class SVGView {
     IAnimatorModel animation = parseFile(in, builder);
 
     SVGView svg = new SVGView();
-    svg.create(animation);
+    svg.create(animation, 1);
     System.out.println(svg.build());
 
     //createFile("test", "svg", svg.toString());

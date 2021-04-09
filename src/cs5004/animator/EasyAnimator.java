@@ -38,16 +38,16 @@ public final class EasyAnimator {
 
 
     switch (viewType) {
-      case "text":
+      case "text" -> {
         content = animation.toString();
         format = "txt";
-        break;
-      case "svg":
+      }
+      case "svg" -> {
         SVGView svg = new SVGView();
-        svg.create(animation);
+        svg.create(animation, speed);
         content = svg.build();
         format = "svg";
-        break;
+      }
     }
 
     if (outputFile.equals("")) {
