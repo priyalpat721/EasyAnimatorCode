@@ -4,41 +4,47 @@ import java.util.List;
 
 import javax.swing.*;
 
+import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 
-public class Canvas extends JFrame{
+public class Canvas extends JFrame {
   ShapesPanel panel;
   JLabel label;
   JScrollPane scrollPane;
-  int canvasWidth;
-  int canvasHeight;
 
-  public Canvas(double width, double height) {
-    this.canvasWidth = 1000;
-    this.canvasHeight = 1000;
+  // displaying the panel with the shapes
+  public Canvas(int x, int y, double width, double height, IAnimatorModel model) {
 
     label = new JLabel();
     setTitle("Easy Animator");
     panel = new ShapesPanel();
-      setSize(canvasWidth, canvasHeight);
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      this.setLocationRelativeTo(null);
-      setVisible(true);
+    setSize((int) width * 2, (int) height * 2);
+    setLocation((int) x, (int) y);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setLocationRelativeTo(null);
+    this.setVisible(true);
 
-      panel.add(label);
+    panel.add(label);
+
+    scrollPane = new JScrollPane(); //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shapepanel in scrollpane
+  }
+
+  public void currentView(List<IShape> currentShapes) {
+    try {
+      Thread.sleep(5);
+      this.remove(panel);
+      // gets the shapes in correct position and color
+      panel.setShapes(currentShapes);
       this.add(panel);
+    }
+    catch (InterruptedException e) {
 
-      scrollPane = new JScrollPane(); //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shapepanel in scrollpane
     }
 
-    public void setShapes(List<IShape> currentShapes) {
-      for (IShape shape: currentShapes) {
-        panel.setShapes(shape);
-        this.repaint();
-      }
-      this.add(panel);
-    }
-    // buttons
+
+
+  }
+  // buttons
 
   // setShapes -> pass through on shapepanel
   // repaint
