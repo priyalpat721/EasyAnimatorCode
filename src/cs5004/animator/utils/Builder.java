@@ -15,7 +15,7 @@ import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Ellipse;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
@@ -90,7 +90,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       case RECTANGLE -> logOfShapes.put(name, new Rectangle(name));
       case TRIANGLE -> logOfShapes.put(name, new Triangle(name));
       case RHOMBUS -> logOfShapes.put(name, new Rhombus(name));
-      case OVAL -> logOfShapes.put(name, new Oval(name));
+      case ELLIPSE -> logOfShapes.put(name, new Ellipse(name));
     }
 
     return this;
@@ -110,24 +110,30 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     IShape currentShape = getCurrentShape(name);
     // This is the original shape
     IShape originalShape = null;
-    // This is the action to be added
-    IAction newAction = null;
+    // These are the actions to be added
+    IAction newMove = null;
+    IAction newScale = null;
+    IAction newColor = null;
+    IAction newStay = null;
 
     if (x1 != x2 || y1 != y2) {
-      newAction = new Move(name, currentShape, x2, y2, t1, t2);
+      newMove = new Move(name, currentShape, x2, y2, t1, t2);
       checkOverlap(name, Action.MOVE, t1, t2);
     }
-    else if (w1 != w2 || h1 != h2) {
-      newAction = new Scale(name, currentShape, w2, h2, t1, t2);
+
+    if (w1 != w2 || h1 != h2) {
+      newScale = new Scale(name, currentShape, w2, h2, t1, t2);
       checkOverlap(name, Action.SCALE, t1, t2);
     }
-    else if (r1 != r2 || g1 != g2 || b1 != b2) {
-      newAction = new ChangeColor(name, currentShape,
+
+    if (r1 != r2 || g1 != g2 || b1 != b2) {
+      newColor = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
+
     // If the values in the start column and in the end column are equal (no motion)
-    else {
+    if (x1 == x2 && y1 == y2 && w1 == w2 && h1 == h2 && r1 == r2 && g1 == g2 && b1 == b2) {
       // We get the original shape in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
@@ -139,7 +145,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       if (originalShape.getPosition() == null) {
         originalShape.setPosition(x1, y1);
         originalShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
-        originalShape.setBeginTime(t1, t2);
+        originalShape.setShowTime(t1, t2);
         switch (originalShape.getType()) {
           case CIRCLE -> originalShape.setRadius(w1);
           case SQUARE -> originalShape.setLength(w1);
@@ -150,14 +156,29 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
         }
         // If the original shape already has attributes, it means it is a "Stand still" action
       } else {
-        newAction = new Stay(name, currentShape, t1, t2);
+        newStay = new Stay(name, currentShape, t1, t2);
         checkOverlap(name, Action.STAY, t1, t2);
       }
     }
 
-    if (newAction != null) {
-      addActionToShape(name, newAction);
-      chronologicalOrderOfActions.add(newAction);
+    if (newMove != null) {
+      addActionToShape(name, newMove);
+      chronologicalOrderOfActions.add(newMove);
+    }
+
+    if (newScale != null) {
+      addActionToShape(name, newScale);
+      chronologicalOrderOfActions.add(newScale);
+    }
+
+    if (newColor != null) {
+      addActionToShape(name, newColor);
+      chronologicalOrderOfActions.add(newColor);
+    }
+
+    if (newStay != null) {
+      addActionToShape(name, newStay);
+      chronologicalOrderOfActions.add(newStay);
     }
 
     return this;

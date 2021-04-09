@@ -5,7 +5,8 @@ package cs5004.animator.shape;
  */
 public enum Shape {
   CIRCLE("circle"),
-  OVAL("oval"),
+  //ELLIPSE("ellipse"),
+  ELLIPSE("ellipse"),
   RECTANGLE("rectangle"),
   RHOMBUS("rhombus"),
   SQUARE("square"),

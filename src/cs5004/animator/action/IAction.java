@@ -55,5 +55,7 @@ public interface IAction {
 
   double getNewHeight();
 
+  RGB getOldColor();
+
   RGB getNewColor();
 }

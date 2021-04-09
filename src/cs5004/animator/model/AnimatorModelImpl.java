@@ -13,7 +13,7 @@ import cs5004.animator.action.Scale;
 import cs5004.animator.action.Stay;
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Ellipse;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
@@ -30,8 +30,6 @@ import cs5004.animator.utils.AnimationBuilder;
 public class AnimatorModelImpl implements IAnimatorModel {
   private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
-  //private final List<String> chronologicalOrderOfActions;
-
   private final List<IAction> chronologicalOrderOfActions;
 
   // This would be our canvas
@@ -51,11 +49,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   public AnimatorModelImpl(AnimationBuilder builder) {
-    this.box = builder.getBox();
     this.logOfShapes = builder.getLogOfShapes();
     this.logOfActions = builder.getLogOfActions();
     this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
 
+    this.box = builder.getBox();
   }
 
   @Override
@@ -86,8 +84,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
       logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
     } else if (type == Shape.RHOMBUS) {
       logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime));
-    } else if (type == Shape.OVAL) {
-      logOfShapes.put(name, new Oval(name, color, width, height, x, y, startTime, endTime));
+    } else if (type == Shape.ELLIPSE) {
+      logOfShapes.put(name, new Ellipse(name, color, width, height, x, y, startTime, endTime));
     }
   }
 
@@ -113,8 +111,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
       logOfShapes.put(name, new Triangle(name));
     } else if (type == Shape.RHOMBUS) {
       logOfShapes.put(name, new Rhombus(name));
-    } else if (type == Shape.OVAL) {
-      logOfShapes.put(name, new Oval(name));
+    } else if (type == Shape.ELLIPSE) {
+      logOfShapes.put(name, new Ellipse(name));
     }
 
   }
@@ -131,7 +129,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newMove = new Move(name, currentShape, newX, newY, startTime, endTime);
     addActionToShape(name, newMove);
-    //chronologicalOrderOfActions.add(newMove.toString());
     chronologicalOrderOfActions.add(newMove);
   }
 
@@ -151,7 +148,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newChangeColor = new ChangeColor(name, currentShape, newColor, startTime, endTime);
     addActionToShape(name, newChangeColor);
-    //chronologicalOrderOfActions.add(newChangeColor.toString());
     chronologicalOrderOfActions.add(newChangeColor);
   }
 
@@ -167,7 +163,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IAction newScale = new Scale(name, currentShape, newWidth, newHeight, startTime, endTime);
     addActionToShape(name, newScale);
-    //chronologicalOrderOfActions.add(newScale.toString());
     chronologicalOrderOfActions.add(newScale);
   }
 
@@ -213,8 +208,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     accString.append("Shapes:\n");
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      int[] timeOfDisplay = timeOfDisplay(entry.getKey());
-      entry.getValue().setBeginTime(timeOfDisplay[0], timeOfDisplay[1]);
+      int[] timeOfDisplay = getTimeOfDisplay(entry.getKey());
+      entry.getValue().setShowTime(timeOfDisplay[0], timeOfDisplay[1]);
       accString.append(entry.getValue().toString());
       accString.append("\n\n");
     }
@@ -222,11 +217,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
     for (int i = 0; i < chronologicalOrderOfActions.size(); i++) {
       if (chronologicalOrderOfActions.get(i).getType() != Action.STAY) {
         if (i != chronologicalOrderOfActions.size() - 1) {
-          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
           accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
           accString.append("\n");
         } else {
-          //accString.append("Shape " + chronologicalOrderOfActions.get(i));
           accString.append("Shape " + chronologicalOrderOfActions.get(i).toString());
         }
       }
@@ -317,8 +310,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getKey().equals(name)) {
         IShape shape = entry.getValue();
-        if (startTime < shape.getBeginTime().getStartTime() ||
-            endTime > shape.getBeginTime().getEndTime()) {
+        if (startTime < shape.getShowTime().getStartTime() ||
+            endTime > shape.getShowTime().getEndTime()) {
           throw new IllegalArgumentException("Action is out of range");
         }
       }
@@ -340,7 +333,33 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return this.logOfShapes;
   }
 
-  private int[] timeOfDisplay(String name) {
+  @Override
+  public int[] getTotalTime() {
+    if (logOfShapes.isEmpty()) {
+      throw new IllegalArgumentException("Animation has no shapes");
+    }
+
+    int start = -1;
+    int end = -1;
+
+    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+      IShape shape = entry.getValue();
+      int[] timeOfDisplay = getTimeOfDisplay(shape.getName());
+
+      if (start == -1 || timeOfDisplay[0] < start) {
+        start = timeOfDisplay[0];
+      }
+
+      if (end == -1 || timeOfDisplay[1] > end) {
+        end = timeOfDisplay[1];
+      }
+    }
+
+    int[] result = {start, end};
+    return result;
+  }
+
+  private int[] getTimeOfDisplay(String name) {
     int[] result = new int[2];
 
     int start = -1;
@@ -348,7 +367,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
       if (entry.getKey().equals(name)) {
-        start = entry.getValue().getBeginTime().getStartTime();
+        start = entry.getValue().getShowTime().getStartTime();
       }
     }
 

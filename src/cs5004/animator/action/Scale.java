@@ -61,7 +61,7 @@ public class Scale extends AbstractAction {
 
   @Override
   public String toString() {
-    if (currentShape.getType() == Shape.OVAL) {
+    if (currentShape.getType() == Shape.ELLIPSE) {
       return name + " scales from X radius:, " + oldWidth + "Y radius: "
              + oldHeight + " to X radius, " + newWidth + "Y radius "
              + newHeight + "from time t="

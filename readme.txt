@@ -35,14 +35,14 @@ cs5004.shape - encapsulates all the classes related to the shapes that the model
 - (A) AbstractShape: abstract class that implements IShape to enhance code re-usability.
 - (E) Shape: enum that includes the types of shapes.
 - (C) Rectangle: concrete class for the rectangle shape that extends AbstractShape.
-- (C) Oval: concrete class for the oval shape that extends AbstractShape.
+- (C) Oval: concrete class for the ellipse shape that extends AbstractShape.
 - (C) Circle: concrete class for the circle shape that extends AbstractShape.
 - (C) Square: concrete class for the square shape that extends AbstractShape.
 - (C) Triangle: concrete class for the triangle shape that extends AbstractShape.
 - (C) Rhombus: concrete class for the rhombus shape that extends AbstractShape.
 
 The shape package is in charge of:
-- Create all the shapes available: rectangle, oval, circle, square, triangle, and rhombus.
+- Create all the shapes available: rectangle, ellipse, circle, square, triangle, and rhombus.
 
 
 cs5004.utilities - encapsulates all the classes related to tools that the other packages use:

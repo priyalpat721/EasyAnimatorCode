@@ -110,4 +110,7 @@ public interface IAnimatorModel {
   List<IAction> getChronological();
 
   int[] getBox();
+
+  int[] getTotalTime();
+
 }

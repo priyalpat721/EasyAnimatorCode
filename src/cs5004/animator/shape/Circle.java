@@ -38,7 +38,7 @@ public class Circle extends AbstractShape {
 
     return new Circle(this.name, this.color, this.radius, this.radius,
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
+            this.getShowTime().getStartTime(), this.getShowTime().getEndTime());
   }
 
   @Override
@@ -48,8 +48,8 @@ public class Circle extends AbstractShape {
            + "Center: " + this.position.toString()
            + String.format(", Radius: %.1f", this.radius)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.beginTime.getEndTime();
+           + "Appears at t=" + this.showTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.showTime.getEndTime();
   }
 
 }

@@ -21,7 +21,7 @@ public class AnimatorModelImplTest {
     model1 = new AnimatorModelImpl();
     model1.createShape("R", Shape.RECTANGLE, new RGB(1, 1, 1),
         50, 100, 200, 200, 1, 100);
-    model1.createShape("O", Shape.OVAL, new RGB(21, 21, 21), 60,
+    model1.createShape("O", Shape.ELLIPSE, new RGB(21, 21, 21), 60,
         30, 500, 100, 6, 100);
     model1.createShape("T", Shape.TRIANGLE, new RGB(34, 0, 1),
         45.12, 30.54, 78, 234, 23, 75);
@@ -151,13 +151,13 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
                  + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\n" + "Disappears at t=100\n" +
                  "\n", model1.toString());
 
     //create shape with starting and ending time of zero
-    model1.createShape("X", Shape.OVAL, new RGB(0, 0, 0), 35, 47,
+    model1.createShape("X", Shape.ELLIPSE, new RGB(0, 0, 0), 35, 47,
         234, 16, 0, 0);
     assertEquals("Shapes:\n" +
                  "Name: R\n" +
@@ -191,13 +191,13 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: X\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (234.0,16.0), X radius: 35.0, Y radius: 47.0, Color: (0.0,0.0,0.0)\n" +
                  "Appears at t=0\n" +
                  "Disappears at t=0\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
                  + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\n"
                  + "Disappears at t=100\n" + "\n", model1.toString());
@@ -311,7 +311,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  +
                  "Appears at t=6\n" +
@@ -348,7 +348,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  +
                  "Appears at t=6\n" +
@@ -528,7 +528,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n"
+                 "Type: ellipse\n"
                  + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: "
                  + "(21.0,21.0,21.0)\n" +
                  "Appears at t=6\n" + "Disappears at t=100\n" +
@@ -565,7 +565,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  + "Appears at t=6\n" + "Disappears at t=100\n" + "\n"
                  + "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) "
@@ -605,7 +605,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
                  + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\n" + "Disappears at t=100\n" +
                  "\n" + "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) "
@@ -640,7 +640,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  + "Appears at t=6\n" +
                  "Disappears at t=100\n" +
@@ -759,7 +759,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
                  + "Color: (21.0,21.0,21.0)\n" +
                  "Appears at t=6\n" +
@@ -799,7 +799,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  +
                  "Appears at t=6\n" +
@@ -837,7 +837,7 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testGetShapesAtTickAfterFewActions() {
-    model2.createShape("O3", Shape.OVAL, new RGB(3, 34, 16),
+    model2.createShape("O3", Shape.ELLIPSE, new RGB(3, 34, 16),
         32, 16, 45, 67, 50, 100);
     model2.move("O3", 50, 75, 51, 70);
     model2.scale("O3", 40, 20, 52, 54);
@@ -855,7 +855,7 @@ public class AnimatorModelImplTest {
                  "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (254.0,45.0,130.0)\n" +
                  "Appears at t=80\n" +
                  "Disappears at t=99, Name: O3\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (45.0,67.0), X radius: 32.0, Y radius: 16.0, Color: (3.0,34.0,16.0)\n" +
                  "Appears at t=50\n" +
                  "Disappears at t=100, Name: T3\n" +
@@ -893,7 +893,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=99\n" +
                  "\n" +
                  "Name: O\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
                  +
                  "Appears at t=6\n" +
@@ -922,7 +922,7 @@ public class AnimatorModelImplTest {
     AnimatorModelImpl model3 = new AnimatorModelImpl();
     model3.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
         50, 100, 200, 200, 1, 100);
-    model3.createShape("C", Shape.OVAL, new RGB(0, 0, 1), 60,
+    model3.createShape("C", Shape.ELLIPSE, new RGB(0, 0, 1), 60,
         30, 500, 100, 6, 100);
     model3.move("R", 300, 300, 10, 50);
     model3.move("C", 500, 400, 20, 70);
@@ -938,7 +938,7 @@ public class AnimatorModelImplTest {
                  "Disappears at t=100\n" +
                  "\n" +
                  "Name: C\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)\n" +
                  "Appears at t=6\n" +
                  "Disappears at t=100\n" +

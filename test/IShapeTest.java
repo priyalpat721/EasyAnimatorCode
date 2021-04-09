@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Ellipse;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.tools.RGB;
 import cs5004.animator.shape.Rhombus;
@@ -18,13 +18,13 @@ import static org.junit.Assert.assertEquals;
  */
 public class IShapeTest {
   private IShape rectangle;
-  private IShape oval;
+  private IShape ellipse;
   private IShape square;
   private IShape circle;
   private IShape triangle;
   private IShape rhombus;
   private IShape r2;
-  private IShape o2;
+  private IShape e2;
   private IShape s2;
   private IShape c2;
   private IShape t2;
@@ -35,7 +35,7 @@ public class IShapeTest {
     rectangle = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
             200, 200, 1, 100);
 
-    oval = new Oval("C", new RGB(0, 0, 1), 60, 30,
+    ellipse = new Ellipse("C", new RGB(0, 0, 1), 60, 30,
             500, 100, 6, 100);
 
     square = new Square("S", new RGB(0, 1, 0), 40, 40,
@@ -61,13 +61,13 @@ public class IShapeTest {
                  "Appears at t=1\n" +
                  "Disappears at t=100", rectangle.toString());
 
-    oval = new Oval("C", new RGB(0, 0, 1), 60, 30,
+    ellipse = new Ellipse("C", new RGB(0, 0, 1), 60, 30,
             500, 100, 6, 100);
     assertEquals("Name: C\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)\n" +
                  "Appears at t=6\n" +
-                 "Disappears at t=100", oval.toString());
+                 "Disappears at t=100", ellipse.toString());
 
     square = new Square("S", new RGB(0, 1, 0), 40, 40,
             0, 0, 10, 100);
@@ -172,14 +172,14 @@ public class IShapeTest {
   @Test
   public void testGetName() {
     assertEquals("R", rectangle.getName());
-    assertEquals("C", oval.getName());
+    assertEquals("C", ellipse.getName());
     assertEquals("S", square.getName());
   }
 
   @Test
   public void testGetType() {
     assertEquals(Shape.RECTANGLE, rectangle.getType());
-    assertEquals(Shape.OVAL, oval.getType());
+    assertEquals(Shape.ELLIPSE, ellipse.getType());
     assertEquals(Shape.SQUARE, square.getType());
     assertEquals(Shape.CIRCLE, circle.getType());
     assertEquals(Shape.TRIANGLE, triangle.getType());
@@ -188,10 +188,10 @@ public class IShapeTest {
 
   @Test
   public void testGetTotalTime() {
-    assertEquals(1, rectangle.getBeginTime().getStartTime());
-    assertEquals(100, rectangle.getBeginTime().getEndTime());
-    assertEquals(6, oval.getBeginTime().getStartTime());
-    assertEquals(100, oval.getBeginTime().getEndTime());
+    assertEquals(1, rectangle.getShowTime().getStartTime());
+    assertEquals(100, rectangle.getShowTime().getEndTime());
+    assertEquals(6, ellipse.getShowTime().getStartTime());
+    assertEquals(100, ellipse.getShowTime().getEndTime());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -222,8 +222,8 @@ public class IShapeTest {
   public void testGetPosition() {
     assertEquals(200, rectangle.getPosition().getX(), 0.01);
     assertEquals(200, rectangle.getPosition().getY(), 0.01);
-    assertEquals(500, oval.getPosition().getX(), 0.01);
-    assertEquals(100, oval.getPosition().getY(), 0.01);
+    assertEquals(500, ellipse.getPosition().getX(), 0.01);
+    assertEquals(100, ellipse.getPosition().getY(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -269,7 +269,7 @@ public class IShapeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalColorNull() {
-    IShape r1 = new Oval("R", null, 50, 100,
+    IShape r1 = new Ellipse("R", null, 50, 100,
             200, 200, 1, 100);
   }
 
@@ -325,7 +325,7 @@ public class IShapeTest {
   @Test
   public void testGetWidth() {
     assertEquals(50, rectangle.getWidth(), 0.01);
-    assertEquals(60, oval.getWidth(), 0.01);
+    assertEquals(60, ellipse.getWidth(), 0.01);
     assertEquals(20, triangle.getWidth(), 0.01);
     assertEquals(50, rhombus.getWidth(), 0.01);
   }
@@ -333,7 +333,7 @@ public class IShapeTest {
   @Test
   public void testGetHeight() {
     assertEquals(100, rectangle.getHeight(), 0.01);
-    assertEquals(30, oval.getHeight(), 0.01);
+    assertEquals(30, ellipse.getHeight(), 0.01);
     assertEquals(30, triangle.getHeight(), 0.01);
     assertEquals(60, rhombus.getHeight(), 0.01);
   }
@@ -341,9 +341,9 @@ public class IShapeTest {
   @Test
   public void testSetWidth() {
     rectangle.setWidth(20);
-    oval.setWidth(30);
+    ellipse.setWidth(30);
     assertEquals(20, rectangle.getWidth(), 0.01);
-    assertEquals(30, oval.getWidth(), 0.01);
+    assertEquals(30, ellipse.getWidth(), 0.01);
 
     //setting width with long decimal numbers
     rhombus.setWidth(30.823787428394928399);
@@ -359,15 +359,15 @@ public class IShapeTest {
   @Test
   public void testSetHeight() {
     rectangle.setHeight(40);
-    oval.setHeight(50);
+    ellipse.setHeight(50);
     assertEquals(40, rectangle.getHeight(), 0.01);
-    assertEquals(50, oval.getHeight(), 0.01);
+    assertEquals(50, ellipse.getHeight(), 0.01);
 
     //setting height to large decimal number
     rectangle.setHeight(60.2384782742874);
-    oval.setHeight(50.9829348920293);
+    ellipse.setHeight(50.9829348920293);
     assertEquals(60.2384782742874, rectangle.getHeight(), 0.01);
-    assertEquals(50.9829348920293, oval.getHeight(), 0.01);
+    assertEquals(50.9829348920293, ellipse.getHeight(), 0.01);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -464,14 +464,14 @@ public class IShapeTest {
 
   @Test
   public void testCreateLegalOval() {
-    o2 = new Oval("O2", new RGB(255, 255, 255), 55, 15,
+    e2 = new Ellipse("O2", new RGB(255, 255, 255), 55, 15,
             300, 200, 1, 96);
     assertEquals("Name: O2\n"
-                 + "Type: oval\n"
+                 + "Type: ellipse\n"
                  + "Center: (300.0,200.0), X radius: 55.0, Y "
                  + "radius: 15.0, Color: (255.0,255.0,255.0)\n"
                  + "Appears at t=1\n"
-                 + "Disappears at t=96", o2.toString());
+                 + "Disappears at t=96", e2.toString());
   }
 
   @Test
@@ -546,14 +546,14 @@ public class IShapeTest {
                  "Disappears at t=100", s2.toString());
 
     //highest RGB numbers, large position, large dimensions, long time
-    o2 = new Oval("C2", new RGB(255, 255, 255), 6023, 3001,
+    e2 = new Ellipse("C2", new RGB(255, 255, 255), 6023, 3001,
             5000, 10000, 6, 10000);
     assertEquals("Name: C2\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (5000.0,10000.0), X radius: 6023.0, Y radius: 3001.0, "
                  + "Color: (255.0,255.0,255.0)\n" + "Appears at t=6\n" +
                  "Disappears at t=10000",
-            o2.toString());
+            e2.toString());
 
     rh2 = new Rhombus("RH2", new RGB(20, 20, 20), 50, 60,
             2, 2, 1, 80000);
@@ -584,14 +584,14 @@ public class IShapeTest {
                  "Appears at t=1\n" +
                  "Disappears at t=100", r2.toString());
 
-    o2 = new Oval("O2", new RGB(100.283748378, 200.842734820, 10.1728387172),
+    e2 = new Ellipse("O2", new RGB(100.283748378, 200.842734820, 10.1728387172),
             60.92837817303429883984829483, 30.987238482783782834274,
             500.823748278432934892920, 100.93829480929483287428, 6, 100);
     assertEquals("Name: O2\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.8,100.9), X radius: 60.9, Y radius: 31.0, "
                  + "Color: (100.3,200.8,10.2)\n" + "Appears at t=6\n" +
-                 "Disappears at t=100", o2.toString());
+                 "Disappears at t=100", e2.toString());
 
     c2 = new Circle("C2",
             new RGB(254.9999999999999999999, 254.9999999999999999999,
@@ -633,10 +633,10 @@ public class IShapeTest {
                  "Appears at t=1\n" +
                  "Disappears at t=80", rhombus.toString());
     assertEquals("Name: C\n" +
-                 "Type: oval\n" +
+                 "Type: ellipse\n" +
                  "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (0.0,0.0,1.0)\n" +
                  "Appears at t=6\n" +
-                 "Disappears at t=100", oval.toString());
+                 "Disappears at t=100", ellipse.toString());
   }
 
 }
