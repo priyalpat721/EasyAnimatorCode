@@ -23,7 +23,7 @@ public class SVGView {
     this.result = new StringBuilder();
   }
 
-  public void buildSVG(IAnimatorModel model) {
+  public void create(IAnimatorModel model) {
 
     HashMap<String, IShape> shapes = model.getLogOfShapes();
     List<IAction> actions = model.getChronological();
@@ -131,11 +131,9 @@ public class SVGView {
     result.append("</svg>");
   }
 
-  @Override
-  public String toString() {
+  public String build() {
     return this.result.toString();
   }
-
 
 
   public static void main(String[] args) throws IOException {
@@ -145,8 +143,8 @@ public class SVGView {
     IAnimatorModel animation = parseFile(in, builder);
 
     SVGView svg = new SVGView();
-    svg.buildSVG(animation);
-    System.out.println(svg.toString());
+    svg.create(animation);
+    System.out.println(svg.build());
 
     //createFile("test", "svg", svg.toString());
 
