@@ -10,6 +10,7 @@ import java.util.Map;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
@@ -52,8 +53,16 @@ public class SVGView {
           attributes[1] = "cy";
           attributes[2] = "rx";
           attributes[3] = "ry";
-      };
+          break;
+        case CIRCLE:
+          tag = "circle";
+          attributes[0] = "cx";
+          attributes[1] = "cy";
+          attributes[2] = "r";
+          attributes[3] = "";
+      }
 
+      if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
       result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
               + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
                                                               shape.getName(),
@@ -68,6 +77,9 @@ public class SVGView {
                                                              (int) shape.getColor().getRed(),
                                                              (int) shape.getColor().getGreen(),
                                                              (int) shape.getColor().getBlue()));
+      }
+      
+
 
       for (IAction action : actions) {
         if (action.getName().equals(shape.getName())) {
