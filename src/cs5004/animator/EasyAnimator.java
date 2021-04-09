@@ -27,7 +27,6 @@ public final class EasyAnimator {
     }
 
     String content = "";
-    String format = "";
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
     var fileName = "src/cs5004/animator/" + inputFile;
@@ -40,13 +39,11 @@ public final class EasyAnimator {
     switch (viewType) {
       case "text" -> {
         content = animation.toString();
-        format = "txt";
       }
       case "svg" -> {
         SVGView svg = new SVGView();
         svg.create(animation, speed);
         content = svg.build();
-        format = "svg";
       }
     }
 
