@@ -168,22 +168,16 @@ public class SVGView {
 
 
   public static void main(String[] args) throws IOException {
-//    AnimationBuilder<IAnimatorModel> builder = new Builder();
-//    var fileName = "src/cs5004/animator/demo.txt";
-//    Readable in = new FileReader(fileName);
-//    IAnimatorModel animation = parseFile(in, builder);
-//
-//    SVGView svg = new SVGView();
-//    svg.create(animation, 1);
-//    System.out.println(svg.build());
+    AnimationBuilder<IAnimatorModel> builder = new Builder();
+    var fileName = "src/cs5004/animator/demo.txt";
+    Readable in = new FileReader(fileName);
+    IAnimatorModel animation = parseFile(in, builder);
+
+    SVGView svg = new SVGView();
+    svg.create(animation, 1);
+    System.out.println(svg.build());
 
     //createFile("test", "svg", svg.toString());
-
-    String test = "test.svg";
-
-    String[] split = test.split("\\.");
-
-    System.out.println(Arrays.toString(split));
   }
 
 }
