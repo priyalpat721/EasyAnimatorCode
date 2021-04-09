@@ -112,7 +112,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public double getWidth() {
-    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+    if (this.type != Shape.CIRCLE) {
       return this.width;
     } else {
       throw new IllegalArgumentException("Invalid shape");
@@ -121,7 +121,7 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public double getHeight() {
-    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+    if (this.type != Shape.CIRCLE) {
       return this.height;
     } else {
       throw new IllegalArgumentException("Invalid shape");
@@ -134,7 +134,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalArgumentException("New width cannot be negative");
     }
 
-    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+    if (this.type != Shape.CIRCLE) {
       this.width = newWidth;
     } else {
       throw new IllegalArgumentException("Invalid shape");
@@ -147,7 +147,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalArgumentException("New height cannot be negative");
     }
 
-    if (this.type != Shape.CIRCLE && this.type != Shape.SQUARE) {
+    if (this.type != Shape.CIRCLE) {
       this.height = newHeight;
     } else {
       throw new IllegalArgumentException("Invalid shape");

@@ -78,8 +78,21 @@ public class SVGView {
                                                              (int) shape.getColor().getGreen(),
                                                              (int) shape.getColor().getBlue()));
       }
-      
 
+      if (shape.getType() == Shape.CIRCLE) {
+        result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
+                        + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
+                shape.getName(),
+                attributes[0],
+                (int) shape.getPosition().getX(),
+                attributes[1],
+                (int) shape.getPosition().getY(),
+                attributes[2],
+                (int) shape.getRadius(),
+                (int) shape.getColor().getRed(),
+                (int) shape.getColor().getGreen(),
+                (int) shape.getColor().getBlue()));
+      }
 
       for (IAction action : actions) {
         if (action.getName().equals(shape.getName())) {
@@ -112,13 +125,15 @@ public class SVGView {
                       (int) action.getOldWidth(),
                       (int) action.getNewWidth()));
 
-              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                      action.getTime().getStartTime() * 100 + "ms",
-                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                      attributes[3],
-                      (int) action.getOldHeight(),
-                      (int) action.getNewHeight()));
+              if (shape.getType() != Shape.CIRCLE) {
+                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                                + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                        action.getTime().getStartTime() * 100 + "ms",
+                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                        attributes[3],
+                        (int) action.getOldHeight(),
+                        (int) action.getNewHeight()));
+              }
 
               break;
 
