@@ -1,6 +1,5 @@
 package cs5004.animator.view;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,7 +13,6 @@ import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
-import static cs5004.animator.tools.FileCreator.createFile;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class SVGView {

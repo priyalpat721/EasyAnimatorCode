@@ -1,49 +1,33 @@
 package cs5004.animator;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
+import cs5004.animator.view.SVGView;
 
+import static cs5004.animator.tools.Helpers.createFile;
+import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public final class EasyAnimator {
 
   // Entry point to our program
   public static void main(String[] args) throws FileNotFoundException {
-    String inputFile = "";
-    String outputFile = "";
-    String viewType = "";
+    String[] commands = parseCommands(args);
+    String inputFile = commands[0];
+    String viewType = commands[1];
+    String outputFile = commands[2];
     int speed = 1;
+    if (!commands[3].equals("")) {
+      speed = Integer.parseInt(commands[3]);
+    }
 
+    String content = "";
+    String format = "";
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-
-    for (int i = 0; i < args.length; i++) {
-      if (args[i].equals("-in")) {
-        inputFile = args[i + 1];
-      }
-
-      if (args[i].equals("-out")) {
-        outputFile = args[i + 1];
-      }
-
-      if (args[i].equals("-view")) {
-        viewType = args[i + 1];
-      }
-
-      if (args[i].equals("-speed")) {
-        speed = Integer.parseInt(args[i + 1]);
-      }
-    }
-
-    if (inputFile.equals("")) {
-      throw new IllegalArgumentException("Input file is mandatory");
-    } else if (viewType.equals("")) {
-      throw new IllegalArgumentException("View type is mandatory");
-    }
 
     var fileName = "src/cs5004/animator/" + inputFile;
 
@@ -52,9 +36,25 @@ public final class EasyAnimator {
 
     IAnimatorModel animation = parseFile(in, builder);
 
-    // Test the result model
-    System.out.println(animation.toString());
 
+    switch (viewType) {
+      case "text":
+        content = animation.toString();
+        format = "txt";
+        break;
+      case "svg":
+        SVGView svg = new SVGView();
+        svg.create(animation);
+        content = svg.build();
+        format = "svg";
+        break;
+    }
+
+    if (outputFile.equals("")) {
+      System.out.println(content);
+    } else {
+      createFile(outputFile, format, content);
+    }
 
   }
 
