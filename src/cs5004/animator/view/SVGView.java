@@ -31,7 +31,6 @@ public class SVGView {
                     + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
             model.getBox()[2], model.getBox()[3]));
 
-
     for (Map.Entry<String, IShape> entry : shapes.entrySet()) {
       IShape shape = entry.getValue();
       String tag = "";
