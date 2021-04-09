@@ -117,7 +117,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     IAction newStay = null;
 
     if (x1 != x2 || y1 != y2) {
-      System.out.println("MOVE");
       newMove = new Move(name, currentShape, x2, y2, t1, t2);
       checkOverlap(name, Action.MOVE, t1, t2);
     }
@@ -128,7 +127,6 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     }
 
     if (r1 != r2 || g1 != g2 || b1 != b2) {
-      System.out.println("COLOR");
       newColor = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);

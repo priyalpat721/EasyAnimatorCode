@@ -34,19 +34,35 @@ public class SVGView {
 
     for (Map.Entry<String, IShape> entry : shapes.entrySet()) {
       IShape shape = entry.getValue();
+      String tag = "";
+      String[] attributes = new String[4];
 
-      String tag = switch (shape.getType()) {
-        case RECTANGLE -> "rect";
-        case ELLIPSE -> "ellipse";
-        default -> "";
+      switch (shape.getType()) {
+        case RECTANGLE:
+          tag = "rect";
+          attributes[0] = "x";
+          attributes[1] = "y";
+          attributes[2] = "width";
+          attributes[3] = "height";
+          break;
+        case ELLIPSE:
+          tag = "ellipse";
+          attributes[0] = "cx";
+          attributes[1] = "cy";
+          attributes[2] = "rx";
+          attributes[3] = "ry";
       };
 
-      result.append(String.format("<%s id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" "
+      result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
               + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
                                                               shape.getName(),
+                                                             attributes[0],
                                                              (int) shape.getPosition().getX(),
+                                                             attributes[1],
                                                              (int) shape.getPosition().getY(),
+                                                             attributes[2],
                                                              (int) shape.getWidth(),
+                                                             attributes[3],
                                                              (int) shape.getHeight(),
                                                              (int) shape.getColor().getRed(),
                                                              (int) shape.getColor().getGreen(),
