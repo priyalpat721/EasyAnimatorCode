@@ -110,24 +110,32 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
     IShape currentShape = getCurrentShape(name);
     // This is the original shape
     IShape originalShape = null;
-    // This is the action to be added
-    IAction newAction = null;
+    // These are the actions to be added
+    IAction newMove = null;
+    IAction newScale = null;
+    IAction newColor = null;
+    IAction newStay = null;
 
     if (x1 != x2 || y1 != y2) {
-      newAction = new Move(name, currentShape, x2, y2, t1, t2);
+      System.out.println("MOVE");
+      newMove = new Move(name, currentShape, x2, y2, t1, t2);
       checkOverlap(name, Action.MOVE, t1, t2);
     }
-    else if (w1 != w2 || h1 != h2) {
-      newAction = new Scale(name, currentShape, w2, h2, t1, t2);
+
+    if (w1 != w2 || h1 != h2) {
+      newScale = new Scale(name, currentShape, w2, h2, t1, t2);
       checkOverlap(name, Action.SCALE, t1, t2);
     }
-    else if (r1 != r2 || g1 != g2 || b1 != b2) {
-      newAction = new ChangeColor(name, currentShape,
+
+    if (r1 != r2 || g1 != g2 || b1 != b2) {
+      System.out.println("COLOR");
+      newColor = new ChangeColor(name, currentShape,
               new RGB((double) r2, (double) g2, (double) b2), t1, t2);
       checkOverlap(name, Action.CHANGECOLOR, t1, t2);
     }
+
     // If the values in the start column and in the end column are equal (no motion)
-    else {
+    if (x1 == x2 && y1 == y2 && w1 == w2 && h1 == h2 && r1 == r2 && g1 == g2 && b1 == b2) {
       // We get the original shape in log of shapes
       for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
         if (object.getKey().equals(name)) {
@@ -150,14 +158,29 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
         }
         // If the original shape already has attributes, it means it is a "Stand still" action
       } else {
-        newAction = new Stay(name, currentShape, t1, t2);
+        newStay = new Stay(name, currentShape, t1, t2);
         checkOverlap(name, Action.STAY, t1, t2);
       }
     }
 
-    if (newAction != null) {
-      addActionToShape(name, newAction);
-      chronologicalOrderOfActions.add(newAction);
+    if (newMove != null) {
+      addActionToShape(name, newMove);
+      chronologicalOrderOfActions.add(newMove);
+    }
+
+    if (newScale != null) {
+      addActionToShape(name, newScale);
+      chronologicalOrderOfActions.add(newScale);
+    }
+
+    if (newColor != null) {
+      addActionToShape(name, newColor);
+      chronologicalOrderOfActions.add(newColor);
+    }
+
+    if (newStay != null) {
+      addActionToShape(name, newStay);
+      chronologicalOrderOfActions.add(newStay);
     }
 
     return this;

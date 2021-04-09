@@ -141,6 +141,11 @@ public abstract class AbstractAction implements IAction {
   }
 
   @Override
+  public RGB getOldColor() {
+    return this.oldColor;
+  }
+
+  @Override
   public RGB getNewColor() {
     return this.newColor;
   }
