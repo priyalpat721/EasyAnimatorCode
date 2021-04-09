@@ -145,7 +145,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       if (originalShape.getPosition() == null) {
         originalShape.setPosition(x1, y1);
         originalShape.setColor(new RGB((double) r1, (double) g2, (double) b2));
-        originalShape.setBeginTime(t1, t2);
+        originalShape.setShowTime(t1, t2);
         switch (originalShape.getType()) {
           case CIRCLE -> originalShape.setRadius(w1);
           case SQUARE -> originalShape.setLength(w1);

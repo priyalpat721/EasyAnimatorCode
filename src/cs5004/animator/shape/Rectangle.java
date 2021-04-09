@@ -28,7 +28,7 @@ public class Rectangle extends AbstractShape {
 
     return new Rectangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
+            this.getShowTime().getStartTime(), this.getShowTime().getEndTime());
   }
 
 }

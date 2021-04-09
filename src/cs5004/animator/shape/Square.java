@@ -33,7 +33,7 @@ public class Square extends AbstractShape {
 
     return new Square(this.name, this.color, this.length, this.length,
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
+            this.getShowTime().getStartTime(), this.getShowTime().getEndTime());
   }
 
   @Override
@@ -43,7 +43,7 @@ public class Square extends AbstractShape {
            + "Min corner: " + this.position.toString()
            + String.format(", Length: %.1f", this.length)
            + ", Color: " + this.color.toString() + "\n"
-           + "Appears at t=" + this.beginTime.getStartTime() + "\n"
-           + "Disappears at t=" + this.beginTime.getEndTime();
+           + "Appears at t=" + this.showTime.getStartTime() + "\n"
+           + "Disappears at t=" + this.showTime.getEndTime();
   }
 }

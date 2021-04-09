@@ -28,6 +28,6 @@ public class Triangle extends AbstractShape {
 
     return new Triangle(this.name, this.color, this.getWidth(), this.getHeight(),
             this.getPosition().getX(), this.getPosition().getY(),
-            this.getBeginTime().getStartTime(), this.getBeginTime().getEndTime());
+            this.getShowTime().getStartTime(), this.getShowTime().getEndTime());
   }
 }

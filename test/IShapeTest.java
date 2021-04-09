@@ -188,10 +188,10 @@ public class IShapeTest {
 
   @Test
   public void testGetTotalTime() {
-    assertEquals(1, rectangle.getBeginTime().getStartTime());
-    assertEquals(100, rectangle.getBeginTime().getEndTime());
-    assertEquals(6, ellipse.getBeginTime().getStartTime());
-    assertEquals(100, ellipse.getBeginTime().getEndTime());
+    assertEquals(1, rectangle.getShowTime().getStartTime());
+    assertEquals(100, rectangle.getShowTime().getEndTime());
+    assertEquals(6, ellipse.getShowTime().getStartTime());
+    assertEquals(100, ellipse.getShowTime().getEndTime());
   }
 
   @Test(expected = IllegalArgumentException.class)
