@@ -22,6 +22,7 @@ public class SVGView {
     this.result = new StringBuilder();
   }
 
+
   public void buildSVG(IAnimatorModel model) {
 
     List<IAction> actions = model.getChronological();

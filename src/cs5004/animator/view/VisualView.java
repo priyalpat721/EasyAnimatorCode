@@ -13,16 +13,38 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class VisualView {
-  int ticksPerSecond;
-  // need start and end up
 
   public void buildVisualView(IAnimatorModel model) throws InterruptedException {
     Canvas canvas = new Canvas(model.getBox()[2], model.getBox()[3]);
-    for (int i = 1; i < 51; i++) {
+
+      //System.out.println(model.getShapesAtTicks(i).get(0));
+//      canvas.setShapes(model.getShapesAtTicks(10));
+//      try{
+//        Thread.sleep(1000);
+//        canvas.repaint();
+//        canvas.setShapes(model.getShapesAtTicks(51));
+//      }
+//      catch (InterruptedException e) {
+//
+//      }
+//
+//
+
+//    for (int i = 1; i < 10; i++) {
+//      try {
+//        Thread.sleep(1000);
+//        //System.out.println(model.getShapesAtTicks(i).get(0));
+//        canvas.setShapes(model.getShapesAtTicks(i));
+//      }
+//      catch (InterruptedException e) {
+//      }
+//    }
+
+    for (int j = 1; j < 2; j++) {
       try {
         Thread.sleep(1000);
-        System.out.println(model.getShapesAtTicks(i).get(0).getPosition().getX());
-        canvas.setShapes(model.getShapesAtTicks(i));
+        System.out.println(model.getShapesAtTicks(j).get(0));
+        canvas.setShapes(model.getShapesAtTicks(j));
       }
       catch (InterruptedException e) {
       }
@@ -36,12 +58,15 @@ public class VisualView {
     IAnimatorModel animation = parseFile(in, builder);
 
 
-    java.awt.EventQueue.invokeLater(() -> {
-      VisualView visual = new VisualView();
-      try {
-        visual.buildVisualView(animation);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        VisualView visual = new VisualView();
+        try {
+          visual.buildVisualView(animation);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
       }
     });
   }

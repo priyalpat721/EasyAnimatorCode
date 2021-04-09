@@ -34,9 +34,9 @@ public class Canvas extends JFrame{
     public void setShapes(List<IShape> currentShapes) {
       for (IShape shape: currentShapes) {
         panel.setShapes(shape);
+        this.repaint();
       }
       this.add(panel);
-      this.repaint();
     }
     // buttons
 
