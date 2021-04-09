@@ -33,82 +33,90 @@ public class SVGView {
 
 
     for (Map.Entry<String, IShape> entry : shapes.entrySet()) {
-      if (entry.getValue().getType() == Shape.RECTANGLE) {
-        IShape shape = entry.getValue();
-        result.append(String.format("<rect id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" "
-                + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", shape.getName(),
-                                                               (int) shape.getPosition().getX(),
-                                                               (int) shape.getPosition().getY(),
-                                                               (int) shape.getWidth(),
-                                                               (int) shape.getHeight(),
-                                                               (int) shape.getColor().getRed(),
-                                                               (int) shape.getColor().getGreen(),
-                                                               (int) shape.getColor().getBlue()));
-        for (IAction action : model.getChronological()) {
-          if (action.getName().equals(shape.getName())) {
-            switch (action.getType()) {
-              case MOVE:
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                        + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getOldPosition().getX(),
-                        (int) action.getNewPosition().getX()));
+      IShape shape = entry.getValue();
 
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getOldPosition().getY(),
-                        (int) action.getNewPosition().getY()));
+      String tag = switch (shape.getType()) {
+        case RECTANGLE -> "rect";
+        case ELLIPSE -> "ellipse";
+        default -> "";
+      };
 
-                break;
+      result.append(String.format("<%s id=\"%s\" x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" "
+              + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
+                                                              shape.getName(),
+                                                             (int) shape.getPosition().getX(),
+                                                             (int) shape.getPosition().getY(),
+                                                             (int) shape.getWidth(),
+                                                             (int) shape.getHeight(),
+                                                             (int) shape.getColor().getRed(),
+                                                             (int) shape.getColor().getGreen(),
+                                                             (int) shape.getColor().getBlue()));
 
-              case SCALE:
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getOldWidth(),
-                        (int) action.getNewWidth()));
 
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getOldHeight(),
-                        (int) action.getNewHeight()));
+      for (IAction action : model.getChronological()) {
+        if (action.getName().equals(shape.getName())) {
+          switch (action.getType()) {
+            case MOVE:
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getOldPosition().getX(),
+                      (int) action.getNewPosition().getX()));
 
-                break;
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getOldPosition().getY(),
+                      (int) action.getNewPosition().getY()));
 
-              case CHANGECOLOR:
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"r\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getCurrentShape().getColor().getRed(),
-                        (int) action.getNewColor().getRed()));
+              break;
 
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"g\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getCurrentShape().getColor().getGreen(),
-                        (int) action.getNewColor().getGreen()));
+            case SCALE:
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getOldWidth(),
+                      (int) action.getNewWidth()));
 
-                result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                                + "attributeName=\"b\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
-                        (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                        (int) action.getCurrentShape().getColor().getBlue(),
-                        (int) action.getNewColor().getBlue()));
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getOldHeight(),
+                      (int) action.getNewHeight()));
 
-                break;
-            }
+              break;
+
+            case CHANGECOLOR:
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"r\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getCurrentShape().getColor().getRed(),
+                      (int) action.getNewColor().getRed()));
+
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"g\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getCurrentShape().getColor().getGreen(),
+                      (int) action.getNewColor().getGreen()));
+
+              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                              + "attributeName=\"b\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      (int) action.getCurrentShape().getColor().getBlue(),
+                      (int) action.getNewColor().getBlue()));
+
+              break;
           }
         }
-        result.append("</rect>\n\n");
       }
+      result.append(String.format("</%s>\n\n", tag));
     }
 
     result.append("</svg>");

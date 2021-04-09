@@ -15,7 +15,7 @@ import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Ellipse;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
@@ -90,7 +90,7 @@ public class Builder implements AnimationBuilder<IAnimatorModel> {
       case RECTANGLE -> logOfShapes.put(name, new Rectangle(name));
       case TRIANGLE -> logOfShapes.put(name, new Triangle(name));
       case RHOMBUS -> logOfShapes.put(name, new Rhombus(name));
-      case OVAL -> logOfShapes.put(name, new Oval(name));
+      case ELLIPSE -> logOfShapes.put(name, new Ellipse(name));
     }
 
     return this;

@@ -7,7 +7,7 @@ import cs5004.animator.action.Move;
 import cs5004.animator.action.Scale;
 import cs5004.animator.shape.Circle;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Oval;
+import cs5004.animator.shape.Ellipse;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Square;
@@ -23,7 +23,7 @@ public class IActionTest {
   IAction move;
   IShape circle1;
   IAction color;
-  IShape oval1;
+  IShape ellipse1;
   IAction scale;
   IShape square1;
   IAction move2;
@@ -49,9 +49,9 @@ public class IActionTest {
             15, 20);
 
     // for the scale class
-    oval1 = new Oval("Oval1", new RGB(1.0, 1.0, 1.0),
+    ellipse1 = new Ellipse("ellipse1", new RGB(1.0, 1.0, 1.0),
             50, 100, 200, 200, 1, 100);
-    scale = new Scale("Oval1", oval1,
+    scale = new Scale("ellipse1", ellipse1,
             300.8, 300.156, 10, 15);
   }
 
@@ -69,7 +69,7 @@ public class IActionTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void illegalNameMoveConstructorTest() {
-    move2 = new Move("Square1", oval1, 100, 100, 1,10);
+    move2 = new Move("Square1", ellipse1, 100, 100, 1,10);
   }
 
   @Test (expected = IllegalArgumentException.class)
@@ -98,7 +98,7 @@ public class IActionTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void illegalNameChangeColorConstructorTest() {
-    color2 = new ChangeColor("Square1", oval1, new RGB(200, 215, 218),
+    color2 = new ChangeColor("Square1", ellipse1, new RGB(200, 215, 218),
             1, 10);
   }
 
@@ -110,7 +110,7 @@ public class IActionTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void illegalNameEmptyChangeColorConstructorTest() {
-    color3 = new ChangeColor("", oval1, new RGB(200, 215, 218),
+    color3 = new ChangeColor("", ellipse1, new RGB(200, 215, 218),
             1, 10);
   }
 
@@ -141,7 +141,7 @@ public class IActionTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void illegalNameScaleConstructorTest() {
-    scale2 = new Scale("Square1", oval1, 24,38, 1, 10);
+    scale2 = new Scale("Square1", ellipse1, 24,38, 1, 10);
   }
 
   @Test (expected = IllegalArgumentException.class)
@@ -151,7 +151,7 @@ public class IActionTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void illegalNameEmptyScaleConstructorTest() {
-    scale3 = new Scale("", oval1, 16, 10, 1, 10);
+    scale3 = new Scale("", ellipse1, 16, 10, 1, 10);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -322,7 +322,7 @@ public class IActionTest {
   @Test
   public void scaleGetShapeAtTickTest() {
     StringBuilder intervals = new StringBuilder();
-    IShape currentShape = oval1;
+    IShape currentShape = ellipse1;
     for (int i = 11; i <= 15; i++) {
       currentShape = scale.getShapeAtTick(i, currentShape);
       intervals.append(currentShape.toString());
@@ -330,23 +330,23 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("Name: Oval1\n" +
-                 "Type: oval\n" +
+    assertEquals("Name: ellipse1\n" +
+                 "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: Oval1\n" +
-                 "Type: oval\n" +
+                 "Name: ellipse1\n" +
+                 "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: Oval1\n" +
-                 "Type: oval\n" +
+                 "Name: ellipse1\n" +
+                 "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
-                 + "Name: Oval1\n" + "Type: oval\n" +
+                 + "Name: ellipse1\n" + "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: Oval1\n" +
-                 "Type: oval\n" +
+                 "Name: ellipse1\n" +
+                 "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100"
             , intervals.toString());
@@ -354,8 +354,8 @@ public class IActionTest {
 
   @Test
   public void scaleGetCurrentShapeTest() {
-    assertEquals("Name: Oval1\n" +
-                 "Type: oval\n" +
+    assertEquals("Name: ellipse1\n" +
+                 "Type: ellipse\n" +
                  "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n"
                  + "Disappears at t=100", scale.getCurrentShape().toString());
@@ -374,7 +374,7 @@ public class IActionTest {
 
   @Test
   public void scaleToStringTest() {
-    assertEquals("Oval1 scales from X radius:, 50.0Y radius: 100.0 to X " +
+    assertEquals("ellipse1 scales from X radius:, 50.0Y radius: 100.0 to X " +
             "radius, 300.8Y radius 300.156from time t=10 to t=15", scale.toString());
   }
 
