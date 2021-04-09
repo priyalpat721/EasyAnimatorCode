@@ -14,17 +14,17 @@ public class VisualView {
   public void buildVisualView(IAnimatorModel model) throws InterruptedException {
     // creates the JFrame = canvas
     Canvas canvas = new Canvas(model.getBox()[0], model.getBox()[1],
-            model.getBox()[2], model.getBox()[3], model);
+            model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
 
     try {
       // controls the frame
-      Thread.sleep(5);
-      for (int i = 1; i < 101; i++) {
+      for (int i = 1; i < 10; i++) {
         canvas.currentView(model.getShapesAtTicks(i));
+        Thread.sleep(500);
         //System.out.println(model.getShapesAtTicks(i));
       }
-    } catch (InterruptedException e) {
 
+    } catch (InterruptedException e) {
     }
   }
 

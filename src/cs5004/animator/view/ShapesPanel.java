@@ -1,11 +1,9 @@
 package cs5004.animator.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
@@ -14,7 +12,8 @@ public class ShapesPanel extends JPanel {
   private List<IShape> currentModel;
 
   // sole purpose is to make the shapes and color them
-  public ShapesPanel() {
+  public ShapesPanel(List<IShape> model) {
+    this.currentModel = model;
   }
   public void setShapes(List<IShape> model) {
     this.currentModel = model;
@@ -22,6 +21,7 @@ public class ShapesPanel extends JPanel {
     setLocation(0, 0);
   }
 
+  @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     Graphics2D g2D = (Graphics2D) g;
