@@ -27,8 +27,8 @@ public class ShapesPanel extends JPanel {
     Graphics2D g2D = (Graphics2D) g;
 
     for (IShape shape : this.currentModel) {
-      g2D.setColor(new Color((int) shape.getColor().getRed(), (int) shape.getColor().getBlue(),
-              (int) shape.getColor().getGreen()));
+      g2D.setColor(new Color((int) shape.getColor().getRed(), (int) shape.getColor().getGreen(),
+              (int) shape.getColor().getBlue()));
 
 
       if (shape.getType() == Shape.RECTANGLE) {

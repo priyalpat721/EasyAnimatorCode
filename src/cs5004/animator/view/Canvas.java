@@ -25,7 +25,8 @@ public class Canvas extends JFrame {
     panel.setVisible(true);
     this.add(this.panel);
 
-    scrollPane = new JScrollPane(); //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shapepanel in scrollpane
+    //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shape panel in scroll pane
+    scrollPane = new JScrollPane();
   }
 
   public void currentView(List<IShape> currentShapes) {
