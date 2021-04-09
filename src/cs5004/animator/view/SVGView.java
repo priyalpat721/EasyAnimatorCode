@@ -40,26 +40,27 @@ public class SVGView {
       String[] attributes = new String[4];
 
       switch (shape.getType()) {
-        case RECTANGLE:
+        case RECTANGLE -> {
           tag = "rect";
           attributes[0] = "x";
           attributes[1] = "y";
           attributes[2] = "width";
           attributes[3] = "height";
-          break;
-        case ELLIPSE:
+        }
+        case ELLIPSE -> {
           tag = "ellipse";
           attributes[0] = "cx";
           attributes[1] = "cy";
           attributes[2] = "rx";
           attributes[3] = "ry";
-          break;
-        case CIRCLE:
+        }
+        case CIRCLE -> {
           tag = "circle";
           attributes[0] = "cx";
           attributes[1] = "cy";
           attributes[2] = "r";
           attributes[3] = "";
+        }
       }
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
@@ -97,7 +98,7 @@ public class SVGView {
       for (IAction action : actions) {
         if (action.getName().equals(shape.getName())) {
           switch (action.getType()) {
-            case MOVE:
+            case MOVE -> {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
@@ -105,7 +106,6 @@ public class SVGView {
                       attributes[0],
                       (int) action.getOldPosition().getX(),
                       (int) action.getNewPosition().getX()));
-
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
@@ -113,10 +113,8 @@ public class SVGView {
                       attributes[1],
                       (int) action.getOldPosition().getY(),
                       (int) action.getNewPosition().getY()));
-
-              break;
-
-            case SCALE:
+            }
+            case SCALE -> {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                               + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
@@ -124,7 +122,6 @@ public class SVGView {
                       attributes[2],
                       (int) action.getOldWidth(),
                       (int) action.getNewWidth()));
-
               if (shape.getType() != Shape.CIRCLE) {
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
                                 + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
@@ -134,21 +131,17 @@ public class SVGView {
                         (int) action.getOldHeight(),
                         (int) action.getNewHeight()));
               }
-
-              break;
-
-            case CHANGECOLOR:
-              result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
-                      action.getTime().getStartTime() * 100 + "ms",
-                      (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
-                      (int) action.getOldColor().getRed(),
-                      (int) action.getOldColor().getGreen(),
-                      (int) action.getOldColor().getBlue(),
-                      (int) action.getNewColor().getRed(),
-                      (int) action.getNewColor().getGreen(),
-                      (int) action.getNewColor().getBlue()));
-              break;
+            }
+            case CHANGECOLOR -> result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
+                            + "attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
+                    action.getTime().getStartTime() * 100 + "ms",
+                    (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                    (int) action.getOldColor().getRed(),
+                    (int) action.getOldColor().getGreen(),
+                    (int) action.getOldColor().getBlue(),
+                    (int) action.getNewColor().getRed(),
+                    (int) action.getNewColor().getGreen(),
+                    (int) action.getNewColor().getBlue()));
           }
         }
       }
@@ -174,7 +167,6 @@ public class SVGView {
     System.out.println(svg.build());
 
     //createFile("test", "svg", svg.toString());
-
   }
 
 }
