@@ -36,7 +36,6 @@ public final class EasyAnimator {
 
     IAnimatorModel animation = parseFile(in, builder);
 
-
     switch (viewType) {
       case "text" -> {
         content = animation.toString();

@@ -51,11 +51,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   public AnimatorModelImpl(AnimationBuilder builder) {
-    this.box = builder.getBox();
     this.logOfShapes = builder.getLogOfShapes();
     this.logOfActions = builder.getLogOfActions();
     this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
 
+    this.box = builder.getBox();
   }
 
   @Override
