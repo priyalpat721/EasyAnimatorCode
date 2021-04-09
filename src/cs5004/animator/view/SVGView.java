@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +10,10 @@ import java.util.Map;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
+import static cs5004.animator.tools.FileCreator.createFile;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class SVGView {
@@ -73,16 +74,18 @@ public class SVGView {
           switch (action.getType()) {
             case MOVE:
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                              + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
                       (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      attributes[0],
                       (int) action.getOldPosition().getX(),
                       (int) action.getNewPosition().getX()));
 
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                              + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
                       (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      attributes[1],
                       (int) action.getOldPosition().getY(),
                       (int) action.getNewPosition().getY()));
 
@@ -90,16 +93,18 @@ public class SVGView {
 
             case SCALE:
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                              + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
                       (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      attributes[2],
                       (int) action.getOldWidth(),
                       (int) action.getNewWidth()));
 
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" dur=\"%s\" "
-                              + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
+                              + "attributeName=\"%s\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n",
                       action.getTime().getStartTime() * 100 + "ms",
                       (action.getTime().getEndTime() - action.getTime().getStartTime()) * 100 + "ms",
+                      attributes[3],
                       (int) action.getOldHeight(),
                       (int) action.getNewHeight()));
 
@@ -132,7 +137,8 @@ public class SVGView {
   }
 
 
-  public static void main(String[] args) throws FileNotFoundException {
+
+  public static void main(String[] args) throws IOException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     var fileName = "src/cs5004/animator/demo.txt";
     Readable in = new FileReader(fileName);
@@ -141,6 +147,8 @@ public class SVGView {
     SVGView svg = new SVGView();
     svg.buildSVG(animation);
     System.out.println(svg.toString());
+
+    //createFile("test", "svg", svg.toString());
 
   }
 
