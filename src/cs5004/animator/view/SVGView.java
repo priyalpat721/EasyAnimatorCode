@@ -201,7 +201,7 @@ public class SVGView implements IAnimatorView {
 
   public static void main(String[] args) throws IOException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/big-bang-big-crunch.txt";
+    var fileName = "src/cs5004/animator/demo.txt";
     Readable in = new FileReader(fileName);
     IAnimatorModel animation = parseFile(in, builder);
     //IAnimatorModel animation = new AnimatorModelImpl();

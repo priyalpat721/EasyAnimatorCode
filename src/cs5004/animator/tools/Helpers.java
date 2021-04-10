@@ -88,7 +88,7 @@ public class Helpers {
       case "visual" -> {
         VisualView view = new VisualView();
         view.create(animation, speed);
-
+        view.generate();
       }
       default -> {
         throw new IllegalArgumentException("Invalid view type");

@@ -11,21 +11,18 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class VisualView implements IAnimatorView{
+public class VisualView implements IAnimatorView {
 
-  public static void main(String args[]) throws FileNotFoundException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
-    Readable in = new FileReader(fileName);
-    IAnimatorModel animation = parseFile(in, builder);
-    Canvas canvas = new Canvas(animation.getBox()[2], animation.getBox()[3], animation.getShapesAtTicks(0));
+  @Override
+  public void create(IAnimatorModel model, int speed) {
+    Canvas canvas = new Canvas(model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
     canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    int end = model.getTotalTime()[1];
     double count = 0;
     // controls the frame
-    while (count < 1000000) {
-      canvas.currentView(animation.getShapesAtTicks(count));
-      count++;
+    while (count < end) {
+      canvas.currentView(model.getShapesAtTicks(count));
+      count += speed;
       try {
         Thread.sleep(100);
 
@@ -33,11 +30,18 @@ public class VisualView implements IAnimatorView{
         Thread.currentThread().interrupt();
       }
     }
-
   }
 
-  @Override
-  public void create(IAnimatorModel model, int speed) {
-
+  public void generate() {
   }
+
+  public static void main(String args[]) throws FileNotFoundException {
+    AnimationBuilder<IAnimatorModel> builder = new Builder();
+    var fileName = "src/cs5004/animator/demo.txt";
+    Readable in = new FileReader(fileName);
+    IAnimatorModel animation = parseFile(in, builder);
+    VisualView view = new VisualView();
+    view.create(animation, 10);
+  }
+
 }
