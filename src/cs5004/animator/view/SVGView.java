@@ -25,8 +25,6 @@ public class SVGView {
   }
 
   public void create(IAnimatorModel model, int speed) {
-    int count = 0;
-
     List<IShape> shapes = model.getLogOfShapes();
     List<IAction> actions = model.getChronological();
     Collections.reverse(actions);
@@ -159,28 +157,16 @@ public class SVGView {
 
             // TODO
             case STAY -> {
-              System.out.println(count);
-              if (count != 0) {
-                result.append(String.format("\t<animate attributeType=\"xml\" "
-                                + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
-                        (action.getTime().getStartTime() * 100) / speed + "ms",
-                        ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms"));
-              } else {
-                result.append(String.format("\t<set attributeName=\"visibility\" "
-                                + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" dur=\"%s\" "
-                                + "fill=\"freeze\" />\n",
-                        (action.getTime().getStartTime() * 100) / speed + "ms",
-                        ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms"));
-              }
+              result.append(String.format("\t<animate attributeType=\"xml\" "
+                              + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
+                      (action.getTime().getStartTime() * 100) / speed + "ms",
+                      ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                              / speed + "ms"));
             }
           }
         }
-        count += 1;
       }
       result.append(String.format("</%s>\n\n", tag));
-      count = 0;
     }
 
     result.append("</svg>");
