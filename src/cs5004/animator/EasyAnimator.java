@@ -26,8 +26,8 @@ public final class EasyAnimator {
       speed = Integer.parseInt(commands[3]);
     }
 
-    String content = "";
     AnimationBuilder<IAnimatorModel> builder = new Builder();
+    String content = "";
 
     var fileName = "src/cs5004/animator/" + inputFile;
 
@@ -45,18 +45,25 @@ public final class EasyAnimator {
         svg.create(animation, speed);
         content = svg.build();
       }
-    }
-
-    if (outputFile.length == 1) {
-      if (!outputFile[0].isBlank()) {
-        throw new IllegalArgumentException("Invalid name for output file");
-      } else {
-        System.out.println(content);
+      case "view" -> {
+        // TODO: view instance
       }
-    } else {
-      createFile(outputFile[0], outputFile[1], content);
+      default -> {
+        throw new IllegalArgumentException("Invalid view type");
+      }
     }
 
+    if (!viewType.equals("view")) {
+      if (outputFile.length == 1) {
+        if (!outputFile[0].isBlank()) {
+          throw new IllegalArgumentException("Invalid name for output file");
+        } else {
+          System.out.print(content);
+        }
+      } else {
+        createFile(outputFile[0], outputFile[1], content);
+      }
+    }
   }
 
 }
