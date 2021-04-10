@@ -106,7 +106,7 @@ public interface IAnimatorModel {
 
   int[] getTotalTime();
 
-  HashMap<String, IShape> getLogOfShapes();
+  List<IShape> getLogOfShapes();
 
   List<IAction> getChronological();
 }

@@ -1,5 +1,6 @@
 package cs5004.animator.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +28,8 @@ import cs5004.animator.tools.RGB;
  * actions.
  */
 public class AnimatorModelImpl implements IAnimatorModel {
-  private final HashMap<String, IShape> logOfShapes;
+  private final List<IShape> logOfShapes;
+  //private final HashMap<String, IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<IAction> chronologicalOrderOfActions;
 
@@ -39,7 +41,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
    * Constructs an Animator model object.
    */
   public AnimatorModelImpl() {
-    this.logOfShapes = new HashMap<>();
+    //this.logOfShapes = new HashMap<>();
+    this.logOfShapes = new ArrayList<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
     this.box = new int[4];
@@ -57,24 +60,36 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Invalid color");
     }
 
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getValue().getName().equals(name)) {
+//    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+//      if (entry.getValue().getName().equals(name)) {
+//        throw new IllegalArgumentException("Name already exists");
+//      }
+//    }
+
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
         throw new IllegalArgumentException("Name already exists");
       }
     }
 
     if (type == Shape.CIRCLE) {
-      logOfShapes.put(name, new Circle(name, color, width, width, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Circle(name, color, width, width, x, y, startTime, endTime));
+      logOfShapes.add(new Circle(name, color, width, width, x, y, startTime, endTime));
     } else if (type == Shape.SQUARE) {
-      logOfShapes.put(name, new Square(name, color, width, width, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Square(name, color, width, width, x, y, startTime, endTime));
+      logOfShapes.add(new Square(name, color, width, width, x, y, startTime, endTime));
     } else if (type == Shape.RECTANGLE) {
-      logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Rectangle(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.add(new Rectangle(name, color, width, height, x, y, startTime, endTime));
     } else if (type == Shape.TRIANGLE) {
-      logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Triangle(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.add(new Triangle(name, color, width, height, x, y, startTime, endTime));
     } else if (type == Shape.RHOMBUS) {
-      logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Rhombus(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.add(new Rhombus(name, color, width, height, x, y, startTime, endTime));
     } else if (type == Shape.ELLIPSE) {
-      logOfShapes.put(name, new Ellipse(name, color, width, height, x, y, startTime, endTime));
+      //logOfShapes.put(name, new Ellipse(name, color, width, height, x, y, startTime, endTime));
+      logOfShapes.add(new Ellipse(name, color, width, height, x, y, startTime, endTime));
     }
   }
 
@@ -86,8 +101,14 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Invalid shape");
     }
 
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getKey().equals(name)) {
+//    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+//      if (entry.getKey().equals(name)) {
+//        throw new IllegalArgumentException("Name already exists");
+//      }
+//    }
+
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
         throw new IllegalArgumentException("Name already exists");
       }
     }
@@ -105,12 +126,19 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
 
     switch (finalType) {
-      case CIRCLE -> logOfShapes.put(name, new Circle(name));
-      case SQUARE -> logOfShapes.put(name, new Square(name));
-      case RECTANGLE -> logOfShapes.put(name, new Rectangle(name));
-      case TRIANGLE -> logOfShapes.put(name, new Triangle(name));
-      case RHOMBUS -> logOfShapes.put(name, new Rhombus(name));
-      case ELLIPSE -> logOfShapes.put(name, new Ellipse(name));
+//      case CIRCLE -> logOfShapes.put(name, new Circle(name));
+//      case SQUARE -> logOfShapes.put(name, new Square(name));
+//      case RECTANGLE -> logOfShapes.put(name, new Rectangle(name));
+//      case TRIANGLE -> logOfShapes.put(name, new Triangle(name));
+//      case RHOMBUS -> logOfShapes.put(name, new Rhombus(name));
+//      case ELLIPSE -> logOfShapes.put(name, new Ellipse(name));
+      case CIRCLE -> logOfShapes.add(new Circle(name));
+      case SQUARE -> logOfShapes.add(new Square(name));
+      case RECTANGLE -> logOfShapes.add(new Rectangle(name));
+      case TRIANGLE -> logOfShapes.add(new Triangle(name));
+      case RHOMBUS -> logOfShapes.add(new Rhombus(name));
+      case ELLIPSE -> logOfShapes.add(new Ellipse(name));
+
     }
   }
 
@@ -170,11 +198,15 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
 
     List<IShape> frameOfShapes = new LinkedList<>();
-    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
-      IShape accumulatorShape = objects.getValue().copy();
+    //for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
+      //IShape accumulatorShape = objects.getValue().copy();
+      IShape accumulatorShape = shape.copy();
 
-      if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
-        for (IAction actions : logOfActions.get(objects.getKey())) {
+      //if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
+      if (logOfActions.size() > 0 && logOfActions.get(shape.getName()) != null) {
+        //for (IAction actions : logOfActions.get(objects.getKey())) {
+        for (IAction actions : logOfActions.get(shape.getName())) {
           accumulatorShape = actions.getShapeAtTick(tick, accumulatorShape);
         }
       }
@@ -203,9 +235,15 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
     IShape originalShape = null;
 
-    for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
-      if (object.getKey().equals(name)) {
-        originalShape = object.getValue();
+//    for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
+//      if (object.getKey().equals(name)) {
+//        originalShape = object.getValue();
+//      }
+//    }
+
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
+        originalShape = shape;
       }
     }
 
@@ -233,10 +271,11 @@ public class AnimatorModelImpl implements IAnimatorModel {
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
 
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      int[] timeOfDisplay = getTimeOfDisplay(entry.getKey());
-      entry.getValue().setShowTime(timeOfDisplay[0], timeOfDisplay[1]);
-      accString.append(entry.getValue().toString());
+    //for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
+      int[] timeOfDisplay = getTimeOfDisplay(shape.getName());
+      shape.setShowTime(timeOfDisplay[0], timeOfDisplay[1]);
+      accString.append(shape.toString());
       accString.append("\n\n");
     }
 
@@ -255,7 +294,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public HashMap<String, IShape> getLogOfShapes() {
+  public List<IShape> getLogOfShapes() {
     return this.logOfShapes;
   }
 
@@ -304,12 +343,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Invalid name");
     }
 
-    for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
-      if (objects.getKey().equals(name)) {
-        IShape accumulatorShape = objects.getValue().copy();
+    //for (Map.Entry<String, IShape> objects : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
+        IShape accumulatorShape = shape.copy();
 
-        if (logOfActions.size() > 0 && logOfActions.get(objects.getKey()) != null) {
-          for (IAction actions : logOfActions.get(objects.getKey())) {
+        if (logOfActions.size() > 0 && logOfActions.get(shape.getName()) != null) {
+          for (IAction actions : logOfActions.get(shape.getName())) {
             accumulatorShape = actions.getCurrentShape();
           }
         }
@@ -357,9 +397,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
    * @throws IllegalArgumentException if the action is out of range.
    */
   private void checkRange(String name, int startTime, int endTime) {
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getKey().equals(name)) {
-        IShape shape = entry.getValue();
+    //for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
         if (startTime < shape.getShowTime().getStartTime() ||
             endTime > shape.getShowTime().getEndTime()) {
           throw new IllegalArgumentException("Action is out of range");
@@ -382,8 +422,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     int start = -1;
     int end = -1;
 
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      IShape shape = entry.getValue();
+    //for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
       int[] timeOfDisplay = getTimeOfDisplay(shape.getName());
 
       if (start == -1 || timeOfDisplay[0] < start) {
@@ -404,9 +444,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
     int start = -1;
     int end = -1;
 
-    for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getKey().equals(name)) {
-        start = entry.getValue().getShowTime().getStartTime();
+    //for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
+    for (IShape shape : logOfShapes) {
+      if (shape.getName().equals(name)) {
+        start = shape.getShowTime().getStartTime();
       }
     }
 
