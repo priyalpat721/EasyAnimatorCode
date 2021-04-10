@@ -47,17 +47,18 @@ public class VisualView {
 //  }
 
     IAnimatorModel model = new AnimatorModelImpl();
-    model.createShape("R", Shape.RECTANGLE, new RGB(0, 0, 0),
+    model.createShape("R", Shape.RECTANGLE, new RGB(255, 255, 255),
             200, 20, 0, 0, 0, 100);
     model.move("R", 200, 200, 0, 20);
-
+    model.scale("R", 200, 200, 0, 20);
+    model.changeColor("R", new RGB(255, 0, 0), 0,50);
     Canvas canvas = new Canvas(0, 0, 500, 500, model.getShapesAtTicks(0));
     int count = 0;
     while (count < 200) {
       canvas.currentView(model.getShapesAtTicks(count));
       count++;
       try {
-        Thread.sleep(100);
+        Thread.sleep(200);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
