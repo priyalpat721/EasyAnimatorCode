@@ -33,7 +33,7 @@ public interface IAnimatorModel {
   void createShape(String name, Shape type, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
 
-  void createShape(String name, Shape type);
+  void createShape(String name, String type);
 
   /**
    * Moves an object by the specified new x and new y coordinates.
@@ -77,14 +77,6 @@ public interface IAnimatorModel {
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
   /**
-   *
-   * @param name
-   * @param startTime
-   * @param endTime
-   */
-  void stay(String name, int startTime, int endTime);
-
-  /**
    * A function that returns a list of shapes at the specified frame. The function works by
    * identifying the tick of a move at a specified time. If the tick falls within the the interval
    * of event's duration, that specific frame is added to a list and returned back to the
@@ -105,12 +97,16 @@ public interface IAnimatorModel {
    */
   String toString();
 
-  HashMap<String, IShape> getLogOfShapes();
+  void setBounds(int x, int y, int width, int height);
 
-  List<IAction> getChronological();
+  void setAttributes(String name, int x1, int y1, int w1, int h1,
+                     int r1, int g1, int b1, int t1, int t2);
 
   int[] getBox();
 
   int[] getTotalTime();
 
+  List<IShape> getLogOfShapes();
+
+  List<IAction> getChronological();
 }
