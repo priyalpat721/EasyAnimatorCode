@@ -78,7 +78,7 @@ public class Helpers {
       case "svg" -> {
         SVGView svg = new SVGView();
         svg.create(animation, speed);
-        content = svg.build();
+        content = svg.generate();
       }
       case "visual" -> {
         // TODO: view instance

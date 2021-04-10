@@ -108,5 +108,5 @@ public interface IAnimatorModel {
 
   List<IShape> getLogOfShapes();
 
-  List<IAction> getChronological();
+  HashMap<String, List<IAction>> getLogOfActions();
 }

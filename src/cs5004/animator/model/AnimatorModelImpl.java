@@ -263,7 +263,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
         }
       }
       // CHECK THIS
-      //stay(name, t1, t2);
+      stay(name, t1, t2);
       // If the original shape already has attributes, it means it is a "stand still" action
     } else {
       stay(name, t1, t2);
@@ -303,8 +303,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public List<IAction> getChronological() {
-    return this.chronologicalOrderOfActions;
+  public HashMap<String, List<IAction>> getLogOfActions() {
+    return this.logOfActions;
   }
 
   private void stay(String name, int startTime, int endTime) {
