@@ -13,6 +13,7 @@ import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
+import static cs5004.animator.tools.Helpers.createFile;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class SVGView {
@@ -167,15 +168,15 @@ public class SVGView {
 
   public static void main(String[] args) throws IOException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
+    var fileName = "src/cs5004/animator/hanoi.txt";
     Readable in = new FileReader(fileName);
     IAnimatorModel animation = parseFile(in, builder);
 
     SVGView svg = new SVGView();
     svg.create(animation, 1);
-    System.out.println(svg.build());
+    //System.out.println(svg.build());
 
-    //createFile("test", "svg", svg.toString());
+    createFile("test", "svg", svg.build());
   }
 
 }
