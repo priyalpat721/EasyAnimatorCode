@@ -97,6 +97,8 @@ public interface IAnimatorModel {
    */
   String toString();
 
+  String toString(int speed);
+
   void setBounds(int x, int y, int width, int height);
 
   void setAttributes(String name, int x1, int y1, int w1, int h1,
@@ -108,5 +110,5 @@ public interface IAnimatorModel {
 
   List<IShape> getLogOfShapes();
 
-  List<IAction> getChronological();
+  HashMap<String, List<IAction>> getLogOfActions();
 }

@@ -6,7 +6,9 @@ import java.io.Writer;
 import java.util.Objects;
 
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.SVGView;
+import cs5004.animator.view.TextView;
 
 public class Helpers {
 
@@ -73,12 +75,14 @@ public class Helpers {
 
     switch (viewType) {
       case "text" -> {
-        content = animation.toString();
+        TextView text = new TextView();
+        text.create(animation, speed);
+        content = text.generate();
       }
       case "svg" -> {
         SVGView svg = new SVGView();
         svg.create(animation, speed);
-        content = svg.build();
+        content = svg.generate();
       }
       case "visual" -> {
 
