@@ -6,9 +6,7 @@ import java.io.FileReader;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
-import cs5004.animator.view.SVGView;
 
-import static cs5004.animator.tools.Helpers.createFile;
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
@@ -29,8 +27,8 @@ public final class EasyAnimator {
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
-    //var fileName = "src/cs5004/animator/" + inputFile;
-    var fileName = inputFile;
+    var fileName = "src/cs5004/animator/" + inputFile;
+    //var fileName = inputFile;
 
     // throws FileNotFoundException
     Readable in = new FileReader(fileName);
