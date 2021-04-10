@@ -10,7 +10,7 @@ import cs5004.animator.view.SVGView;
 
 public class Helpers {
 
-  public static void createFile(String name, String format, String content) {
+  public static String createFile(String name, String format, String content) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
     } else if (format == null || format.isBlank()) {
@@ -19,15 +19,17 @@ public class Helpers {
       throw new IllegalArgumentException("Invalid content");
     }
 
-    String finalName = name + "." + format;
+    String fileName = name + "." + format;
 
     try {
-      Writer newFile = new FileWriter(finalName);
+      Writer newFile = new FileWriter(fileName);
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
       throw new IllegalArgumentException("An error occurred while creating the output file");
     }
+
+    return fileName;
   }
 
   public static String[] parseCommands(String[] args) {
@@ -86,17 +88,29 @@ public class Helpers {
       }
     }
 
+    String fileName = "";
+
     if (!viewType.equals("view")) {
       if (outputFile.length == 1) {
         if (!outputFile[0].isBlank()) {
-          throw new IllegalArgumentException("Invalid name for output file");
+          if (viewType.equals("text")) {
+            fileName = createFile(outputFile[0], "txt", content);
+          }
+          if (viewType.equals("svg")) {
+            fileName = createFile(outputFile[0], "svg", content);
+          }
+          System.out.println(String.format("%s generated", fileName));
         } else {
           System.out.print(content);
         }
       } else {
-        createFile(outputFile[0], outputFile[1], content);
+        fileName = createFile(outputFile[0], outputFile[1], content);
+        System.out.println(String.format("%s generated", fileName));
       }
+    } else {
+      System.out.println("Visual view generated");
     }
+
   }
 
 }
