@@ -262,6 +262,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
           originalShape.setHeight(h1);
         }
       }
+      // CHECK THIS
+      stay(name, t1, t2);
       // If the original shape already has attributes, it means it is a "stand still" action
     } else {
       stay(name, t1, t2);

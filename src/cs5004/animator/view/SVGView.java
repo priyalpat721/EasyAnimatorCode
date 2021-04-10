@@ -25,6 +25,7 @@ public class SVGView {
   }
 
   public void create(IAnimatorModel model, int speed) {
+    int count = 0;
 
     List<IShape> shapes = model.getLogOfShapes();
     List<IAction> actions = model.getChronological();
@@ -34,7 +35,6 @@ public class SVGView {
                     + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
             model.getBox()[2], model.getBox()[3]));
 
-    //for (Map.Entry<String, IShape> entry : shapes.entrySet()) {
     for (IShape shape : shapes) {
       String tag = "";
       String[] attributes = new String[4];
@@ -65,7 +65,7 @@ public class SVGView {
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
       result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
-              + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
+              + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
                                                               shape.getName(),
                                                              attributes[0],
                                                              (int) shape.getPosition().getX(),
@@ -82,7 +82,7 @@ public class SVGView {
 
       if (shape.getType() == Shape.CIRCLE) {
         result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
-                        + "fill=\"rgb(%d,%d,%d)\" visibility=\"visible\" >\n", tag,
+                        + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
                                                               shape.getName(),
                                                               attributes[0],
                                                               (int) shape.getPosition().getX(),
@@ -159,16 +159,28 @@ public class SVGView {
 
             // TODO
             case STAY -> {
-              result.append(String.format("\t<animate attributeType=\"xml\" "
-                              + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
-                      (action.getTime().getStartTime() * 100) / speed + "ms",
-                      ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                              / speed + "ms"));
+              System.out.println(count);
+              if (count != 0) {
+                result.append(String.format("\t<animate attributeType=\"xml\" "
+                                + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
+                        (action.getTime().getStartTime() * 100) / speed + "ms",
+                        ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                                / speed + "ms"));
+              } else {
+                result.append(String.format("\t<set attributeName=\"visibility\" "
+                                + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" dur=\"%s\" "
+                                + "fill=\"freeze\" />\n",
+                        (action.getTime().getStartTime() * 100) / speed + "ms",
+                        ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
+                                / speed + "ms"));
+              }
             }
           }
         }
+        count += 1;
       }
       result.append(String.format("</%s>\n\n", tag));
+      count = 0;
     }
 
     result.append("</svg>");
