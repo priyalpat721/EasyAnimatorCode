@@ -45,7 +45,7 @@ public class ChangeColor extends AbstractAction {
   @Override
   public String toString() {
     return name + " changes color from " + oldColor.toString()
-           + " to " + newColor.toString() + " from time t= " + this.time.getStartTime()
+           + " to " + newColor.toString() + " from time t=" + this.time.getStartTime()
            + " to t=" + this.time.getEndTime();
   }
 
