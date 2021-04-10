@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
+import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.view.SVGView;
+
 public class Helpers {
 
   public static void createFile(String name, String format, String content) {
@@ -60,6 +63,40 @@ public class Helpers {
     }
 
     return commands;
+  }
+
+  public static void generateView(IAnimatorModel animation, String viewType,
+                                  String[] outputFile, int speed) {
+    String content = "";
+
+    switch (viewType) {
+      case "text" -> {
+        content = animation.toString();
+      }
+      case "svg" -> {
+        SVGView svg = new SVGView();
+        svg.create(animation, speed);
+        content = svg.build();
+      }
+      case "view" -> {
+        // TODO: view instance
+      }
+      default -> {
+        throw new IllegalArgumentException("Invalid view type");
+      }
+    }
+
+    if (!viewType.equals("view")) {
+      if (outputFile.length == 1) {
+        if (!outputFile[0].isBlank()) {
+          throw new IllegalArgumentException("Invalid name for output file");
+        } else {
+          System.out.print(content);
+        }
+      } else {
+        createFile(outputFile[0], outputFile[1], content);
+      }
+    }
   }
 
 }

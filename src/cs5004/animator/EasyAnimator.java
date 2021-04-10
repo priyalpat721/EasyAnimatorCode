@@ -9,6 +9,7 @@ import cs5004.animator.utils.Builder;
 import cs5004.animator.view.SVGView;
 
 import static cs5004.animator.tools.Helpers.createFile;
+import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
@@ -27,7 +28,6 @@ public final class EasyAnimator {
     }
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    String content = "";
 
     var fileName = "src/cs5004/animator/" + inputFile;
 
@@ -36,34 +36,8 @@ public final class EasyAnimator {
 
     IAnimatorModel animation = parseFile(in, builder);
 
-    switch (viewType) {
-      case "text" -> {
-        content = animation.toString();
-      }
-      case "svg" -> {
-        SVGView svg = new SVGView();
-        svg.create(animation, speed);
-        content = svg.build();
-      }
-      case "view" -> {
-        // TODO: view instance
-      }
-      default -> {
-        throw new IllegalArgumentException("Invalid view type");
-      }
-    }
+    generateView(animation, viewType, outputFile, speed);
 
-    if (!viewType.equals("view")) {
-      if (outputFile.length == 1) {
-        if (!outputFile[0].isBlank()) {
-          throw new IllegalArgumentException("Invalid name for output file");
-        } else {
-          System.out.print(content);
-        }
-      } else {
-        createFile(outputFile[0], outputFile[1], content);
-      }
-    }
   }
 
 }
