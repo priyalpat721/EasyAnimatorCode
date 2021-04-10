@@ -29,6 +29,6 @@ public class Canvas extends JFrame {
   public void currentView(List<IShape> currentShapes) {
     // gets the shapes in correct position and color
     panel.setShapes(currentShapes);
-    this.repaint();
+    panel.repaint();
   }
 }

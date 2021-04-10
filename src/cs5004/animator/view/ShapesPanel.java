@@ -8,7 +8,7 @@ import javax.swing.*;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
-public class ShapesPanel extends JPanel {
+public class ShapesPanel extends JComponent {
   private List<IShape> currentModel;
 
   // sole purpose is to make the shapes and color them
@@ -19,6 +19,8 @@ public class ShapesPanel extends JPanel {
   }
   public void setShapes(List<IShape> model) {
     this.currentModel = model;
+    System.out.println(currentModel);
+    this.repaint();
   }
 
   @Override

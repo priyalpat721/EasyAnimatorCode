@@ -1,15 +1,13 @@
 package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 import javax.swing.*;
 
+import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
-import cs5004.animator.utils.AnimationBuilder;
-import cs5004.animator.utils.Builder;
-
-import static cs5004.animator.utils.AnimationReader.parseFile;
+import cs5004.animator.shape.Shape;
+import cs5004.animator.tools.RGB;
 
 public class VisualView {
 
@@ -21,15 +19,13 @@ public class VisualView {
 
     int count = 0;
     // controls the frame
-    while (count < 1) {
+    while (count < 100) {
       canvas.currentView(model.getShapesAtTicks(count));
-      System.out.println(model.getShapesAtTicks(count));
+      //System.out.println(model.getShapesAtTicks(count));
       count++;
       System.out.println(count);
       try {
-        Thread.sleep(10000);
-        //System.out.println(model.getShapesAtTicks(i));
-
+        Thread.sleep(10);
 
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
@@ -38,15 +34,33 @@ public class VisualView {
   }
 
   public static void main(String args[]) throws FileNotFoundException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
-    Readable in = new FileReader(fileName);
-    IAnimatorModel animation = parseFile(in, builder);
+//    AnimationBuilder<IAnimatorModel> builder = new Builder();
+//    var fileName = "src/cs5004/animator/demo.txt";
+//    Readable in = new FileReader(fileName);
+//    IAnimatorModel animation = parseFile(in, builder);
+//
+//
+//    java.awt.EventQueue.invokeLater(() -> {
+//      VisualView visual = new VisualView();
+//      visual.buildVisualView(animation);
+//    });
+//  }
 
+    IAnimatorModel model = new AnimatorModelImpl();
+    model.createShape("R", Shape.RECTANGLE, new RGB(0, 0, 0),
+            200, 20, 0, 0, 0, 100);
+    model.move("R", 200, 200, 0, 20);
 
-    java.awt.EventQueue.invokeLater(() -> {
-      VisualView visual = new VisualView();
-      visual.buildVisualView(animation);
-    });
+    Canvas canvas = new Canvas(0, 0, 500, 500, model.getShapesAtTicks(0));
+    int count = 0;
+    while (count < 200) {
+      canvas.currentView(model.getShapesAtTicks(count));
+      count++;
+      try {
+        Thread.sleep(100);
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+    }
   }
 }
