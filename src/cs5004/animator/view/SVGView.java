@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import cs5004.animator.action.IAction;
+import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
@@ -30,9 +31,15 @@ public class SVGView implements IAnimatorView {
 
     int count = 0;
 
-    result.append(String.format("<svg width=\"%d\" height=\"%d\" "
-                    + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
-            model.getBox()[2], model.getBox()[3]));
+    if (shapes.isEmpty()) {
+      result.append("<svg width=\"200\" height=\"50\" version=\"1.1\" "
+              + "xmlns=\"http://www.w3.org/2000/svg\">\n\n");
+      result.append("\t<text x=\"10\" y=\"20\">empty animation</text>\n\n");
+    } else {
+      result.append(String.format("<svg width=\"%d\" height=\"%d\" "
+                      + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
+              model.getBox()[2], model.getBox()[3]));
+    }
 
     for (IShape shape : shapes) {
       String tag = "";
@@ -197,6 +204,7 @@ public class SVGView implements IAnimatorView {
     var fileName = "src/cs5004/animator/big-bang-big-crunch.txt";
     Readable in = new FileReader(fileName);
     IAnimatorModel animation = parseFile(in, builder);
+    //IAnimatorModel animation = new AnimatorModelImpl();
 
     SVGView svg = new SVGView();
     svg.create(animation, 1);
