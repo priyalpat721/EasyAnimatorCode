@@ -1,6 +1,7 @@
 package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import javax.swing.*;
 
@@ -8,6 +9,10 @@ import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.tools.RGB;
+import cs5004.animator.utils.AnimationBuilder;
+import cs5004.animator.utils.Builder;
+
+import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class VisualView {
 
@@ -34,34 +39,28 @@ public class VisualView {
   }
 
   public static void main(String args[]) throws FileNotFoundException {
-//    AnimationBuilder<IAnimatorModel> builder = new Builder();
-//    var fileName = "src/cs5004/animator/demo.txt";
-//    Readable in = new FileReader(fileName);
-//    IAnimatorModel animation = parseFile(in, builder);
-//
-//
-//    java.awt.EventQueue.invokeLater(() -> {
-//      VisualView visual = new VisualView();
-//      visual.buildVisualView(animation);
-//    });
-//  }
+    AnimationBuilder<IAnimatorModel> builder = new Builder();
+    var fileName = "src/cs5004/animator/demo.txt";
+    Readable in = new FileReader(fileName);
+    IAnimatorModel animation = parseFile(in, builder);
+    Canvas canvas = new Canvas(animation.getBox()[0], animation.getBox()[1], animation.getBox()[2], animation.getBox()[3], animation.getShapesAtTicks(0));
+    canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    IAnimatorModel model = new AnimatorModelImpl();
-    model.createShape("R", Shape.RECTANGLE, new RGB(255, 255, 255),
-            200, 20, 0, 0, 0, 100);
-    model.move("R", 200, 200, 0, 20);
-    model.scale("R", 200, 200, 0, 20);
-    model.changeColor("R", new RGB(255, 0, 0), 0,50);
-    Canvas canvas = new Canvas(0, 0, 500, 500, model.getShapesAtTicks(0));
     int count = 0;
-    while (count < 200) {
-      canvas.currentView(model.getShapesAtTicks(count));
+    // controls the frame
+    while (count < 100) {
+      canvas.currentView(animation.getShapesAtTicks(count));
+      //System.out.println(model.getShapesAtTicks(count));
       count++;
+      System.out.println("Ticks: " + count + "\n" + animation.getShapesAtTicks(count));
       try {
-        Thread.sleep(200);
+        Thread.sleep(1000);
+
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
     }
+
   }
+
 }
