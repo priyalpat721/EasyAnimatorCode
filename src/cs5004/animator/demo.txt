@@ -1,6 +1,6 @@
 # initializes the canvas, with top-left corner (200,70) and
-# dimensions 360x360
-canvas 200 70 360 360
+# dimensions 1024x768
+canvas 200 70 1024 768
 # declares a rectangle shape named R
 shape R rectangle
 # describes the motions of shape R, between two moments of animation:

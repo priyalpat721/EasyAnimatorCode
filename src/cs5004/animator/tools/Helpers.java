@@ -80,7 +80,7 @@ public class Helpers {
         svg.create(animation, speed);
         content = svg.build();
       }
-      case "view" -> {
+      case "visual" -> {
         // TODO: view instance
       }
       default -> {
@@ -90,7 +90,7 @@ public class Helpers {
 
     String fileName = "";
 
-    if (!viewType.equals("view")) {
+    if (!viewType.equals("visual")) {
       if (outputFile.length == 1) {
         if (!outputFile[0].isBlank()) {
           if (viewType.equals("text")) {
@@ -99,18 +99,15 @@ public class Helpers {
           if (viewType.equals("svg")) {
             fileName = createFile(outputFile[0], "svg", content);
           }
-          System.out.println(String.format("%s generated", fileName));
+          System.out.printf("%s created%n", fileName);
         } else {
           System.out.print(content);
         }
       } else {
         fileName = createFile(outputFile[0], outputFile[1], content);
-        System.out.println(String.format("%s generated", fileName));
+        System.out.printf("%s created%n", fileName);
       }
-    } else {
-      System.out.println("Visual view generated");
     }
-
   }
 
 }
