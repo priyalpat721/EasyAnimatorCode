@@ -20,7 +20,6 @@ import cs5004.animator.shape.Shape;
 import cs5004.animator.shape.Square;
 import cs5004.animator.shape.Triangle;
 import cs5004.animator.tools.RGB;
-import cs5004.animator.utils.AnimationBuilder;
 
 /**
  * This class represents the Model component of an animator. The class implements the interface
@@ -43,17 +42,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
     this.logOfShapes = new HashMap<>();
     this.logOfActions = new HashMap<>();
     this.chronologicalOrderOfActions = new LinkedList<>();
-
-    // See later
     this.box = new int[4];
-  }
-
-  public AnimatorModelImpl(AnimationBuilder builder) {
-    this.logOfShapes = builder.getLogOfShapes();
-    this.logOfActions = builder.getLogOfActions();
-    this.chronologicalOrderOfActions = builder.getChronologicalOrderOfActions();
-
-    this.box = builder.getBox();
   }
 
   @Override
@@ -90,31 +79,39 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public void createShape(String name, Shape type) {
+  public void createShape(String name, String type) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
+    } else if (type == null) {
+      throw new IllegalArgumentException("Invalid shape");
     }
 
     for (Map.Entry<String, IShape> entry : logOfShapes.entrySet()) {
-      if (entry.getValue().getName().equals(name)) {
+      if (entry.getKey().equals(name)) {
         throw new IllegalArgumentException("Name already exists");
       }
     }
 
-    if (type == Shape.CIRCLE) {
-      logOfShapes.put(name, new Circle(name));
-    } else if (type == Shape.SQUARE) {
-      logOfShapes.put(name, new Square(name));
-    } else if (type == Shape.RECTANGLE) {
-      logOfShapes.put(name, new Rectangle(name));
-    } else if (type == Shape.TRIANGLE) {
-      logOfShapes.put(name, new Triangle(name));
-    } else if (type == Shape.RHOMBUS) {
-      logOfShapes.put(name, new Rhombus(name));
-    } else if (type == Shape.ELLIPSE) {
-      logOfShapes.put(name, new Ellipse(name));
+    Shape finalType = null;
+
+    for (Shape shape : Shape.values()) {
+      if (shape.toString().equalsIgnoreCase(type)) {
+        finalType = shape;
+      }
     }
 
+    if (finalType == null) {
+      throw new IllegalArgumentException("Shape does not exist");
+    }
+
+    switch (finalType) {
+      case CIRCLE -> logOfShapes.put(name, new Circle(name));
+      case SQUARE -> logOfShapes.put(name, new Square(name));
+      case RECTANGLE -> logOfShapes.put(name, new Rectangle(name));
+      case TRIANGLE -> logOfShapes.put(name, new Triangle(name));
+      case RHOMBUS -> logOfShapes.put(name, new Rhombus(name));
+      case ELLIPSE -> logOfShapes.put(name, new Ellipse(name));
+    }
   }
 
   @Override
@@ -167,22 +164,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public void stay(String name, int startTime, int endTime) {
-    IShape currentShape = getCurrentShape(name);
-
-    //checkRange(name, startTime, endTime);
-
-    if (!checkOverlap(name, Action.STAY, startTime, endTime)) {
-      throw new IllegalArgumentException("Stay overlap");
-    }
-
-    IAction newStay = new Stay(name, currentShape, startTime, endTime);
-    addActionToShape(name, newStay);
-    chronologicalOrderOfActions.add(newStay);
-
-  }
-
-  @Override
   public List<IShape> getShapesAtTicks(int tick) {
     if (tick < 0) {
       throw new IllegalArgumentException("Tick must be greater than 0.");
@@ -200,6 +181,51 @@ public class AnimatorModelImpl implements IAnimatorModel {
       frameOfShapes.add(accumulatorShape);
     }
     return frameOfShapes;
+  }
+
+  @Override
+  public void setBounds(int x, int y, int width, int height) {
+    if (width <= 0) {
+      throw new IllegalArgumentException("Invalid width");
+    } else if (height <= 0) {
+      throw new IllegalArgumentException("Invalid height");
+    }
+
+    this.box[0] = x;
+    this.box[1] = y;
+    this.box[2] = width;
+    this.box[3] = height;
+  }
+
+  @Override
+  public void setAttributes(String name, int x1, int y1, int w1, int h1,
+                            int r1, int g1, int b1, int t1, int t2) {
+
+    IShape originalShape = null;
+
+    for (Map.Entry<String, IShape> object : logOfShapes.entrySet()) {
+      if (object.getKey().equals(name)) {
+        originalShape = object.getValue();
+      }
+    }
+
+    // If the original shape has its attributes set to null, it means we are setting its attributes
+    if (originalShape.getPosition() == null) {
+      originalShape.setPosition(x1, y1);
+      originalShape.setColor(new RGB((double) r1, (double) g1, (double) b1));
+      originalShape.setShowTime(t1, t2);
+      switch (originalShape.getType()) {
+        case CIRCLE -> originalShape.setRadius(w1);
+        case SQUARE -> originalShape.setLength(w1);
+        default -> {
+          originalShape.setWidth(w1);
+          originalShape.setHeight(h1);
+        }
+      }
+      // If the original shape already has attributes, it means it is a "stand still" action
+    } else {
+      stay(name, t1, t2);
+    }
   }
 
   @Override
@@ -226,6 +252,20 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
 
     return accString.toString();
+  }
+
+  private void stay(String name, int startTime, int endTime) {
+    IShape currentShape = getCurrentShape(name);
+
+    //checkRange(name, startTime, endTime);
+
+    if (!checkOverlap(name, Action.STAY, startTime, endTime)) {
+      throw new IllegalArgumentException("Stay overlap");
+    }
+
+    IAction newStay = new Stay(name, currentShape, startTime, endTime);
+    addActionToShape(name, newStay);
+    chronologicalOrderOfActions.add(newStay);
   }
 
   /**
@@ -285,10 +325,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime >= action.getTime().getStartTime() &&
-                startTime <= action.getTime().getEndTime() ||
-                endTime >= action.getTime().getStartTime() &&
-                endTime <= action.getTime().getEndTime()) {
+            if (startTime > action.getTime().getStartTime() &&
+                startTime < action.getTime().getEndTime() ||
+                endTime > action.getTime().getStartTime() &&
+                endTime < action.getTime().getEndTime()) {
               return false;
             }
           }
@@ -319,18 +359,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public List<IAction> getChronological() {
-    return this.chronologicalOrderOfActions;
-  }
-
-  @Override
   public int[] getBox() {
     return this.box;
-  }
-
-  @Override
-  public HashMap<String, IShape> getLogOfShapes() {
-    return this.logOfShapes;
   }
 
   @Override
@@ -355,8 +385,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
       }
     }
 
-    int[] result = {start, end};
-    return result;
+    return new int[]{start, end};
   }
 
   private int[] getTimeOfDisplay(String name) {
