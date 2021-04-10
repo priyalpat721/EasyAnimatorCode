@@ -9,6 +9,7 @@ import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
+import cs5004.animator.view.VisualView;
 
 public class Helpers {
 
@@ -85,6 +86,8 @@ public class Helpers {
         content = svg.generate();
       }
       case "visual" -> {
+        VisualView view = new VisualView();
+        view.create(animation, speed);
 
       }
       default -> {

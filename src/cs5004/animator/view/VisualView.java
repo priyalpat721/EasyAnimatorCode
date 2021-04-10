@@ -11,7 +11,7 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class VisualView {
+public class VisualView implements IAnimatorView{
 
   public static void main(String args[]) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
@@ -36,4 +36,8 @@ public class VisualView {
 
   }
 
+  @Override
+  public void create(IAnimatorModel model, int speed) {
+
+  }
 }
