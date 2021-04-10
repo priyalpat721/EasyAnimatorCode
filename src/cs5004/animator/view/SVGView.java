@@ -99,7 +99,7 @@ public class SVGView {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
                               + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
                               + "fill=\"freeze\" />\n",
-                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getStartTime()) / speed * 100 + "ms",
                       ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                               / speed + "ms",
                       attributes[0],
@@ -108,7 +108,7 @@ public class SVGView {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
                               + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
                               + "fill=\"freeze\" />\n",
-                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getStartTime() * 100) / speed + "ms",
                       ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                               / speed + "ms",
                       attributes[1],
@@ -120,7 +120,7 @@ public class SVGView {
               result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
                               + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
                               + "fill=\"freeze\" />\n",
-                      action.getTime().getStartTime() * 100 + "ms",
+                      (action.getTime().getStartTime() * 100) / speed + "ms",
                       ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                               / speed + "ms",
                       attributes[2],
@@ -130,7 +130,7 @@ public class SVGView {
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
                                 + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
                                 + "fill=\"freeze\" />\n",
-                        action.getTime().getStartTime() * 100 + "ms",
+                        (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                                 / speed + "ms",
                         attributes[3],
@@ -142,7 +142,7 @@ public class SVGView {
             case CHANGECOLOR -> result.append(String.format("\t<animate attributeType=\"xml\" "
                             + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
                             + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
-                    action.getTime().getStartTime() * 100 + "ms",
+                    (action.getTime().getStartTime() * 100) / speed + "ms",
                     ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                             / speed + "ms",
                     (int) action.getOldColor().getRed(),

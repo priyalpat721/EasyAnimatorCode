@@ -254,6 +254,16 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return accString.toString();
   }
 
+  @Override
+  public HashMap<String, IShape> getLogOfShapes() {
+    return this.logOfShapes;
+  }
+
+  @Override
+  public List<IAction> getChronological() {
+    return this.chronologicalOrderOfActions;
+  }
+
   private void stay(String name, int startTime, int endTime) {
     IShape currentShape = getCurrentShape(name);
 

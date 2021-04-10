@@ -105,4 +105,8 @@ public interface IAnimatorModel {
   int[] getBox();
 
   int[] getTotalTime();
+
+  HashMap<String, IShape> getLogOfShapes();
+
+  List<IAction> getChronological();
 }
