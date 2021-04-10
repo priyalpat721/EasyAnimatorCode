@@ -10,7 +10,7 @@ public class Stay extends AbstractAction {
   }
 
   @Override
-  public IShape getShapeAtTick(int tick, IShape shape) {
+  public IShape getShapeAtTick(double tick, IShape shape) {
     IShape copy = shape.copy();
     if (tick >= copy.getShowTime().getStartTime()) {
       copy.setVisible(true);

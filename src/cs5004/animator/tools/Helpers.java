@@ -81,7 +81,7 @@ public class Helpers {
         content = svg.build();
       }
       case "visual" -> {
-        // TODO: view instance
+
       }
       default -> {
         throw new IllegalArgumentException("Invalid view type");

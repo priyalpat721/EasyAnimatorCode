@@ -18,7 +18,7 @@ public interface IAction {
    * @return the shape at the tick.
    * @throws IllegalArgumentException if the tick is negative. if the shape is null.
    */
-  IShape getShapeAtTick(int tick, IShape accumulatorShape);
+  IShape getShapeAtTick(double tick, IShape accumulatorShape);
 
   /**
    * Gets the current shape of the Action object.

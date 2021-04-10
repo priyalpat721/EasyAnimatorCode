@@ -88,7 +88,7 @@ public interface IAnimatorModel {
    * represents a specific frame in the animation.
    * @throws IllegalArgumentException if the tick is negative.
    */
-  List<IShape> getShapesAtTicks(int tick);
+  List<IShape> getShapesAtTicks(double tick);
 
   /**
    * A formatted representation of the modelImpl as a string.

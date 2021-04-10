@@ -192,7 +192,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
-  public List<IShape> getShapesAtTicks(int tick) {
+  public List<IShape> getShapesAtTicks(double tick) {
     if (tick < 0) {
       throw new IllegalArgumentException("Tick must be greater than 0.");
     }
