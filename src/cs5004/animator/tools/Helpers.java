@@ -23,7 +23,7 @@ public class Helpers {
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
-      throw new IllegalArgumentException("An error occurred");
+      throw new IllegalArgumentException("An error occurred while creating the output file");
     }
   }
 
