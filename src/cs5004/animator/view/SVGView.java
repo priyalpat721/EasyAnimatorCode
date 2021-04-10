@@ -16,13 +16,14 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.tools.Helpers.createFile;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class SVGView {
+public class SVGView implements IAnimatorView {
   private StringBuilder result;
 
   public SVGView() {
     this.result = new StringBuilder();
   }
 
+  @Override
   public void create(IAnimatorModel model, int speed) {
     List<IShape> shapes = model.getLogOfShapes();
     HashMap<String, List<IAction>> dict = model.getLogOfActions();

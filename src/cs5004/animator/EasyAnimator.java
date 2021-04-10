@@ -27,8 +27,8 @@ public final class EasyAnimator {
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
-    var fileName = "src/cs5004/animator/" + inputFile;
-    //var fileName = inputFile;
+    //var fileName = "src/cs5004/animator/" + inputFile;
+    var fileName = inputFile;
 
     // throws FileNotFoundException
     Readable in = new FileReader(fileName);
