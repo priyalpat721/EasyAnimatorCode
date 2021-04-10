@@ -201,7 +201,6 @@ public class SVGView implements IAnimatorView {
     SVGView svg = new SVGView();
     svg.create(animation, 1);
     //System.out.println(svg.generate());
-    //System.out.println(animation.toString());
 
     createFile("test", "svg", svg.generate());
   }

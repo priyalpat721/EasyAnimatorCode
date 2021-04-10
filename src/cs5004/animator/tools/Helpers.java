@@ -77,7 +77,7 @@ public class Helpers {
       case "text" -> {
         TextView text = new TextView();
         text.create(animation, speed);
-        content = animation.toString();
+        content = text.generate();
       }
       case "svg" -> {
         SVGView svg = new SVGView();
