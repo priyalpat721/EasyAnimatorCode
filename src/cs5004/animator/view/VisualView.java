@@ -50,11 +50,9 @@ public class VisualView {
     // controls the frame
     while (count < 100) {
       canvas.currentView(animation.getShapesAtTicks(count));
-      //System.out.println(model.getShapesAtTicks(count));
       count++;
-      System.out.println("Ticks: " + count + "\n" + animation.getShapesAtTicks(count));
       try {
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();

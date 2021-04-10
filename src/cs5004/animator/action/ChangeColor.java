@@ -33,10 +33,9 @@ public class ChangeColor extends AbstractAction {
                        / (this.time.getEndTime() - this.time.getStartTime());
 
       double currentR = (percent * (newColor.getRed() - oldColor.getRed())) + oldColor.getRed();
-      double currentG = (percent * (newColor.getBlue() - oldColor.getBlue())) + oldColor.getBlue();
-      double currentB = (percent * (newColor.getGreen() - oldColor.getGreen()))
+      double currentG = (percent * (newColor.getGreen() - oldColor.getGreen()))
                         + oldColor.getGreen();
-
+      double currentB = (percent * (newColor.getBlue() - oldColor.getBlue())) + oldColor.getBlue();
       copy.setColor(new RGB(currentR, currentG, currentB));
       return copy;
     }
