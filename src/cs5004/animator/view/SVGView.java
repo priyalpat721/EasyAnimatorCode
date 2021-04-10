@@ -146,7 +146,8 @@ public class SVGView {
               case CHANGECOLOR -> {
                 result.append(String.format("\t<animate attributeType=\"xml\" "
                                 + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
-                                + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n",
+                                + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
+                                + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
                                 / speed + "ms",
@@ -158,7 +159,6 @@ public class SVGView {
                         (int) action.getNewColor().getBlue()));
               }
 
-              // TODO
               case STAY -> {
                 if (count != 0) {
                   result.append(String.format("\t<animate attributeType=\"xml\" "
