@@ -197,7 +197,9 @@ public class AnimatorModelImpl implements IAnimatorModel {
           accumulatorShape = actions.getShapeAtTick(tick, accumulatorShape);
         }
       }
-      frameOfShapes.add(accumulatorShape);
+      if (accumulatorShape.isVisible()) {
+        frameOfShapes.add(accumulatorShape);
+      }
     }
     return frameOfShapes;
   }

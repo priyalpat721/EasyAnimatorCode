@@ -19,7 +19,6 @@ public class ShapesPanel extends JComponent {
   }
   public void setShapes(List<IShape> model) {
     this.currentModel = model;
-    System.out.println(currentModel);
     this.repaint();
   }
 

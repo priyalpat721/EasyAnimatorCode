@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class SVGView {
 
     HashMap<String, IShape> shapes = model.getLogOfShapes();
     List<IAction> actions = model.getChronological();
+    Collections.reverse(actions);
 
     result.append(String.format("<svg width=\"%d\" height=\"%d\" "
                     + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",

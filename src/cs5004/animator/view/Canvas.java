@@ -11,10 +11,9 @@ public class Canvas extends JFrame {
   JScrollPane scrollPane;
 
   // displaying the panel with the shapes
-  public Canvas(int x, int y, double width, double height, List<IShape> model) {
+  public Canvas(double width, double height, List<IShape> model) {
     super("Easy Animator");
-    setSize((int) width * 2, (int) height * 2);
-    setLocation(x, y);
+    setSize((int) width, (int) height);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.panel = new ShapesPanel(model);
     this.setVisible(true);

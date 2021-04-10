@@ -23,6 +23,10 @@ public interface IShape {
    */
   Shape getType();
 
+  boolean isVisible();
+
+  void setVisible(boolean visible);
+
   /**
    * Gets the total time of existence of the shape.
    *

@@ -1,9 +1,8 @@
 package cs5004.animator.action;
 
 import cs5004.animator.shape.IShape;
-import cs5004.animator.tools.RGB;
 
-public class Stay extends AbstractAction{
+public class Stay extends AbstractAction {
   public Stay(String name, IShape currentShape, int startTime, int endTime) {
     super(name, currentShape, startTime, endTime);
 
@@ -11,7 +10,17 @@ public class Stay extends AbstractAction{
   }
 
   @Override
-  public IShape getShapeAtTick(int tick, IShape accumulatorShape) {
-    return accumulatorShape;
+  public IShape getShapeAtTick(int tick, IShape shape) {
+    IShape copy = shape.copy();
+    if (tick >= copy.getShowTime().getStartTime()) {
+      copy.setVisible(true);
+    }
+    if (tick < this.time.getStartTime() && copy.isVisible()) {
+      return copy;
+    } else if (tick > this.time.getEndTime() && copy.isVisible()) {
+      return copy;
+    } else {
+      return copy;
+    }
   }
 }

@@ -22,6 +22,7 @@ public class ChangeColor extends AbstractAction {
       throw new IllegalArgumentException("Shape cannot be null");
     }
     IShape copy = shape.copy();
+
     if (tick <= this.time.getStartTime()) {
       return shape.copy();
     } else if (tick > this.time.getEndTime()) {

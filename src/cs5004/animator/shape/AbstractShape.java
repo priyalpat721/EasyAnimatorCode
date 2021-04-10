@@ -19,6 +19,7 @@ public abstract class AbstractShape implements IShape {
   protected double radius;
   protected double width;
   protected double height;
+  protected boolean visible;
 
   /**
    * Constructs an IShape object. If the shape to construct is a circle or a square, the width and
@@ -53,7 +54,7 @@ public abstract class AbstractShape implements IShape {
     this.color = color;
     this.position = new Position(x, y);
     this.showTime = new Time(startTime, endTime);
-
+    this.visible = false;
     this.width = width;
     this.height = height;
   }
@@ -75,6 +76,16 @@ public abstract class AbstractShape implements IShape {
   @Override
   public Shape getType() {
     return this.type;
+  }
+
+  @Override
+  public boolean isVisible() {
+    return visible;
+  }
+
+  @Override
+  public void setVisible(boolean visible) {
+    this.visible = visible;
   }
 
   @Override
