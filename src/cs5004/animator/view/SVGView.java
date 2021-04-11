@@ -197,7 +197,6 @@ public class SVGView implements IAnimatorView {
     return this.result.toString();
   }
 
-
   public static void main(String[] args) throws IOException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     var fileName = "src/cs5004/animator/demo.txt";

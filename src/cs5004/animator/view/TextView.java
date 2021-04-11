@@ -18,5 +18,4 @@ public class TextView implements IAnimatorView {
     return this.result;
   }
 
-
 }
