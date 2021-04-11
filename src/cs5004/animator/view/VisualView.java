@@ -12,9 +12,11 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class VisualView implements IAnimatorView {
+  private String result;
 
   @Override
   public void create(IAnimatorModel model, int speed) {
+    result = model.toString();
     Canvas canvas = new Canvas(model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
     canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     int end = model.getTotalTime()[1];
@@ -22,9 +24,9 @@ public class VisualView implements IAnimatorView {
     // controls the frame
     while (count < end) {
       canvas.currentView(model.getShapesAtTicks(count));
-      count += speed;
+      count += 1;
       try {
-        Thread.sleep(100);
+        Thread.sleep(speed);
 
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
@@ -32,7 +34,8 @@ public class VisualView implements IAnimatorView {
     }
   }
 
-  public void generate() {
+  public String generate() {
+    return result;
   }
 
   public static void main(String args[]) throws FileNotFoundException {

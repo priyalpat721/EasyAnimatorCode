@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.view;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

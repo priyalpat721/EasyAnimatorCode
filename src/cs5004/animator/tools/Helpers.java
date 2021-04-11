@@ -86,7 +86,7 @@ public class Helpers {
         content = svg.generate();
       }
       case "visual" -> {
-        VisualView view = new VisualView();
+        IAnimatorView view = new VisualView();
         view.create(animation, speed);
         view.generate();
       }
