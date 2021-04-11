@@ -34,7 +34,7 @@ public class VisualView implements IAnimatorView {
 
   public static void main(String args[]) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
+    var fileName = "src/cs5004/animator/buildings.txt";
     Readable in = new FileReader(fileName);
     IAnimatorModel animation = parseFile(in, builder);
     VisualView view = new VisualView();
