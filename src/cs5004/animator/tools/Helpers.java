@@ -31,7 +31,9 @@ public class Helpers {
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
-      throw new IllegalArgumentException("An error occurred while creating the output file");
+      showMessage("Output file",
+              "An error occurred while creating the file", 2);
+      System.exit(0);
     }
 
     return fileName;
@@ -64,9 +66,11 @@ public class Helpers {
     }
 
     if (commands[0].equals("")) {
-      throw new IllegalArgumentException("Input file is mandatory");
+      showMessage("Input file", "Input file is mandatory", 2);
+      System.exit(0);
     } else if (commands[1].equals("")) {
-      throw new IllegalArgumentException("View type is mandatory");
+      showMessage("View type", "View type is mandatory", 2);
+      System.exit(0);
     }
 
     return commands;
@@ -93,7 +97,9 @@ public class Helpers {
         view.generate();
       }
       default -> {
-        throw new IllegalArgumentException("Invalid view type");
+        showMessage("View type",
+                "Invalid view type\nChoose: svg, text, or visual", 2);
+        System.exit(0);
       }
     }
 
@@ -108,26 +114,23 @@ public class Helpers {
           if (viewType.equals("svg")) {
             fileName = createFile(outputFile[0], "svg", content);
           }
-          System.out.printf("%s created%n", fileName);
+          showMessage("Output file", String.format("%s created", fileName), 1);
         } else {
           System.out.print(content);
         }
       } else {
         fileName = createFile(outputFile[0], outputFile[1], content);
-        System.out.printf("%s created%n", fileName);
+        showMessage("Output file", String.format("%s created", fileName), 1);
       }
     }
   }
 
-  public static void createError(String message, String title, int iconNumber) {
+  public static void showMessage(String title, String message, int iconNumber) {
     switch (iconNumber) {
-      case 1:
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
-        break;
-      case 2:
-        JOptionPane.showMessageDialog(null, message, title,
-                JOptionPane.ERROR_MESSAGE);
-        break;
+      case 1 -> JOptionPane.showMessageDialog(null, message, title,
+              JOptionPane.PLAIN_MESSAGE);
+      case 2 -> JOptionPane.showMessageDialog(null, message, title,
+              JOptionPane.ERROR_MESSAGE);
     }
   }
 
