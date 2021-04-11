@@ -123,9 +123,11 @@ public class Helpers {
     switch (iconNumber) {
       case 1:
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
+        break;
       case 2:
         JOptionPane.showMessageDialog(null, message, title,
                 JOptionPane.ERROR_MESSAGE);
+        break;
     }
   }
 

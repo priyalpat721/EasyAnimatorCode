@@ -31,6 +31,7 @@ public final class EasyAnimator {
     // throws FileNotFoundException
     try {
       Readable in = new FileReader(inputFile);
+      createError("File found", "File being read", 1);
       IAnimatorModel animation = parseFile(in, builder);
       generateView(animation, viewType, outputFile, speed);
     } catch (FileNotFoundException f) {
