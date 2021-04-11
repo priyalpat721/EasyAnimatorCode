@@ -3,7 +3,7 @@ package cs5004.animator.view;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
