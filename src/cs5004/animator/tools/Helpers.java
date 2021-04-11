@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
+import javax.swing.*;
+
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.SVGView;
@@ -114,6 +116,16 @@ public class Helpers {
         fileName = createFile(outputFile[0], outputFile[1], content);
         System.out.printf("%s created%n", fileName);
       }
+    }
+  }
+
+  public static void createError(String message, String title, int iconNumber) {
+    switch (iconNumber) {
+      case 1:
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
+      case 2:
+        JOptionPane.showMessageDialog(null, message, title,
+                JOptionPane.ERROR_MESSAGE);
     }
   }
 

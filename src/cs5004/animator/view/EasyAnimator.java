@@ -7,6 +7,7 @@ import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
+import static cs5004.animator.tools.Helpers.createError;
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
@@ -28,11 +29,14 @@ public final class EasyAnimator {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
     // throws FileNotFoundException
-    Readable in = new FileReader(inputFile);
+    try {
+      Readable in = new FileReader(inputFile);
+      IAnimatorModel animation = parseFile(in, builder);
+      generateView(animation, viewType, outputFile, speed);
+    } catch (FileNotFoundException f) {
+      createError("File not found", "Inane error", 2);
+    }
 
-    IAnimatorModel animation = parseFile(in, builder);
-
-    generateView(animation, viewType, outputFile, speed);
   }
 
 }
