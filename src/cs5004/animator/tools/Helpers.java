@@ -79,7 +79,7 @@ public class Helpers {
           commands[3] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
           showMessage("Command -speed without argument\nSet to default", 2);
-          commands[3] = "1";
+          commands[3] = "";
         }
       }
     }
