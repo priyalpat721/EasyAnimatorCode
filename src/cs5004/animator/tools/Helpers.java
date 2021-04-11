@@ -31,8 +31,7 @@ public class Helpers {
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
-      showMessage("Output file",
-              "An error occurred while creating the file", 2);
+      showMessage("An error occurred while creating the file", 2);
       System.exit(0);
     }
 
@@ -52,7 +51,7 @@ public class Helpers {
         try {
           commands[0] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command", "Command -in without argument", 2);
+          showMessage("Command -in without argument", 2);
           System.exit(0);
         }
       }
@@ -61,7 +60,7 @@ public class Helpers {
         try {
           commands[1] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command", "Command -view without argument", 2);
+          showMessage("Command -view without argument", 2);
           System.exit(0);
         }
       }
@@ -70,8 +69,7 @@ public class Helpers {
         try {
           commands[2] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command",
-                  "Command -out without argument\nSet to default", 2);
+          showMessage("Command -out without argument\nSet to default", 2);
           commands[2] = "";
         }
       }
@@ -80,22 +78,20 @@ public class Helpers {
         try {
           commands[3] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command",
-                  "Command -speed without argument\nSet to default", 2);
+          showMessage("Command -speed without argument\nSet to default", 2);
           commands[3] = "1";
         }
       }
     }
 
     if (commands[0].equals("") && commands[1].equals("")) {
-      showMessage("Input and view",
-              "Input file and view type are mandatory", 2);
+      showMessage("Input file and view type are mandatory", 2);
       System.exit(0);
     } else if (commands[0].equals("")) {
-      showMessage("Input file", "Input file is mandatory", 2);
+      showMessage("Input file is mandatory", 2);
       System.exit(0);
     } else if (commands[1].equals("")) {
-      showMessage("View type", "View type is mandatory", 2);
+      showMessage("View type is mandatory", 2);
       System.exit(0);
     }
 
@@ -123,7 +119,7 @@ public class Helpers {
         view.generate();
       }
       default -> {
-        showMessage("View type", "Invalid view type", 2);
+        showMessage("Invalid view type", 2);
         System.exit(0);
       }
     }
@@ -139,22 +135,22 @@ public class Helpers {
           if (viewType.equals("svg")) {
             fileName = createFile(outputFile[0], "svg", content);
           }
-          showMessage("Output file", String.format("%s created", fileName), 1);
+          showMessage(String.format("%s created", fileName), 1);
         } else {
           System.out.print(content);
         }
       } else {
         fileName = createFile(outputFile[0], outputFile[1], content);
-        showMessage("Output file", String.format("%s created", fileName), 1);
+        showMessage(String.format("%s created", fileName), 1);
       }
     }
   }
 
-  public static void showMessage(String title, String message, int iconNumber) {
+  public static void showMessage(String message, int iconNumber) {
     switch (iconNumber) {
-      case 1 -> JOptionPane.showMessageDialog(null, message, title,
+      case 1 -> JOptionPane.showMessageDialog(null, message, "Success",
               JOptionPane.PLAIN_MESSAGE);
-      case 2 -> JOptionPane.showMessageDialog(null, message, title,
+      case 2 -> JOptionPane.showMessageDialog(null, message, "Error",
               JOptionPane.ERROR_MESSAGE);
     }
   }

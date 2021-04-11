@@ -15,7 +15,6 @@ import static cs5004.animator.tools.Helpers.showMessage;
 
 public final class EasyAnimator {
 
-  // Entry point to our program
   public static void main(String[] args) {
     String[] commands = parseCommands(args);
     String inputFile = commands[0];
@@ -33,7 +32,7 @@ public final class EasyAnimator {
     try {
       in = new FileReader(inputFile);
     } catch (FileNotFoundException e) {
-      showMessage("Input file", "Input file not found", 2);
+      showMessage("Input file not found", 2);
       System.exit(0);
     }
 
