@@ -1,5 +1,6 @@
 package cs5004.animator.view;
 
+import java.awt.*;
 import java.util.List;
 
 import javax.swing.*;
@@ -16,8 +17,13 @@ public class Canvas extends JFrame {
     setSize((int) width, (int) height);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.panel = new ShapesPanel(model);
+    this.panel.setPreferredSize(new Dimension((int)width * 2, (int) height * 2));
+    scrollPane = new JScrollPane(panel);
+    scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
     this.setVisible(true);
-    this.add(this.panel);
+    this.add(scrollPane);
     panel.setVisible(true);
 
 
@@ -27,7 +33,7 @@ public class Canvas extends JFrame {
 
   public void currentView(List<IShape> currentShapes) {
     // gets the shapes in correct position and color
-    panel.setShapes(currentShapes);
-    panel.repaint();
+    this.panel.setShapes(currentShapes);
+    this.panel.repaint();
   }
 }

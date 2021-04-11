@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import cs5004.animator.action.IAction;
-import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
