@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.IAnimatorView;
@@ -31,7 +31,8 @@ public class Helpers {
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
-      throw new IllegalArgumentException("An error occurred while creating the output file");
+      showMessage("An error occurred while creating the file", 2);
+      System.exit(0);
     }
 
     return fileName;
@@ -47,26 +48,51 @@ public class Helpers {
 
     for (int i = 0; i < args.length; i++) {
       if (args[i].equals("-in")) {
-        commands[0] = args[i + 1];
+        try {
+          commands[0] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command -in without argument", 2);
+          System.exit(0);
+        }
       }
 
       if (args[i].equals("-view")) {
-        commands[1] = args[i + 1];
+        try {
+          commands[1] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command -view without argument", 2);
+          System.exit(0);
+        }
       }
 
       if (args[i].equals("-out")) {
-        commands[2] = args[i + 1];
+        try {
+          commands[2] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command -out without argument\nSet to default", 2);
+          commands[2] = "";
+        }
       }
 
       if (args[i].equals("-speed")) {
-        commands[3] = args[i + 1];
+        try {
+          commands[3] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command -speed without argument\nSet to default", 2);
+          commands[3] = "";
+        }
       }
     }
 
-    if (commands[0].equals("")) {
-      throw new IllegalArgumentException("Input file is mandatory");
+    if (commands[0].equals("") && commands[1].equals("")) {
+      showMessage("Input file and view type are mandatory", 2);
+      System.exit(0);
+    } else if (commands[0].equals("")) {
+      showMessage("Input file is mandatory", 2);
+      System.exit(0);
     } else if (commands[1].equals("")) {
-      throw new IllegalArgumentException("View type is mandatory");
+      showMessage("View type is mandatory", 2);
+      System.exit(0);
     }
 
     return commands;
@@ -93,7 +119,8 @@ public class Helpers {
         view.generate();
       }
       default -> {
-        throw new IllegalArgumentException("Invalid view type");
+        showMessage("Invalid view type", 2);
+        System.exit(0);
       }
     }
 
@@ -108,26 +135,23 @@ public class Helpers {
           if (viewType.equals("svg")) {
             fileName = createFile(outputFile[0], "svg", content);
           }
-          System.out.printf("%s created%n", fileName);
+          showMessage(String.format("%s created", fileName), 1);
         } else {
           System.out.print(content);
         }
       } else {
         fileName = createFile(outputFile[0], outputFile[1], content);
-        System.out.printf("%s created%n", fileName);
+        showMessage(String.format("%s created", fileName), 1);
       }
     }
   }
 
-  public static void createError(String message, String title, int iconNumber) {
+  public static void showMessage(String message, int iconNumber) {
     switch (iconNumber) {
-      case 1:
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
-        break;
-      case 2:
-        JOptionPane.showMessageDialog(null, message, title,
-                JOptionPane.ERROR_MESSAGE);
-        break;
+      case 1 -> JOptionPane.showMessageDialog(null, message, "Success",
+              JOptionPane.PLAIN_MESSAGE);
+      case 2 -> JOptionPane.showMessageDialog(null, message, "Error",
+              JOptionPane.ERROR_MESSAGE);
     }
   }
 
