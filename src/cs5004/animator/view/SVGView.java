@@ -193,11 +193,9 @@ public class SVGView implements IAnimatorView {
     result.append("</svg>");
   }
 
-  @Override
   public String generate() {
     return this.result.toString();
   }
-
 
   public static void main(String[] args) throws IOException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();

@@ -25,16 +25,10 @@ public class VisualView implements IAnimatorView {
       count = count + speed / 100.0;
       try {
         Thread.sleep(1);
-
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
     }
-  }
-
-  @Override
-  public String generate() {
-    return "";
   }
 
   public static void main(String args[]) throws FileNotFoundException {

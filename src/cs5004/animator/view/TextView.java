@@ -14,10 +14,8 @@ public class TextView implements IAnimatorView {
     result = model.toString(speed);
   }
 
-  @Override
   public String generate() {
     return this.result;
   }
-
 
 }
