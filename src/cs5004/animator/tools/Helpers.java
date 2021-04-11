@@ -49,23 +49,49 @@ public class Helpers {
 
     for (int i = 0; i < args.length; i++) {
       if (args[i].equals("-in")) {
-        commands[0] = args[i + 1];
+        try {
+          commands[0] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command", "Command -in without argument", 2);
+          System.exit(0);
+        }
       }
 
       if (args[i].equals("-view")) {
-        commands[1] = args[i + 1];
+        try {
+          commands[1] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command", "Command -view without argument", 2);
+          System.exit(0);
+        }
       }
 
       if (args[i].equals("-out")) {
-        commands[2] = args[i + 1];
+        try {
+          commands[2] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command",
+                  "Command -out without argument\nSet to default", 2);
+          commands[2] = "";
+        }
       }
 
       if (args[i].equals("-speed")) {
-        commands[3] = args[i + 1];
+        try {
+          commands[3] = args[i + 1];
+        } catch (IndexOutOfBoundsException e) {
+          showMessage("Command",
+                  "Command -speed without argument\nSet to default", 2);
+          commands[3] = "1";
+        }
       }
     }
 
-    if (commands[0].equals("")) {
+    if (commands[0].equals("") && commands[1].equals("")) {
+      showMessage("Input and view",
+              "Input file and view type are mandatory", 2);
+      System.exit(0);
+    } else if (commands[0].equals("")) {
       showMessage("Input file", "Input file is mandatory", 2);
       System.exit(0);
     } else if (commands[1].equals("")) {
