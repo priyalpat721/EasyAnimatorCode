@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.IAnimatorView;

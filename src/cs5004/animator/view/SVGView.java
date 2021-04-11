@@ -194,6 +194,7 @@ public class SVGView implements IAnimatorView {
     result.append("</svg>");
   }
 
+  @Override
   public String generate() {
     return this.result.toString();
   }
