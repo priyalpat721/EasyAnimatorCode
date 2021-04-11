@@ -26,7 +26,6 @@ public class VisualView implements IAnimatorView {
       count = count + speed / 100.0;
       try {
         Thread.sleep(1);
-
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
