@@ -37,7 +37,7 @@ public class VisualView implements IAnimatorView {
     Readable in = new FileReader(fileName);
     IAnimatorModel animation = parseFile(in, builder);
     VisualView view = new VisualView();
-    view.create(animation, 10);
+    view.create(animation, 1);
   }
 
 }
