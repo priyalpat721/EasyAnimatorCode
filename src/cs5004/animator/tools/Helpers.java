@@ -123,8 +123,7 @@ public class Helpers {
         view.generate();
       }
       default -> {
-        showMessage("View type",
-                "Invalid view type\nChoose: svg, text, or visual", 2);
+        showMessage("View type", "Invalid view type", 2);
         System.exit(0);
       }
     }
