@@ -33,11 +33,6 @@ public class VisualView implements IAnimatorView {
     }
   }
 
-  @Override
-  public String generate() {
-    return "";
-  }
-
   public static void main(String args[]) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     var fileName = "src/cs5004/animator/demo.txt";

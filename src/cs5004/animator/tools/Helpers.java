@@ -116,7 +116,6 @@ public class Helpers {
       case "visual" -> {
         IAnimatorView view = new VisualView();
         view.create(animation, speed);
-        view.generate();
       }
       default -> {
         showMessage("Invalid view type", 2);

@@ -6,5 +6,4 @@ public interface IAnimatorView {
 
   void create(IAnimatorModel model, int speed);
 
-  String generate();
 }
