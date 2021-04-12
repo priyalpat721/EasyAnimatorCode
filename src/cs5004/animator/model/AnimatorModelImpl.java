@@ -77,6 +77,8 @@ public class AnimatorModelImpl implements IAnimatorModel {
     } else if (type == Shape.ELLIPSE) {
       logOfShapes.add(new Ellipse(name, color, width, height, x, y, startTime, endTime));
     }
+
+    stay(name, startTime, endTime);
   }
 
   @Override
