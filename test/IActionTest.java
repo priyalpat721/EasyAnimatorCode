@@ -88,12 +88,11 @@ public class IActionTest {
             4, 4, 0, 0, 1, 50);
     color2 = new ChangeColor("Square1", square1, new RGB(12, 15, 18),
             0, 1);
-    assertEquals("Square1 changes color from (10.0,15.0,20.0) "
-            + "to (12.0,15.0,18.0) from time t= 0 to t=1", color2.toString());
+    System.out.println(color2.toString());
     color3 = new ChangeColor("Square1", square1, new RGB(200, 215, 218),
             0, 1);
     assertEquals("Square1 changes color from (12.0,15.0,18.0) "
-            + "to (200.0,215.0,218.0) from time t= 0 to t=1", color3.toString());
+            + "to (200.0,215.0,218.0) from time t=0 to t=1", color3.toString());
   }
 
   @Test (expected = IllegalArgumentException.class)
@@ -255,32 +254,31 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (44.1,120.2,44.1)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (83.1,140.4,83.2)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (122.1,160.6,122.3)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (161.2,180.8,161.4)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,201.0,200.5)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100"
-            , intervals.toString());
+    assertEquals("Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (44.1,44.1,120.2)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (83.1,83.2,140.4)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (122.1,122.3,160.6)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (161.2,161.4,180.8)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100", intervals.toString());
   }
 
   @Test
@@ -306,7 +304,8 @@ public class IActionTest {
   @Test
   public void changeColorToStringTest() {
     assertEquals("Circle1 changes color from (5.0,5.0,100.0) "
-            + "to (200.3,200.5,201.0) from time t= 15 to t=20", color.toString());
+            + "to (200.3,200.5,201.0) from time t=15 to t=20", color.toString());
+
   }
 
   @Test(expected = IllegalArgumentException.class)
