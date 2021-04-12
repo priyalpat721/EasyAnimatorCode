@@ -1,7 +1,5 @@
 package cs5004.animator.view;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +8,6 @@ import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
-import cs5004.animator.utils.AnimationBuilder;
-import cs5004.animator.utils.Builder;
-
-import static cs5004.animator.tools.Helpers.createFile;
-import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class SVGView implements IAnimatorView {
   private StringBuilder result;
@@ -195,20 +188,6 @@ public class SVGView implements IAnimatorView {
 
   public String generate() {
     return this.result.toString();
-  }
-
-  public static void main(String[] args) throws IOException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    var fileName = "src/cs5004/animator/demo.txt";
-    Readable in = new FileReader(fileName);
-    IAnimatorModel animation = parseFile(in, builder);
-    //IAnimatorModel animation = new AnimatorModelImpl();
-
-    SVGView svg = new SVGView();
-    svg.create(animation, 1);
-    //System.out.println(svg.generate());
-
-    createFile("test", "svg", svg.generate());
   }
 
 }
