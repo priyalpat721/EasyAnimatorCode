@@ -119,88 +119,52 @@ public class AnimatorModelImplTest {
   public void testCreateShape() {
     model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
         12, 12, 100, 50, 1, 100);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: C\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: ellipse\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
-                 + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\n" + "Disappears at t=100\n" +
-                 "\n", model1.toString());
 
     //create shape with starting and ending time of zero
     model1.createShape("X", Shape.ELLIPSE, new RGB(0, 0, 0), 35, 47,
         234, 16, 0, 0);
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: C\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: X\n" +
-                 "Type: ellipse\n" +
-                 "Center: (234.0,16.0), X radius: 35.0, Y radius: 47.0, Color: (0.0,0.0,0.0)\n" +
-                 "Appears at t=0\n" +
-                 "Disappears at t=0\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: ellipse\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
-                 + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\n"
-                 + "Disappears at t=100\n" + "\n", model1.toString());
+    assertEquals("Shapes:\n"
+                 + "Name: R\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "\n"
+                 + "Name: O\n"
+                 + "Type: ellipse\n"
+                 + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
+                 + "Appears at t=6\n"
+                 + "Disappears at t=100\n"
+                 + "\n"
+                 + "Name: T\n"
+                 + "Type: triangle\n"
+                 + "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n"
+                 + "Appears at t=23\n"
+                 + "Disappears at t=75\n"
+                 + "\n"
+                 + "Name: S\n"
+                 + "Type: square\n"
+                 + "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=30\n"
+                 + "Disappears at t=60\n"
+                 + "\n"
+                 + "Name: RH\n"
+                 + "Type: rhombus\n"
+                 + "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n"
+                 + "Appears at t=98\n"
+                 + "Disappears at t=99\n"
+                 + "\n"
+                 + "Name: C\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "\n"
+                 + "Name: X\n"
+                 + "Type: ellipse\n"
+                 + "Center: (234.0,16.0), X radius: 35.0, Y radius: 47.0, Color: (0.0,0.0,0.0)\n"
+                 + "Appears at t=0\n"
+                 + "Disappears at t=0\n\n", model1.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -216,21 +180,6 @@ public class AnimatorModelImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveEmptySpaceName() {
     model1.move(" ", 45, 125, 34, 36);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveToSamePosition() {
-    model1.move("S", 45, 125, 29, 36);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveToNegativeX() {
-    model1.move("S", -12, 125, 34, 36);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveToNegativeY() {
-    model1.move("S", 12, -125, 34, 36);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -250,18 +199,12 @@ public class AnimatorModelImplTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveBeforeTimeRange() {
-    model1.move("S", 45, 125, 29, 36);
+    model1.move("S", 45, 125, 10, 25);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveAfterTimeRange() {
-    model1.move("S", 45, 125, 29, 37);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveDuplicateMove() {
-    model1.move("R", 324, 75, 10, 50);
-    model1.move("R", 324, 75, 10, 50);
+    model1.move("S", 45, 125, 61, 37);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -502,6 +445,7 @@ public class AnimatorModelImplTest {
   public void testChangeColor() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
         33, 44);
+
     assertEquals("Shapes:\n" +
                  "Name: R\n" +
                  "Type: rectangle\n" +
@@ -536,7 +480,7 @@ public class AnimatorModelImplTest {
                  + "from time t= 33 to t=44"
         , model1.toString());
 
-    // changing color back to previous color
+     //changing color back to previous color
     model1.changeColor("R", new RGB(1, 1, 1),
         45, 50);
     assertEquals("Shapes:\n" +
@@ -867,58 +811,43 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testTestToString() {
-    assertEquals("Shapes:\n" +
-                 "Name: R\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
-                 "Name: S\n" +
-                 "Type: square\n" +
-                 "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=30\n" +
-                 "Disappears at t=60\n" +
-                 "\n" +
-                 "Name: T\n" +
-                 "Type: triangle\n" +
-                 "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n" +
-                 "Appears at t=23\n" +
-                 "Disappears at t=75\n" +
-                 "\n" +
-                 "Name: RH\n" +
-                 "Type: rhombus\n" +
-                 "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n" +
-                 "Appears at t=98\n" +
-                 "Disappears at t=99\n" +
-                 "\n" +
-                 "Name: O\n" +
-                 "Type: ellipse\n" +
-                 "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, Color: (21.0,21.0,21.0)\n"
-                 +
-                 "Appears at t=6\n" +
-                 "Disappears at t=100\n" +
-                 "\n", model1.toString());
+    assertEquals("Shapes:\n"
+                 + "Name: R\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\nDisappears at t=100\n\nName: O\nType: ellipse\n"
+                 + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
+                 + "Color: (21.0,21.0,21.0)\n" + "Appears at t=6\nDisappears at t=100\n\n"
+                 + "Name: T\n"
+                 + "Type: triangle\n"
+                 + "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n"
+                 + "Appears at t=23\nDisappears at t=75\n\n"
+                 + "Name: S\n"
+                 + "Type: square\n"
+                 + "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=30\nDisappears at t=60\n\n"
+                 + "Name: RH\n"
+                 + "Type: rhombus\n"
+                 + "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n"
+                 + "Appears at t=98\nDisappears at t=99\n\n", model1.toString());
 
     //test toString() for rectangle actions
     assertEquals("Shapes:\n" +
                  "Name: P1\n" +
                  "Type: rectangle\n" +
                  "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "\n" +
+                 "Appears at t=1\nDisappears at t=100\n\n" +
                  "Shape P1 moves from (200.0, 200.0) to (150.0, 150.0) from time t=1 to t=5\n" +
                  "Shape P1 scales from Width: 50.0, Height: 100.0 to Width: 100.0, "
                  + "Height: 200.0 from time t=5 to t=10\n" +
                  "Shape P1 changes color from (1.0,1.0,1.0) to (10.0,10.0,10.0) "
-                 + "from time t= 10 to t=15"
+                 + "from time t=10 to t=15"
         , model2.toString());
   }
 
 
   @Test
-  public void testToStringCreateAndActionsRectangleAndOval() {
+  public void testToStringCreateAndActionsRectangleAndEllipse() {
     AnimatorModelImpl model3 = new AnimatorModelImpl();
     model3.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
         50, 100, 200, 200, 1, 100);
@@ -946,7 +875,7 @@ public class AnimatorModelImplTest {
                  "Shape R moves from (200.0, 200.0) to (300.0, 300.0) from time t=10 to t=50\n" +
                  "Shape C moves from (500.0, 100.0) to (500.0, 400.0) from time t=20 to t=70\n" +
                  "Shape C changes color from (0.0,0.0,1.0) to (0.0,1.0,0.0) "
-                 + "from time t= 50 to t=80\n" +
+                 + "from time t=50 to t=80\n" +
                  "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
                  + "Height: 100.0 from time t=51 to t=70\n"
                  +
