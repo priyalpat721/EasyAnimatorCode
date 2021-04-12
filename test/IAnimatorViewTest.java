@@ -1,13 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
 import cs5004.animator.model.IAnimatorModel;
-import cs5004.animator.shape.Shape;
-import cs5004.animator.tools.RGB;
-import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
-import org.junit.Before;
 import org.junit.Test;
 
 public class IAnimatorViewTest {
