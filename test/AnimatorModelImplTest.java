@@ -195,11 +195,11 @@ public class AnimatorModelImplTest {
     model1.move("S", 45, 125, 61, 37);
   }
 
-//  @Test(expected = IllegalArgumentException.class)
-//  public void testIllegalMoveOverlappingMoveSameStartAndEnd() {
-//    model1.move("R", 335, 375, 10, 50);
-//    model1.move("R", 20, 14, 10, 50);
-//  }
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalMoveOverlappingMoveSameStartAndEnd() {
+    model1.move("R", 335, 375, 10, 50);
+    model1.move("R", 20, 14, 10, 50);
+  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveOverlappingMoveWithinPreviousMove() {
