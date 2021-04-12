@@ -9,8 +9,8 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
-import static cs5004.animator.utils.AnimationReader.parseFile;
 import static cs5004.animator.tools.Helpers.showMessage;
+import static cs5004.animator.utils.AnimationReader.parseFile;
 
 
 public final class EasyAnimator {

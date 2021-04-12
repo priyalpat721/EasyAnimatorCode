@@ -16,9 +16,11 @@ public class ShapesPanel extends JComponent {
     this.currentModel = model;
 
   }
+
   public void setShapes(List<IShape> model) {
     this.currentModel = model;
   }
+
 
   @Override
   public void paintComponent(Graphics g) {

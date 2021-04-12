@@ -10,14 +10,18 @@ import cs5004.animator.shape.IShape;
 public class Canvas extends JFrame {
   ShapesPanel panel;
   JScrollPane scrollPane;
-
+  int width;
+  int height;
   // displaying the panel with the shapes
-  public Canvas(double width, double height, List<IShape> model) {
+  public Canvas(double x, double y, double width, double height, List<IShape> model) {
     super("Easy Animator");
-    setSize((int) width, (int) height);
+    this.width = (int) width;
+    this.height = (int) height;
+    setSize(this.width, this.height);
+    setLocation((int) x, (int) y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.panel = new ShapesPanel(model);
-    this.panel.setPreferredSize(new Dimension((int)width * 2, (int) height * 2));
+    this.panel.setPreferredSize(new Dimension((int) width * 2, (int) height * 2));
     scrollPane = new JScrollPane(panel);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -25,10 +29,12 @@ public class Canvas extends JFrame {
     this.setVisible(true);
     this.add(scrollPane);
     panel.setVisible(true);
+    this.pack();
+  }
 
-
-    //parameters Jtext, JScrollPane.SCROLLBAR_AS_NEEDED wrap shape panel in scroll pane
-    //scrollPane = new JScrollPane();
+  @Override
+  public Dimension getPreferredSize() {
+    return new Dimension(width + 1, height + 1);
   }
 
   public void currentView(List<IShape> currentShapes) {
