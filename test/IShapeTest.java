@@ -226,18 +226,6 @@ public class IShapeTest {
     assertEquals(100, ellipse.getPosition().getY(), 0.01);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalX() {
-    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
-            -200, 200, 1, 100);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalY() {
-    IShape r1 = new Rectangle("R", new RGB(1, 0, 0), 50, 100,
-            200, -200, 1, 100);
-  }
-
   @Test
   public void testSetPosition() {
     rectangle.setPosition(100, 100);
@@ -248,16 +236,6 @@ public class IShapeTest {
     circle.setPosition(0.9999999999999999, 99.9999999999999999);
     assertEquals(0.9999999999999999, circle.getPosition().getX(), 0.01);
     assertEquals(99.9999999999999999, circle.getPosition().getY(), 0.01);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalSetPositionX() {
-    rectangle.setPosition(-100, 100);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalSetPositionY() {
-    rectangle.setPosition(100, -100);
   }
 
   @Test
@@ -418,11 +396,6 @@ public class IShapeTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalSetLength() {
     square.setLength(0);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalSetLengthWithSetWidth() {
-    square.setWidth(14);
   }
 
   @Test
