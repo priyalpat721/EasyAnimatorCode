@@ -207,12 +207,6 @@ public class AnimatorModelImplTest {
     model1.move("R", 20, 14, 35, 40);
   }
 
-//  @Test(expected = IllegalArgumentException.class)
-//  public void testIllegalMoveOverlappingEndTimeAndStartOfNext() {
-//    model1.move("R", 340, 375, 2, 5);
-//    model1.move("R", 20, 14, 5, 8);
-//  }
-
   @Test
   public void testMove() {
     model1.move("R", 350, 375, 10, 50);
@@ -286,6 +280,23 @@ public class AnimatorModelImplTest {
                  + "from time t=23 to t=30\n"
                  + "Shape F1 scales from Width: 35.0, Height: 50.0 to Width: 108.0, "
                  + "Height: 180.0 from time t=23 to t=30", model3.toString());
+
+    //move overlap where end time of previous is same as start time of next move
+    model3.move("F1",40, 75, 34, 40);
+    model3.move("F1", 45, 80, 40, 45);
+    assertEquals("Shapes:\n"
+                 + "Name: F1\n"
+                 + "Type: triangle\n"
+                 + "Min corner: (30.0,60.0), Width: 35.0, Height: 50.0, Color: (0.0,0.0,0.0)\n"
+                 + "Appears at t=1\nDisappears at t=80\n\n"
+                 + "Shape F1 moves from (30.0, 60.0) to (34.0, 65.0) from time t=20 to t=33\n"
+                 + "Shape F1 changes color from (0.0,0.0,0.0) to (13.0,13.0,43.0) "
+                 + "from time t=23 to t=30\n"
+                 + "Shape F1 scales from Width: 35.0, Height: 50.0 to Width: 108.0, "
+                 + "Height: 180.0 from time t=23 to t=30\n"
+                 + "Shape F1 moves from (34.0, 65.0) to (40.0, 75.0) from time t=34 to t=40\n"
+                 + "Shape F1 moves from (40.0, 75.0) to (45.0, 80.0) "
+                 + "from time t=40 to t=45", model3.toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
