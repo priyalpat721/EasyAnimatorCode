@@ -2,6 +2,9 @@ package cs5004.animator.action;
 
 import cs5004.animator.shape.IShape;
 
+/**
+ * Action class for having shapes retain visibility. This action is of type Action.STAY.
+ */
 public class Stay extends AbstractAction {
   public Stay(String name, IShape currentShape, int startTime, int endTime) {
     super(name, currentShape, startTime, endTime);

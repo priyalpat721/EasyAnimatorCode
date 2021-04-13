@@ -79,11 +79,12 @@ public abstract class AbstractAction implements IAction {
   }
 
   /**
-   * A constructor for stay
-   * @param name
-   * @param currentShape
-   * @param startTime
-   * @param endTime
+   * Constructs an IAction object. This constructor is used by the Stay class.
+   *
+   * @param name of the shape.
+   * @param currentShape current state of the shape.
+   * @param startTime for the execution of the action.
+   * @param endTime for the execution of the action.
    */
   public AbstractAction(String name, IShape currentShape, int startTime, int endTime) {
     this.name = name;
@@ -154,7 +155,7 @@ public abstract class AbstractAction implements IAction {
   /**
    * Private method that throws IllegalArgumentException if the name or the shape are invalid.
    *
-   * @param name         the name of the shape.
+   * @param name the name of the shape.
    * @param currentShape the shape.
    */
   private void checkArguments(String name, IShape currentShape) {

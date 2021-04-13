@@ -6,18 +6,12 @@ import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import org.junit.Test;
 
+/**
+ * JUnit test class for the IAnimatorView interface.
+ */
 public class IAnimatorViewTest {
-  /// IAnimatorViewTest
-  ///create a test from the interface of the view
-  //and create a private method on the test that populates a model following the cycle that the builder follows
-  //model.createShape(String name, String type)
-  //model.setBounds(..)
-  //model.setAttributes(..)
-  //model.addMotion(..)
-  //setBounds goes first, it is the canvas
-  /// - bounds, create, attributes, motion
-  // we have to test the cycle of the builder
 
+  //private method that populates a model following the cycle that the builder follows
   private Builder populateModel() {
     Builder builder = new Builder();
 

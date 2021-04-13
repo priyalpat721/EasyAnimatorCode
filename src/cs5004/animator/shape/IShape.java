@@ -23,8 +23,18 @@ public interface IShape {
    */
   Shape getType();
 
+  /**
+   * Returns a boolean if the shape is visible.
+   *
+   * @return if shape is visible.
+   */
   boolean isVisible();
 
+  /**
+   * Sets visibility attribute of shape.
+   *
+   * @param visible true if visible, untrue if invisible.
+   */
   void setVisible(boolean visible);
 
   /**

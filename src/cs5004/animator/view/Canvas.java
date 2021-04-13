@@ -7,12 +7,26 @@ import javax.swing.*;
 
 import cs5004.animator.shape.IShape;
 
+/**
+ * Class that creates the frame of the animation.
+ * The class extends the JFrame class of Java Swing.
+ */
 public class Canvas extends JFrame {
   ShapesPanel panel;
   JScrollPane scrollPane;
   int width;
   int height;
-  // displaying the panel with the shapes
+
+
+  /**
+   * Constructs Canvas objects that displays the panel with the shapes.
+   *
+   * @param x coordinate of the canvas on the screen.
+   * @param y coordinate of the canvas on the screen.
+   * @param width of the canvas window.
+   * @param height of the canvas window.
+   * @param model containing the list of shapes to show in the window.
+   */
   public Canvas(double x, double y, double width, double height, List<IShape> model) {
     super("Easy Animator");
     this.width = (int) width;

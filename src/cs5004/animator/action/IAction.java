@@ -41,21 +41,66 @@ public interface IAction {
    */
   Action getType();
 
+  /**
+   * Gets the name of the Action object.
+   *
+   * @return the name of the Action object.
+   */
   String getName();
 
+  /**
+   * Gets the old position of the Action object.
+   *
+   * @return the old position of the Action object.
+   */
   Position getOldPosition();
 
+  /**
+   * Gets the new position of the Action object.
+   *
+   * @return the new position of the Action object.
+   */
   Position getNewPosition();
 
+  /**
+   * Gets the old with of the Action object.
+   *
+   * @return the old width of the Action object.
+   */
   double getOldWidth();
 
+  /**
+   * Gets the old height of the Action object.
+   *
+   * @return the new height of the Action object.
+   */
   double getOldHeight();
 
+  /**
+   * Gets the new width of the Action object.
+   *
+   * @return the new width of the Action object.
+   */
   double getNewWidth();
 
+  /**
+   * Gets the new height of the Action object.
+   *
+   * @return the new height of the Action object.
+   */
   double getNewHeight();
 
+  /**
+   * Gets the old color of the Action object.
+   *
+   * @return the old color of the Action object.
+   */
   RGB getOldColor();
 
+  /**
+   * Gets the new color of the Action object.
+   *
+   * @return the new color of the Action object
+   */
   RGB getNewColor();
 }

@@ -4,7 +4,7 @@ import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
 /**
- * Action class for scaling. This action is of type Action.SCALE.
+ * Action class for scaling the shapes. This action is of type Action.SCALE.
  */
 public class Scale extends AbstractAction {
 

@@ -8,15 +8,26 @@ import javax.swing.*;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
+/**
+ * Class that creates the panel containing the animations.
+ * This class extends the JComponent class of Java Swing.
+ */
 public class ShapesPanel extends JComponent {
   private List<IShape> currentModel;
 
-  // sole purpose is to make the shapes and color them
+  /**
+   * Constructor that sets that creates the panel and sets its initial background to white.
+   * @param model containing a list of shapes.
+   */
   public ShapesPanel(List<IShape> model) {
     this.currentModel = model;
     setBackground(Color.WHITE);
   }
 
+  /**
+   * Constructor that creates the panel.
+   * @param model containing a list of shapes.
+   */
   public void setShapes(List<IShape> model) {
     this.currentModel = model;
   }

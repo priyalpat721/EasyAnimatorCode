@@ -6,7 +6,8 @@ import cs5004.animator.model.IAnimatorModel;
 
 /**
  * This class represents a Text view.
- * The Text view has a result.
+ * The Text view has a result containing all events in an animation.
+ * This class generates animation events in text format.
  * The class implements the interface IAnimatorView.
  */
 public class TextView implements IAnimatorView {

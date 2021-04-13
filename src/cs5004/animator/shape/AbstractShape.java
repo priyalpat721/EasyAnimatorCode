@@ -59,7 +59,12 @@ public abstract class AbstractShape implements IShape {
     this.height = height;
   }
 
-  // Constructor for the Builder
+  /**
+   * Constructor of shapes for the builder.
+   *
+   * @param name of the shape.
+   */
+
   public AbstractShape(String name) {
     this.name = name;
 

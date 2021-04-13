@@ -29,7 +29,7 @@ public class Time {
   }
 
   /**
-   * Gets the start time.
+   * Gets the start time of the time object.
    *
    * @return the start time.
    */
@@ -38,7 +38,7 @@ public class Time {
   }
 
   /**
-   * Gets the end time.
+   * Gets the end time of the time object.
    *
    * @return the end time.
    */

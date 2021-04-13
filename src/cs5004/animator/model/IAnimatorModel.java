@@ -33,6 +33,12 @@ public interface IAnimatorModel {
   void createShape(String name, Shape type, RGB color,
                    double width, double height, double x, double y, int startTime, int endTime);
 
+  /**
+   * Creates a shape based on name and shape type.
+   *
+   * @param name of the shape.
+   * @param type of the shape.
+   */
   void createShape(String name, String type);
 
   /**
@@ -97,18 +103,66 @@ public interface IAnimatorModel {
    */
   String toString();
 
+  /**
+   * String representation of the modelImpl as a string.
+   *
+   * @param speed speed of play.
+   * @return a String representation of modelImpl.
+   */
   String toString(int speed);
 
+  /**
+   * Method that sets the boundaries of the window frame.
+   * @param x coordinate.
+   * @param y coordinate.
+   * @param width width of the frame.
+   * @param height height of the frame.
+   */
   void setBounds(int x, int y, int width, int height);
 
+  /**
+   * Method that creates a shape and sets its initial attributes.
+   *
+   * @param name of the shape.
+   * @param x1 x coordinate of the left corner of shape (or radius if a circle).
+   * @param y1 y coordinate of the left corner of shape (or radius if a circle).
+   * @param w1 width of the shape.
+   * @param h1 height of the shape.
+   * @param r1 red value for the RGB color of the shape.
+   * @param g1 green value for the RGB color of the shape.
+   * @param b1 blue value for the RGB color of the shape.
+   * @param t1 starting time for the shape.
+   * @param t2 ending time for the shape.
+   */
   void setAttributes(String name, int x1, int y1, int w1, int h1,
                      int r1, int g1, int b1, int t1, int t2);
 
+  /**
+   * Gets the size parameters for the animation canvas.
+   *
+   * @return array of int representing the parameters.
+   */
   int[] getBox();
 
+  /**
+   * Gets the total play time for the animation.
+   *
+   * @return array of int with the total animation time.
+   */
   int[] getTotalTime();
 
+  /**
+   * Gets a list of the shapes to be deployed.
+   *
+   * @return  list of shapes.
+   */
   List<IShape> getLogOfShapes();
 
+
+  /**
+   * Gets the log of actions for the animation.
+   *
+   * @return a HashMap with the shapes names and the list of Actions for each shape.
+   */
   HashMap<String, List<IAction>> getLogOfActions();
 }

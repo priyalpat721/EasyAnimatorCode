@@ -4,6 +4,12 @@ import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
 
+/**
+ * This class represents a Visual view.
+ * This class renders animations visually.
+ * The class implements the interface IAnimatorView.
+ */
+
 public class VisualView implements IAnimatorView {
 
   @Override

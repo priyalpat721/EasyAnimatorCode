@@ -11,9 +11,10 @@ import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
 /**
- * This class represents an SVG view.
- * The SVG view has a result.
- * The implements the interface IAnimatorView.
+ * This class represents a SVG view.
+ * This class generates a file.svg format.
+ * It contains the code to render a SVG view of the animation.
+ * The class implements the interface IAnimatorView.
  */
 public class SVGView implements IAnimatorView {
   private StringBuilder result;
