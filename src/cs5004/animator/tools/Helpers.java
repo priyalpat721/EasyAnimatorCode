@@ -52,7 +52,11 @@ public class Helpers {
   /**
    * Parses command-line arguments.
    * @param args the command-line arguments.
-   * @return a String array with the commands.
+   * @return a String array of 4 elements with the commands passed.
+   *         commands[0] = input file.
+   *         commands[1] = view type.
+   *         commands[2] = output file.
+   *         commands[3] = speed.
    * @throws NullPointerException if args is null.
    */
   public static String[] parseCommands(String[] args) {
@@ -121,7 +125,7 @@ public class Helpers {
   }
 
   /**
-   * Generates 1 of 3 available views: text, svg, or visual.
+   * Generates 1 of 3 available views: svg, text, or visual.
    * @param animation the animator model.
    * @param viewType the type of the view.
    * @param outputFile the output file.
