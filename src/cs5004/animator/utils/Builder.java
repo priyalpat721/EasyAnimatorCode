@@ -4,10 +4,17 @@ import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.tools.RGB;
 
-
+/**
+ * This class represents an adapter from what the AnimationReader expects to what the model
+ * implementation has.
+ * The class implements the interface AnimationBuilder<IAnimatorModel>.
+ */
 public class Builder implements AnimationBuilder<IAnimatorModel> {
   private final IAnimatorModel model;
 
+  /**
+   * Constructs a Builder object.
+   */
   public Builder() {
     this.model = new AnimatorModelImpl();
   }
