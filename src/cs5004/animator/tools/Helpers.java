@@ -122,7 +122,7 @@ public class Helpers {
 
   /**
    * Generates 1 of 3 available views: text, svg, or visual.
-   * @param animation the model.
+   * @param animation the animator model.
    * @param viewType the type of the view.
    * @param outputFile the output file.
    * @param speed the speed of the animation.
