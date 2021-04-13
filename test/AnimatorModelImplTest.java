@@ -384,13 +384,13 @@ public class AnimatorModelImplTest {
         25, 0);
   }
 
-//  @Test(expected = IllegalArgumentException.class)
-//  public void testIllegalChangeColorOverlappingSameStartAndEnd() {
-//    model1.changeColor("R", new RGB(220.16, 36, 120),
-//        33, 44);
-//    model1.changeColor("R", new RGB(3, 4, 5),
-//        33, 44);
-//  }
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalChangeColorOverlappingSameStartAndEnd() {
+    model1.changeColor("R", new RGB(220.16, 36, 120),
+        33, 44);
+    model1.changeColor("R", new RGB(3, 4, 5),
+        33, 44);
+  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorOverlappingWithinPreviousColorChange() {
@@ -586,17 +586,12 @@ public class AnimatorModelImplTest {
     model1.scale("R", 4.25, 3.5, 15, 10);
   }
 
-//  @Test(expected = IllegalArgumentException.class)
-//  public void testIllegalScaleOverlappingTimesStartAndEnd() {
-//    model1.scale("R", 4.25, 3.5, 0, 10);
-//    model1.scale("R", 16, 34, 0, 10);
-//  }
-//
-//  @Test(expected = IllegalArgumentException.class)
-//  public void testIllegalScaleOverlappingWithinPreviousScale() {
-//    model1.scale("R", 3.25, 7.5, 0, 10);
-//    model1.scale("R", 4.25, 3.5, 10, 12);
-//  }
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalScaleOverlappingTimesStartAndEnd() {
+    model1.scale("R", 4.25, 3.5, 0, 10);
+    model1.scale("R", 16, 34, 0, 10);
+  }
+
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalScaleOverlappingOverlappingEndTimeAndStartOfNext() {
