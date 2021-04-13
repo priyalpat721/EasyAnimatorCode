@@ -23,15 +23,9 @@ public class SVGView implements IAnimatorView {
 
     int count = 0;
 
-    if (shapes.isEmpty()) {
-      result.append("<svg width=\"200\" height=\"50\" version=\"1.1\" "
-              + "xmlns=\"http://www.w3.org/2000/svg\">\n\n");
-      result.append("\t<text x=\"10\" y=\"20\">empty animation</text>\n\n");
-    } else {
-      result.append(String.format("<svg width=\"%d\" height=\"%d\" "
-                      + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
-              model.getBox()[2], model.getBox()[3]));
-    }
+    result.append(String.format("<svg width=\"%d\" height=\"%d\" "
+                    + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
+            model.getBox()[2], model.getBox()[3]));
 
     for (IShape shape : shapes) {
       String tag = "";

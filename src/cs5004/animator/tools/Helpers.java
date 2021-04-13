@@ -100,6 +100,12 @@ public class Helpers {
 
   public static void generateView(IAnimatorModel animation, String viewType,
                                   String[] outputFile, int speed) {
+
+    if (animation.getLogOfShapes().isEmpty()) {
+      showMessage("Animation is empty", 2);
+      System.exit(0);
+    }
+
     String content = "";
 
     switch (viewType) {

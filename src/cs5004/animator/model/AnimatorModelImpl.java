@@ -231,10 +231,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public String toString() {
-    if (logOfShapes.isEmpty()) {
-      return "empty animation";
-    }
-
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
 
@@ -261,10 +257,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   @Override
   public String toString(int speed) {
-    if (logOfShapes.isEmpty()) {
-      return "empty animation";
-    }
-
     StringBuilder accString = new StringBuilder();
     accString.append("Shapes:\n");
 
