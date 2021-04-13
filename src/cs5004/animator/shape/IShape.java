@@ -28,11 +28,19 @@ public interface IShape {
   void setVisible(boolean visible);
 
   /**
-   * Gets the total time of existence of the shape.
+   * Gets the show time of the shape.
    *
    * @return the total time of existence of the shape.
    */
   Time getShowTime();
+
+  /**
+   * Sets the show time of the shape.
+   *
+   * @param startTime the start time.
+   * @param endTime the end time.
+   */
+  void setShowTime(int startTime, int endTime);
 
   /**
    * Gets the position of the shape.
@@ -130,8 +138,6 @@ public interface IShape {
    *                                  is not of type square.
    */
   void setLength(double newLength);
-
-  void setShowTime(int startTime, int endTime);
 
   /**
    * Creates a deep copy of the shape.
