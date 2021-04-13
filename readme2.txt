@@ -15,6 +15,11 @@ The default speed value is 1. The default view for SVG and text is System.out.
 
 2) The program creates a Builder object that acts as an adapter between the input file reader that was given to us and our model implementation.
 The Builder was implemented following the Builder design pattern.
+We added three new methods and one new action to our model implementation:
+- 'createShape' that creates a shape with no attributes
+- 'setAttributes' that sets the attributes of a shape
+- 'setBounds' that sets the attributes of the canvas box
+- 'Stay' action that represents a 'no motion' action
 
 3) The program tries to read the input file.
 If the file is not found, the program calls 'showMessage' again to popup an error message and exits.
@@ -30,6 +35,11 @@ They implement the interface IAnimatorView that contains a single method 'create
 - The visual view is implemented in the class VisualView that 'has a' Canvas that 'has a' ShapesPanel.
 
 This method calls 'showMessage' to popup an error message if the animator model is empty.
+
+We added a two new methods to our model implementation and changed a data structure:
+- 'toString' that returns a string representation of the animation with the speed
+- 'getTotalTime' that returns the total time of display of the animation
+- changed our log of created shapes (logOfShapes) from a Hashmap to a List to maintain order
 
 6) If the program needs to output a file, it calls the method 'createFile' that creates the file and returns its name.
 'showMessage' is called again to popup a plain message communicating the success or failure of the operation.
