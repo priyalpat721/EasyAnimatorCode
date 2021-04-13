@@ -31,9 +31,6 @@ public class AnimatorModelImpl implements IAnimatorModel {
   private final List<IShape> logOfShapes;
   private final HashMap<String, List<IAction>> logOfActions;
   private final List<IAction> chronologicalOrderOfActions;
-
-  // This would be our canvas
-  // Array of 4 elements: x, y, width, height
   private final int[] box;
 
   /**
@@ -293,7 +290,19 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return this.logOfActions;
   }
 
+  /**
+   * Private method that adds a Stay action to a shape.
+   * @param name name of the shape.
+   * @param startTime start time of the action.
+   * @param endTime end time of the action.
+   * @throws IllegalArgumentException if the name is invalid.
+   *
+   */
   private void stay(String name, int startTime, int endTime) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
     IShape currentShape = getCurrentShape(name);
 
     if (!checkOverlap(name, Action.STAY, startTime, endTime)) {
@@ -404,7 +413,17 @@ public class AnimatorModelImpl implements IAnimatorModel {
     return new int[]{start, end};
   }
 
+  /**
+   * Private method that gets the time of display of a particular shape.
+   * @param name name of the shape.
+   * @return an array of 2 values: start time and end time.
+   * @throws IllegalArgumentException if the name is invalid.
+   */
   private int[] getTimeOfDisplay(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    }
+
     int[] result = new int[2];
 
     int start = -1;
