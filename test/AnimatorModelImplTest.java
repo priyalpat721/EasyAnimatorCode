@@ -825,14 +825,17 @@ public class AnimatorModelImplTest {
     assertEquals("[45, 100, 360, 360]", Arrays.toString(box));
   }
 
-  //  void setAttributes(String name, int x1, int y1, int w1, int h1,
-  //                     int r1, int g1, int b1, int t1, int t2);
+  @Test
+  public void testSetAttributes() {
+    model3.createShape("X1", "ellipse");
+    model3.setAttributes("X1", 34, 45, 35, 45,254,
+        0, 0, 15, 26);
+    assertEquals("Shapes:\n"
+                 + "Name: X1\n"
+                 + "Type: ellipse\n"
+                 + "Center: (34.0,45.0), X radius: 35.0, Y radius: 45.0, Color: (254.0,0.0,0.0)\n"
+                 + "Appears at t=15\n"
+                 + "Disappears at t=26", model3.toString());
+  }
 
-  //  int[] getBox();
-
-  //  int[] getTotalTime();
-  //
-  //  List<IShape> getLogOfShapes();
-  //
-  //  HashMap<String, List<IAction>> getLogOfActions();
 }
