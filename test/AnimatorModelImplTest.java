@@ -835,7 +835,7 @@ public class AnimatorModelImplTest {
                  + "Type: ellipse\n"
                  + "Center: (34.0,45.0), X radius: 35.0, Y radius: 45.0, Color: (254.0,0.0,0.0)\n"
                  + "Appears at t=15\n"
-                 + "Disappears at t=26", model3.toString());
+                 + "Disappears at t=26\n\n", model3.toString());
   }
 
 }
