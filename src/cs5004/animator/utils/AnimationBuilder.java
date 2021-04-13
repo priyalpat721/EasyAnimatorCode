@@ -1,11 +1,5 @@
 package cs5004.animator.utils;
 
-import java.util.HashMap;
-import java.util.List;
-
-import cs5004.animator.action.IAction;
-import cs5004.animator.shape.IShape;
-
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.
