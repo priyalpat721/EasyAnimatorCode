@@ -6,7 +6,7 @@ import cs5004.animator.tools.Time;
 
 /**
  * This class represents a shape. It implements the interface IShape. A shape has a name, a type, a
- * position, a total time of existence, and a color. If the shape is a square, it has a length. If
+ * position, a show time, and a color. If the shape is a square, it has a length. If
  * the shape is a circle, it has a radius. Else, the shape has a width and a height.
  */
 public abstract class AbstractShape implements IShape {
