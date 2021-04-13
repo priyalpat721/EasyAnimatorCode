@@ -186,16 +186,6 @@ public class AnimatorModelImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveBeforeShapeStartTime() {
-    model1.move("S", 45, 125, 10, 25);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalMoveAfterShapeEndTime() {
-    model1.move("S", 45, 125, 61, 37);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
   public void testIllegalMoveOverlappingMoveSameStartAndEnd() {
     model1.move("R", 335, 375, 10, 50);
     model1.move("R", 20, 14, 10, 50);
@@ -408,16 +398,6 @@ public class AnimatorModelImplTest {
         40, 41);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalChangeColorBeforeShapeStartTime() {
-    model1.changeColor("R", new RGB(3, 4, 6), 0, 22);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalChangeColorAfterShapeEndTime() {
-    model1.changeColor("R", new RGB(3, 4, 6), 101, 22);
-  }
-
   @Test
   public void testChangeColor() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
@@ -607,16 +587,6 @@ public class AnimatorModelImplTest {
   public void testIllegalScaleOverlappingOverlappingEndTimeAndStartOfNext() {
     model1.scale("R", 3.25, 7.5, 0, 10);
     model1.scale("R", 4.25, 3.5, 5, 8);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalScaleBeforeShapeStartTime() {
-    model1.scale("R", 3.25, 7.5, 0, 20);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testIllegalScaleAfterShapeEndTime() {
-    model1.scale("R", 3.25, 7.5, 102, 120);
   }
 
   @Test
