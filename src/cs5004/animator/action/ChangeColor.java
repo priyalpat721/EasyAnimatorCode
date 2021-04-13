@@ -22,9 +22,11 @@ public class ChangeColor extends AbstractAction {
       throw new IllegalArgumentException("Shape cannot be null");
     }
     IShape copy = shape.copy();
-
+    if (shape.isVisible()) {
+      copy.setVisible(shape.isVisible());
+    }
     if (tick <= this.time.getStartTime()) {
-      return shape.copy();
+      return copy;
     } else if (tick > this.time.getEndTime()) {
       copy.setColor(newColor);
       return copy;

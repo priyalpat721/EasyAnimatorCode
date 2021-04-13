@@ -1,10 +1,11 @@
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.tools.RGB;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * JUnit test class for the IAnimatorModel interface.
@@ -656,35 +657,31 @@ public class AnimatorModelImplTest {
 
   @Test
   public void testGetShapesAtTicksZero() {
-//    assertEquals("[Name: P1\n" +
-//                 "Type: rectangle\n" +
-//                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-//                 "Appears at t=1\n" +
-//                 "Disappears at t=100]", model2.getShapesAtTicks(0).toString());
-//    assertEquals("[]", model3.getShapesAtTicks(0).toString());
+    assertEquals("[]", model2.getShapesAtTicks(0).toString());
+    assertEquals("[]", model3.getShapesAtTicks(0).toString());
   }
 
   @Test
   public void testGetShapesAtTicksTickOne() {
-//    assertEquals("[Name: P1\n" +
-//                 "Type: rectangle\n" +
-//                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-//                 "Appears at t=1\n" +
-//                 "Disappears at t=100]", model2.getShapesAtTicks(1).toString());
+    assertEquals("[Name: P1\n" +
+                 "Type: rectangle\n" +
+                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
+                 "Appears at t=1\n" +
+                 "Disappears at t=100]", model2.getShapesAtTicks(1).toString());
   }
 
   @Test
   public void testGetShapesAtTickAfterFewActions() {
-//    model2.createShape("O3", Shape.ELLIPSE, new RGB(3, 34, 16),
-//        32, 16, 45, 67, 50, 100);
-//    model2.move("O3", 50, 75, 51, 70);
-//    model2.scale("O3", 40, 20, 52, 54);
-//    model2.createShape("R3", Shape.RECTANGLE, new RGB(254, 45, 130),
-//        18, 15, 0, 0, 80, 99);
-//    model2.changeColor("R3", new RGB(3, 3, 3), 81, 99);
-//    model2.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
-//        50, 50, 30, 12, 3, 50);
-//
+    model2.createShape("O3", Shape.ELLIPSE, new RGB(3, 34, 16),
+        32, 16, 45, 67, 50, 100);
+    model2.move("O3", 50, 75, 51, 70);
+    model2.scale("O3", 40, 20, 52, 54);
+    model2.createShape("R3", Shape.RECTANGLE, new RGB(254, 45, 130),
+        18, 15, 0, 0, 80, 99);
+    model2.changeColor("R3", new RGB(3, 3, 3), 81, 99);
+    model2.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
+        50, 50, 30, 12, 3, 50);
+
   }
 
   @Test
