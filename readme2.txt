@@ -31,9 +31,9 @@ If the file is not found, the program calls 'showMessage' again to popup an erro
 The three views available in package cs5004.animator.view are: svg, text, and visual.
 They implement the interface IAnimatorView that contains a single method 'create'.
 
-- The SVG view is implemented in the class SVGView.
-- The text view is implemented in the class TextView.
-- The visual view is implemented in the class VisualView that 'has a' Canvas that 'has a' ShapesPanel.
+- The SVG view is implemented in the class SVGView
+- The text view is implemented in the class TextView
+- The visual view is implemented in the class VisualView that 'has a' Canvas that 'has a' ShapesPanel
 
 This method calls 'showMessage' to popup an error message if the animator model is empty.
 
