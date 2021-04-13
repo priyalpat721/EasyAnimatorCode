@@ -3,21 +3,35 @@ package cs5004.animator.view;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
+/**
+ * This class represents an SVG view.
+ * The SVG view has a result.
+ * The implements the interface IAnimatorView.
+ */
 public class SVGView implements IAnimatorView {
   private StringBuilder result;
 
+  /**
+   * Constructs an SVG view object.
+   */
   public SVGView() {
     this.result = new StringBuilder();
   }
 
   @Override
   public void create(IAnimatorModel model, int speed) {
+    Objects.requireNonNull(model, "Must have non-null model");
+    if (speed <= 0) {
+      throw new IllegalArgumentException("Speed must be greater than zero");
+    }
+
     List<IShape> shapes = model.getLogOfShapes();
     HashMap<String, List<IAction>> dict = model.getLogOfActions();
 
@@ -180,6 +194,10 @@ public class SVGView implements IAnimatorView {
     result.append("</svg>");
   }
 
+  /**
+   * Generates a String representation of the SVG view.
+   * @return a String representation of the SVG view.
+   */
   public String generate() {
     return this.result.toString();
   }

@@ -13,8 +13,19 @@ import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
 
+/**
+ * This class contains static methods that help the animator implementation.
+ */
 public class Helpers {
 
+  /**
+   * Creates a file.
+   * @param name name of the file.
+   * @param format format of the file.
+   * @param content content of the file.
+   * @return the file name.
+   * @throws IllegalArgumentException if the name, format, or content are invalid.
+   */
   public static String createFile(String name, String format, String content) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
@@ -38,6 +49,12 @@ public class Helpers {
     return fileName;
   }
 
+  /**
+   * Parses command-line arguments.
+   * @param args the command-line arguments.
+   * @return a String array with the commands.
+   * @throws NullPointerException if args is null.
+   */
   public static String[] parseCommands(String[] args) {
     Objects.requireNonNull(args, "Must have non-null args source");
 
@@ -77,6 +94,11 @@ public class Helpers {
       if (args[i].equals("-speed")) {
         try {
           commands[3] = args[i + 1];
+          if (Integer.parseInt(commands[3]) <= 0) {
+            showMessage("Speed cannot be less than or equal to zero\nSet to default",
+                    2);
+            commands[3] = "";
+          }
         } catch (IndexOutOfBoundsException e) {
           showMessage("Command -speed without argument\nSet to default", 2);
           commands[3] = "";
@@ -98,8 +120,27 @@ public class Helpers {
     return commands;
   }
 
+  /**
+   * Generates 1 of 3 available views: text, svg, or visual.
+   * @param animation the model.
+   * @param viewType the type of the view.
+   * @param outputFile the output file.
+   * @param speed the speed of the animation.
+   * @throws NullPointerException if the animation or the output file are null.
+   * @throws IllegalArgumentException if the view type is invalid.
+   *                                  if the speed is not greater than zero.
+   */
   public static void generateView(IAnimatorModel animation, String viewType,
                                   String[] outputFile, int speed) {
+
+    Objects.requireNonNull(animation, "Must have non-null animation");
+    Objects.requireNonNull(outputFile, "Must have non-null output file");
+
+    if (viewType == null || viewType.isBlank()) {
+      throw new IllegalArgumentException("Invalid view type");
+    } else if (speed <= 0) {
+      throw new IllegalArgumentException("Speed must be greater than zero");
+    }
 
     if (animation.getLogOfShapes().isEmpty()) {
       showMessage("Animation is empty", 2);
@@ -151,12 +192,24 @@ public class Helpers {
     }
   }
 
+  /**
+   * Shows a pop-up message.
+   * @param message the message.
+   * @param iconNumber 1 for plain messages.
+   *                   2 for error messages.
+   * @throws IllegalArgumentException if the message or the icon number are invalid.
+   */
   public static void showMessage(String message, int iconNumber) {
+    if (message == null || message.isBlank()) {
+      throw new IllegalArgumentException("Invalid message");
+    }
+
     switch (iconNumber) {
       case 1 -> JOptionPane.showMessageDialog(null, message, "Success",
               JOptionPane.PLAIN_MESSAGE);
       case 2 -> JOptionPane.showMessageDialog(null, message, "Error",
               JOptionPane.ERROR_MESSAGE);
+      default -> throw new IllegalArgumentException("Invalid icon number");
     }
   }
 
