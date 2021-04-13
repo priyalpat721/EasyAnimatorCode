@@ -14,7 +14,7 @@ public class ShapesPanel extends JComponent {
   // sole purpose is to make the shapes and color them
   public ShapesPanel(List<IShape> model) {
     this.currentModel = model;
-
+    setBackground(Color.WHITE);
   }
 
   public void setShapes(List<IShape> model) {

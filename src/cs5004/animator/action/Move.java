@@ -38,7 +38,7 @@ public class Move extends AbstractAction {
       return copy;
     } else {
 
-      double percent = (double) (tick - this.time.getStartTime()) /
+      double percent =  (tick - this.time.getStartTime()) /
                        (this.time.getEndTime() - this.time.getStartTime());
 
       double currentX = (percent * (newPosition.getX() - oldPosition.getX()))
