@@ -47,6 +47,10 @@ public abstract class AbstractAction implements IAction {
     this.name = name;
     this.currentShape = currentShape;
     this.time = new Time(startTime, endTime);
+    if (startTime < currentShape.getShowTime().getStartTime()
+        || endTime > currentShape.getShowTime().getEndTime()) {
+      throw new IllegalArgumentException("Action out of shape time range.");
+    }
 
     this.oldColor = new RGB(currentShape.getColor().getRed(), currentShape.getColor().getGreen(),
             currentShape.getColor().getBlue());
@@ -75,6 +79,10 @@ public abstract class AbstractAction implements IAction {
     this.name = name;
     this.currentShape = currentShape;
     this.time = new Time(startTime, endTime);
+    if (startTime < currentShape.getShowTime().getStartTime()
+        || endTime > currentShape.getShowTime().getEndTime()) {
+      throw new IllegalArgumentException("Action out of shape time range.");
+    }
   }
 
   /**

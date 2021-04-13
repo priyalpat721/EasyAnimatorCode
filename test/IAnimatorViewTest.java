@@ -67,6 +67,10 @@ public class IAnimatorViewTest {
 
   @Test
   public void testSVGView() {
+
+    //Empty animation
+    //TODO
+
     Builder builder = populateModel();
     IAnimatorModel model = builder.build();
 
@@ -117,6 +121,10 @@ public class IAnimatorViewTest {
   //create an IAnimatorViewTest and test svg and text
   @Test
   public void testTextView() {
+
+    //Empty animation
+    //TODO
+
     Builder builder = populateModel();
     IAnimatorModel model = builder.build();
 
