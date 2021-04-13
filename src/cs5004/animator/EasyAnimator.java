@@ -12,7 +12,9 @@ import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.tools.Helpers.showMessage;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-
+/**
+ * This class represents an Easy Animator.
+ */
 public final class EasyAnimator {
 
   public static void main(String[] args) {
