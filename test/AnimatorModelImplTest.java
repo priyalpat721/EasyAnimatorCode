@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -649,7 +650,6 @@ public class AnimatorModelImplTest {
                  + "Height: 30.54 from time t=23 to t=25", model1.toString());
   }
 
-
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalGetShapesAtTickNegativeTick() {
     model1.getShapesAtTicks(-1);
@@ -680,8 +680,21 @@ public class AnimatorModelImplTest {
         18, 15, 0, 0, 80, 99);
     model2.changeColor("R3", new RGB(3, 3, 3), 81, 99);
     model2.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
-        50, 50, 30, 12, 3, 50);
-
+        50, 50, 30, 12, 3, 90);
+    assertEquals("[Name: P1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (150.0,150.0), Width: 100.0, Height: 200.0, "
+                 + "Color: (10.0,10.0,10.0)\n"
+                 + "Appears at t=1\nDisappears at t=100, Name: O3\n"
+                 + "Type: ellipse\n"
+                 + "Center: (50.0,75.0), X radius: 40.0, Y radius: 20.0, Color: (3.0,34.0,16.0)\n"
+                 + "Appears at t=50\nDisappears at t=100, Name: R3\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (0.0,0.0), Width: 18.0, Height: 15.0, Color: (114.6,21.7,59.4)\n"
+                 + "Appears at t=80\nDisappears at t=99, Name: T3\n"
+                 + "Type: triangle\n"
+                 + "Min corner: (30.0,12.0), Width: 50.0, Height: 50.0, Color: (20.0,20.0,20.0)\n"
+                 + "Appears at t=3\nDisappears at t=90]", model2.getShapesAtTicks(91).toString());
   }
 
   @Test
@@ -757,4 +770,69 @@ public class AnimatorModelImplTest {
                  "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100"
         , model3.toString());
   }
+
+  @Test
+  public void testToStringWithSpeedParamenter() {
+    assertEquals("Shapes:\n"
+                 + "Name: R\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\nDisappears at t=100\n\n"
+                 + "Name: O\n"
+                 + "Type: ellipse\n"
+                 + "Center: (500.0,100.0), X radius: 60.0, Y radius: 30.0, "
+                 + "Color: (21.0,21.0,21.0)\n"
+                 + "Appears at t=6\nDisappears at t=100\n\n"
+                 + "Name: T\n"
+                 + "Type: triangle\n"
+                 + "Min corner: (78.0,234.0), Width: 45.1, Height: 30.5, Color: (34.0,0.0,1.0)\n"
+                 + "Appears at t=23\nDisappears at t=75\n\n"
+                 + "Name: S\n"
+                 + "Type: square\n"
+                 + "Min corner: (125.0,34.0), Length: 15.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=30\nDisappears at t=60\n\n"
+                 + "Name: RH\n"
+                 + "Type: rhombus\n"
+                 + "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n"
+                 + "Appears at t=98\nDisappears at t=99\n\n"
+                 + "Speed of animation: 3 tick(s) per second\n\n", model1.toString(3));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalArgumentExceptionIllegalSetBoundsNegativeWidth() {
+    model1.setBounds(45, 100, -360, 360);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalArgumentExceptionIllegalSetBoundsZeroWidth() {
+    model1.setBounds(45, 100, 0, 360);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalArgumentExceptionIllegalSetBoundsHeight() {
+    model1.setBounds(45, 100, 360, -360);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalArgumentExceptionIllegalSetBoundsZeroHeight() {
+    model1.setBounds(45, 100, 360, 0);
+  }
+
+  @Test
+  public void testSetBounds() {
+    model1.setBounds(45, 100, 360, 360);
+    int[] box = model1.getBox();
+    assertEquals("[45, 100, 360, 360]", Arrays.toString(box));
+  }
+
+  //  void setAttributes(String name, int x1, int y1, int w1, int h1,
+  //                     int r1, int g1, int b1, int t1, int t2);
+
+  //  int[] getBox();
+
+  //  int[] getTotalTime();
+  //
+  //  List<IShape> getLogOfShapes();
+  //
+  //  HashMap<String, List<IAction>> getLogOfActions();
 }
