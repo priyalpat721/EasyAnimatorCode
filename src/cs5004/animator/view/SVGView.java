@@ -36,7 +36,7 @@ public class SVGView implements IAnimatorView {
 
     int count = 0;
 
-    result.append(String.format("<svg viewBox= \"%d %d %d %d\" version=\"1.1\" "
+    result.append(String.format("<svg viewBox=\"%d %d %d %d\" version=\"1.1\" "
                     + "xmlns=\"http://www.w3.org/2000/svg\">\n\n",
             model.getBox()[0], model.getBox()[1], model.getBox()[2], model.getBox()[3]));
 

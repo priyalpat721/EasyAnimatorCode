@@ -68,7 +68,7 @@ public class IAnimatorViewTest {
   private IAnimatorModel populateModelAutomatic() throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
-    Readable in = new FileReader("smalldemo.txt");
+    Readable in = new FileReader("test/smalldemo.txt");
 
     return parseFile(in, builder);
   }
@@ -76,49 +76,49 @@ public class IAnimatorViewTest {
 
   @Test
   public void testSVGView() throws FileNotFoundException {
-//    IAnimatorModel manualModel = populateModelManual();
-//
-//    SVGView svgManual = new SVGView();
-//    svgManual.create(manualModel, 1);
-//
-//    assertEquals("<svg width=\"360\" height=\"360\" version=\"1.1\" "
-//                 + "xmlns=\"http://www.w3.org/2000/svg\">\n\n"
-//                 + "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" "
-//                 + "height=\"100\" fill=\"rgb(255,0,0)\" visibility=\"hidden\" >\n"
-//                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
-//                 + "begin=\"100ms\" dur=\"900ms\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"4000ms\" "
-//                 + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"4000ms\" "
-//                 + "attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"100ms\" "
-//                 + "fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" begin=\"5100ms\" "
-//                 + "dur=\"1900ms\" attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" "
-//                 + "/>\n" + "\t<animate attributeType=\"xml\" begin=\"5100ms\" dur=\"1900ms\" "
-//                 + "attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"7000ms\" dur=\"3000ms\" "
-//                 + "attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"7000ms\" dur=\"3000ms\" "
-//                 + "attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
-//                 + "</rect>\n\n" + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"120\" "
-//                 + "ry=\"60\" fill=\"rgb(0,0,255)\" visibility=\"hidden\" >\n"
-//                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
-//                 + "begin=\"600ms\" dur=\"1400ms\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"2000ms\" dur=\"3000ms\" "
-//                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"2000ms\" dur=\"3000ms\" "
-//                 + "attributeName=\"cy\" from=\"70\" to=\"250\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
-//                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
-//                 + "attributeName=\"cy\" from=\"250\" to=\"370\" fill=\"freeze\" />\n"
-//                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
-//                 + "attributeName=\"fill\" from=\"rgb(0,0,255)\" to=\"rgb(0,170,85)\" "
-//                 + "fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" begin=\"7000ms\" "
-//                 + "dur=\"1000ms\" attributeName=\"fill\" from=\"rgb(0,170,85)\" "
-//                 + "to=\"rgb(0,255,0)\" fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" "
-//                 + "begin=\"8000ms\" dur=\"2000ms\" fill=\"freeze\" />\n" + "</ellipse>\n\n"
-//                 + "</svg>", svgManual.generate());
+    IAnimatorModel manualModel = populateModelManual();
+
+    SVGView svgManual = new SVGView();
+    svgManual.create(manualModel, 1);
+
+    assertEquals("<svg viewBox=\"200 70 360 360\" version=\"1.1\" "
+                 + "xmlns=\"http://www.w3.org/2000/svg\">\n\n"
+                 + "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" "
+                 + "height=\"100\" fill=\"rgb(255,0,0)\" visibility=\"hidden\" >\n"
+                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
+                 + "begin=\"100ms\" dur=\"900ms\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"4000ms\" "
+                 + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"4000ms\" "
+                 + "attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"100ms\" "
+                 + "fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" begin=\"5100ms\" "
+                 + "dur=\"1900ms\" attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" "
+                 + "/>\n" + "\t<animate attributeType=\"xml\" begin=\"5100ms\" dur=\"1900ms\" "
+                 + "attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"7000ms\" dur=\"3000ms\" "
+                 + "attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"7000ms\" dur=\"3000ms\" "
+                 + "attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+                 + "</rect>\n\n" + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"120\" "
+                 + "ry=\"60\" fill=\"rgb(0,0,255)\" visibility=\"hidden\" >\n"
+                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
+                 + "begin=\"600ms\" dur=\"1400ms\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"2000ms\" dur=\"3000ms\" "
+                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"2000ms\" dur=\"3000ms\" "
+                 + "attributeName=\"cy\" from=\"70\" to=\"250\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
+                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
+                 + "attributeName=\"cy\" from=\"250\" to=\"370\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"2000ms\" "
+                 + "attributeName=\"fill\" from=\"rgb(0,0,255)\" to=\"rgb(0,170,85)\" "
+                 + "fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" begin=\"7000ms\" "
+                 + "dur=\"1000ms\" attributeName=\"fill\" from=\"rgb(0,170,85)\" "
+                 + "to=\"rgb(0,255,0)\" fill=\"freeze\" />\n" + "\t<animate attributeType=\"xml\" "
+                 + "begin=\"8000ms\" dur=\"2000ms\" fill=\"freeze\" />\n" + "</ellipse>\n\n"
+                 + "</svg>", svgManual.generate());
 
     IAnimatorModel autoModel = populateModelAutomatic();
 
