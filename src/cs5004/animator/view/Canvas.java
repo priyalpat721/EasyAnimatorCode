@@ -47,7 +47,7 @@ public class Canvas extends JFrame {
 
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(width + 100, height + 100);
+    return new Dimension(width + 10, height + 10);
   }
 
   public void currentView(List<IShape> currentShapes) {
