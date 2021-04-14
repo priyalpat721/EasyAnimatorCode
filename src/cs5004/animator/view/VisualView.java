@@ -1,8 +1,8 @@
 package cs5004.animator.view;
 
-import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
+import javax.swing.JFrame;
 
 /**
  * This class represents a Visual view.

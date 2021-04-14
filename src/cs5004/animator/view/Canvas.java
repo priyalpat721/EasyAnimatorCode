@@ -1,11 +1,10 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.List;
-
-import javax.swing.*;
-
 import cs5004.animator.shape.IShape;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  * Class that creates the frame of the animation.
