@@ -77,7 +77,6 @@ public class IAnimatorViewTest {
   @Test
   public void testSVGView() throws FileNotFoundException {
     IAnimatorModel manualModel = populateModelManual();
-
     SVGView svgManual = new SVGView();
     svgManual.create(manualModel, 1);
 
@@ -120,17 +119,18 @@ public class IAnimatorViewTest {
                  + "begin=\"8000ms\" dur=\"2000ms\" fill=\"freeze\" />\n" + "</ellipse>\n\n"
                  + "</svg>", svgManual.generate());
 
-    IAnimatorModel autoModel = populateModelAutomatic();
 
-    System.out.println(autoModel.toString());
+    IAnimatorModel autoModel = populateModelAutomatic();
+    SVGView svgAuto = new SVGView();
+    svgAuto.create(autoModel, 1);
+
+    System.out.println(svgAuto.generate());
 
   }
 
-  //create an IAnimatorViewTest and test svg and text
   @Test
-  public void testTextView() {
+  public void testTextView() throws FileNotFoundException {
     IAnimatorModel manualModel = populateModelManual();
-
     TextView textManual = new TextView();
     textManual.create(manualModel, 5);
 
@@ -150,6 +150,13 @@ public class IAnimatorViewTest {
                  + "Shape C changes color from (0.0,0.0,255.0) to (0.0,170.0,85.0) from time t=50 "
                  + "to t=70\n" + "Shape C changes color from (0.0,170.0,85.0) to (0.0,255.0,0.0) "
                  + "from time t=70 to t=80\n", textManual.generate());
+
+
+    IAnimatorModel autoModel = populateModelAutomatic();
+    TextView textAuto = new TextView();
+    textAuto.create(autoModel, 1);
+
+    System.out.println(textAuto.generate());
   }
 
 }
