@@ -15,6 +15,7 @@ The default speed value is 1. The default view for SVG and text is System.out.
 
 2) The program creates a Builder object that acts as an adapter between the input file reader that was given to us and our model implementation.
 The Builder was implemented following the Builder design pattern.
+
 We added three methods, one field variable, and one action to our model implementation:
 - method 'createShape' that creates a shape with no attributes
 - method 'setAttributes' that sets the attributes of a shape
