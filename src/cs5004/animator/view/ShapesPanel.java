@@ -12,7 +12,7 @@ import cs5004.animator.shape.Shape;
  * Class that creates the panel containing the animations.
  * This class extends the JComponent class of Java Swing.
  */
-public class ShapesPanel extends JComponent {
+public class ShapesPanel extends JPanel {
   private List<IShape> currentModel;
 
   /**

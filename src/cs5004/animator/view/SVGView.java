@@ -11,10 +11,8 @@ import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
 /**
- * This class represents a SVG view.
- * This class generates a file.svg format.
- * It contains the code to render a SVG view of the animation.
- * The class implements the interface IAnimatorView.
+ * This class represents a SVG view. This class generates a file.svg format. It contains the code to
+ * render a SVG view of the animation. The class implements the interface IAnimatorView.
  */
 public class SVGView implements IAnimatorView {
   private StringBuilder result;
@@ -39,8 +37,8 @@ public class SVGView implements IAnimatorView {
     int count = 0;
 
     result.append(String.format("<svg viewBox= \"%d %d %d %d\" width=\"%d\" height=\"%d\" "
-                    + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
-            model.getBox()[0], model.getBox()[1],model.getBox()[2], model.getBox()[3],
+                                + "version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n\n",
+            model.getBox()[0], model.getBox()[1], model.getBox()[2], model.getBox()[3],
             model.getBox()[2], model.getBox()[3]));
 
     for (IShape shape : shapes) {
@@ -73,7 +71,7 @@ public class SVGView implements IAnimatorView {
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
         result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
-                        + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
+                                    + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
                 shape.getName(),
                 attributes[0],
                 (int) shape.getPosition().getX(),
@@ -90,7 +88,7 @@ public class SVGView implements IAnimatorView {
 
       if (shape.getType() == Shape.CIRCLE) {
         result.append(String.format("<%s id=\"%s\" %s=\"%d\" %s=\"%d\" %s=\"%d\" "
-                        + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
+                                    + "fill=\"rgb(%d,%d,%d)\" visibility=\"hidden\" >\n", tag,
                 shape.getName(),
                 attributes[0],
                 (int) shape.getPosition().getX(),
@@ -110,20 +108,20 @@ public class SVGView implements IAnimatorView {
             switch (action.getType()) {
               case MOVE -> {
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                + "fill=\"freeze\" />\n",
+                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                            + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime()) / speed * 100 + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms",
+                        / speed + "ms",
                         attributes[0],
                         (int) action.getOldPosition().getX(),
                         (int) action.getNewPosition().getX()));
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                + "fill=\"freeze\" />\n",
+                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                            + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms",
+                        / speed + "ms",
                         attributes[1],
                         (int) action.getOldPosition().getY(),
                         (int) action.getNewPosition().getY()));
@@ -131,22 +129,22 @@ public class SVGView implements IAnimatorView {
 
               case SCALE -> {
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                + "fill=\"freeze\" />\n",
+                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                            + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms",
+                        / speed + "ms",
                         attributes[2],
                         (int) action.getOldWidth(),
                         (int) action.getNewWidth()));
 
                 if (shape.getType() != Shape.CIRCLE) {
                   result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                  + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                  + "fill=\"freeze\" />\n",
+                                              + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                              + "fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                  / speed + "ms",
+                          / speed + "ms",
                           attributes[3],
                           (int) action.getOldHeight(),
                           (int) action.getNewHeight()));
@@ -155,12 +153,12 @@ public class SVGView implements IAnimatorView {
 
               case CHANGECOLOR -> {
                 result.append(String.format("\t<animate attributeType=\"xml\" "
-                                + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
-                                + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
-                                + "fill=\"freeze\" />\n",
+                                            + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
+                                            + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
+                                            + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                / speed + "ms",
+                        / speed + "ms",
                         (int) action.getOldColor().getRed(),
                         (int) action.getOldColor().getGreen(),
                         (int) action.getOldColor().getBlue(),
@@ -172,17 +170,17 @@ public class SVGView implements IAnimatorView {
               case STAY -> {
                 if (count != 0) {
                   result.append(String.format("\t<animate attributeType=\"xml\" "
-                                  + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
+                                              + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                  / speed + "ms"));
+                          / speed + "ms"));
                 } else {
                   result.append(String.format("\t<set attributeName=\"visibility\" "
-                                  + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" "
-                                  + "dur=\"%s\" fill=\"freeze\" />\n",
+                                              + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" "
+                                              + "dur=\"%s\" fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                                  / speed + "ms"));
+                          / speed + "ms"));
                 }
               }
             }
@@ -198,6 +196,7 @@ public class SVGView implements IAnimatorView {
 
   /**
    * Generates a String representation of the SVG view.
+   *
    * @return a String representation of the SVG view.
    */
   public String generate() {

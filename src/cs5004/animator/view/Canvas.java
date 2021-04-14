@@ -39,7 +39,6 @@ public class Canvas extends JFrame {
     scrollPane = new JScrollPane(panel);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
     this.setVisible(true);
     this.add(scrollPane);
     panel.setVisible(true);
