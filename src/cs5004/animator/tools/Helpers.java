@@ -154,24 +154,23 @@ public class Helpers {
     String content = "";
 
     switch (viewType) {
-      case "text" -> {
+      case "text":
         TextView text = new TextView();
         text.create(animation, speed);
         content = text.generate();
-      }
-      case "svg" -> {
+        break;
+      case "svg":
         SVGView svg = new SVGView();
         svg.create(animation, speed);
         content = svg.generate();
-      }
-      case "visual" -> {
+        break;
+      case "visual":
         IAnimatorView view = new VisualView();
         view.create(animation, speed);
-      }
-      default -> {
+        break;
+      default:
         showMessage("Invalid view type", 2);
         System.exit(0);
-      }
     }
 
     String fileName = "";
@@ -209,11 +208,16 @@ public class Helpers {
     }
 
     switch (iconNumber) {
-      case 1 -> JOptionPane.showMessageDialog(null, message, "Success",
-              JOptionPane.PLAIN_MESSAGE);
-      case 2 -> JOptionPane.showMessageDialog(null, message, "Error",
-              JOptionPane.ERROR_MESSAGE);
-      default -> throw new IllegalArgumentException("Invalid icon number");
+      case 1:
+        JOptionPane.showMessageDialog(null, message, "Success",
+                JOptionPane.PLAIN_MESSAGE);
+        break;
+      case 2:
+        JOptionPane.showMessageDialog(null, message, "Error",
+                JOptionPane.ERROR_MESSAGE);
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid icon number");
     }
   }
 

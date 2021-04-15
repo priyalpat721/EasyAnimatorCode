@@ -105,12 +105,24 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
 
     switch (finalType) {
-      case CIRCLE -> logOfShapes.add(new Circle(name));
-      case SQUARE -> logOfShapes.add(new Square(name));
-      case RECTANGLE -> logOfShapes.add(new Rectangle(name));
-      case TRIANGLE -> logOfShapes.add(new Triangle(name));
-      case RHOMBUS -> logOfShapes.add(new Rhombus(name));
-      case ELLIPSE -> logOfShapes.add(new Ellipse(name));
+      case CIRCLE:
+        logOfShapes.add(new Circle(name));
+        break;
+      case SQUARE:
+        logOfShapes.add(new Square(name));
+        break;
+      case RECTANGLE:
+        logOfShapes.add(new Rectangle(name));
+        break;
+      case TRIANGLE:
+        logOfShapes.add(new Triangle(name));
+        break;
+      case RHOMBUS:
+        logOfShapes.add(new Rhombus(name));
+        break;
+      case ELLIPSE:
+        logOfShapes.add(new Ellipse(name));
+        break;
     }
   }
 
@@ -211,12 +223,16 @@ public class AnimatorModelImpl implements IAnimatorModel {
       originalShape.setColor(new RGB((double) r1, (double) g1, (double) b1));
       originalShape.setShowTime(t1, t2);
       switch (originalShape.getType()) {
-        case CIRCLE -> originalShape.setRadius(w1);
-        case SQUARE -> originalShape.setLength(w1);
-        default -> {
+        case CIRCLE:
+          originalShape.setRadius(w1);
+          break;
+        case SQUARE:
+          originalShape.setLength(w1);
+          break;
+        default:
           originalShape.setWidth(w1);
           originalShape.setHeight(h1);
-        }
+          break;
       }
       // Also add to stay
       stay(name, t1, t2);

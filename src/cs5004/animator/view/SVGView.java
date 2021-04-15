@@ -45,27 +45,27 @@ public class SVGView implements IAnimatorView {
       String[] attributes = new String[4];
 
       switch (shape.getType()) {
-        case RECTANGLE -> {
+        case RECTANGLE:
           tag = "rect";
           attributes[0] = "x";
           attributes[1] = "y";
           attributes[2] = "width";
           attributes[3] = "height";
-        }
-        case ELLIPSE -> {
+          break;
+        case ELLIPSE:
           tag = "ellipse";
           attributes[0] = "cx";
           attributes[1] = "cy";
           attributes[2] = "rx";
           attributes[3] = "ry";
-        }
-        case CIRCLE -> {
+          break;
+        case CIRCLE:
           tag = "circle";
           attributes[0] = "cx";
           attributes[1] = "cy";
           attributes[2] = "r";
           attributes[3] = "";
-        }
+          break;
       }
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
@@ -105,83 +105,79 @@ public class SVGView implements IAnimatorView {
           List<IAction> actions = entry.getValue();
           for (IAction action : actions) {
             switch (action.getType()) {
-              case MOVE -> {
+              case MOVE:
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                            + "fill=\"freeze\" />\n",
+                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime()) / speed * 100 + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                        / speed + "ms",
+                                / speed + "ms",
                         attributes[0],
                         (int) action.getOldPosition().getX(),
                         (int) action.getNewPosition().getX()));
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                            + "fill=\"freeze\" />\n",
+                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                        / speed + "ms",
+                                / speed + "ms",
                         attributes[1],
                         (int) action.getOldPosition().getY(),
                         (int) action.getNewPosition().getY()));
-              }
-
-              case SCALE -> {
+                break;
+              case SCALE:
                 result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                            + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                            + "fill=\"freeze\" />\n",
+                                + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                        / speed + "ms",
+                                / speed + "ms",
                         attributes[2],
                         (int) action.getOldWidth(),
                         (int) action.getNewWidth()));
-
                 if (shape.getType() != Shape.CIRCLE) {
                   result.append(String.format("\t<animate attributeType=\"xml\" begin=\"%s\" "
-                                              + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
-                                              + "fill=\"freeze\" />\n",
+                                  + "dur=\"%s\" attributeName=\"%s\" from=\"%d\" to=\"%d\" "
+                                  + "fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                          / speed + "ms",
+                                  / speed + "ms",
                           attributes[3],
                           (int) action.getOldHeight(),
                           (int) action.getNewHeight()));
                 }
-              }
-
-              case CHANGECOLOR -> {
+                break;
+              case CHANGECOLOR:
                 result.append(String.format("\t<animate attributeType=\"xml\" "
-                                            + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
-                                            + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
-                                            + "fill=\"freeze\" />\n",
+                                + "begin=\"%s\" dur=\"%s\" attributeName=\"fill\" "
+                                + "from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" "
+                                + "fill=\"freeze\" />\n",
                         (action.getTime().getStartTime() * 100) / speed + "ms",
                         ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                        / speed + "ms",
+                                / speed + "ms",
                         (int) action.getOldColor().getRed(),
                         (int) action.getOldColor().getGreen(),
                         (int) action.getOldColor().getBlue(),
                         (int) action.getNewColor().getRed(),
                         (int) action.getNewColor().getGreen(),
                         (int) action.getNewColor().getBlue()));
-              }
-
-              case STAY -> {
+                break;
+              case STAY:
                 if (count != 0) {
                   result.append(String.format("\t<animate attributeType=\"xml\" "
-                                              + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
+                                  + "begin=\"%s\" dur=\"%s\" fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                          / speed + "ms"));
+                                  / speed + "ms"));
                 } else {
                   result.append(String.format("\t<set attributeName=\"visibility\" "
-                                              + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" "
-                                              + "dur=\"%s\" fill=\"freeze\" />\n",
+                                  + "attributeType=\"CSS\" to=\"visible\" begin=\"%s\" "
+                                  + "dur=\"%s\" fill=\"freeze\" />\n",
                           (action.getTime().getStartTime() * 100) / speed + "ms",
                           ((action.getTime().getEndTime() - action.getTime().getStartTime()) * 100)
-                          / speed + "ms"));
+                                  / speed + "ms"));
                 }
-              }
+                break;
             }
             count += 1;
           }
