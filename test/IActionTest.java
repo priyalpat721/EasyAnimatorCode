@@ -331,8 +331,8 @@ public class IActionTest {
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
                  + "Name: ellipse1\n" + "Type: ellipse\n"
                  + "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
-                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100"
-            , intervals.toString());
+                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100",
+        intervals.toString());
   }
 
   @Test

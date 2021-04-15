@@ -719,14 +719,13 @@ public class AnimatorModelImplTest {
 
     //test toString() for rectangle actions
     assertEquals("Shapes:\n" + "Name: P1\n" + "Type: rectangle\n"
-                 +"Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
                  + "Appears at t=1\nDisappears at t=100\n\n"
                  + "Shape P1 moves from (200.0, 200.0) to (150.0, 150.0) from time t=1 to t=5\n"
                  + "Shape P1 scales from Width: 50.0, Height: 100.0 to Width: 100.0, "
                  + "Height: 200.0 from time t=5 to t=10\n"
                  + "Shape P1 changes color from (1.0,1.0,1.0) to (10.0,10.0,10.0) "
-                 + "from time t=10 to t=15"
-        , model2.toString());
+                 + "from time t=10 to t=15", model2.toString());
   }
 
 
@@ -759,8 +758,8 @@ public class AnimatorModelImplTest {
                  + "from time t=50 to t=80\n"
                  + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
                  + "Height: 100.0 from time t=51 to t=70\n"
-                 + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100"
-        , model3.toString());
+                 + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100",
+        model3.toString());
   }
 
   @Test

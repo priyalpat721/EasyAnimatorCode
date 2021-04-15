@@ -19,7 +19,7 @@ public final class EasyAnimator {
 
   /**
    * Main method for Easy Animator.
-   * @param args
+   * @param args default arguments for main method.
    */
 
   public static void main(String[] args) {

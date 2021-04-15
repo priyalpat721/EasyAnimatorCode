@@ -124,9 +124,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
         logOfShapes.add(new Ellipse(name));
         break;
       default:
-        /**
-         * no action is intended when no other case applies
-         */
+        // no action is intended when no other case applies
     }
   }
 
@@ -391,10 +389,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
         List<IAction> actions = entry.getValue();
         for (IAction action : actions) {
           if (action.getType() == type) {
-            if (startTime >= action.getTime().getStartTime() &&
-                startTime < action.getTime().getEndTime() ||
-                endTime > action.getTime().getStartTime() &&
-                endTime <= action.getTime().getEndTime()) {
+            if (startTime >= action.getTime().getStartTime()
+                && startTime < action.getTime().getEndTime()
+                || endTime > action.getTime().getStartTime()
+                   && endTime <= action.getTime().getEndTime()) {
               return false;
             }
           }

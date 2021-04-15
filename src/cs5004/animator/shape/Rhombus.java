@@ -9,8 +9,8 @@ import cs5004.animator.tools.RGB;
 public class Rhombus extends AbstractShape {
 
   /**
-   *
    * Constructor for the Rhombus class.
+   *
    * @param name shape identifier.
    * @param color shape color.
    * @param width width of the Rhombus object.
