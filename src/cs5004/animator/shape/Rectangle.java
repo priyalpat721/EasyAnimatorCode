@@ -8,6 +8,18 @@ import cs5004.animator.tools.RGB;
  */
 public class Rectangle extends AbstractShape {
 
+  /**
+   * Constructor for the Rectangle class.
+   *
+   * @param name shape identifier.
+   * @param color shape color.
+   * @param width width of the rectangle.
+   * @param height height of the rectangle.
+   * @param x X coordinate for the lower left corner of the triangle.
+   * @param y Y coordinate for the lower left corner of the triangle.
+   * @param startTime Showtime start time for the triangle shape.
+   * @param endTime Showtime end time for the triangle shape.
+   */
   public Rectangle(String name, RGB color, double width, double height,
                    double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);

@@ -8,6 +8,15 @@ import cs5004.animator.shape.Shape;
  */
 public class Scale extends AbstractAction {
 
+  /**
+   * Constructor for Scale class.
+   * @param name shape identifier.
+   * @param currentShape shape to which scaling action is to be applied.
+   * @param newWidth new width for the shape.
+   * @param newHeight new height for the shape.
+   * @param startTime start time of the Scale action.
+   * @param endTime end time of the Scale action.
+   */
   public Scale(String name, IShape currentShape, double newWidth, double newHeight,
                int startTime, int endTime) {
     super(name, currentShape, newWidth, newHeight, startTime, endTime);

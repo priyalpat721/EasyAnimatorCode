@@ -8,6 +8,15 @@ import cs5004.animator.tools.Position;
  */
 public class Move extends AbstractAction {
 
+  /**
+   * Constructor for the Move objects.
+   * @param name Shape identifier.
+   * @param currentShape current shape to which move is to be applied.
+   * @param newX new x coordinate.
+   * @param newY new Y coordinate.
+   * @param startTime start time at which move takes place.
+   * @param endTime end time at which move takes place.
+   */
   public Move(String name, IShape currentShape, double newX, double newY,
               int startTime, int endTime) {
     super(name, currentShape, newX, newY, startTime, endTime);
@@ -42,8 +51,8 @@ public class Move extends AbstractAction {
       return copy;
     } else {
 
-      double percent =  (tick - this.time.getStartTime()) /
-                       (this.time.getEndTime() - this.time.getStartTime());
+      double percent =  (tick - this.time.getStartTime())
+                        / (this.time.getEndTime() - this.time.getStartTime());
 
       double currentX = (percent * (newPosition.getX() - oldPosition.getX()))
                         + oldPosition.getX();

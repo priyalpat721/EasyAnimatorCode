@@ -8,6 +8,18 @@ import cs5004.animator.tools.RGB;
  */
 public class Square extends AbstractShape {
 
+  /**
+   * Constructor for the Square class.
+   *
+   * @param name shape identifier.
+   * @param color shape color.
+   * @param length length of the square shape object.
+   * @param lengthB length of the square shape object. Must be the same as length.
+   * @param x X coordinate for the lower left corner of the square shape.
+   * @param y Y coordinate for the lower left corner of the square shape.
+   * @param startTime Showtime start time for the Square shape.
+   * @param endTime Showtime end time for the Square shape.
+   */
   public Square(String name, RGB color, double length, double lengthB,
                 double x, double y, int startTime, int endTime) {
     super(name, color, length, lengthB, x, y, startTime, endTime);

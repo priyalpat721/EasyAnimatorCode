@@ -17,6 +17,11 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
  */
 public final class EasyAnimator {
 
+  /**
+   * Main method for Easy Animator.
+   * @param args
+   */
+
   public static void main(String[] args) {
     String[] commands = parseCommands(args);
     String inputFile = commands[0];

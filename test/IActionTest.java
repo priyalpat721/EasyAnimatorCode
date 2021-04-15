@@ -175,41 +175,30 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (225.2,225.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (250.4,250.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (275.6,275.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100\n" +
-                 "Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100", intervals.toString());
+    assertEquals("Name: Rectangle1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100\n" + "Name: Rectangle1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (225.2,225.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100\n" + "Name: Rectangle1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (250.4,250.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100\n" + "Name: Rectangle1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (275.6,275.1), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100\n" + "Name: Rectangle1\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100", intervals.toString());
   }
 
   // tests the get current shape function for move
   @Test
   public void moveGetCurrentShapeTest() {
-    assertEquals("Name: Rectangle1\n" +
-                 "Type: rectangle\n" +
-                 "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100", move.getCurrentShape().toString());
+    assertEquals("Name: Rectangle1\n" + "Type: rectangle\n"
+                 + "Min corner: (300.8,300.2), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100", move.getCurrentShape().toString());
   }
 
   // tests the get time function for move
@@ -283,11 +272,10 @@ public class IActionTest {
 
   @Test
   public void changeColorGetCurrentShapeTest() {
-    assertEquals("Name: Circle1\n" +
-                 "Type: circle\n" +
-                 "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)\n" +
-                 "Appears at t=1\n" +
-                 "Disappears at t=100", color.getCurrentShape().toString());
+    assertEquals("Name: Circle1\n"
+                 + "Type: circle\n"
+                 + "Center: (100.0,50.0), Radius: 12.0, Color: (200.3,200.5,201.0)\n"
+                 + "Appears at t=1\n" + "Disappears at t=100", color.getCurrentShape().toString());
   }
 
   @Test
@@ -329,33 +317,29 @@ public class IActionTest {
         intervals.append("\n");
       }
     }
-    assertEquals("Name: ellipse1\n" +
-                 "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, "
-                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: ellipse1\n" +
-                 "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, "
-                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: ellipse1\n" +
-                 "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, "
+    assertEquals("Name: ellipse1\n" + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 100.2, Y radius: 140.0, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
-                 + "Name: ellipse1\n" + "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, "
-                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n" +
-                 "Name: ellipse1\n" +
-                 "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
+                 + "Name: ellipse1\n" + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 150.3, Y radius: 180.1, "
+                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
+                 + "Name: ellipse1\n"  + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 200.5, Y radius: 220.1, "
+                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
+                 + "Name: ellipse1\n" + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 250.6, Y radius: 260.1, "
+                 + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100\n"
+                 + "Name: ellipse1\n" + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n" + "Disappears at t=100"
             , intervals.toString());
   }
 
   @Test
   public void scaleGetCurrentShapeTest() {
-    assertEquals("Name: ellipse1\n" +
-                 "Type: ellipse\n" +
-                 "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
+    assertEquals("Name: ellipse1\n"
+                 + "Type: ellipse\n"
+                 + "Center: (200.0,200.0), X radius: 300.8, Y radius: 300.2, "
                  + "Color: (1.0,1.0,1.0)\n" + "Appears at t=1\n"
                  + "Disappears at t=100", scale.getCurrentShape().toString());
   }
@@ -373,8 +357,8 @@ public class IActionTest {
 
   @Test
   public void scaleToStringTest() {
-    assertEquals("ellipse1 scales from X radius:, 50.0Y radius: 100.0 to X " +
-            "radius, 300.8Y radius 300.156from time t=10 to t=15", scale.toString());
+    assertEquals("ellipse1 scales from X radius:, 50.0Y radius: 100.0 to X "
+                 +  "radius, 300.8Y radius 300.156from time t=10 to t=15", scale.toString());
   }
 
 }

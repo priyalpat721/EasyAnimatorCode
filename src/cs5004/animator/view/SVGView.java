@@ -66,6 +66,10 @@ public class SVGView implements IAnimatorView {
           attributes[2] = "r";
           attributes[3] = "";
           break;
+        default:
+          /**
+           * No action is intended when no other case applies.
+           */
       }
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
@@ -178,6 +182,10 @@ public class SVGView implements IAnimatorView {
                                   / speed + "ms"));
                 }
                 break;
+              default:
+                /**
+                 * No action is intended when no other case applies.
+                 */
             }
             count += 1;
           }

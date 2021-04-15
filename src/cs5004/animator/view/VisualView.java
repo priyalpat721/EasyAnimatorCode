@@ -13,8 +13,8 @@ public class VisualView implements IAnimatorView {
 
   @Override
   public void create(IAnimatorModel model, int speed) {
-    Canvas canvas = new Canvas(model.getBox()[0], model.getBox()[1]
-            , model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
+    Canvas canvas = new Canvas(model.getBox()[0], model.getBox()[1],
+        model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
     canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     int end = model.getTotalTime()[1];
     double count = 0;

@@ -8,6 +8,19 @@ import cs5004.animator.tools.RGB;
  */
 public class Rhombus extends AbstractShape {
 
+  /**
+   *
+   * Constructor for the Rhombus class.
+   * @param name shape identifier.
+   * @param color shape color.
+   * @param width width of the Rhombus object.
+   * @param height height of the Rhombus object.
+   * @param x X coordinate of the lower left corner of the Rhombus shape.
+   * @param y Y coordinate of the lower left corner of the Rhombus shape.
+   * @param startTime Showtime start time for the Rhombus shape.
+   * @param endTime Showtime start time for the Rhombus shape.
+   */
+
   public Rhombus(String name, RGB color, double width, double height,
                  double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);

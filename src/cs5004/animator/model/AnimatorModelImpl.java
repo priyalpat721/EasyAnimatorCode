@@ -123,6 +123,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
       case ELLIPSE:
         logOfShapes.add(new Ellipse(name));
         break;
+      default:
+        /**
+         * no action is intended when no other case applies
+         */
     }
   }
 

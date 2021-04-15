@@ -1,5 +1,11 @@
 package cs5004.animator.utils;
 
+/**
+ * Interface to build a document for .txt, .svg and visual views.
+ * Given a specific .txt the builder will parse the document and produced an adapted version.
+ *
+ * @param <Doc> Builder type.
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.

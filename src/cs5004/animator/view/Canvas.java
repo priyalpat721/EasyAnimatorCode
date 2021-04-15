@@ -49,8 +49,11 @@ public class Canvas extends JFrame {
     return new Dimension(width + 10, height + 10);
   }
 
+  /**
+   * Method that places the shapes in correct position and color.
+   * @param currentShapes list that contains shapes to be shown.
+   */
   public void currentView(List<IShape> currentShapes) {
-    // gets the shapes in correct position and color
     this.panel.setShapes(currentShapes);
     this.panel.repaint();
   }

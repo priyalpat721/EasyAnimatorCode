@@ -8,6 +8,18 @@ import cs5004.animator.tools.RGB;
  */
 public class Circle extends AbstractShape {
 
+  /**
+   * Constructor for the Circle class.
+   *
+   * @param name shape identifier.
+   * @param color shape color.
+   * @param radius shape radius of a circle.
+   * @param radiusB shape radius of a circle. Must be a duplicate of radius.
+   * @param x X coordinate for radius.
+   * @param y Y coordinate for radius.
+   * @param startTime ShowTime start time for Circle object.
+   * @param endTime ShowTime end time for Circle object.
+   */
   public Circle(String name, RGB color, double radius, double radiusB,
                 double x, double y, int startTime, int endTime) {
     super(name, color, radius, radiusB, x, y, startTime, endTime);

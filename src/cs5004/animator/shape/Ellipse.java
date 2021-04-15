@@ -8,6 +8,18 @@ import cs5004.animator.tools.RGB;
  */
 public class Ellipse extends AbstractShape {
 
+  /**
+   * Constructor for the Ellipse class.
+   *
+   * @param name shape identifier.
+   * @param color shape color.
+   * @param width Ellipse width.
+   * @param height Ellipse height.
+   * @param x X coordinate for center of the Ellipse object.
+   * @param y Y coordinate for center of the Ellipse object.
+   * @param startTime Showtime start time for Ellipse object.
+   * @param endTime Showtime end time for Ellipse object.
+   */
   public Ellipse(String name, RGB color, double width, double height,
                  double x, double y, int startTime, int endTime) {
     super(name, color, width, height, x, y, startTime, endTime);
@@ -31,6 +43,11 @@ public class Ellipse extends AbstractShape {
             this.getShowTime().getStartTime(), this.getShowTime().getEndTime());
   }
 
+  /**
+   * String method for Ellipse class.
+   *
+   * @return a String representing the Ellipse and its attributes.
+   */
   public String toString() {
     return "Name: " + this.name + "\n"
            + "Type: " + this.type.toString() + "\n"
