@@ -6,16 +6,16 @@ import javax.swing.*;
 
 // a view to test stuff
 public class TestView extends JFrame {
-  private JFrame frame;
   private JPanel panel;
   private JLabel label;
   private JButton button1;
   private JButton button2;
 
   public TestView() {
-    frame = new JFrame("Test");
-    frame.setSize(300, 300);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    super();
+    setTitle("Test");
+    setSize(300, 300);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     panel = new JPanel();
 
@@ -33,11 +33,11 @@ public class TestView extends JFrame {
     panel.add(button1);
     panel.add(button2);
 
-    frame.add(panel);
+    add(panel);
   }
 
   public void makeVisible() {
-    frame.setVisible(true);
+    setVisible(true);
   }
 
   public void setText(String text) {
@@ -45,6 +45,7 @@ public class TestView extends JFrame {
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent) {
+    addMouseListener(mouseEvent);
     button1.addMouseListener(mouseEvent);
     button2.addMouseListener(mouseEvent);
   }
