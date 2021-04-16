@@ -36,12 +36,15 @@ public class TestView2 {
     while (count < end) {
       this.canvas.currentView(model.getShapesAtTicks(count));
       count = count + speed / 100.0;
+      System.out.println("here");
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
     }
+
+    System.out.println("out");
   }
 
   public void makeVisible() {
@@ -61,6 +64,8 @@ public class TestView2 {
     IAnimatorModel model = parseFile(in, builder);
 
     TestView2 view2 = new TestView2(model, 1);
+
+    view2.makeVisible();
 
     view2.play();
   }
