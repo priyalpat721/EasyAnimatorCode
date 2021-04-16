@@ -15,7 +15,7 @@ public class MouseHandler extends MouseAdapter {
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    System.out.println("click");
+    System.out.println(String.format("click -> (x: %d, y: %d)", e.getX(), e.getY()));
 
     switch (e.getComponent().getName()) {
       case "press":
@@ -26,8 +26,6 @@ public class MouseHandler extends MouseAdapter {
         System.out.println("quit");
         System.exit(0);
     }
-
-    System.out.println("\n");
   }
 
 //  @Override

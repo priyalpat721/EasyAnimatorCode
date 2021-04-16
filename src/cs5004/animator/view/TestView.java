@@ -45,7 +45,7 @@ public class TestView extends JFrame {
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent) {
-    addMouseListener(mouseEvent);
+    this.addMouseListener(mouseEvent);
     button1.addMouseListener(mouseEvent);
     button2.addMouseListener(mouseEvent);
   }
