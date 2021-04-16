@@ -19,11 +19,11 @@ public class MouseHandler extends MouseAdapter {
 
     switch (e.getComponent().getName()) {
       case "press":
-        System.out.println(">> pressed");
+        System.out.println("> pressed");
         view.setText("button pressed");
         break;
       case "quit":
-        System.out.println(">> quit");
+        System.out.println("> quit");
         System.exit(0);
     }
   }
