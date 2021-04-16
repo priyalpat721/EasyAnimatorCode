@@ -62,8 +62,8 @@ public class Helpers {
   public static String[] parseCommands(String[] args) {
     Objects.requireNonNull(args, "Must have non-null args source");
 
-    String[] commands = new String[4];
-    for (int i = 0; i < 4; i++) {
+    String[] commands = new String[5];
+    for (int i = 0; i < 5; i++) {
       commands[i] = "";
     }
 
@@ -107,6 +107,10 @@ public class Helpers {
           showMessage("Command -speed without argument\nSet to default", 2);
           commands[3] = "";
         }
+      }
+
+      if (args[i].equals("-playback")) {
+        commands[4] = "playback";
       }
     }
 

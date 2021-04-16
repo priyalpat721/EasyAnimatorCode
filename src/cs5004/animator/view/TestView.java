@@ -9,7 +9,8 @@ public class TestView extends JFrame {
   private JFrame frame;
   private JPanel panel;
   private JLabel label;
-  private JButton button;
+  private JButton button1;
+  private JButton button2;
 
   public TestView() {
     frame = new JFrame("Test");
@@ -19,11 +20,16 @@ public class TestView extends JFrame {
     panel = new JPanel();
 
     label = new JLabel("Empty label");
-    button = new JButton("Press this");
-    button.setName("press");
 
-    panel.add(this.label);
-    panel.add(this.button);
+    button1 = new JButton("Press");
+    button1.setName("press");
+
+    button2 = new JButton("Quit");
+    button2.setName("quit");
+
+    panel.add(label);
+    panel.add(button1);
+    panel.add(button2);
 
     frame.add(panel);
   }
@@ -37,7 +43,8 @@ public class TestView extends JFrame {
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent) {
-    button.addMouseListener(mouseEvent);
+    button1.addMouseListener(mouseEvent);
+    button2.addMouseListener(mouseEvent);
   }
 
   public static void main(String[] args) {
