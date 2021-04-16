@@ -1,6 +1,8 @@
 package cs5004.animator.controller;
 
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
@@ -22,6 +24,11 @@ public class AnimatorControllerImpl extends MouseAdapter implements IAnimatorCon
   }
 
 
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    System.out.println(e.getComponent().getName());
+    view.setText("hope");
+  }
 
 
   public static void main(String[] args) {
