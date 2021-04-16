@@ -15,15 +15,15 @@ public class MouseHandler extends MouseAdapter {
 
   @Override
   public void mouseReleased(MouseEvent e) {
-    System.out.println(String.format("click -> (x: %d, y: %d)", e.getX(), e.getY()));
+    System.out.printf(">> click -> (%d, %d)%n", e.getX(), e.getY());
 
     switch (e.getComponent().getName()) {
       case "press":
-        System.out.println("pressed");
+        System.out.println(">> pressed");
         view.setText("button pressed");
         break;
       case "quit":
-        System.out.println("quit");
+        System.out.println(">> quit");
         System.exit(0);
     }
   }
