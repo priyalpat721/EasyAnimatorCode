@@ -1,31 +1,53 @@
 package cs5004.animator.controller;
 
-import cs5004.animator.model.AnimatorModelImpl;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.utils.AnimationBuilder;
+import cs5004.animator.utils.Builder;
 import cs5004.animator.view.TestView;
+import cs5004.animator.view.TestView2;
+
+import static cs5004.animator.utils.AnimationReader.parseFile;
 
 
 public class AnimatorControllerImpl implements IAnimatorController {
   private IAnimatorModel model;
   private TestView view;
+  private TestView2 view2;
   private MouseHandler mouse;
-  //private VisualView view;
 
-  public AnimatorControllerImpl(IAnimatorModel model, TestView view) {
+//  public AnimatorControllerImpl(IAnimatorModel model, TestView view) {
+//    this.model = model;
+//    this.view = view;
+//    this.mouse = new MouseHandler(this.view);
+//  }
+
+  public AnimatorControllerImpl(IAnimatorModel model, TestView2 view2) {
     this.model = model;
-    this.view = view;
-    this.mouse = new MouseHandler(this.view);
+    this.view2 = view2;
+    this.mouse = new MouseHandler(this.view2);
   }
+
+//  @Override
+//  public void go() {
+//    view.makeVisible();
+//  }
 
   @Override
   public void go() {
-    view.makeVisible();
+    view2.makeVisible();
   }
 
-  public static void main(String[] args) {
-    TestView view = new TestView();
-    IAnimatorModel model = new AnimatorModelImpl();
-    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+  public static void main(String[] args) throws FileNotFoundException {
+//    TestView view = new TestView();
+    AnimationBuilder<IAnimatorModel> builder = new Builder();
+    Readable in = new FileReader("test/smalldemo.txt");
+    IAnimatorModel model = parseFile(in, builder);
+    TestView2 view2 = new TestView2(model, 10);
+
+    IAnimatorController controller = new AnimatorControllerImpl(model, view2);
     controller.go();
   }
 

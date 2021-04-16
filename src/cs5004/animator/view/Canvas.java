@@ -1,6 +1,8 @@
 package cs5004.animator.view;
 
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import cs5004.animator.shape.IShape;
 import javax.swing.JFrame;
@@ -41,6 +43,7 @@ public class Canvas extends JFrame {
     this.setVisible(true);
     this.add(scrollPane);
     panel.setVisible(true);
+
     this.pack();
   }
 
@@ -57,4 +60,10 @@ public class Canvas extends JFrame {
     this.panel.setShapes(currentShapes);
     this.panel.repaint();
   }
+
+  // add a mouse listener to the panel
+  public void setCommandButtonListener(MouseListener mouseEvent) {
+    this.panel.addMouseListener(mouseEvent);
+  }
+
 }
