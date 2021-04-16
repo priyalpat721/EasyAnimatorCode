@@ -72,8 +72,7 @@ public class Helpers {
         try {
           commands[0] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command -in without argument", 2);
-          System.exit(0);
+          commands[0] = "";
         }
       }
 
@@ -81,8 +80,7 @@ public class Helpers {
         try {
           commands[1] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command -view without argument", 2);
-          System.exit(0);
+          commands[1] = "";
         }
       }
 
@@ -90,7 +88,6 @@ public class Helpers {
         try {
           commands[2] = args[i + 1];
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command -out without argument\nSet to default", 2);
           commands[2] = "";
         }
       }
@@ -98,13 +95,7 @@ public class Helpers {
       if (args[i].equals("-speed")) {
         try {
           commands[3] = args[i + 1];
-          if (Integer.parseInt(commands[3]) <= 0) {
-            showMessage("Speed cannot be less than or equal to zero\nSet to default",
-                    2);
-            commands[3] = "";
-          }
         } catch (IndexOutOfBoundsException e) {
-          showMessage("Command -speed without argument\nSet to default", 2);
           commands[3] = "";
         }
       }
@@ -123,6 +114,10 @@ public class Helpers {
     } else if (commands[1].equals("")) {
       showMessage("View type is mandatory", 2);
       System.exit(0);
+    } else if (Integer.parseInt(commands[3]) <= 0) {
+      showMessage("Speed cannot be less than or equal to zero\nSet to default",
+              2);
+      commands[3] = "";
     }
 
     return commands;
@@ -140,7 +135,6 @@ public class Helpers {
    */
   public static void generateView(IAnimatorModel animation, String viewType,
                                   String[] outputFile, int speed) {
-
     Objects.requireNonNull(animation, "Must have non-null animation");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
 
