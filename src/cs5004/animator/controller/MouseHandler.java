@@ -14,7 +14,7 @@ public class MouseHandler extends MouseAdapter {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
+  public void mouseReleased(MouseEvent e) {
     System.out.println(String.format("click -> (x: %d, y: %d)", e.getX(), e.getY()));
 
     switch (e.getComponent().getName()) {
@@ -29,7 +29,7 @@ public class MouseHandler extends MouseAdapter {
   }
 
 //  @Override
-//  public void mouseClicked(MouseEvent e) {
+//  public void mouseReleased(MouseEvent e) {
 //    switch (e.getComponent().getName()) {
 //      case "start":
 //        break;
