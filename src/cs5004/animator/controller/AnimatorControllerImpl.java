@@ -36,14 +36,31 @@ public class AnimatorControllerImpl extends MouseAdapter implements IAnimatorCon
         System.out.println("quit");
         System.exit(0);
     }
-
   }
+
+//  @Override
+//  public void mouseClicked(MouseEvent e) {
+//    switch (e.getComponent().getName()) {
+//      case "start":
+//        break;
+//      case "pause":
+//        break;
+//      case "resume":
+//        break;
+//      case "restart":
+//        break;
+//      case "loop":
+//        break;
+//      case "speed":
+//        break;
+//    }
 
   public static void main(String[] args) {
     TestView view = new TestView();
     IAnimatorModel model = new AnimatorModelImpl();
-    AnimatorControllerImpl controller = new AnimatorControllerImpl(model, view);
+    IAnimatorController controller = new AnimatorControllerImpl(model, view);
     controller.go();
+
   }
 
 }

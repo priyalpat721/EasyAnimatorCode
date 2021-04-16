@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
@@ -24,7 +25,6 @@ public final class EasyAnimator {
    * Main method for Easy Animator.
    * @param args default arguments for main method.
    */
-
   public static void main(String[] args) {
     String[] commands = parseCommands(args);
     String inputFile = commands[0];
@@ -51,7 +51,7 @@ public final class EasyAnimator {
     if (commands[4].equals("playback")) {
       //VisualView view = new VisualView();
       TestView view = new TestView();
-      AnimatorControllerImpl controller = new AnimatorControllerImpl(animation,
+      IAnimatorController controller = new AnimatorControllerImpl(animation,
               view);
       controller.go();
     } else {
