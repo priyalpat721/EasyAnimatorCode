@@ -27,7 +27,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
     IAnimatorModel model = new AnimatorModelImpl();
     IAnimatorController controller = new AnimatorControllerImpl(model, view);
     controller.go();
-
   }
 
 }
