@@ -49,7 +49,7 @@ public final class EasyAnimator {
     IAnimatorModel animation = parseFile(in, builder);
 
     if (commands[4].equals("playback")) {
-      // VisualView view = new VisualView();
+      //VisualView view = new VisualView();
       TestView view = new TestView();
       AnimatorControllerImpl controller = new AnimatorControllerImpl(animation,
               view);

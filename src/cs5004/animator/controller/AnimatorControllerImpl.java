@@ -7,12 +7,13 @@ import java.awt.event.MouseEvent;
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.TestView;
+import cs5004.animator.view.VisualView;
 
 
 public class AnimatorControllerImpl extends MouseAdapter implements IAnimatorController {
   private IAnimatorModel model;
   private TestView view;
-//  private VisualView view;
+  //private VisualView view;
 
   public AnimatorControllerImpl(IAnimatorModel model, TestView view) {
     this.model = model;
