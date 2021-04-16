@@ -26,8 +26,12 @@ public class AnimatorControllerImpl extends MouseAdapter implements IAnimatorCon
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    System.out.println(e.getComponent().getName());
-    view.setText("hope");
+    switch (e.getComponent().getName()) {
+      case "press":
+        view.setText("button pressed");
+        break;
+    }
+
   }
 
 
