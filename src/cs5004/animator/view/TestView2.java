@@ -25,7 +25,7 @@ public class TestView2 {
     this.canvas = new Canvas(model.getBox()[0], model.getBox()[1],
             model.getBox()[2], model.getBox()[3], model.getShapesAtTicks(0));
     this.canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    this.canvas.setVisible(false);
+    this.canvas.setVisible(false);
     this.speed = speed;
     this.end = model.getTotalTime()[1];
   }
