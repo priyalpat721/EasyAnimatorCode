@@ -4,7 +4,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-// a view to test
+// a view to test stuff
 public class TestView extends JFrame {
   private JFrame frame;
   private JPanel panel;
