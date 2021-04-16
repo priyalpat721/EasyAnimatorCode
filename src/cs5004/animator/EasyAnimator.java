@@ -11,6 +11,7 @@ import cs5004.animator.utils.Builder;
 import cs5004.animator.view.TestView;
 import cs5004.animator.view.VisualView;
 
+import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.tools.Helpers.showMessage;
@@ -37,15 +38,7 @@ public final class EasyAnimator {
     }
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = null;
-
-    try {
-      in = new FileReader(inputFile);
-    } catch (FileNotFoundException e) {
-      showMessage("Input file not found", 2);
-      System.exit(0);
-    }
-
+    Readable in = checkInputFile(inputFile);
     IAnimatorModel animation = parseFile(in, builder);
 
     if (commands[4].equals("playback")) {

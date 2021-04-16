@@ -1,5 +1,7 @@
 package cs5004.animator.tools;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -218,6 +220,19 @@ public class Helpers {
       default:
         throw new IllegalArgumentException("Invalid icon number");
     }
+  }
+
+  public static Readable checkInputFile(String inputFile) {
+    Readable in = null;
+
+    try {
+      in = new FileReader(inputFile);
+    } catch (FileNotFoundException e) {
+      showMessage("Input file not found", 2);
+      System.exit(0);
+    }
+
+    return in;
   }
 
 }
