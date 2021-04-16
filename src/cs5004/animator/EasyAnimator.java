@@ -3,9 +3,12 @@ package cs5004.animator;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
+import cs5004.animator.view.TestView;
+import cs5004.animator.view.VisualView;
 
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.parseCommands;
@@ -44,7 +47,16 @@ public final class EasyAnimator {
     }
 
     IAnimatorModel animation = parseFile(in, builder);
-    generateView(animation, viewType, outputFile, speed);
+
+    if (commands[4].equals("playback")) {
+      // VisualView view = new VisualView();
+      TestView view = new TestView();
+      AnimatorControllerImpl controller = new AnimatorControllerImpl(animation,
+              view);
+      controller.go();
+    } else {
+      generateView(animation, viewType, outputFile, speed);
+    }
   }
 
 }
