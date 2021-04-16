@@ -42,10 +42,8 @@ public final class EasyAnimator {
     IAnimatorModel animation = parseFile(in, builder);
 
     if (commands[4].equals("playback")) {
-      //VisualView view = new VisualView();
       TestView view = new TestView();
-      IAnimatorController controller = new AnimatorControllerImpl(animation,
-              view);
+      IAnimatorController controller = new AnimatorControllerImpl(animation, view);
       controller.go();
     } else {
       generateView(animation, viewType, outputFile, speed);
