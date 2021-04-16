@@ -22,9 +22,11 @@ public class TestView extends JFrame {
     label = new JLabel("Empty label");
 
     button1 = new JButton("Press");
+    // to identify a button
     button1.setName("press");
 
     button2 = new JButton("Quit");
+    // to identify a button
     button2.setName("quit");
 
     panel.add(label);
@@ -46,6 +48,7 @@ public class TestView extends JFrame {
     button1.addMouseListener(mouseEvent);
     button2.addMouseListener(mouseEvent);
   }
+
 
   public static void main(String[] args) {
     TestView view = new TestView();
