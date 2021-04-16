@@ -222,6 +222,11 @@ public class Helpers {
     }
   }
 
+  /**
+   * Generates a Readable source of characters.
+   * @param inputFile the name of the file.
+   * @return a Readable source of characters.
+   */
   public static Readable checkInputFile(String inputFile) {
     Readable in = null;
 
