@@ -118,9 +118,12 @@ public class EditorView implements ActionListener {
     double count = 0;
 
     while (count < end) {
+//      frame.toFront();
+//      frame.repaint();
       frame.currentView(model.getShapesAtTicks(count));
+      frame.repaint();
       count += 1;
-      System.out.println("here");
+      System.out.println("here " + count);
       try {
         Thread.sleep(100/speed);
       } catch (InterruptedException e) {
