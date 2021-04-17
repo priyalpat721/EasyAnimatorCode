@@ -20,8 +20,6 @@ public class VisualView implements IAnimatorView {
     int end = model.getTotalTime()[1];
     double count = 0;
 
-
-
     // controls the frame
     while (count < end) {
       canvas.currentView(model.getShapesAtTicks(count));

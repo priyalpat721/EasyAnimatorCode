@@ -13,10 +13,10 @@ import cs5004.animator.shape.IShape;
  * The class extends the JFrame class of Java Swing.
  */
 public class Canvas extends JFrame {
-  ShapesPanel panel;
-  JScrollPane scrollPane;
-  int width;
-  int height;
+  private ShapesPanel panel;
+  private JScrollPane scrollPane;
+  private int width;
+  private int height;
 
 
   /**

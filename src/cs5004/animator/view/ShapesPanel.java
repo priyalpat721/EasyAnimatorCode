@@ -30,12 +30,15 @@ public class ShapesPanel extends JPanel {
    * @param model containing a list of shapes.
    */
   public void setShapes(List<IShape> model) {
+    //System.out.println("here in panel");
     this.currentModel = model;
+    //System.out.println(currentModel.toString());
   }
 
 
   @Override
   public void paintComponent(Graphics g) {
+    //System.out.println("paint component called");
     super.paintComponent(g);
     Graphics2D g2D = (Graphics2D) g;
     if (currentModel == null) {

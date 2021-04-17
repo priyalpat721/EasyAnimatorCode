@@ -36,14 +36,21 @@ public class MouseHandler extends MouseAdapter {
 //    }
 //  }
 
+//  @Override
+//  public void mouseReleased(MouseEvent e) {
+//    if (e.getButton() == MouseEvent.BUTTON1) {
+//      System.out.printf(">> click -> (%d, %d)%n", e.getX(), e.getY());
+//      view2.play();
+//    }
+//  }
+
+
   @Override
-  public void mouseReleased(MouseEvent e) {
-    if (e.getButton() == MouseEvent.BUTTON1) {
-      System.out.printf(">> click -> (%d, %d)%n", e.getX(), e.getY());
-      view2.play();
+  public void mouseClicked(MouseEvent e) {
+    if(e.getButton() == MouseEvent.BUTTON1) {
+      System.out.println("using mouse adapter");
     }
   }
-
 //  @Override
 //  public void mouseReleased(MouseEvent e) {
 //    switch (e.getComponent().getName()) {
