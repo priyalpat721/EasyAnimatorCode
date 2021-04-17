@@ -119,7 +119,7 @@ public class EditorView implements ActionListener {
   public void stop() {
     System.out.println("EditorView -> stop");
     timer.stop();
-    timer.setDelay(0);
+    count = -1;
   }
 
   public void loop() {
