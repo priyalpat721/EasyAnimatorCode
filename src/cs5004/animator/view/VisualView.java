@@ -19,6 +19,9 @@ public class VisualView implements IAnimatorView {
     canvas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     int end = model.getTotalTime()[1];
     double count = 0;
+
+
+
     // controls the frame
     while (count < end) {
       canvas.currentView(model.getShapesAtTicks(count));
