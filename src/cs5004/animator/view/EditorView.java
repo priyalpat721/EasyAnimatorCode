@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.*;
 
@@ -15,6 +14,7 @@ import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
+
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
@@ -34,6 +34,7 @@ public class EditorView implements ActionListener {
   private JButton decreaseSpeed;
 
   private Timer timer;
+  private double count = 0;
 
   /**
    * Class that creates an interactive window-based visual layout of the animation.
@@ -45,7 +46,7 @@ public class EditorView implements ActionListener {
     this.model = model;
     this.speed = speed;
     this.end = model.getTotalTime()[1];
-    this.timer = new Timer(1000, this);
+    this.timer = new Timer(1000/speed, this);
     // adds animation
 //    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
 //    this.animation.setLayout(new BorderLayout());
@@ -140,18 +141,10 @@ public class EditorView implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    double count = 0;
+    this.count += 1;
+    System.out.println("Tick count: " + (int) count);
+    this.frame.currentView(model.getShapesAtTicks(count));
 
-    while (count < end) {
-      System.out.println("Tick count: " + (int) count);
-      this.frame.currentView(model.getShapesAtTicks(count));
-      count += 1;
-  //      try {
-  //        Thread.sleep(1000 / speed);
-  //      } catch (InterruptedException t) {
-  //        Thread.currentThread().interrupt();
-  //      }
-    }
   }
 
   /**
