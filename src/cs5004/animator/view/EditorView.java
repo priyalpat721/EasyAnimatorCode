@@ -17,8 +17,7 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-// a view to test animation stuff
-public class TestView2 extends MouseAdapter implements ActionListener {
+public class EditorView extends MouseAdapter implements ActionListener {
   private IAnimatorModel model;
   private int speed;
   private int end;
@@ -28,7 +27,7 @@ public class TestView2 extends MouseAdapter implements ActionListener {
   private JScrollPane scrollPane;
   private JButton play;
 
-  public TestView2(IAnimatorModel model, int speed) {
+  public EditorView(IAnimatorModel model, int speed) {
     this.model = model;
     this.speed = speed;
     this.end = model.getTotalTime()[1];
@@ -169,7 +168,7 @@ public class TestView2 extends MouseAdapter implements ActionListener {
 
     IAnimatorModel model = parseFile(in, builder);
 
-    TestView2 view2 = new TestView2(model, 1);
+    EditorView view2 = new EditorView(model, 1);
 
     view2.makeVisible();
 

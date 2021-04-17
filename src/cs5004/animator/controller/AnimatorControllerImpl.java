@@ -7,7 +7,7 @@ import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 import cs5004.animator.view.TestView;
-import cs5004.animator.view.TestView2;
+import cs5004.animator.view.EditorView;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
@@ -15,7 +15,7 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 public class AnimatorControllerImpl implements IAnimatorController {
   private IAnimatorModel model;
   private TestView view;
-  private TestView2 view2;
+  private EditorView view2;
   private MouseHandler mouse;
 
 //  public AnimatorControllerImpl(IAnimatorModel model, TestView view) {
@@ -24,7 +24,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 //    this.mouse = new MouseHandler(this.view);
 //  }
 
-  public AnimatorControllerImpl(IAnimatorModel model, TestView2 view2) {
+  public AnimatorControllerImpl(IAnimatorModel model, EditorView view2) {
     this.model = model;
     this.view2 = view2;
     this.mouse = new MouseHandler(this.view2);
@@ -45,7 +45,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
-    TestView2 view2 = new TestView2(model, 10);
+    EditorView view2 = new EditorView(model, 10);
 
     IAnimatorController controller = new AnimatorControllerImpl(model, view2);
     controller.go();

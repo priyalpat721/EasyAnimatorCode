@@ -4,17 +4,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import cs5004.animator.view.TestView;
-import cs5004.animator.view.TestView2;
+import cs5004.animator.view.EditorView;
 
 public class MouseHandler extends MouseAdapter {
   private TestView view;
-  private TestView2 view2;
+  private EditorView view2;
 
 //  public MouseHandler(TestView view) {
 //    this.view = view;
 //    this.view.setCommandButtonListener(this);
 
-  public MouseHandler(TestView2 view) {
+  public MouseHandler(EditorView view) {
     this.view2 = view;
     this.view2.setCommandButtonListener(this);
   }
