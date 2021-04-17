@@ -107,9 +107,6 @@ public class EditorView implements ActionListener {
     this.decreaseSpeed.setName("decreaseSpeed");
     buttons.add(decreaseSpeed);
 
-//    this.play.setActionCommand("play");
-//    this.play.addActionListener(this);
-
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
