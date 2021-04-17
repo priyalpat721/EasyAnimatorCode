@@ -48,14 +48,6 @@ public class EditorView implements ActionListener {
     this.speed = speed;
     this.end = model.getTotalTime()[1];
     this.timer = new Timer(1000 / speed, this);
-    // adds animation
-//    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
-//    this.animation.setLayout(new BorderLayout());
-//    this.animation.setPreferredSize(new Dimension(model.getBox()[3] * 2,
-//            model.getBox()[3] * 2));
-//    scrollPane = new JScrollPane(this.animation);
-//    scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-//    scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
     this.animation = new ShapesPanel(model.getShapesAtTicks(0));
     this.animation.setLayout(new BorderLayout());
@@ -67,15 +59,12 @@ public class EditorView implements ActionListener {
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
     this.frame = new Frame(960, 720, animation, scrollPane);
-    //scrollPane.add(animation);
-    //this.frame.add(scrollPane);
-    // this is for the buttons
+
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
     this.scrollPane.setVisible(true);
     this.frame.add(scrollPane, BorderLayout.CENTER);
     this.frame.setVisible(true);
-
 
     JPanel buttons = new JPanel();
     buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
