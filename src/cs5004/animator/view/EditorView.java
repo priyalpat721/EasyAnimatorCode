@@ -9,6 +9,8 @@ import java.io.FileReader;
 
 import javax.swing.*;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
@@ -162,12 +164,11 @@ public class EditorView implements ActionListener {
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
-    view.makeVisible();
-//    view.setCommandButtonListener(new MouseHandler(view));
-    view.play();
+//    view.makeVisible();
+//    view.play();
 
-//    IAnimatorController controller = new AnimatorControllerImpl(view);
-//    controller.go();
+    IAnimatorController controller = new AnimatorControllerImpl(view);
+    controller.go();
   }
 
 }
