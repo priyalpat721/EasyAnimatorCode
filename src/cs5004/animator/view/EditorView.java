@@ -16,7 +16,7 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class EditorView extends MouseAdapter implements ActionListener {
+public class EditorView {
   private IAnimatorModel model;
   private int speed;
   private int end;
@@ -48,14 +48,14 @@ public class EditorView extends MouseAdapter implements ActionListener {
     this.animation = new ShapesPanel(model.getShapesAtTicks(0));
     this.animation.setLayout(new BorderLayout());
     this.animation.setPreferredSize(new Dimension( model.getBox()[2] * 2,
-            model.getBox()[3]  * 2));
+            model.getBox()[3] * 2));
 
     this.scrollPane = new JScrollPane(animation);
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
     this.frame = new MyFrame(model.getBox()[0], model.getBox()[1],
-            model.getBox()[2] + 100, model.getBox()[3] + 100, animation, scrollPane);
+            960, 720, animation, scrollPane);
     //scrollPane.add(animation);
     //this.frame.add(scrollPane);
     // this is for the buttons
@@ -77,18 +77,17 @@ public class EditorView extends MouseAdapter implements ActionListener {
   }
 
   public void play() {
-
     double count = 0;
 
-    while (count < end) {
+    while (count < end ) {
       frame.currentView(model.getShapesAtTicks(count));
       count += 1;
+      System.out.println("here");
       try {
-        Thread.sleep(1000/speed);
+        Thread.sleep(100/speed);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
-
     }
 
     System.out.println("out");
@@ -104,30 +103,6 @@ public class EditorView extends MouseAdapter implements ActionListener {
   }
 
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-  // This is where the timer would come into play
-    // each unit from timer causes this to run
-    if (e.getSource().equals(play)) {
-      //System.out.println("play");
-      double count = 0;
-
-      while (count < end ) {
-        // this.canvas.currentView(model.getShapesAtTicks(count));
-        this.frame.currentView(model.getShapesAtTicks(count));
-        System.out.println(model.getShapesAtTicks(count));
-        count += 1;
-        System.out.println("here");
-        try {
-          Thread.sleep(this.speed);
-        } catch (InterruptedException t) {
-          Thread.currentThread().interrupt();
-        }
-      }
-      System.out.println("out");
-    }
-  }
-
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
 
@@ -135,12 +110,36 @@ public class EditorView extends MouseAdapter implements ActionListener {
 
     IAnimatorModel model = parseFile(in, builder);
 
-    EditorView view2 = new EditorView(model, 1);
+    EditorView view = new EditorView(model, 1);
 
-    view2.makeVisible();
+    view.makeVisible();
 
-    //view2.play();
+    view.play();
   }
 
+
+  //  @Override
+//  public void actionPerformed(ActionEvent e) {
+//  // This is where the timer would come into play
+//    // each unit from timer causes this to run
+//    if (e.getSource().equals(play)) {
+//      //System.out.println("play");
+//      double count = 0;
+//
+//      while (count < end ) {
+//        // this.canvas.currentView(model.getShapesAtTicks(count));
+//        this.frame.currentView(model.getShapesAtTicks(count));
+//        System.out.println(model.getShapesAtTicks(count));
+//        count += 1;
+//        System.out.println("here");
+//        try {
+//          Thread.sleep(this.speed);
+//        } catch (InterruptedException t) {
+//          Thread.currentThread().interrupt();
+//        }
+//      }
+//      System.out.println("out");
+//    }
+//  }
 
 }
