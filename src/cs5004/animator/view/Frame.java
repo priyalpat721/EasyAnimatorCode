@@ -33,7 +33,7 @@ public class Frame extends JFrame {
    * @param height of the canvas window.
    */
   public Frame(double width, double height,
-               ShapesPanel animation, JScrollPane scrollPanel) {
+               ShapesPanel animation, JScrollPane scrollPane) {
     super("Easy Animator");
     this.width = (int) width;
     this.height = (int) height;
@@ -45,7 +45,7 @@ public class Frame extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
     this.animation = animation;
-    this.scrollPane = scrollPanel;
+    this.scrollPane = scrollPane;
     //this.view = view;
 
 //    this.animation = new ShapesPanel(model);

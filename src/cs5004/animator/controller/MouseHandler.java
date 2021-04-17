@@ -9,7 +9,7 @@ import cs5004.animator.view.EditorView;
  * Class that handles mouse events from user input. It extends the MouseAdapter abstract class.
  */
 public class MouseHandler extends MouseAdapter {
-  private EditorView view;
+  private final EditorView view;
 
   /**
    * MouseHandler class constructor.
@@ -17,7 +17,6 @@ public class MouseHandler extends MouseAdapter {
    */
   public MouseHandler(EditorView view) {
     this.view = view;
-    this.view.setCommandButtonListener(this);
   }
 
   @Override
@@ -27,11 +26,9 @@ public class MouseHandler extends MouseAdapter {
 
       switch (e.getComponent().getName()) {
         case "play":
-          System.out.println("> pressed");
           view.play();
           break;
         case "exit":
-          System.out.println("> quit");
           System.exit(0);
       }
     }

@@ -10,44 +10,28 @@ import cs5004.animator.view.EditorView;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-/**
- * Class that implements the IAnimator interface.
- * It represents the operations managed by EasyAnimator and enables user to control animations manually.
- */
 
 public class AnimatorControllerImpl implements IAnimatorController {
-  private IAnimatorModel model;
   private EditorView view;
-  private MouseHandler mouse;
 
-  /**
-   * Constructor for the AnimatorControllerImpl class.
-   * @param model of handling the animation.
-   * @param view data passed to the controller.
-   */
-  public AnimatorControllerImpl(IAnimatorModel model, EditorView view) {
-    this.model = model;
+  public AnimatorControllerImpl(EditorView view) {
     this.view = view;
-    this.mouse = new MouseHandler(this.view);
   }
 
   @Override
   public void go() {
+    MouseHandler mouse = new MouseHandler(this.view);
+    view.setCommandButtonListener(mouse);
     view.makeVisible();
   }
 
-  /**
-   * Main method that handles input from the view and creates a new animation.
-   * @param args default for the main method.
-   * @throws FileNotFoundException when passed a null model into readable.
-   */
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
-    EditorView view = new EditorView(model, 2);
+    EditorView view = new EditorView(model, 1);
 
-    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+    IAnimatorController controller = new AnimatorControllerImpl(view);
     controller.go();
   }
 
