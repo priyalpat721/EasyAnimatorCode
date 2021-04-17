@@ -100,7 +100,6 @@ public class EditorView implements ActionListener {
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
-
   public void play() {
     System.out.println("EditorView -> play");
     timer.start();
@@ -120,13 +119,13 @@ public class EditorView implements ActionListener {
   public void stop() {
     System.out.println("EditorView -> stop");
     timer.stop();
+    timer.setDelay(0);
   }
 
   public void loop() {
     System.out.println("EditorView -> loop");
     count = -1;
   }
-
 
   public void increaseSpeed() {
     System.out.println("EditorView -> increased speed");
