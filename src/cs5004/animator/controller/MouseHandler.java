@@ -5,9 +5,16 @@ import java.awt.event.MouseEvent;
 
 import cs5004.animator.view.EditorView;
 
+/**
+ * Class that handles mouse events from user input. It extends the MouseAdapter abstract class.
+ */
 public class MouseHandler extends MouseAdapter {
   private EditorView view;
 
+  /**
+   * MouseHandler class constructor.
+   * @param view that contains the model and its playing speed.
+   */
   public MouseHandler(EditorView view) {
     this.view = view;
     this.view.setCommandButtonListener(this);

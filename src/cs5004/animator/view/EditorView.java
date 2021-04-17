@@ -31,6 +31,12 @@ public class EditorView {
   private JButton increaseSpeed;
   private JButton decreaseSpeed;
 
+  /**
+   * Class that creates an interactive window-based visual layout of the animation.
+   * @param model of the animation.
+   * @param speed intended speed for the animation.
+   */
+
   public EditorView(IAnimatorModel model, int speed) {
     this.model = model;
     this.speed = speed;
@@ -76,6 +82,9 @@ public class EditorView {
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
+  /**
+   * Method that creates frame for the play action.
+   */
   public void play() {
 
     double count = 0;
@@ -94,16 +103,28 @@ public class EditorView {
     System.out.println("out");
   }
 
+  /**
+   * Method that makes frame visible.
+   */
   public void makeVisible() {
     frame.setVisible(true);
   }
 
+  /**
+   * Method that sets MouseListener as the CommandButtonListener in the frame and adds it to the play button.
+   * @param mouseEvent from user input.
+   */
   public void setCommandButtonListener(MouseListener mouseEvent) {
     frame.setCommandButtonListener(mouseEvent);
     play.addMouseListener(mouseEvent);
   }
 
 
+  /**
+   * Main method for the EditorView. It coordinates between user input and model.
+   * @param args default parameter for main method.
+   * @throws FileNotFoundException if readable not found.
+   */
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
