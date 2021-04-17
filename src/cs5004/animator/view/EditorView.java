@@ -122,7 +122,6 @@ public class EditorView {
 
     while (count < end) {
       frame.currentView(model.getShapesAtTicks(count));
-      frame.repaint();
       count += 1;
       System.out.println("here " + count);
       try {
