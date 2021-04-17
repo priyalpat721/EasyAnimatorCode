@@ -1,6 +1,8 @@
 package cs5004.animator.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,7 +18,7 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class EditorView {
+public class EditorView implements ActionListener {
   private IAnimatorModel model;
   private int speed;
   private int end;
@@ -68,10 +70,12 @@ public class EditorView {
     JPanel buttons = new JPanel();
     buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-    //this.frame.currentView(model.getShapesAtTicks(10));
     this.play = new JButton("Play");
     this.play.setName("play");
     buttons.add(play);
+
+//    this.play.setActionCommand("play");
+//    this.play.addActionListener(this);
 
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
@@ -80,7 +84,7 @@ public class EditorView {
 
     double count = 0;
 
-    while (count < end ) {
+    while (count < end) {
       frame.currentView(model.getShapesAtTicks(count));
       count += 1;
       System.out.println("here");
@@ -103,43 +107,41 @@ public class EditorView {
     play.addMouseListener(mouseEvent);
   }
 
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    // This is where the timer would come into play
+    // each unit from timer causes this to run
+    if (e.getActionCommand().equals("play")) {
+      //System.out.println("play");
+      double count = 0;
+
+      while (count < end) {
+        // this.canvas.currentView(model.getShapesAtTicks(count));
+        this.frame.currentView(model.getShapesAtTicks(count));
+        System.out.println(model.getShapesAtTicks(count));
+        count += 1;
+        System.out.println("here");
+        try {
+          Thread.sleep(100/speed);
+        } catch (InterruptedException t) {
+          Thread.currentThread().interrupt();
+        }
+      }
+      System.out.println("out");
+    }
+  }
 
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
-//    view.makeVisible();
+    view.makeVisible();
 //    view.setCommandButtonListener(new MouseHandler(view));
 //    view.play();
 
-    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+    IAnimatorController controller = new AnimatorControllerImpl(view);
     controller.go();
   }
-
-
-  //  @Override
-//  public void actionPerformed(ActionEvent e) {
-//  // This is where the timer would come into play
-//    // each unit from timer causes this to run
-//    if (e.getSource().equals(play)) {
-//      //System.out.println("play");
-//      double count = 0;
-//
-//      while (count < end ) {
-//        // this.canvas.currentView(model.getShapesAtTicks(count));
-//        this.frame.currentView(model.getShapesAtTicks(count));
-//        System.out.println(model.getShapesAtTicks(count));
-//        count += 1;
-//        System.out.println("here");
-//        try {
-//          Thread.sleep(this.speed);
-//        } catch (InterruptedException t) {
-//          Thread.currentThread().interrupt();
-//        }
-//      }
-//      System.out.println("out");
-//    }
-//  }
 
 }

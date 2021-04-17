@@ -12,18 +12,15 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 
 
 public class AnimatorControllerImpl implements IAnimatorController {
-  private IAnimatorModel model;
   private EditorView view;
-  private MouseHandler mouse;
 
-  public AnimatorControllerImpl(IAnimatorModel model, EditorView view) {
-    this.model = model;
+  public AnimatorControllerImpl(EditorView view) {
     this.view = view;
-    this.mouse = new MouseHandler(this.view);
   }
 
   @Override
   public void go() {
+    MouseHandler mouse = new MouseHandler(this.view);
     view.makeVisible();
   }
 
@@ -33,7 +30,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 2);
 
-    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+    IAnimatorController controller = new AnimatorControllerImpl(view);
     controller.go();
   }
 
