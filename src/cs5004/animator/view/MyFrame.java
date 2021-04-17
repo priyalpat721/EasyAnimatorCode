@@ -17,6 +17,7 @@ public class MyFrame extends JFrame implements ActionListener {
   ShapesPanel animation;
   JScrollPane scrollPane;
   JMenuBar menu;
+  JMenu file;
   JMenuItem exit;
   int width;
   int height;
@@ -96,11 +97,13 @@ public class MyFrame extends JFrame implements ActionListener {
 
     // adds menu option
     this.menu = new JMenuBar();
-    JMenu file = new JMenu("File");
+    this.file = new JMenu("File");
     this.exit = new JMenuItem("Exit");
-    file.add(exit);
-    exit.addActionListener(this);
-    menu.add(file);
+    this.exit.setName("exit");
+    this.file.add(exit);
+
+//    exit.addActionListener(this);
+    this.menu.add(file);
     this.setJMenuBar(menu);
 
     this.pack();
@@ -140,6 +143,6 @@ public class MyFrame extends JFrame implements ActionListener {
 //    }
   }
   public void setCommandButtonListener(MouseListener mouseEvent) {
-    this.addMouseListener(mouseEvent);
+    this.exit.addMouseListener(mouseEvent);
   }
 }
