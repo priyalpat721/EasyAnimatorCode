@@ -112,8 +112,9 @@ public class EditorView implements ActionListener {
 
   public void restart() {
     System.out.println("EditorView -> restart");
-    timer.isRepeats();
+    timer.stop();
     count = -1;
+    timer.start();
   }
 
   public void stop() {
@@ -135,8 +136,8 @@ public class EditorView implements ActionListener {
 
   public void decreaseSpeed() {
     System.out.println("EditorView -> decreased speed");
-    if (speed -1 != 0) {
-      speed -=1;
+    if (speed - 1 != 0) {
+      speed -= 1;
     }
     speed = 1;
   }
