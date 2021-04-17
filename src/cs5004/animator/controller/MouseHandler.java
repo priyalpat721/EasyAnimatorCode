@@ -46,9 +46,11 @@ public class MouseHandler extends MouseAdapter {
           view.loop();
           break;
         case "increaseSpeed":
+          view.increaseSpeed();
           System.out.println("MouseHandler -> speed+");
           break;
         case "decreaseSpeed":
+          view.decreaseSpeed();
           System.out.println("MouseHandler -> speed-");
           break;
       }

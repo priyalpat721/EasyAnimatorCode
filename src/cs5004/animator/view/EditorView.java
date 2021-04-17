@@ -15,7 +15,6 @@ import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
-
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class EditorView implements ActionListener {
@@ -38,6 +37,7 @@ public class EditorView implements ActionListener {
 
   /**
    * Class that creates an interactive window-based visual layout of the animation.
+   *
    * @param model of the animation.
    * @param speed intended speed for the animation.
    */
@@ -46,7 +46,7 @@ public class EditorView implements ActionListener {
     this.model = model;
     this.speed = speed;
     this.end = model.getTotalTime()[1];
-    this.timer = new Timer(1000/speed, this);
+    this.timer = new Timer(1000 / speed, this);
     // adds animation
 //    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
 //    this.animation.setLayout(new BorderLayout());
@@ -58,7 +58,7 @@ public class EditorView implements ActionListener {
 
     this.animation = new ShapesPanel(model.getShapesAtTicks(0));
     this.animation.setLayout(new BorderLayout());
-    this.animation.setPreferredSize(new Dimension( model.getBox()[2] * 2,
+    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
             model.getBox()[3] * 2));
 
     this.scrollPane = new JScrollPane(animation);
@@ -136,6 +136,22 @@ public class EditorView implements ActionListener {
     System.out.println("EditorView -> loop");
     count = -1;
   }
+
+
+  public void increaseSpeed() {
+    System.out.println("EditorView -> increased speed");
+    this.speed = this.speed + 1;
+    System.out.println(this.speed);
+  }
+
+  public void decreaseSpeed() {
+    System.out.println("EditorView -> decreased speed");
+    if (speed -1 != 0) {
+      speed -=1;
+    }
+    speed = 1;
+  }
+
   public void makeVisible() {
     frame.setVisible(true);
   }
@@ -160,6 +176,7 @@ public class EditorView implements ActionListener {
 
   /**
    * Main method for the EditorView. It coordinates between user input and model.
+   *
    * @param args default parameter for main method.
    * @throws FileNotFoundException if readable not found.
    */
