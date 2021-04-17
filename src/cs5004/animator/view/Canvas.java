@@ -1,12 +1,12 @@
 package cs5004.animator.view;
 
-import java.awt.Dimension;
-import java.awt.event.MouseEvent;
+import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.List;
+
+import javax.swing.*;
+
 import cs5004.animator.shape.IShape;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 
 /**
  * Class that creates the frame of the animation.
@@ -36,6 +36,7 @@ public class Canvas extends JFrame {
     setLocation((int) x, (int) y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.panel = new ShapesPanel(model);
+    this.panel.setLayout(new BorderLayout());
     this.panel.setPreferredSize(new Dimension((int) width * 2, (int) height * 2));
     scrollPane = new JScrollPane(panel);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -65,5 +66,6 @@ public class Canvas extends JFrame {
   public void setCommandButtonListener(MouseListener mouseEvent) {
     this.panel.addMouseListener(mouseEvent);
   }
+
 
 }

@@ -1,7 +1,8 @@
 package cs5004.animator.view;
 
+import javax.swing.*;
+
 import cs5004.animator.model.IAnimatorModel;
-import javax.swing.JFrame;
 
 /**
  * This class represents a Visual view.
@@ -21,9 +22,9 @@ public class VisualView implements IAnimatorView {
     // controls the frame
     while (count < end) {
       canvas.currentView(model.getShapesAtTicks(count));
-      count = count + speed / 100.0;
+      count += 1;
       try {
-        Thread.sleep(1);
+        Thread.sleep(1000/speed);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
