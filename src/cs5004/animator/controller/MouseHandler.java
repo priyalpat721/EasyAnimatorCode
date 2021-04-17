@@ -22,7 +22,6 @@ public class MouseHandler extends MouseAdapter {
   @Override
   public void mouseClicked(MouseEvent e) {
     if (e.getButton() == MouseEvent.BUTTON1) {
-//      System.out.printf(">> click -> (%d, %d)%n", e.getX(), e.getY());
 
       switch (e.getComponent().getName()) {
         case "play":
