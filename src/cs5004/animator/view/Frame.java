@@ -19,8 +19,6 @@ public class Frame extends JFrame {
   JMenuItem exit;
   int width;
   int height;
-  int x;
-  int y;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
@@ -67,11 +65,6 @@ public class Frame extends JFrame {
 
     this.animation.setShapes(currentShapes);
     this.animation.repaint();
-  }
-
-  public void setComponentVisible(boolean visible) {
-    this.animation.setVisible(visible);
-    this.scrollPane.setVisible(visible);
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent) {

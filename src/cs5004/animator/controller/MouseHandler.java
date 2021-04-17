@@ -1,11 +1,7 @@
 package cs5004.animator.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.*;
 
 import cs5004.animator.view.EditorView;
 
@@ -37,14 +33,17 @@ public class MouseHandler extends MouseAdapter {
           System.out.println("MouseHandler -> pause");
           view.pause();
           break;
-        case "resume":
-          System.out.println("MouseHandler -> resume");
+        case "stop":
+          System.out.println("MouseHandler -> stop");
+          view.stop();
           break;
         case "restart":
           System.out.println("MouseHandler -> restart");
+          view.restart();
           break;
         case "loop":
           System.out.println("MouseHandler -> loop");
+          view.loop();
           break;
         case "increaseSpeed":
           System.out.println("MouseHandler -> speed+");

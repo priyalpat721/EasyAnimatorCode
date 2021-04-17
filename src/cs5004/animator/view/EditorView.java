@@ -34,7 +34,7 @@ public class EditorView implements ActionListener {
   private JButton decreaseSpeed;
 
   private Timer timer;
-  private double count = 0;
+  private double count = -1;
 
   /**
    * Class that creates an interactive window-based visual layout of the animation.
@@ -87,8 +87,8 @@ public class EditorView implements ActionListener {
     this.pause.setName("pause");
     buttons.add(pause);
 
-    this.resume = new JButton("Resume");
-    this.resume.setName("resume");
+    this.resume = new JButton("Stop");
+    this.resume.setName("stop");
     buttons.add(resume);
 
     this.restart = new JButton("Restart");
@@ -107,9 +107,6 @@ public class EditorView implements ActionListener {
     this.decreaseSpeed.setName("decreaseSpeed");
     buttons.add(decreaseSpeed);
 
-//    this.play.setActionCommand("play");
-//    this.play.addActionListener(this);
-
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
@@ -124,6 +121,21 @@ public class EditorView implements ActionListener {
     timer.stop();
   }
 
+  public void restart() {
+    System.out.println("EditorView -> restart");
+    timer.isRepeats();
+    count = -1;
+  }
+
+  public void stop() {
+    System.out.println("EditorView -> stop");
+    timer.stop();
+  }
+
+  public void loop() {
+    System.out.println("EditorView -> loop");
+    count = -1;
+  }
   public void makeVisible() {
     frame.setVisible(true);
   }
@@ -144,7 +156,6 @@ public class EditorView implements ActionListener {
     this.count += 1;
     System.out.println("Tick count: " + (int) count);
     this.frame.currentView(model.getShapesAtTicks(count));
-
   }
 
   /**
@@ -157,8 +168,6 @@ public class EditorView implements ActionListener {
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
-//    view.makeVisible();
-//    view.play();
 
     IAnimatorController controller = new AnimatorControllerImpl(view);
     controller.go();
