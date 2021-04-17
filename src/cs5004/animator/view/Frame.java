@@ -13,7 +13,7 @@ import cs5004.animator.shape.IShape;
 /**
  * Class that creates the frame of the animation. The class extends the JFrame class of Java Swing.
  */
-public class MyFrame extends JFrame implements ActionListener {
+public class Frame extends JFrame {
   ShapesPanel animation;
   JScrollPane scrollPane;
   JMenuBar menu;
@@ -32,8 +32,8 @@ public class MyFrame extends JFrame implements ActionListener {
    * @param width  of the canvas window.
    * @param height of the canvas window.
    */
-  public MyFrame(double x, double y, double width, double height,
-                 ShapesPanel animation, JScrollPane scrollPanel) {
+  public Frame(double x, double y, double width, double height,
+               ShapesPanel animation, JScrollPane scrollPanel) {
     super("Easy Animator");
     this.width = (int) width;
     this.height = (int) height;
@@ -133,16 +133,8 @@ public class MyFrame extends JFrame implements ActionListener {
     this.scrollPane.setVisible(visible);
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    if (e.getSource().equals(exit)) {
-      System.exit(0);
-    }
-//    if (e.getSource().equals(play)) {
-//      view.play();
-//    }
-  }
   public void setCommandButtonListener(MouseListener mouseEvent) {
     this.exit.addMouseListener(mouseEvent);
   }
+
 }

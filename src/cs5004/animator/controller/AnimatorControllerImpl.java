@@ -31,7 +31,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
-    EditorView view = new EditorView(model, 1);
+    EditorView view = new EditorView(model, 2);
 
     IAnimatorController controller = new AnimatorControllerImpl(model, view);
     controller.go();

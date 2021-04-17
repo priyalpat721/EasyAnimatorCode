@@ -22,7 +22,6 @@ public class ShapesPanel extends JPanel {
   public ShapesPanel(List<IShape> model) {
     this.currentModel = model;
     setBackground(Color.WHITE);
-
   }
 
   /**

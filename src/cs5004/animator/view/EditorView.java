@@ -1,15 +1,13 @@
 package cs5004.animator.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import javax.swing.*;
 
+import cs5004.animator.controller.MouseHandler;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
@@ -20,7 +18,7 @@ public class EditorView {
   private IAnimatorModel model;
   private int speed;
   private int end;
-  private MyFrame frame;
+  private Frame frame;
   private ShapesPanel animation;
   private JScrollPane scrollPane;
   private JButton play;
@@ -54,16 +52,17 @@ public class EditorView {
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new MyFrame(model.getBox()[0], model.getBox()[1],
+    this.frame = new Frame(model.getBox()[0], model.getBox()[1],
             960, 720, animation, scrollPane);
     //scrollPane.add(animation);
     //this.frame.add(scrollPane);
     // this is for the buttons
-    this.frame.setVisible(false);
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
     this.scrollPane.setVisible(true);
     this.frame.add(scrollPane, BorderLayout.CENTER);
+    this.frame.setVisible(true);
+
 
     JPanel buttons = new JPanel();
     buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -77,6 +76,7 @@ public class EditorView {
   }
 
   public void play() {
+
     double count = 0;
 
     while (count < end ) {
@@ -105,16 +105,15 @@ public class EditorView {
 
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-
     Readable in = new FileReader("test/smalldemo.txt");
-
     IAnimatorModel model = parseFile(in, builder);
-
     EditorView view = new EditorView(model, 1);
-
     view.makeVisible();
+    view.setCommandButtonListener(new MouseHandler(view));
+//    view.play();
 
-    view.play();
+//    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+//    controller.go();
   }
 
 
