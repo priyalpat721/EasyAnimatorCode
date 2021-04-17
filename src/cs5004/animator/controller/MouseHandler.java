@@ -20,7 +20,7 @@ public class MouseHandler extends MouseAdapter {
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
+  public void mouseReleased(MouseEvent e) {
     if (e.getButton() == MouseEvent.BUTTON1) {
 
       switch (e.getComponent().getName()) {
@@ -52,14 +52,6 @@ public class MouseHandler extends MouseAdapter {
           view.decreaseSpeed();
           System.out.println("MouseHandler -> speed-");
           break;
-      }
-    }
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-    if (e.getButton() == MouseEvent.BUTTON1) {
-      switch (e.getComponent().getName()) {
         case "exit":
           System.out.println("MouseHandler -> exit");
           System.exit(0);
