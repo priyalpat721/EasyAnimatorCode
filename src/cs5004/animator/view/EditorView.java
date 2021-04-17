@@ -144,7 +144,7 @@ public class EditorView implements ActionListener {
       double count = 0;
 
       while (count < end) {
-        System.out.println("here " + (int) count);
+        System.out.println("Tick count: " + (int) count);
         this.frame.currentView(model.getShapesAtTicks(count));
         count += 1;
         try {
