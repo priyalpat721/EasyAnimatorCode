@@ -121,9 +121,6 @@ public class EditorView implements ActionListener {
     timer.stop();
   }
 
-  /**
-   * Method that makes frame visible.
-   */
   public void makeVisible() {
     frame.setVisible(true);
   }
@@ -141,18 +138,18 @@ public class EditorView implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-      double count = 0;
+    double count = 0;
 
-      while (count < end) {
-        System.out.println("Tick count: " + (int) count);
-        this.frame.currentView(model.getShapesAtTicks(count));
-        count += 1;
-        try {
-          Thread.sleep(1000 / speed);
-        } catch (InterruptedException t) {
-          Thread.currentThread().interrupt();
-        }
+    while (count < end) {
+      System.out.println("Tick count: " + (int) count);
+      this.frame.currentView(model.getShapesAtTicks(count));
+      count += 1;
+      try {
+        Thread.sleep(1000 / speed);
+      } catch (InterruptedException t) {
+        Thread.currentThread().interrupt();
       }
+    }
   }
 
   /**
