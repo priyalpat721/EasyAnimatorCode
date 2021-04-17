@@ -3,26 +3,20 @@ package cs5004.animator.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import javax.swing.*;
 
-import cs5004.animator.controller.ActionHandler;
-import cs5004.animator.controller.AnimatorControllerImpl;
-import cs5004.animator.controller.IAnimatorController;
-import cs5004.animator.controller.MouseHandler;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-//public class EditorView implements ActionListener {
-public class EditorView {
+public class EditorView implements ActionListener {
+//public class EditorView {
   private IAnimatorModel model;
   private int speed;
   private int end;
@@ -37,6 +31,8 @@ public class EditorView {
   private JButton increaseSpeed;
   private JButton decreaseSpeed;
 
+  private Timer timer;
+
   /**
    * Class that creates an interactive window-based visual layout of the animation.
    * @param model of the animation.
@@ -47,6 +43,7 @@ public class EditorView {
     this.model = model;
     this.speed = speed;
     this.end = model.getTotalTime()[1];
+    this.timer = new Timer(1000, this);
     // adds animation
 //    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
 //    this.animation.setLayout(new BorderLayout());
@@ -113,25 +110,13 @@ public class EditorView {
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
-  /**
-   * Method that creates frame for the play action.
-   */
+
   public void play() {
+    timer.start();
+  }
 
-    double count = 0;
-
-    while (count < end) {
-      frame.currentView(model.getShapesAtTicks(count));
-      count += 1;
-      System.out.println("here " + count);
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-      }
-    }
-
-    System.out.println("out");
+  public void pause() {
+    timer.stop();
   }
 
   /**
@@ -160,29 +145,21 @@ public class EditorView {
 //    this.frame.repaint();
 //  }
 
-//  @Override
-//  public void actionPerformed(ActionEvent e) {
-//    // This is where the timer would come into play
-//    // each unit from timer causes this to run
-//    if (e.getActionCommand().equals("play")) {
-//      //System.out.println("play");
-//      double count = 0;
-//
-//      while (count < end) {
-//        // this.canvas.currentView(model.getShapesAtTicks(count));
-//        this.frame.currentView(model.getShapesAtTicks(count));
-//        System.out.println(model.getShapesAtTicks(count));
-//        count += 1;
-//        System.out.println("here");
-//        try {
-//          Thread.sleep(100/speed);
-//        } catch (InterruptedException t) {
-//          Thread.currentThread().interrupt();
-//        }
-//      }
-//      System.out.println("out");
-//    }
-//  }
+  @Override
+  public void actionPerformed(ActionEvent e) {
+      double count = 0;
+
+      while (count < end) {
+        System.out.println("here " + (int) count);
+        this.frame.currentView(model.getShapesAtTicks(count));
+        count += 1;
+        try {
+          Thread.sleep(1000 / speed);
+        } catch (InterruptedException t) {
+          Thread.currentThread().interrupt();
+        }
+      }
+  }
 
   /**
    * Main method for the EditorView. It coordinates between user input and model.

@@ -31,10 +31,12 @@ public class MouseHandler extends MouseAdapter {
 
       switch (e.getComponent().getName()) {
         case "play":
+          System.out.println(">> pause");
           view.play();
           break;
         case "pause":
           System.out.println(">> pause");
+          view.pause();
           break;
         case "resume":
           System.out.println(">> resume");
