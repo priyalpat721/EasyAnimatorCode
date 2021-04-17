@@ -112,10 +112,12 @@ public class EditorView implements ActionListener {
 
 
   public void play() {
+    System.out.println("EditorView -> play");
     timer.start();
   }
 
   public void pause() {
+    System.out.println("EditorView -> pause");
     timer.stop();
   }
 
@@ -136,14 +138,6 @@ public class EditorView implements ActionListener {
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
   }
-
-//  public void setCommandButtonListener(ActionListener actionEvent) {
-//    play.addActionListener(actionEvent);
-//  }
-
-//  public void refresh() {
-//    this.frame.repaint();
-//  }
 
   @Override
   public void actionPerformed(ActionEvent e) {
