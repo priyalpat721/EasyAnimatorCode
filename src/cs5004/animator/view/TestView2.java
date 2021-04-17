@@ -146,18 +146,17 @@ public class TestView2 extends MouseAdapter implements ActionListener {
       //System.out.println("play");
       double count = 0;
 
-      while (count < end) {
+      while (count < end ) {
         // this.canvas.currentView(model.getShapesAtTicks(count));
         this.frame.currentView(model.getShapesAtTicks(count));
-        Toolkit.getDefaultToolkit().beep();
         System.out.println(model.getShapesAtTicks(count));
         count += 1;
         System.out.println("here");
-//        try {
-//          Thread.sleep(1000 / this.speed);
-//        } catch (InterruptedException t) {
-//          Thread.currentThread().interrupt();
-//        }
+        try {
+          Thread.sleep(this.speed);
+        } catch (InterruptedException t) {
+          Thread.currentThread().interrupt();
+        }
       }
       System.out.println("out");
     }
