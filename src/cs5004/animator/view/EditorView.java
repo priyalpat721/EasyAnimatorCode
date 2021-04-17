@@ -18,7 +18,6 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class EditorView implements ActionListener {
-//public class EditorView {
   private IAnimatorModel model;
   private int speed;
   private int end;
