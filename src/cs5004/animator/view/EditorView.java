@@ -168,6 +168,10 @@ public class EditorView implements ActionListener {
     decreaseSpeed.addMouseListener(mouseEvent);
   }
 
+  public void setKeyListener(KeyAdapter keyEvent) {
+    frame.addKeyListener(keyEvent);
+  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     this.count += 1;
