@@ -3,7 +3,6 @@ package cs5004.animator.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import cs5004.animator.view.TestView;
 import cs5004.animator.view.EditorView;
 
 public class MouseHandler extends MouseAdapter {
