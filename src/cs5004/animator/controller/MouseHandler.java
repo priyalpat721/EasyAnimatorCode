@@ -41,7 +41,7 @@ public class MouseHandler extends MouseAdapter {
           System.out.println("MouseHandler -> resume");
           break;
         case "restart":
-          System.out.println("MouseHandler ->restart");
+          System.out.println("MouseHandler -> restart");
           break;
         case "loop":
           System.out.println("MouseHandler -> loop");
