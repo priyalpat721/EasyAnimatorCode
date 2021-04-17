@@ -14,8 +14,8 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class AnimatorControllerImpl implements IAnimatorController {
   private IAnimatorModel model;
-  private TestView view;
-  private EditorView view2;
+//  private TestView view;
+  private EditorView view;
   private MouseHandler mouse;
 
 //  public AnimatorControllerImpl(IAnimatorModel model, TestView view) {
@@ -24,10 +24,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
 //    this.mouse = new MouseHandler(this.view);
 //  }
 
-  public AnimatorControllerImpl(IAnimatorModel model, EditorView view2) {
+  public AnimatorControllerImpl(IAnimatorModel model, EditorView view) {
     this.model = model;
-    this.view2 = view2;
-    this.mouse = new MouseHandler(this.view2);
+    this.view = view;
+    this.mouse = new MouseHandler(this.view);
   }
 
 //  @Override
@@ -37,7 +37,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   @Override
   public void go() {
-    view2.makeVisible();
+    view.makeVisible();
   }
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -45,9 +45,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
-    EditorView view2 = new EditorView(model, 10);
+    EditorView view = new EditorView(model, 10);
 
-    IAnimatorController controller = new AnimatorControllerImpl(model, view2);
+    IAnimatorController controller = new AnimatorControllerImpl(model, view);
     controller.go();
   }
 
