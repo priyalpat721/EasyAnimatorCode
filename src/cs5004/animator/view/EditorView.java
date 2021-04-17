@@ -74,6 +74,30 @@ public class EditorView implements ActionListener {
     this.play.setName("play");
     buttons.add(play);
 
+    this.pause = new JButton("Pause");
+    this.pause.setName("pause");
+    buttons.add(pause);
+
+    this.resume = new JButton("Resume");
+    this.resume.setName("resume");
+    buttons.add(resume);
+
+    this.restart = new JButton("Restart");
+    this.restart.setName("restart");
+    buttons.add(restart);
+
+    this.loop = new JButton("Loop");
+    this.loop.setName("loop");
+    buttons.add(loop);
+
+    this.increaseSpeed = new JButton("Speed+");
+    this.increaseSpeed.setName("increaseSpeed");
+    buttons.add(increaseSpeed);
+
+    this.decreaseSpeed = new JButton("Speed-");
+    this.decreaseSpeed.setName("decreaseSpeed");
+    buttons.add(decreaseSpeed);
+
 //    this.play.setActionCommand("play");
 //    this.play.addActionListener(this);
 
@@ -105,6 +129,12 @@ public class EditorView implements ActionListener {
   public void setCommandButtonListener(MouseListener mouseEvent) {
     frame.setCommandButtonListener(mouseEvent);
     play.addMouseListener(mouseEvent);
+    pause.addMouseListener(mouseEvent);
+    resume.addMouseListener(mouseEvent);
+    restart.addMouseListener(mouseEvent);
+    loop.addMouseListener(mouseEvent);
+    increaseSpeed.addMouseListener(mouseEvent);
+    decreaseSpeed.addMouseListener(mouseEvent);
   }
 
 //  public void refresh() {
