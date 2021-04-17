@@ -17,10 +17,6 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 public class AnimatorControllerImpl implements IAnimatorController {
   private EditorView view;
 
-  /**
-   * Constructor for the AnimatorControllerImpl class.
-   * @param view data passed to the controller.
-   */
   public AnimatorControllerImpl(EditorView view) {
     this.view = view;
   }
@@ -29,6 +25,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
   public void go() {
     MouseHandler mouse = new MouseHandler(this.view);
     view.setCommandButtonListener(mouse);
+//    ActionHandler handler = new ActionHandler(this.view);
+//    view.setCommandButtonListener(handler);
     view.makeVisible();
   }
 

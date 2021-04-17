@@ -1,7 +1,11 @@
 package cs5004.animator.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.*;
 
 import cs5004.animator.view.EditorView;
 
