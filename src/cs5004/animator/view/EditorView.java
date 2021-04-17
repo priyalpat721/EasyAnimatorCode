@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.*;
 
@@ -145,11 +146,11 @@ public class EditorView implements ActionListener {
       System.out.println("Tick count: " + (int) count);
       this.frame.currentView(model.getShapesAtTicks(count));
       count += 1;
-      try {
-        Thread.sleep(1000 / speed);
-      } catch (InterruptedException t) {
-        Thread.currentThread().interrupt();
-      }
+  //      try {
+  //        Thread.sleep(1000 / speed);
+  //      } catch (InterruptedException t) {
+  //        Thread.currentThread().interrupt();
+  //      }
     }
   }
 
