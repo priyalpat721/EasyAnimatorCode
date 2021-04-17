@@ -107,6 +107,10 @@ public class EditorView implements ActionListener {
     play.addMouseListener(mouseEvent);
   }
 
+//  public void refresh() {
+//    this.frame.repaint();
+//  }
+
   @Override
   public void actionPerformed(ActionEvent e) {
     // This is where the timer would come into play
@@ -136,7 +140,7 @@ public class EditorView implements ActionListener {
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
-    view.makeVisible();
+//    view.makeVisible();
 //    view.setCommandButtonListener(new MouseHandler(view));
 //    view.play();
 
