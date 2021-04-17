@@ -28,7 +28,26 @@ public class MouseHandler extends MouseAdapter {
         case "play":
           view.play();
           break;
+        case "pause":
+          System.out.println(">> pause");
+          break;
+        case "resume":
+          System.out.println(">> resume");
+          break;
+        case "restart":
+          System.out.println(">> restart");
+          break;
+        case "loop":
+          System.out.println(">> loop");
+          break;
+        case "increaseSpeed":
+          System.out.println(">> speed+");
+          break;
+        case "decreaseSpeed":
+          System.out.println(">> speed-");
+          break;
         case "exit":
+          System.out.println(">> quit");
           System.exit(0);
       }
     }
