@@ -32,15 +32,16 @@ public class Frame extends JFrame {
    * @param width  of the canvas window.
    * @param height of the canvas window.
    */
-  public Frame(double x, double y, double width, double height,
+  public Frame(double width, double height,
                ShapesPanel animation, JScrollPane scrollPanel) {
     super("Easy Animator");
     this.width = (int) width;
     this.height = (int) height;
-    this.x = (int) x;
-    this.y = (int) y;
+//    this.x = (int) x;
+//    this.y = (int) y;
     this.setSize(this.width, this.height);
-    this.setLocation((int) x, (int) y);
+//    this.setLocation((int) x, (int) y);
+    this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
     this.animation = animation;

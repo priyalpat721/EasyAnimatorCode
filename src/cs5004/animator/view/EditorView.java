@@ -7,6 +7,8 @@ import java.io.FileReader;
 
 import javax.swing.*;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.controller.MouseHandler;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
@@ -52,8 +54,7 @@ public class EditorView {
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(model.getBox()[0], model.getBox()[1],
-            960, 720, animation, scrollPane);
+    this.frame = new Frame(960, 720, animation, scrollPane);
     //scrollPane.add(animation);
     //this.frame.add(scrollPane);
     // this is for the buttons
@@ -108,12 +109,12 @@ public class EditorView {
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
-    view.makeVisible();
-    view.setCommandButtonListener(new MouseHandler(view));
+//    view.makeVisible();
+//    view.setCommandButtonListener(new MouseHandler(view));
 //    view.play();
 
-//    IAnimatorController controller = new AnimatorControllerImpl(model, view);
-//    controller.go();
+    IAnimatorController controller = new AnimatorControllerImpl(model, view);
+    controller.go();
   }
 
 
