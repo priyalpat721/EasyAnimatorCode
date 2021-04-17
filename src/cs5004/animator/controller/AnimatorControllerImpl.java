@@ -25,8 +25,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
   public void go() {
     MouseHandler mouse = new MouseHandler(this.view);
     view.setCommandButtonListener(mouse);
-//    ActionHandler handler = new ActionHandler(this.view);
-//    view.setCommandButtonListener(handler);
     view.makeVisible();
   }
 
