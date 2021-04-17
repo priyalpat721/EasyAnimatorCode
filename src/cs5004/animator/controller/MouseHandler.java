@@ -40,6 +40,7 @@ public class MouseHandler extends MouseAdapter {
           System.out.println(">> speed-");
           break;
         case "exit":
+          System.out.println(">> quit");
           System.exit(0);
       }
     }
