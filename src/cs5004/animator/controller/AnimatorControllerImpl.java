@@ -21,6 +21,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   @Override
   public void go() {
     MouseHandler mouse = new MouseHandler(this.view);
+    view.setCommandButtonListener(mouse);
     view.makeVisible();
   }
 

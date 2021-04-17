@@ -6,25 +6,22 @@ import java.awt.event.MouseEvent;
 import cs5004.animator.view.EditorView;
 
 public class MouseHandler extends MouseAdapter {
-  private EditorView view;
+  private final EditorView view;
 
   public MouseHandler(EditorView view) {
     this.view = view;
-    this.view.setCommandButtonListener(this);
   }
 
   @Override
-  public void mouseClicked(MouseEvent e) {
+  public void mouseReleased(MouseEvent e) {
     if (e.getButton() == MouseEvent.BUTTON1) {
       System.out.printf(">> click -> (%d, %d)%n", e.getX(), e.getY());
 
       switch (e.getComponent().getName()) {
         case "play":
-          System.out.println("> pressed");
           view.play();
           break;
         case "exit":
-          System.out.println("> quit");
           System.exit(0);
       }
     }
