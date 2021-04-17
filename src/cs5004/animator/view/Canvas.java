@@ -1,12 +1,10 @@
 package cs5004.animator.view;
 
-import java.awt.*;
-import java.awt.event.MouseListener;
+import java.awt.Dimension;
 import java.util.List;
-
-import javax.swing.*;
-
 import cs5004.animator.shape.IShape;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  * Class that creates the frame of the animation.
@@ -14,7 +12,6 @@ import cs5004.animator.shape.IShape;
  */
 public class Canvas extends JFrame {
   private ShapesPanel panel;
-  private JScrollPane scrollPane;
   private int width;
   private int height;
 
@@ -30,13 +27,13 @@ public class Canvas extends JFrame {
    */
   public Canvas(double x, double y, double width, double height, List<IShape> model) {
     super("Easy Animator");
+    JScrollPane scrollPane;
     this.width = (int) width;
     this.height = (int) height;
     setSize(this.width, this.height);
     setLocation((int) x, (int) y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.panel = new ShapesPanel(model);
-    this.panel.setLayout(new BorderLayout());
     this.panel.setPreferredSize(new Dimension((int) width * 2, (int) height * 2));
     scrollPane = new JScrollPane(panel);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -44,7 +41,6 @@ public class Canvas extends JFrame {
     this.setVisible(true);
     this.add(scrollPane);
     panel.setVisible(true);
-
     this.pack();
   }
 
@@ -61,11 +57,4 @@ public class Canvas extends JFrame {
     this.panel.setShapes(currentShapes);
     this.panel.repaint();
   }
-
-  // add a mouse listener to the panel
-  public void setCommandButtonListener(MouseListener mouseEvent) {
-    this.panel.addMouseListener(mouseEvent);
-  }
-
-
 }
