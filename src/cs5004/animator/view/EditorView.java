@@ -109,12 +109,17 @@ public class EditorView implements ActionListener {
 
   public void play() {
     System.out.println("EditorView -> play");
+    speed = initialSpeed;
+    timer.setDelay(1000 / speed);
+    count = -1;
     timer.start();
+    this.animate = false;
   }
 
   public void pause() {
     System.out.println("EditorView -> pause");
     timer.stop();
+    this.animate = false;
   }
 
   public void restart() {
@@ -124,6 +129,7 @@ public class EditorView implements ActionListener {
     timer.setDelay(1000 / speed);
     count = -1;
     timer.start();
+    this.animate = false;
   }
 
   public void stop() {
@@ -132,17 +138,14 @@ public class EditorView implements ActionListener {
     speed = initialSpeed;
     timer.setDelay(1000 / speed);
     count = -1;
+    this.animate = false;
   }
 
   public void loop() {
     System.out.println("EditorView -> loop");
-    if (count % end == 0) {
-      System.out.println(count);
-      timer.restart();
-    }
-    else {
-      timer.start();
-    }
+    timer.start();
+    this.animate = true;
+    count = -1;
   }
 
   public void increaseSpeed() {
@@ -183,8 +186,10 @@ public class EditorView implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     this.count += 1;
-    this.count = count % end;
-    //System.out.println("Tick count: " + (int) count);
+    if (this.animate) {
+      this.count = count % end;
+    }
+    System.out.println("Tick count: " + (int) count);
     this.frame.currentView(model.getShapesAtTicks(count));
   }
 
