@@ -21,6 +21,7 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
 public class EditorView implements ActionListener {
   private IAnimatorModel model;
   private int speed;
+  private int initialSpeed;
   private int end;
   private Frame frame;
   private ShapesPanel animation;
@@ -46,6 +47,7 @@ public class EditorView implements ActionListener {
   public EditorView(IAnimatorModel model, int speed) {
     this.model = model;
     this.speed = speed;
+    this.initialSpeed = speed;
     this.end = model.getTotalTime()[1];
     this.timer = new Timer(1000 / speed, this);
 
@@ -118,12 +120,14 @@ public class EditorView implements ActionListener {
     System.out.println("EditorView -> restart");
     timer.stop();
     count = -1;
+    speed = initialSpeed;
     timer.start();
   }
 
   public void stop() {
     System.out.println("EditorView -> stop");
     timer.stop();
+    speed = initialSpeed;
     count = -1;
   }
 
@@ -134,16 +138,16 @@ public class EditorView implements ActionListener {
 
   public void increaseSpeed() {
     System.out.println("EditorView -> increased speed");
-    this.speed = this.speed + 10;
-    timer.setDelay(1000 / this.speed);
+    speed = speed + 10;
+    timer.setDelay(1000 / speed);
   }
 
   public void decreaseSpeed() {
     System.out.println("EditorView -> decreased speed");
-    if (this.speed - 1 <= 0) {
-      this.speed = 1;
+    if (speed - 1 <= 0) {
+      speed = 1;
     } else {
-      this.speed -= 1;
+      speed -= 1;
     }
     timer.setDelay(1000 / this.speed);
   }
