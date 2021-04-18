@@ -166,12 +166,30 @@ public interface IAnimatorModel {
    */
   HashMap<String, List<IAction>> getLogOfActions();
 
+  /**
+   * Gets all of the motions for a single shape.
+   * @param name takes in the name of the shape.
+   * @return a list of all actions that are associated with a particular shape.
+   */
   List<IAction> getMotionForShape(String name);
 
+  /**
+   * Removes the shape and all of its associated actions.
+   * @param name takes in the name of the shape that needs to be removed.
+   */
   void removeShape(String name);
 
+  /**
+   * Gets the order of actions for the entire animation.
+   * @return a list of IAction where each action is assocaited with a particular shape.
+   */
   List<IAction> getOrderOfActions();
 
+  /**
+   * Removes a particular action associated with a shape.
+   * @param name takes in the name of the shape.
+   * @param action takes in the specific action that needs to be removed from the shape.
+   */
   void removeAction(String name, IAction action);
 
 }

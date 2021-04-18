@@ -394,7 +394,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
    * @param endTime   end time of the action.
    * @throws IllegalArgumentException if the name is invalid.
    */
-  public void stay(String name, int startTime, int endTime) {
+  private void stay(String name, int startTime, int endTime) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
     }
