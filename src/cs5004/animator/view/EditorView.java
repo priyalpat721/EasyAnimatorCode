@@ -140,10 +140,12 @@ public class EditorView implements ActionListener {
 
   public void decreaseSpeed() {
     System.out.println("EditorView -> decreased speed");
-    if (speed - 1 != 0) {
-      speed -= 1;
+    if (this.speed - 1 <= 0) {
+      this.speed = 1;
+    } else {
+      this.speed -= 1;
     }
-    speed = 1;
+    timer.setDelay(1000 / this.speed);
   }
 
   public void makeVisible() {
