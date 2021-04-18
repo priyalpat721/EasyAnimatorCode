@@ -64,7 +64,7 @@ public class EditorView implements ActionListener {
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
     this.frame = new Frame(model.getBox()[2] + 350,
-            model.getBox()[3] + 100, animation, scrollPane);
+            model.getBox()[3] + 10, animation, scrollPane);
 
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
