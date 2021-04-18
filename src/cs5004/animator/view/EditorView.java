@@ -36,6 +36,7 @@ public class EditorView implements ActionListener {
 
   private Timer timer;
   private double count = -1;
+  private boolean animate = false;
 
   /**
    * Class that creates an interactive window-based visual layout of the animation.
@@ -60,7 +61,7 @@ public class EditorView implements ActionListener {
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(960, 720, animation, scrollPane);
+    this.frame = new Frame(model.getBox()[2] + 200, model.getBox()[3] + 200, animation, scrollPane);
 
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
@@ -135,7 +136,13 @@ public class EditorView implements ActionListener {
 
   public void loop() {
     System.out.println("EditorView -> loop");
-    count = -1;
+    if (count % end == 0) {
+      System.out.println(count);
+      timer.restart();
+    }
+    else {
+      timer.start();
+    }
   }
 
   public void increaseSpeed() {
@@ -176,7 +183,8 @@ public class EditorView implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     this.count += 1;
-    System.out.println("Tick count: " + (int) count);
+    this.count = count % end;
+    //System.out.println("Tick count: " + (int) count);
     this.frame.currentView(model.getShapesAtTicks(count));
   }
 
