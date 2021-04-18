@@ -1,8 +1,11 @@
 package cs5004.animator;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
+import cs5004.animator.view.EditorView;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.generateView;
@@ -35,9 +38,9 @@ public final class EasyAnimator {
     IAnimatorModel animation = parseFile(in, builder);
 
     if (commands[4].equals("playback")) {
-//      TestView view = new TestView();
-//      IAnimatorController controller = new AnimatorControllerImpl(animation, view);
-//      controller.go();
+      EditorView view = new EditorView(animation, speed);
+      IAnimatorController controller = new AnimatorControllerImpl(view);
+      controller.go();
     } else {
       generateView(animation, viewType, outputFile, speed);
     }
