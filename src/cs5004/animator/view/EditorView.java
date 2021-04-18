@@ -221,9 +221,9 @@ public class EditorView implements ActionListener {
     controller.go();
   }
 
-  private void removeMouseListener(JComponent loop) {
-    EventListener[] listeners = loop.getListeners(MouseListener.class);
+  private void removeMouseListener(JComponent event) {
+    EventListener[] listeners = event.getListeners(MouseListener.class);
     for (EventListener listener : listeners)
-      loop.removeMouseListener((MouseListener) listener);
+      event.removeMouseListener((MouseListener) listener);
   }
 }
