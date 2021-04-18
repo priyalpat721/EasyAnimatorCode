@@ -32,22 +32,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
     view.makeVisible();
   }
 
-  /**
-   * Main method that handles input from the view and creates a new animation.
-   * @param args default for the main method.
-   * @throws FileNotFoundException when passed a null model into readable.
-   */
-
-  public static void main(String[] args) throws FileNotFoundException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = new FileReader("test/smalldemo.txt");
-    IAnimatorModel model = parseFile(in, builder);
-    EditorView view = new EditorView(model, 1);
-
-    IAnimatorController controller = new AnimatorControllerImpl(view);
-    controller.go();
-  }
-
 }
 
 
