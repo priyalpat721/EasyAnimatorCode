@@ -347,6 +347,27 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Name cannot be empty");
     }
 
+
+    // removes shape's actions from order of actions
+    Iterator iteratorActions = chronologicalOrderOfActions.iterator();
+
+    while (iteratorActions.hasNext()) {
+      IAction actions = (IAction) iteratorActions.next();
+      if (actions.toString().equals(action.toString())) {
+        iteratorActions.remove();
+      }
+    }
+
+    List<IAction> shapeActions = logOfActions.get(name);
+    // removes shape and actions from log of actions
+    Iterator iterator = shapeActions.iterator();
+
+    while (iterator.hasNext()) {
+      IAction removeAction = (IAction) iterator.next();
+      if (removeAction.toString().equals(action.toString())) {
+        iterator.remove();
+      }
+    }
   }
 
   @Override
@@ -358,6 +379,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public HashMap<String, List<IAction>> getLogOfActions() {
     return this.logOfActions;
   }
+
+  @Override
+  public List<IAction> getOrderOfActions() {
+    return chronologicalOrderOfActions;
+  }
+
 
   /**
    * Private method that adds a Stay action to a shape.
@@ -519,10 +546,4 @@ public class AnimatorModelImpl implements IAnimatorModel {
     }
     return result;
   }
-
-  @Override
-  public List<IAction> getOrderOfActions() {
-    return chronologicalOrderOfActions;
-  }
-
 }

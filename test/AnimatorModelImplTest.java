@@ -3,7 +3,10 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import cs5004.animator.action.IAction;
+import cs5004.animator.action.Move;
 import cs5004.animator.model.AnimatorModelImpl;
+import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 import cs5004.animator.tools.RGB;
 
@@ -859,4 +862,21 @@ public class AnimatorModelImplTest {
     System.out.println("Order of actions " + model2.getOrderOfActions().size());
   }
 
+  @Test
+  public void TestRemoveAction() {
+    model2.createShape("X1", "ellipse");
+    model2.setAttributes("X1",34, 45, 35, 45, 254, 0, 0, 15, 26);
+
+    IShape p1 = model2.getLogOfShapes().get(0);
+    IAction removeMove = new Move("P1", p1, 150.0, 150.0, 1, 5);
+    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
+    System.out.println("Log of actions: " + model2.getLogOfActions().get("P1").size());
+    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+
+    model2.removeAction("P1", removeMove);
+
+    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
+    System.out.println("Log of actions: " + model2.getLogOfActions().get("P1").size());
+    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+  }
 }
