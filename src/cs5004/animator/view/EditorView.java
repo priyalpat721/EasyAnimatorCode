@@ -140,7 +140,7 @@ public class EditorView implements ActionListener {
 
   public void increaseSpeed() {
     System.out.println("EditorView -> increased speed");
-    speed = speed + 10;
+    speed = speed + 1;
     timer.setDelay(1000 / speed);
   }
 
