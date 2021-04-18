@@ -143,6 +143,7 @@ public class EditorView implements ActionListener {
     count = -1;
     timer.start();
     this.animate = false;
+    this.checkLoop.setSelected(false);
   }
 
   public void resume() {
