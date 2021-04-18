@@ -153,13 +153,12 @@ public class EditorView implements ActionListener {
   }
 
   public void loop() {
-    if (this.animate == false) {
+    if (!this.animate) {
       System.out.println("EditorView -> loop");
       timer.start();
       this.animate = true;
       this.checkLoop.setSelected(true);
-    }
-    else {
+    } else {
       timer.start();
       this.animate = false;
       timer.setDelay(1000 / speed);
@@ -212,6 +211,12 @@ public class EditorView implements ActionListener {
     this.frame.currentView(model.getShapesAtTicks(count));
   }
 
+  private void removeMouseListener(JComponent event) {
+    EventListener[] listeners = event.getListeners(MouseListener.class);
+    for (EventListener listener : listeners)
+      event.removeMouseListener((MouseListener) listener);
+  }
+
   /**
    * Main method for the EditorView. It coordinates between user input and model.
    *
@@ -220,17 +225,11 @@ public class EditorView implements ActionListener {
    */
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = new FileReader("test/buildings.txt");
+    Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
 
     IAnimatorController controller = new AnimatorControllerImpl(view);
     controller.go();
-  }
-
-  private void removeMouseListener(JComponent event) {
-    EventListener[] listeners = event.getListeners(MouseListener.class);
-    for (EventListener listener : listeners)
-      event.removeMouseListener((MouseListener) listener);
   }
 }
