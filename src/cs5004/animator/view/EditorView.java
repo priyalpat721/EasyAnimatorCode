@@ -139,10 +139,17 @@ public class EditorView implements ActionListener {
   }
 
   public void loop() {
-    System.out.println("EditorView -> loop");
-    timer.start();
-    this.animate = true;
-    count = -1;
+    if (this.animate == false) {
+      System.out.println("EditorView -> loop");
+      timer.start();
+      this.animate = true;
+      count = -1;
+    }
+    else {
+      timer.start();
+      this.animate = false;
+      timer.setDelay(1000 / speed);
+    }
   }
 
   public void increaseSpeed() {
