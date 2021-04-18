@@ -2,6 +2,7 @@ package cs5004.animator.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,8 @@ import cs5004.animator.action.Move;
 import cs5004.animator.action.Scale;
 import cs5004.animator.action.Stay;
 import cs5004.animator.shape.Circle;
-import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Ellipse;
+import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Rectangle;
 import cs5004.animator.shape.Rhombus;
 import cs5004.animator.shape.Shape;
@@ -299,6 +300,56 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
   @Override
+  public List<IAction> getMotionForShape(String name) {
+    if (name == null || name.isEmpty() || name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+    if (logOfActions.get(name) == null) {
+      throw new IllegalArgumentException("Name does not exist");
+    }
+    List<IAction> actions = logOfActions.get(name);
+    return actions;
+  }
+
+  @Override
+  public void removeShape(String name) {
+    if (name == null || name.isEmpty() || name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+
+    // removes shape from log of shapes
+    Iterator iteratorShape = logOfShapes.iterator();
+
+    while (iteratorShape.hasNext()) {
+      IShape shape = (IShape) iteratorShape.next();
+      if (shape.getName().equals(name)) {
+        iteratorShape.remove();
+      }
+    }
+
+    // removes shape's actions from order of actions
+    Iterator iteratorActions = chronologicalOrderOfActions.iterator();
+
+    while (iteratorActions.hasNext()) {
+      IAction action = (IAction) iteratorActions.next();
+      if (action.getName().equals(name)) {
+        iteratorActions.remove();
+      }
+    }
+
+    // removes shape and actions from log of actions
+    logOfActions.remove(name);
+  }
+
+  @Override
+  public void removeAction(String name, IAction action) {
+    if (name == null || name.isEmpty() || name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+
+  }
+
+  @Override
   public List<IShape> getLogOfShapes() {
     return this.logOfShapes;
   }
@@ -310,13 +361,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method that adds a Stay action to a shape.
-   * @param name name of the shape.
-   * @param startTime start time of the action.
-   * @param endTime end time of the action.
-   * @throws IllegalArgumentException if the name is invalid.
    *
+   * @param name      name of the shape.
+   * @param startTime start time of the action.
+   * @param endTime   end time of the action.
+   * @throws IllegalArgumentException if the name is invalid.
    */
-  private void stay(String name, int startTime, int endTime) {
+  public void stay(String name, int startTime, int endTime) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
     }
@@ -433,6 +484,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
   /**
    * Private method that gets the time of display of a particular shape.
+   *
    * @param name name of the shape.
    * @return an array of 2 values: start time and end time.
    * @throws IllegalArgumentException if the name is invalid.
@@ -465,8 +517,12 @@ public class AnimatorModelImpl implements IAnimatorModel {
       result[0] = start;
       result[1] = end;
     }
-
     return result;
+  }
+
+  @Override
+  public List<IAction> getOrderOfActions() {
+    return chronologicalOrderOfActions;
   }
 
 }

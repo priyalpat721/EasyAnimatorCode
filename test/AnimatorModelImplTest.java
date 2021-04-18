@@ -1,6 +1,7 @@
-import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.shape.Shape;
@@ -22,21 +23,21 @@ public class AnimatorModelImplTest {
   public void setUp() {
     model1 = new AnimatorModelImpl();
     model1.createShape("R", Shape.RECTANGLE, new RGB(1, 1, 1),
-        50, 100, 200, 200, 1, 100);
+            50, 100, 200, 200, 1, 100);
     model1.createShape("O", Shape.ELLIPSE, new RGB(21, 21, 21), 60,
-        30, 500, 100, 6, 100);
+            30, 500, 100, 6, 100);
     model1.createShape("T", Shape.TRIANGLE, new RGB(34, 0, 1),
-        45.12, 30.54, 78, 234, 23, 75);
+            45.12, 30.54, 78, 234, 23, 75);
     model1.createShape("S", Shape.SQUARE, new RGB(1, 1, 1),
-        15, 15, 125, 34, 30, 60);
+            15, 15, 125, 34, 30, 60);
     model1.createShape("RH", Shape.RHOMBUS, new RGB(2, 3, 4),
-        20, 20, 45, 15, 98, 99);
+            20, 20, 45, 15, 98, 99);
 
     model2 = new AnimatorModelImpl();
 
     // P1 moves backwards. scales to a bigger size and changes color
     model2.createShape("P1", Shape.RECTANGLE, new RGB(1, 1, 1),
-        50, 100, 200, 200, 1, 100);
+            50, 100, 200, 200, 1, 100);
     model2.move("P1", 150.0, 150.0, 1, 5);
     model2.scale("P1", 100, 200, 5, 10);
     model2.changeColor("P1", new RGB(10, 10, 10), 10, 15);
@@ -48,83 +49,83 @@ public class AnimatorModelImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeEmptyName() {
     model1.createShape("", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 6, 4);
+            12, 12, 100, 50, 6, 4);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeEmptyNameWithSpace() {
     model1.createShape(" ", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 6, 4);
+            12, 12, 100, 50, 6, 4);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNullName() {
     model1.createShape(null, Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 6, 4);
+            12, 12, 100, 50, 6, 4);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNameAlreadyExists() {
     model1.createShape("R", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 6, 4);
+            12, 12, 100, 50, 6, 4);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateDuplicateCreate() {
     model1.createShape("R", Shape.RECTANGLE, new RGB(1, 1, 1),
-        50, 100, 200, 200, 1, 100);
+            50, 100, 200, 200, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNullShape() {
     model1.createShape("B", null, new RGB(1, 1, 1),
-        12, 12, 100, 50, 0, 100);
+            12, 12, 100, 50, 0, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNullRGB() {
     model1.createShape("D", Shape.CIRCLE, null,
-        12, 12, 100, 50, 1, 100);
+            12, 12, 100, 50, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNegativeWidth() {
     model1.createShape("E", Shape.RECTANGLE, new RGB(51, 254, 46),
-        -112, 12, 100, 50, 1, 100);
+            -112, 12, 100, 50, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNegativeHeight() {
     model1.createShape("F", Shape.RECTANGLE, new RGB(51, 254, 46),
-        212, -12, 100, 50, 1, 100);
+            212, -12, 100, 50, 1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNegativeStart() {
     model1.createShape("G", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, -1, 100);
+            12, 12, 100, 50, -1, 100);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeNegativeEndTime() {
     model1.createShape("H", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 1, -40);
+            12, 12, 100, 50, 1, -40);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalCreateShapeStartBeforeEnd() {
     model1.createShape("I", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 6, 4);
+            12, 12, 100, 50, 6, 4);
   }
 
   @Test
   public void testCreateShape() {
     model1.createShape("C", Shape.CIRCLE, new RGB(1, 1, 1),
-        12, 12, 100, 50, 1, 100);
+            12, 12, 100, 50, 1, 100);
 
     //create shape with starting and ending time of zero
     model1.createShape("X", Shape.ELLIPSE, new RGB(0, 0, 0), 35, 47,
-        234, 16, 0, 0);
+            234, 16, 0, 0);
     assertEquals("Shapes:\n"
                  + "Name: R\n"
                  + "Type: rectangle\n"
@@ -224,7 +225,7 @@ public class AnimatorModelImplTest {
                  + "Min corner: (45.0,15.0), Width: 20.0, Height: 20.0, Color: (2.0,3.0,4.0)\n"
                  + "Appears at t=98\nDisappears at t=99\n\n"
                  + "Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50",
-        model1.toString());
+            model1.toString());
 
     //move back to previous position
     model1.move("R", 200, 200, 51, 53);
@@ -252,13 +253,13 @@ public class AnimatorModelImplTest {
                  + "Appears at t=98\nDisappears at t=99\n\n"
                  + "Shape R moves from (200.0, 200.0) to (350.0, 375.0) from time t=10 to t=50\n"
                  + "Shape R moves from (350.0, 375.0) to (200.0, 200.0) from time t=51 to t=53",
-        model1.toString());
+            model1.toString());
   }
 
   @Test
   public void testMoveOverlappingActions() {
     model3.createShape("F1", Shape.TRIANGLE, new RGB(0, 0, 0),
-        35, 50, 30, 60, 1, 80);
+            35, 50, 30, 60, 1, 80);
     model3.move("F1", 34, 65, 20, 33);
     model3.changeColor("F1", new RGB(13, 13, 43), 23, 30);
     model3.scale("F1", 108, 180, 23, 30);
@@ -274,7 +275,7 @@ public class AnimatorModelImplTest {
                  + "Height: 180.0 from time t=23 to t=30", model3.toString());
 
     //move overlap where end time of previous is same as start time of next move
-    model3.move("F1",40, 75, 34, 40);
+    model3.move("F1", 40, 75, 34, 40);
     model3.move("F1", 45, 80, 40, 45);
     assertEquals("Shapes:\n"
                  + "Name: F1\n"
@@ -309,7 +310,7 @@ public class AnimatorModelImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorNullColor() {
     model1.changeColor("R",
-        null, 37, 55);
+            null, 37, 55);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -355,55 +356,55 @@ public class AnimatorModelImplTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorStartTimeNegative() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
-        -33, 44);
+            -33, 44);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorEndTimeNegative() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
-        33, -44);
+            33, -44);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorEndBeforeStart() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
-        44, 33);
+            44, 33);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorEndZeroTest() {
     model1.changeColor("R", new RGB(255, 255, 255),
-        25, 0);
+            25, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorOverlappingSameStartAndEnd() {
     model1.changeColor("R", new RGB(220.16, 36, 120),
-        33, 44);
+            33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
-        33, 44);
+            33, 44);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorOverlappingWithinPreviousColorChange() {
     model1.changeColor("R", new RGB(230, 35.44, 121),
-        33, 44);
+            33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
-        40, 41);
+            40, 41);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalChangeColorOverlappingEndTimeAndStartOfNext() {
     model1.changeColor("R", new RGB(230, 35.44, 121),
-        33, 44);
+            33, 44);
     model1.changeColor("R", new RGB(3, 4, 5),
-        40, 41);
+            40, 41);
   }
 
   @Test
   public void testChangeColor() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
-        33, 44);
+            33, 44);
 
     assertEquals("Shapes:\n"
                  + "Name: R\n"
@@ -432,7 +433,7 @@ public class AnimatorModelImplTest {
 
     //changing color back to previous color
     model1.changeColor("R", new RGB(1, 1, 1),
-        45, 50);
+            45, 50);
     assertEquals("Shapes:\n"
                  + "Name: R\n"
                  + "Type: rectangle\n"
@@ -464,7 +465,7 @@ public class AnimatorModelImplTest {
   @Test
   public void testChangeColorBackToPrevious() {
     model1.changeColor("R", new RGB(254.16, 35.44, 122),
-        33, 44);
+            33, 44);
     assertEquals("Shapes:\n"
                  + "Name: R\n"
                  + "Type: rectangle\n"
@@ -489,10 +490,10 @@ public class AnimatorModelImplTest {
                  + "Appears at t=98\nDisappears at t=99\n\n"
                  + "Shape R changes color from (1.0,1.0,1.0) to (254.2,35.4,122.0) "
                  + "from time t=33 to t=44",
-        model1.toString());
+            model1.toString());
 
     model1.changeColor("R", new RGB(1.0, 1.0, 1.0),
-        45, 55);
+            45, 55);
     assertEquals("Shapes:\n"
                  + "Name: R\n"
                  + "Type: rectangle\n"
@@ -616,7 +617,7 @@ public class AnimatorModelImplTest {
                  + "Appears at t=98\nDisappears at t=99\n\n"
                  + "Shape T scales from Width: 45.12, Height: 30.54 to Width: 47.0, "
                  + "Height: 51.75 from time t=23 to t=25",
-        model1.toString());
+            model1.toString());
   }
 
   @Test
@@ -665,20 +666,20 @@ public class AnimatorModelImplTest {
                  + "Type: rectangle\n"
                  + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (1.0,1.0,1.0)\n"
                  + "Appears at t=1\n" + "Disappears at t=100]",
-        model2.getShapesAtTicks(1).toString());
+            model2.getShapesAtTicks(1).toString());
   }
 
   @Test
   public void testGetShapesAtTickAfterFewActions() {
     model2.createShape("O3", Shape.ELLIPSE, new RGB(3, 34, 16),
-        32, 16, 45, 67, 50, 100);
+            32, 16, 45, 67, 50, 100);
     model2.move("O3", 50, 75, 51, 70);
     model2.scale("O3", 40, 20, 52, 54);
     model2.createShape("R3", Shape.RECTANGLE, new RGB(254, 45, 130),
-        18, 15, 0, 0, 80, 99);
+            18, 15, 0, 0, 80, 99);
     model2.changeColor("R3", new RGB(3, 3, 3), 81, 99);
     model2.createShape("T3", Shape.TRIANGLE, new RGB(20, 20, 20),
-        50, 50, 30, 12, 3, 90);
+            50, 50, 30, 12, 3, 90);
     assertEquals("[Name: P1\n"
                  + "Type: rectangle\n"
                  + "Min corner: (150.0,150.0), Width: 100.0, Height: 200.0, "
@@ -733,9 +734,9 @@ public class AnimatorModelImplTest {
   public void testToStringCreateAndActionsRectangleAndEllipse() {
     AnimatorModelImpl model3 = new AnimatorModelImpl();
     model3.createShape("R", Shape.RECTANGLE, new RGB(1, 0, 0),
-        50, 100, 200, 200, 1, 100);
+            50, 100, 200, 200, 1, 100);
     model3.createShape("C", Shape.ELLIPSE, new RGB(0, 0, 1), 60,
-        30, 500, 100, 6, 100);
+            30, 500, 100, 6, 100);
     model3.move("R", 300, 300, 10, 50);
     model3.move("C", 500, 400, 20, 70);
     model3.changeColor("C", new RGB(0, 1, 0), 50, 80);
@@ -759,7 +760,7 @@ public class AnimatorModelImplTest {
                  + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
                  + "Height: 100.0 from time t=51 to t=70\n"
                  + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100",
-        model3.toString());
+            model3.toString());
   }
 
   @Test
@@ -819,14 +820,43 @@ public class AnimatorModelImplTest {
   @Test
   public void testSetAttributes() {
     model3.createShape("X1", "ellipse");
-    model3.setAttributes("X1", 34, 45, 35, 45,254,
-        0, 0, 15, 26);
+    model3.setAttributes("X1", 34, 45, 35, 45, 254,
+            0, 0, 15, 26);
     assertEquals("Shapes:\n"
                  + "Name: X1\n"
                  + "Type: ellipse\n"
                  + "Center: (34.0,45.0), X radius: 35.0, Y radius: 45.0, Color: (254.0,0.0,0.0)\n"
                  + "Appears at t=15\n"
                  + "Disappears at t=26\n\n", model3.toString());
+  }
+
+  @Test
+  public void testGetMotionForShape() {
+    model2.createShape("X1", "ellipse");
+    model2.setAttributes("X1", 34, 45, 35, 45, 254, 0, 0, 15, 26);
+    System.out.println(model2.getMotionForShape("P1"));
+    System.out.println(model2.getMotionForShape("X1"));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetMotionForShapeIllegal() {
+    model2.getMotionForShape("Nothing");
+  }
+
+  @Test
+  public void testRemoveShape() {
+    model2.createShape("X1", "ellipse");
+    model2.setAttributes("X1", 34, 45, 35, 45, 254, 0, 0, 15, 26);
+
+    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
+    System.out.println("Log of actions: " + model2.getLogOfActions().size());
+    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+
+
+    model2.removeShape("P1");
+    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
+    System.out.println("Log of actions: " + model2.getLogOfActions().size());
+    System.out.println("Order of actions " + model2.getOrderOfActions().size());
   }
 
 }

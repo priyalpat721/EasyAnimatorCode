@@ -165,4 +165,13 @@ public interface IAnimatorModel {
    * @return a HashMap with the shapes names and the list of Actions for each shape.
    */
   HashMap<String, List<IAction>> getLogOfActions();
+
+  List<IAction> getMotionForShape(String name);
+
+  void removeShape(String name);
+
+  List<IAction> getOrderOfActions();
+
+  void removeAction(String name, IAction action);
+
 }

@@ -201,7 +201,7 @@ public class EditorView implements ActionListener {
    */
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = new FileReader("test/smalldemo.txt");
+    Readable in = new FileReader("test/buildings.txt");
     IAnimatorModel model = parseFile(in, builder);
     EditorView view = new EditorView(model, 1);
 
