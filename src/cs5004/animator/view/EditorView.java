@@ -48,8 +48,7 @@ public class EditorView implements ActionListener {
 
     this.animation = new ShapesPanel(model.getShapesAtTicks(0));
     this.animation.setLayout(new BorderLayout());
-    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
-            model.getBox()[3] * 2));
+    this.animation.setPreferredSize(new Dimension(960, 720));
 
     this.scrollPane = new JScrollPane(animation);
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
