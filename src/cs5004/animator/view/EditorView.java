@@ -100,6 +100,10 @@ public class EditorView implements ActionListener {
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
+  public JFrame getFrame() {
+    return this.frame;
+  }
+
   public void play() {
     System.out.println("EditorView -> play");
     timer.start();

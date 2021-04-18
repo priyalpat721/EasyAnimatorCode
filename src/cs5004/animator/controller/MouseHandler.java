@@ -56,6 +56,8 @@ public class MouseHandler extends MouseAdapter {
           System.out.println("MouseHandler -> exit");
           System.exit(0);
       }
+
+      view.getFrame().requestFocus();
     }
   }
 
