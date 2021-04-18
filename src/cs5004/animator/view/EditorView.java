@@ -92,7 +92,7 @@ public class EditorView implements ActionListener {
 
     this.restart = new JButton("Restart");
     this.restart.setName("restart");
-    this.restart.setBackground(new Color(195, 42, 42));
+    this.restart.setBackground(new Color(230, 32, 32));
     buttons.add(restart);
 
     this.loop = new JButton("Loop");
