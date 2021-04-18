@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.EventListener;
 
 import javax.swing.*;
 
@@ -33,6 +34,7 @@ public class EditorView implements ActionListener {
   private JButton loop;
   private JButton increaseSpeed;
   private JButton decreaseSpeed;
+  private JCheckBox checkLoop;
 
   private Timer timer;
   private double count = -1;
@@ -61,8 +63,8 @@ public class EditorView implements ActionListener {
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(model.getBox()[2] + 150,
-            model.getBox()[3] + 10, animation, scrollPane);
+    this.frame = new Frame(model.getBox()[2] + 350,
+            model.getBox()[3] + 100, animation, scrollPane);
 
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
@@ -100,6 +102,10 @@ public class EditorView implements ActionListener {
     this.decreaseSpeed = new JButton("Speed-");
     this.decreaseSpeed.setName("decreaseSpeed");
     buttons.add(decreaseSpeed);
+
+    this.checkLoop = new JCheckBox("Looping enabled", false);
+    this.removeMouseListener(checkLoop);
+    buttons.add(checkLoop);
 
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
@@ -144,11 +150,13 @@ public class EditorView implements ActionListener {
       timer.start();
       this.animate = true;
       count = -1;
+      this.checkLoop.setSelected(true);
     }
     else {
       timer.start();
       this.animate = false;
       timer.setDelay(1000 / speed);
+      this.checkLoop.setSelected(false);
     }
   }
 
@@ -213,4 +221,9 @@ public class EditorView implements ActionListener {
     controller.go();
   }
 
+  private void removeMouseListener(JComponent loop) {
+    EventListener[] listeners = loop.getListeners(MouseListener.class);
+    for (EventListener listener : listeners)
+      loop.removeMouseListener((MouseListener) listener);
+  }
 }
