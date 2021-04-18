@@ -9,7 +9,10 @@ import java.util.Objects;
 
 import javax.swing.JOptionPane;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.view.EditorView;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
@@ -54,19 +57,18 @@ public class Helpers {
   /**
    * Parses command-line arguments.
    * @param args the command-line arguments.
-   * @return a String array of 5 elements with the commands passed.
+   * @return a String array of 4 elements with the commands passed.
    *         commands[0] = input file.
    *         commands[1] = view type.
    *         commands[2] = output file.
    *         commands[3] = speed.
-   *         commands[4] = playback.
    * @throws NullPointerException if args is null.
    */
   public static String[] parseCommands(String[] args) {
     Objects.requireNonNull(args, "Must have non-null args source");
 
-    String[] commands = new String[5];
-    for (int i = 0; i < 5; i++) {
+    String[] commands = new String[4];
+    for (int i = 0; i < 4; i++) {
       commands[i] = "";
     }
 
@@ -102,10 +104,6 @@ public class Helpers {
           commands[3] = "";
         }
       }
-
-      if (args[i].equals("-playback")) {
-        commands[4] = "playback";
-      }
     }
 
     if (commands[0].equals("") && commands[1].equals("")) {
@@ -117,10 +115,12 @@ public class Helpers {
     } else if (commands[1].equals("")) {
       showMessage("View type is mandatory", 2);
       System.exit(0);
-    } else if (Integer.parseInt(commands[3]) <= 0) {
-      showMessage("Speed cannot be less than or equal to zero\nSet to default",
-              2);
-      commands[3] = "";
+    } else if (!commands[3].equals("")) {
+        if (Integer.parseInt(commands[3]) <= 0) {
+          showMessage("Speed cannot be less than or equal to zero\nSet to default",
+                  2);
+          commands[3] = "";
+        }
     }
 
     return commands;
@@ -168,6 +168,11 @@ public class Helpers {
       case "visual":
         IAnimatorView view = new VisualView();
         view.create(animation, speed);
+        break;
+      case "playback":
+        EditorView editor = new EditorView(animation, speed);
+        IAnimatorController controller = new AnimatorControllerImpl(editor);
+        controller.go();
         break;
       default:
         showMessage("Invalid view type", 2);

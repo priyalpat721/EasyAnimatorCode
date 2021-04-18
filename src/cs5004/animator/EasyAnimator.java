@@ -37,13 +37,7 @@ public final class EasyAnimator {
     Readable in = checkInputFile(inputFile);
     IAnimatorModel animation = parseFile(in, builder);
 
-    if (commands[4].equals("playback")) {
-      EditorView view = new EditorView(animation, speed);
-      IAnimatorController controller = new AnimatorControllerImpl(view);
-      controller.go();
-    } else {
-      generateView(animation, viewType, outputFile, speed);
-    }
+    generateView(animation, viewType, outputFile, speed);
   }
 
 }
