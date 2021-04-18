@@ -304,10 +304,17 @@ public class AnimatorModelImpl implements IAnimatorModel {
     if (name == null || name.isEmpty() || name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
     }
+
+    if (name.equals(" ")) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+
     if (logOfActions.get(name) == null) {
       throw new IllegalArgumentException("Name does not exist");
     }
-    List<IAction> actions = logOfActions.get(name);
+
+    List<IAction> actions = logOfActions.get(name).subList(1, logOfActions.get(name).size());
+
     return actions;
   }
 
@@ -315,6 +322,10 @@ public class AnimatorModelImpl implements IAnimatorModel {
   public void removeShape(String name) {
     if (name == null || name.isEmpty() || name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty");
+    }
+
+    if (logOfActions.get(name) == null) {
+      throw new IllegalArgumentException("Name does not exist");
     }
 
     // removes shape from log of shapes
@@ -347,6 +358,13 @@ public class AnimatorModelImpl implements IAnimatorModel {
       throw new IllegalArgumentException("Name cannot be empty");
     }
 
+    if (action == null) {
+      throw new IllegalArgumentException("Action must be given");
+    }
+
+    if (logOfActions.get(name) == null) {
+      throw new IllegalArgumentException("Name does not exist");
+    }
 
     // removes shape's actions from order of actions
     Iterator iteratorActions = chronologicalOrderOfActions.iterator();

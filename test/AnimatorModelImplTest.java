@@ -837,13 +837,34 @@ public class AnimatorModelImplTest {
   public void testGetMotionForShape() {
     model2.createShape("X1", "ellipse");
     model2.setAttributes("X1", 34, 45, 35, 45, 254, 0, 0, 15, 26);
-    System.out.println(model2.getMotionForShape("P1"));
-    System.out.println(model2.getMotionForShape("X1"));
+    assertEquals( "[P1 moves from (200.0, 200.0) to (150.0, 150.0) from time t=1 to t=5,"
+                 + " P1 scales from Width: 50.0, Height: 100.0 to Width: 100.0, "
+                 + "Height: 200.0 from time t=5 to t=10, P1 changes color from (1.0,1.0,1.0) "
+                 + "to (10.0,10.0,10.0) from time t=10 to t=15]",
+            model2.getMotionForShape("P1").toString());
+
+    assertEquals("[]"
+            , model2.getMotionForShape("X1").toString());
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void testGetMotionForShapeIllegal() {
+  public void testGetMotionForShapeNoName() {
     model2.getMotionForShape("Nothing");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetMotionForShapeEmpty() {
+    model2.getMotionForShape("");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetMotionForShapeNULL() {
+    model2.getMotionForShape(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetMotionForShapeSpace() {
+    model2.getMotionForShape(" ");
   }
 
   @Test
@@ -851,32 +872,73 @@ public class AnimatorModelImplTest {
     model2.createShape("X1", "ellipse");
     model2.setAttributes("X1", 34, 45, 35, 45, 254, 0, 0, 15, 26);
 
-    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
-    System.out.println("Log of actions: " + model2.getLogOfActions().size());
-    System.out.println("Order of actions " + model2.getOrderOfActions().size());
-
+    assertEquals(2, model2.getLogOfShapes().size());
+    assertEquals(2, model2.getLogOfActions().size());
+    assertEquals(5, model2.getOrderOfActions().size());
 
     model2.removeShape("P1");
-    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
-    System.out.println("Log of actions: " + model2.getLogOfActions().size());
-    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+
+    assertEquals(1, model2.getLogOfShapes().size());
+    assertEquals(1, model2.getLogOfActions().size());
+    assertEquals(1, model2.getOrderOfActions().size());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveShapeNoName() {
+    model2.getMotionForShape("Nothing");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveShapeEmpty() {
+    model2.getMotionForShape("");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveShapeNULL() {
+    model2.getMotionForShape(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveShapeSpace() {
+    model2.getMotionForShape(" ");
   }
 
   @Test
   public void TestRemoveAction() {
     model2.createShape("X1", "ellipse");
-    model2.setAttributes("X1",34, 45, 35, 45, 254, 0, 0, 15, 26);
+    model2.setAttributes("X1", 34, 45, 35, 45, 254, 0, 0, 15, 26);
 
     IShape p1 = model2.getLogOfShapes().get(0);
     IAction removeMove = new Move("P1", p1, 150.0, 150.0, 1, 5);
-    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
-    System.out.println("Log of actions: " + model2.getLogOfActions().get("P1").size());
-    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+
+    assertEquals(2, model2.getLogOfShapes().size());
+    assertEquals(4, model2.getLogOfActions().get("P1").size());
+    assertEquals(5, model2.getOrderOfActions().size());
 
     model2.removeAction("P1", removeMove);
 
-    System.out.println("Log of shapes: " + model2.getLogOfShapes().size());
-    System.out.println("Log of actions: " + model2.getLogOfActions().get("P1").size());
-    System.out.println("Order of actions " + model2.getOrderOfActions().size());
+    assertEquals(2, model2.getLogOfShapes().size());
+    assertEquals(3, model2.getLogOfActions().get("P1").size());
+    assertEquals(4, model2.getOrderOfActions().size());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveActionNoName() {
+    model2.getMotionForShape("Nothing");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveActionEmpty() {
+    model2.getMotionForShape("");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveActionNULL() {
+    model2.getMotionForShape(null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemoveAction() {
+    model2.getMotionForShape(" ");
   }
 }
