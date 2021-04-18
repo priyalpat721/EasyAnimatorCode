@@ -61,7 +61,8 @@ public class EditorView implements ActionListener {
     this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(model.getBox()[2] + 200, model.getBox()[3] + 200, animation, scrollPane);
+    this.frame = new Frame(model.getBox()[2] + 150,
+            model.getBox()[3] + 10, animation, scrollPane);
 
     this.frame.add(scrollPane);
     this.animation.setVisible(true);
@@ -80,8 +81,8 @@ public class EditorView implements ActionListener {
     this.pause.setName("pause");
     buttons.add(pause);
 
-    this.resume = new JButton("Stop");
-    this.resume.setName("stop");
+    this.resume = new JButton("Resume");
+    this.resume.setName("resume");
     buttons.add(resume);
 
     this.restart = new JButton("Restart");
@@ -119,7 +120,6 @@ public class EditorView implements ActionListener {
   public void pause() {
     System.out.println("EditorView -> pause");
     timer.stop();
-    this.animate = false;
   }
 
   public void restart() {
@@ -132,13 +132,10 @@ public class EditorView implements ActionListener {
     this.animate = false;
   }
 
-  public void stop() {
-    System.out.println("EditorView -> stop");
-    timer.stop();
-    speed = initialSpeed;
+  public void resume() {
+    System.out.println("EditorView -> resume");
+    timer.start();
     timer.setDelay(1000 / speed);
-    count = -1;
-    this.animate = false;
   }
 
   public void loop() {

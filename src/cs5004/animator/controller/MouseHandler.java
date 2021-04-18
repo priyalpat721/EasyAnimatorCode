@@ -32,9 +32,9 @@ public class MouseHandler extends MouseAdapter {
           System.out.println("MouseHandler -> pause");
           view.pause();
           break;
-        case "stop":
-          System.out.println("MouseHandler -> stop");
-          view.stop();
+        case "resume":
+          System.out.println("MouseHandler -> resume");
+          view.resume();
           break;
         case "restart":
           System.out.println("MouseHandler -> restart");

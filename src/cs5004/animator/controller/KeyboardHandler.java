@@ -1,7 +1,5 @@
 package cs5004.animator.controller;
 
-import com.sun.jdi.connect.spi.TransportService;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -26,8 +24,8 @@ public class KeyboardHandler extends KeyAdapter {
         view.pause();
         break;
       case KeyEvent.VK_S:
-        System.out.println("KeyboardHandler -> stop");
-        view.stop();
+        System.out.println("KeyboardHandler -> resume");
+        view.resume();
         break;
       case KeyEvent.VK_R:
         System.out.println("KeyboardHandler -> restart");
