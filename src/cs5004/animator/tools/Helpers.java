@@ -117,10 +117,12 @@ public class Helpers {
     } else if (commands[1].equals("")) {
       showMessage("View type is mandatory", 2);
       System.exit(0);
-    } else if (Integer.parseInt(commands[3]) <= 0) {
-      showMessage("Speed cannot be less than or equal to zero\nSet to default",
-              2);
-      commands[3] = "";
+    } else if (!commands[3].equals("")) {
+        if (Integer.parseInt(commands[3]) <= 0) {
+          showMessage("Speed cannot be less than or equal to zero\nSet to default",
+                  2);
+          commands[3] = "";
+        }
     }
 
     return commands;
