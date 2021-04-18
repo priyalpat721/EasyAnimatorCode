@@ -97,12 +97,12 @@ public class EditorView implements ActionListener {
 
     this.loop = new JButton("Loop");
     this.loop.setName("loop");
-    this.loop.setBackground(Color.PINK);
+    this.loop.setBackground(new Color(255, 175, 175));
     buttons.add(loop);
 
     this.increaseSpeed = new JButton("Speed+");
     this.increaseSpeed.setName("increaseSpeed");
-    this.increaseSpeed.setBackground(new Color (0, 139, 139));
+    this.increaseSpeed.setBackground(new Color (0, 159, 159));
     buttons.add(increaseSpeed);
 
     this.decreaseSpeed = new JButton("Speed-");
@@ -156,7 +156,6 @@ public class EditorView implements ActionListener {
       System.out.println("EditorView -> loop");
       timer.start();
       this.animate = true;
-      count = -1;
       this.checkLoop.setSelected(true);
     }
     else {
