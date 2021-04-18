@@ -37,11 +37,11 @@ public class KeyboardHandler extends KeyAdapter {
         System.out.println("KeyboardHandler -> loop");
         view.loop();
         break;
-      case KeyEvent.VK_PLUS:
+      case KeyEvent.VK_DEAD_ABOVEDOT:
         System.out.println("KeyboardHandler -> increaseSpeed");
         view.increaseSpeed();
         break;
-      case KeyEvent.VK_MINUS:
+      case KeyEvent.VK_COMMA:
         System.out.println("KeyboardHandler -> decreaseSpeed");
         view.decreaseSpeed();
         break;
