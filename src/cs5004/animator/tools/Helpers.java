@@ -128,7 +128,7 @@ public class Helpers {
 
   /**
    * Generates 1 of 3 available views: svg, text, or visual.
-   * @param animation the animator model.
+   * @param model the animator model.
    * @param viewType the type of the view.
    * @param outputFile the output file.
    * @param speed the speed of the animation.
@@ -136,9 +136,9 @@ public class Helpers {
    * @throws IllegalArgumentException if the view type is invalid.
    *                                  if the speed is not greater than zero.
    */
-  public static void generateView(IAnimatorModel animation, String viewType,
+  public static void generateView(IAnimatorModel model, String viewType,
                                   String[] outputFile, int speed) {
-    Objects.requireNonNull(animation, "Must have non-null animation");
+    Objects.requireNonNull(model, "Must have non-null animation");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
 
     if (viewType == null || viewType.isBlank()) {
@@ -147,7 +147,7 @@ public class Helpers {
       throw new IllegalArgumentException("Speed must be greater than zero");
     }
 
-    if (animation.getLogOfShapes().isEmpty()) {
+    if (model.getLogOfShapes().isEmpty()) {
       showMessage("Animation is empty", 2);
       System.exit(0);
     }
@@ -157,21 +157,21 @@ public class Helpers {
     switch (viewType) {
       case "text":
         TextView text = new TextView();
-        text.create(animation, speed);
+        text.create(model, speed);
         content = text.generate();
         break;
       case "svg":
         SVGView svg = new SVGView();
-        svg.create(animation, speed);
+        svg.create(model, speed);
         content = svg.generate();
         break;
       case "visual":
-        IAnimatorView view = new VisualView();
-        view.create(animation, speed);
+        VisualView view = new VisualView();
+        view.create(model, speed);
         break;
       case "playback":
-        EditorView editor = new EditorView(animation, speed);
-        IAnimatorController controller = new AnimatorControllerImpl(editor);
+        EditorView editor = new EditorView();
+        IAnimatorController controller = new AnimatorControllerImpl(model, editor, speed);
         controller.go();
         break;
       default:

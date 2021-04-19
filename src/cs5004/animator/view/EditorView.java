@@ -19,7 +19,7 @@ import cs5004.animator.utils.Builder;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
-public class EditorView implements ActionListener {
+public class EditorView implements IAnimatorView, ActionListener {
   private IAnimatorModel model;
   private int speed;
   private int initialSpeed;
@@ -27,6 +27,7 @@ public class EditorView implements ActionListener {
   private Frame frame;
   private ShapesPanel animation;
   private JScrollPane scrollPane;
+  private JPanel buttons;
   private JButton play;
   private JButton pause;
   private JButton resume;
@@ -35,43 +36,15 @@ public class EditorView implements ActionListener {
   private JButton increaseSpeed;
   private JButton decreaseSpeed;
   private JCheckBox checkLoop;
-
   private Timer timer;
   private double count = -1;
   private boolean animate = false;
 
   /**
    * Class that creates an interactive window-based visual layout of the animation.
-   *
-   * @param model of the animation.
-   * @param speed intended speed for the animation.
    */
-
-  public EditorView(IAnimatorModel model, int speed) {
-    this.model = model;
-    this.speed = speed;
-    this.initialSpeed = speed;
-    this.end = model.getTotalTime()[1];
-    this.timer = new Timer(1000 / speed, this);
-
-    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
-    this.animation.setLayout(new BorderLayout());
-    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
-            model.getBox()[3] * 2));
-
-    this.scrollPane = new JScrollPane(animation);
-    this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-    this.frame = new Frame(960, 720, animation, scrollPane);
-
-    this.frame.add(scrollPane);
-    this.animation.setVisible(true);
-    this.scrollPane.setVisible(true);
-    this.frame.add(scrollPane, BorderLayout.CENTER);
-    this.frame.setVisible(true);
-
-    JPanel buttons = new JPanel();
+  public EditorView() {
+    buttons = new JPanel();
     buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
 
     this.play = new JButton("Play");
@@ -105,7 +78,93 @@ public class EditorView implements ActionListener {
     this.checkLoop = new JCheckBox("Looping enabled", false);
     this.removeMouseListener(checkLoop);
     buttons.add(checkLoop);
+  }
 
+//  public EditorView(IAnimatorModel model, int speed) {
+//    this.model = model;
+//    this.speed = speed;
+//    this.initialSpeed = speed;
+//    this.end = model.getTotalTime()[1];
+//    this.timer = new Timer(1000 / speed, this);
+//
+//    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
+//    this.animation.setLayout(new BorderLayout());
+//    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
+//            model.getBox()[3] * 2));
+//
+//    this.scrollPane = new JScrollPane(animation);
+//    this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//    this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//
+//    this.frame = new Frame(960, 720, animation, scrollPane);
+//
+//    this.frame.add(scrollPane);
+//    this.animation.setVisible(true);
+//    this.scrollPane.setVisible(true);
+//    this.frame.add(scrollPane, BorderLayout.CENTER);
+//    this.frame.setVisible(true);
+//
+//    JPanel buttons = new JPanel();
+//    buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
+//
+//    this.play = new JButton("Play");
+//    this.play.setName("play");
+//    buttons.add(play);
+//
+//    this.pause = new JButton("Pause");
+//    this.pause.setName("pause");
+//    buttons.add(pause);
+//
+//    this.resume = new JButton("Resume");
+//    this.resume.setName("resume");
+//    buttons.add(resume);
+//
+//    this.restart = new JButton("Restart");
+//    this.restart.setName("restart");
+//    buttons.add(restart);
+//
+//    this.loop = new JButton("Loop");
+//    this.loop.setName("loop");
+//    buttons.add(loop);
+//
+//    this.increaseSpeed = new JButton("Speed+");
+//    this.increaseSpeed.setName("increaseSpeed");
+//    buttons.add(increaseSpeed);
+//
+//    this.decreaseSpeed = new JButton("Speed-");
+//    this.decreaseSpeed.setName("decreaseSpeed");
+//    buttons.add(decreaseSpeed);
+//
+//    this.checkLoop = new JCheckBox("Looping enabled", false);
+//    this.removeMouseListener(checkLoop);
+//    buttons.add(checkLoop);
+//
+//    this.frame.add(buttons, BorderLayout.SOUTH);
+//  }
+
+  @Override
+  public void create(IAnimatorModel model, int speed) {
+    this.model = model;
+    this.speed = speed;
+    this.initialSpeed = speed;
+    this.end = model.getTotalTime()[1];
+    this.timer = new Timer(1000 / speed, this);
+
+    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
+    this.animation.setLayout(new BorderLayout());
+    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
+            model.getBox()[3] * 2));
+
+    this.scrollPane = new JScrollPane(animation);
+    this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+    this.frame = new Frame(960, 720, animation, scrollPane);
+
+    this.frame.add(scrollPane);
+    this.animation.setVisible(true);
+    this.scrollPane.setVisible(true);
+    this.frame.add(scrollPane, BorderLayout.CENTER);
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
@@ -204,9 +263,9 @@ public class EditorView implements ActionListener {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
-    EditorView view = new EditorView(model, 1);
+    EditorView view = new EditorView();
 
-    IAnimatorController controller = new AnimatorControllerImpl(view);
+    IAnimatorController controller = new AnimatorControllerImpl(model, view, 1);
     controller.go();
   }
 }
