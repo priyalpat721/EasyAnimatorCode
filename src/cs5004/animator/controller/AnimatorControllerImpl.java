@@ -12,7 +12,7 @@ import cs5004.animator.view.IAnimatorView;
 public class AnimatorControllerImpl implements IAnimatorController {
   private IAnimatorModel model;
   private EditorView view;
-  int speed;
+  private int speed;
 
   public AnimatorControllerImpl(IAnimatorModel model, EditorView view, int speed) {
     this.model = model;
