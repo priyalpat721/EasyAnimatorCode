@@ -1,8 +1,12 @@
 package cs5004.animator.controller;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.EditorView;
-import cs5004.animator.view.IAnimatorView;
 
 
 /**
@@ -24,11 +28,87 @@ public class AnimatorControllerImpl implements IAnimatorController {
   public void go() {
     view.create(model, speed);
 
-    MouseHandler mouse = new MouseHandler(this.view);
-    KeyboardHandler keyboard = new KeyboardHandler(this.view);
+    MouseHandler mouse = new MouseHandler();
+    KeyboardHandler keyboard = new KeyboardHandler();
     view.setCommandButtonListener(mouse, keyboard);
 
     view.makeVisible();
+  }
+
+
+  private class MouseHandler extends MouseAdapter {
+
+    private MouseHandler() {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+      if (e.getButton() == MouseEvent.BUTTON1) {
+
+        switch (e.getComponent().getName()) {
+          case "play":
+            view.play();
+            break;
+          case "pause":
+            view.pause();
+            break;
+          case "resume":
+            view.resume();
+            break;
+          case "restart":
+            view.restart();
+            break;
+          case "loop":
+            view.loop();
+            break;
+          case "increaseSpeed":
+            view.increaseSpeed();
+            break;
+          case "decreaseSpeed":
+            view.decreaseSpeed();
+            break;
+          case "exit":
+            System.exit(0);
+        }
+
+        view.setFocus();
+      }
+    }
+  }
+
+
+  private class KeyboardHandler extends KeyAdapter {
+    private KeyboardHandler() {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+      switch (e.getKeyCode()) {
+        case KeyEvent.VK_ENTER:
+          view.play();
+          break;
+        case KeyEvent.VK_SPACE:
+          view.pause();
+          break;
+        case KeyEvent.VK_S:
+          view.resume();
+          break;
+        case KeyEvent.VK_R:
+          view.restart();
+          break;
+        case KeyEvent.VK_L:
+          view.loop();
+          break;
+        case KeyEvent.VK_PERIOD:
+          view.increaseSpeed();
+          break;
+        case KeyEvent.VK_COMMA:
+          view.decreaseSpeed();
+          break;
+        case KeyEvent.VK_ESCAPE:
+          System.exit(0);
+      }
+    }
   }
 
 }
