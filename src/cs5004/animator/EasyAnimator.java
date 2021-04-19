@@ -1,11 +1,8 @@
 package cs5004.animator;
 
-import cs5004.animator.controller.AnimatorControllerImpl;
-import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
-import cs5004.animator.view.EditorView;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.generateView;
