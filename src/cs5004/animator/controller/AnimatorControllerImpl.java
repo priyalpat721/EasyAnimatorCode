@@ -33,6 +33,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     view.setCommandButtonListener(mouse, keyboard);
 
     view.makeVisible();
+    view.setFocus();
   }
 
 
