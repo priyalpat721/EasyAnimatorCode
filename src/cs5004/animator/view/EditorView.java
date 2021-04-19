@@ -80,68 +80,6 @@ public class EditorView implements IAnimatorView, ActionListener {
     buttons.add(checkLoop);
   }
 
-//  public EditorView(IAnimatorModel model, int speed) {
-//    this.model = model;
-//    this.speed = speed;
-//    this.initialSpeed = speed;
-//    this.end = model.getTotalTime()[1];
-//    this.timer = new Timer(1000 / speed, this);
-//
-//    this.animation = new ShapesPanel(model.getShapesAtTicks(0));
-//    this.animation.setLayout(new BorderLayout());
-//    this.animation.setPreferredSize(new Dimension(model.getBox()[2] * 2,
-//            model.getBox()[3] * 2));
-//
-//    this.scrollPane = new JScrollPane(animation);
-//    this.scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-//    this.scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//
-//    this.frame = new Frame(960, 720, animation, scrollPane);
-//
-//    this.frame.add(scrollPane);
-//    this.animation.setVisible(true);
-//    this.scrollPane.setVisible(true);
-//    this.frame.add(scrollPane, BorderLayout.CENTER);
-//    this.frame.setVisible(true);
-//
-//    JPanel buttons = new JPanel();
-//    buttons.setLayout(new FlowLayout(FlowLayout.CENTER));
-//
-//    this.play = new JButton("Play");
-//    this.play.setName("play");
-//    buttons.add(play);
-//
-//    this.pause = new JButton("Pause");
-//    this.pause.setName("pause");
-//    buttons.add(pause);
-//
-//    this.resume = new JButton("Resume");
-//    this.resume.setName("resume");
-//    buttons.add(resume);
-//
-//    this.restart = new JButton("Restart");
-//    this.restart.setName("restart");
-//    buttons.add(restart);
-//
-//    this.loop = new JButton("Loop");
-//    this.loop.setName("loop");
-//    buttons.add(loop);
-//
-//    this.increaseSpeed = new JButton("Speed+");
-//    this.increaseSpeed.setName("increaseSpeed");
-//    buttons.add(increaseSpeed);
-//
-//    this.decreaseSpeed = new JButton("Speed-");
-//    this.decreaseSpeed.setName("decreaseSpeed");
-//    buttons.add(decreaseSpeed);
-//
-//    this.checkLoop = new JCheckBox("Looping enabled", false);
-//    this.removeMouseListener(checkLoop);
-//    buttons.add(checkLoop);
-//
-//    this.frame.add(buttons, BorderLayout.SOUTH);
-//  }
-
   @Override
   public void create(IAnimatorModel model, int speed) {
     this.model = model;
