@@ -114,7 +114,6 @@ public class EditorView implements ActionListener {
   }
 
   public void play() {
-    System.out.println("EditorView -> play");
     speed = initialSpeed;
     timer.setDelay(1000 / speed);
     count = -1;
@@ -123,12 +122,10 @@ public class EditorView implements ActionListener {
   }
 
   public void pause() {
-    System.out.println("EditorView -> pause");
     timer.stop();
   }
 
   public void restart() {
-    System.out.println("EditorView -> restart");
     timer.stop();
     speed = initialSpeed;
     timer.setDelay(1000 / speed);
@@ -139,14 +136,12 @@ public class EditorView implements ActionListener {
   }
 
   public void resume() {
-    System.out.println("EditorView -> resume");
     timer.start();
     timer.setDelay(1000 / speed);
   }
 
   public void loop() {
     if (!this.animate) {
-      System.out.println("EditorView -> loop");
       timer.start();
       this.animate = true;
       this.checkLoop.setSelected(true);
@@ -159,13 +154,11 @@ public class EditorView implements ActionListener {
   }
 
   public void increaseSpeed() {
-    System.out.println("EditorView -> increased speed");
     speed = speed + 1;
     timer.setDelay(1000 / speed);
   }
 
   public void decreaseSpeed() {
-    System.out.println("EditorView -> decreased speed");
     if (speed - 1 <= 0) {
       speed = 1;
     } else {
