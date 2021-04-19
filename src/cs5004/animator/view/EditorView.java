@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -226,7 +227,7 @@ public class EditorView implements IAnimatorView, ActionListener {
     frame.setVisible(true);
   }
 
-  public void setCommandButtonListener(MouseListener mouseEvent, KeyAdapter keyEvent) {
+  public void setCommandButtonListener(MouseListener mouseEvent, KeyListener keyEvent) {
     frame.setCommandButtonListener(mouseEvent);
     play.addMouseListener(mouseEvent);
     pause.addMouseListener(mouseEvent);
