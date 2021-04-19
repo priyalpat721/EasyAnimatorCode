@@ -202,12 +202,7 @@ public class EditorView implements ActionListener {
       event.removeMouseListener((MouseListener) listener);
   }
 
-  /**
-   * Main method for the EditorView. It coordinates between user input and model.
-   *
-   * @param args default parameter for main method.
-   * @throws FileNotFoundException if readable not found.
-   */
+
   public static void main(String[] args) throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
