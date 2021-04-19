@@ -76,37 +76,30 @@ public class EditorView implements ActionListener {
 
     this.play = new JButton("Play");
     this.play.setName("play");
-    this.play.setBackground(new Color(0, 158, 0));
     buttons.add(play);
 
     this.pause = new JButton("Pause");
     this.pause.setName("pause");
-    this.pause.setBackground(new Color(230, 230, 0));
     buttons.add(pause);
 
     this.resume = new JButton("Resume");
     this.resume.setName("resume");
-    this.resume.setBackground(new Color(255, 127, 0));
     buttons.add(resume);
 
     this.restart = new JButton("Restart");
     this.restart.setName("restart");
-    this.restart.setBackground(new Color(230, 32, 32));
     buttons.add(restart);
 
     this.loop = new JButton("Loop");
     this.loop.setName("loop");
-    this.loop.setBackground(new Color(255, 175, 175));
     buttons.add(loop);
 
     this.increaseSpeed = new JButton("Speed+");
     this.increaseSpeed.setName("increaseSpeed");
-    this.increaseSpeed.setBackground(new Color (0, 159, 159));
     buttons.add(increaseSpeed);
 
     this.decreaseSpeed = new JButton("Speed-");
     this.decreaseSpeed.setName("decreaseSpeed");
-    this.decreaseSpeed.setBackground(new Color(175, 175, 225));
     buttons.add(decreaseSpeed);
 
     this.checkLoop = new JCheckBox("Looping enabled", false);
