@@ -146,7 +146,7 @@ public class Helpers {
       throw new IllegalArgumentException("Speed must be greater than zero");
     }
 
-    if (model.getLogOfShapes().isEmpty()) {
+    if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);
     }
