@@ -16,35 +16,27 @@ public class KeyboardHandler extends KeyAdapter {
   public void keyPressed(KeyEvent e) {
     switch (e.getKeyCode()) {
       case KeyEvent.VK_ENTER:
-        System.out.println("KeyboardHandler -> play");
         view.play();
         break;
       case KeyEvent.VK_SPACE:
-        System.out.println("KeyboardHandler -> pause");
         view.pause();
         break;
       case KeyEvent.VK_S:
-        System.out.println("KeyboardHandler -> resume");
         view.resume();
         break;
       case KeyEvent.VK_R:
-        System.out.println("KeyboardHandler -> restart");
         view.restart();
         break;
       case KeyEvent.VK_L:
-        System.out.println("KeyboardHandler -> loop");
         view.loop();
         break;
       case KeyEvent.VK_PERIOD:
-        System.out.println("KeyboardHandler -> increaseSpeed");
         view.increaseSpeed();
         break;
       case KeyEvent.VK_COMMA:
-        System.out.println("KeyboardHandler -> decreaseSpeed");
         view.decreaseSpeed();
         break;
       case KeyEvent.VK_ESCAPE:
-        System.out.println("KeyboardHandler -> pause");
         System.exit(0);
     }
   }

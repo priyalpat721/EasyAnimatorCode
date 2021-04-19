@@ -5,11 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.EventListener;
 
 import javax.swing.*;
 
+import cs5004.animator.controller.AnimatorControllerImpl;
+import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.utils.AnimationBuilder;
+import cs5004.animator.utils.Builder;
+
+import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class EditorView implements ActionListener {
   private IAnimatorModel model;
@@ -201,19 +209,19 @@ public class EditorView implements ActionListener {
       event.removeMouseListener((MouseListener) listener);
   }
 
-//  /**
-//   * Main method for the EditorView. It coordinates between user input and model.
-//   *
-//   * @param args default parameter for main method.
-//   * @throws FileNotFoundException if readable not found.
-//   */
-//  public static void main(String[] args) throws FileNotFoundException {
-//    AnimationBuilder<IAnimatorModel> builder = new Builder();
-//    Readable in = new FileReader("test/smalldemo.txt");
-//    IAnimatorModel model = parseFile(in, builder);
-//    EditorView view = new EditorView(model, 1);
-//
-//    IAnimatorController controller = new AnimatorControllerImpl(view);
-//    controller.go();
-//  }
+  /**
+   * Main method for the EditorView. It coordinates between user input and model.
+   *
+   * @param args default parameter for main method.
+   * @throws FileNotFoundException if readable not found.
+   */
+  public static void main(String[] args) throws FileNotFoundException {
+    AnimationBuilder<IAnimatorModel> builder = new Builder();
+    Readable in = new FileReader("test/smalldemo.txt");
+    IAnimatorModel model = parseFile(in, builder);
+    EditorView view = new EditorView(model, 1);
+
+    IAnimatorController controller = new AnimatorControllerImpl(view);
+    controller.go();
+  }
 }

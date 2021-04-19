@@ -25,35 +25,27 @@ public class MouseHandler extends MouseAdapter {
 
       switch (e.getComponent().getName()) {
         case "play":
-          System.out.println("MouseHandler -> play");
           view.play();
           break;
         case "pause":
-          System.out.println("MouseHandler -> pause");
           view.pause();
           break;
         case "resume":
-          System.out.println("MouseHandler -> resume");
           view.resume();
           break;
         case "restart":
-          System.out.println("MouseHandler -> restart");
           view.restart();
           break;
         case "loop":
-          System.out.println("MouseHandler -> loop");
           view.loop();
           break;
         case "increaseSpeed":
           view.increaseSpeed();
-          System.out.println("MouseHandler -> speed+");
           break;
         case "decreaseSpeed":
           view.decreaseSpeed();
-          System.out.println("MouseHandler -> speed-");
           break;
         case "exit":
-          System.out.println("MouseHandler -> exit");
           System.exit(0);
       }
 
