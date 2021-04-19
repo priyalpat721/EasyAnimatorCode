@@ -180,7 +180,7 @@ public class Helpers {
 
     String fileName = "";
 
-    if (!viewType.equals("visual")) {
+    if (!viewType.equals("visual") || !viewType.equals("playback")) {
       if (outputFile.length == 1) {
         if (!outputFile[0].isBlank()) {
           if (viewType.equals("text")) {
