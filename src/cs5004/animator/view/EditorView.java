@@ -109,10 +109,6 @@ public class EditorView implements ActionListener {
     this.frame.add(buttons, BorderLayout.SOUTH);
   }
 
-  public JFrame getFrame() {
-    return this.frame;
-  }
-
   public void play() {
     speed = initialSpeed;
     timer.setDelay(1000 / speed);
@@ -171,7 +167,7 @@ public class EditorView implements ActionListener {
     frame.setVisible(true);
   }
 
-  public void setCommandButtonListener(MouseListener mouseEvent) {
+  public void setCommandButtonListener(MouseListener mouseEvent, KeyAdapter keyEvent) {
     frame.setCommandButtonListener(mouseEvent);
     play.addMouseListener(mouseEvent);
     pause.addMouseListener(mouseEvent);
@@ -180,10 +176,11 @@ public class EditorView implements ActionListener {
     loop.addMouseListener(mouseEvent);
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
+    frame.addKeyListener(keyEvent);
   }
 
-  public void setKeyListener(KeyAdapter keyEvent) {
-    frame.addKeyListener(keyEvent);
+  public void setFocus() {
+    frame.requestFocus();
   }
 
   @Override

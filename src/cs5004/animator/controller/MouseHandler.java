@@ -49,7 +49,7 @@ public class MouseHandler extends MouseAdapter {
           System.exit(0);
       }
 
-      view.getFrame().requestFocus();
+      view.setFocus();
     }
   }
 

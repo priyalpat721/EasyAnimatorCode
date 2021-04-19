@@ -17,10 +17,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
   @Override
   public void go() {
     MouseHandler mouse = new MouseHandler(this.view);
-    view.setCommandButtonListener(mouse);
+//    view.setCommandButtonListener(mouse);
 
     KeyboardHandler keyboard = new KeyboardHandler(this.view);
-    view.setKeyListener(keyboard);
+//    view.setKeyListener(keyboard);
+
+    view.setCommandButtonListener(mouse, keyboard);
 
     view.makeVisible();
   }
