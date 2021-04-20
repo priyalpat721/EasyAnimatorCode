@@ -32,9 +32,9 @@ public final class EasyAnimator {
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = checkInputFile(inputFile);
-    IAnimatorModel animation = parseFile(in, builder);
+    IAnimatorModel model = parseFile(in, builder);
 
-    generateView(animation, viewType, outputFile, speed);
+    generateView(model, viewType, outputFile, speed);
   }
 
 }
