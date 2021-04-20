@@ -10,7 +10,7 @@ import cs5004.animator.view.EditorView;
 
 
 /**
- * Class that implements the IAnimator interface.
+ * Class that implements the IAnimatorController interface.
  * It represents the operations managed by EasyAnimator and enables user to control animations manually.
  */
 public class AnimatorControllerImpl implements IAnimatorController {
