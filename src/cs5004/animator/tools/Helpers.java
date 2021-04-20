@@ -137,7 +137,7 @@ public class Helpers {
    */
   public static void generateView(IAnimatorModel model, String viewType,
                                   String[] outputFile, int speed) {
-    Objects.requireNonNull(model, "Must have non-null animation");
+    Objects.requireNonNull(model, "Must have non-null model");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
 
     if (viewType == null || viewType.isBlank()) {
