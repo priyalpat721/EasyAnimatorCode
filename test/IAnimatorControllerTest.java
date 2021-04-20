@@ -20,6 +20,9 @@ import cs5004.animator.view.ShapesPanel;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * A JUnit test for the IAnimatorController.
+ */
 public class IAnimatorControllerTest {
   private IAnimatorModel model;
   private MockView view;
