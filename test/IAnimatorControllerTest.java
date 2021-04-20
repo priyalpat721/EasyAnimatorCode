@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
 
 import cs5004.animator.controller.AnimatorControllerImpl;
 import cs5004.animator.controller.IAnimatorController;
@@ -18,7 +18,7 @@ import cs5004.animator.view.EditorView;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.ShapesPanel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class IAnimatorControllerTest {
   private IAnimatorModel model;
