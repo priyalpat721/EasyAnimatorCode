@@ -144,7 +144,6 @@ public class IAnimatorControllerTest {
     public Frame getFrame() {
       return this.frame;
     }
-
   }
 
 }
