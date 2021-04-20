@@ -21,16 +21,16 @@ public final class EasyAnimator {
    */
   public static void main(String[] args) {
     String[] commands = parseCommands(args);
-    String inputFile = commands[0];
-    String viewType = commands[1];
-    String[] outputFile = commands[2].split("\\.");
+    String input = commands[0];
+    String view = commands[1];
+    String output = commands[2];
     String speed = commands[3];
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = checkInputFile(inputFile);
+    Readable in = checkInputFile(input);
     IAnimatorModel model = parseFile(in, builder);
 
-    generateView(model, viewType, outputFile, speed);
+    generateView(model, view, output, speed);
   }
 
 }

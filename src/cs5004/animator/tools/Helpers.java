@@ -135,17 +135,11 @@ public class Helpers {
    * @throws IllegalArgumentException if the view type or speed are invalid.
    */
   public static void generateView(IAnimatorModel model, String viewType,
-                                  String[] outputFile, String givenSpeed) {
+                                  String outputFile, String givenSpeed) {
     Objects.requireNonNull(model, "Must have non-null model");
+    Objects.requireNonNull(viewType, "Must have non-null view");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
-
-    if (viewType == null || viewType.isBlank()) {
-      throw new IllegalArgumentException("Invalid view type");
-    }
-
-    if (givenSpeed == null) {
-      throw new IllegalArgumentException("Invalid speed");
-    }
+    Objects.requireNonNull(givenSpeed, "Must have non-null speed");
 
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
@@ -189,22 +183,23 @@ public class Helpers {
     }
 
     String fileName = "";
+    String[] output = outputFile.split("\\.");
 
     if (!(viewType.equals("visual") || viewType.equals("playback"))) {
-      if (outputFile.length == 1) {
-        if (!outputFile[0].isBlank()) {
+      if (output.length == 1) {
+        if (!output[0].isBlank()) {
           if (viewType.equals("text")) {
-            fileName = createFile(outputFile[0], "txt", content);
+            fileName = createFile(output[0], "txt", content);
           }
           if (viewType.equals("svg")) {
-            fileName = createFile(outputFile[0], "svg", content);
+            fileName = createFile(output[0], "svg", content);
           }
           showMessage(String.format("%s created", fileName), 1);
         } else {
           System.out.print(content);
         }
       } else {
-        fileName = createFile(outputFile[0], outputFile[1], content);
+        fileName = createFile(output[0], output[1], content);
         showMessage(String.format("%s created", fileName), 1);
       }
     }
