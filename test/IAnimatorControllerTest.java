@@ -71,6 +71,7 @@ public class IAnimatorControllerTest {
     KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
 
+    // press keys
     view.getFrame().getKeyListeners()[0].keyPressed(enter);
     view.getFrame().getKeyListeners()[0].keyPressed(space);
     view.getFrame().getKeyListeners()[0].keyPressed(keyS);
