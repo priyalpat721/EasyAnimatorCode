@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.EditorView;
-import cs5004.animator.view.IAnimatorView;
 
 
 /**
@@ -39,9 +38,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
 
   private class MouseHandler extends MouseAdapter {
-
-    private MouseHandler() {
-    }
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -80,8 +76,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
 
   private class KeyboardHandler extends KeyAdapter {
-    private KeyboardHandler() {
-    }
 
     @Override
     public void keyPressed(KeyEvent e) {
