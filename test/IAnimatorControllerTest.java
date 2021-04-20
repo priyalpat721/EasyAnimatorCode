@@ -49,18 +49,25 @@ public class IAnimatorControllerTest {
 
   @Test
   public void testKeyboard() {
+    // play
     KeyEvent enter = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_ENTER, '\n');
+    // pause
     KeyEvent space = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_SPACE, '\b');
+    // resume
     KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
+    // restart
     KeyEvent keyR = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_R, 'r');
+    // loop
     KeyEvent keyL = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_L, 'l');
+    // increase speed
     KeyEvent period = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_PERIOD, '.');
+    // decrease speed
     KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
 
