@@ -143,7 +143,7 @@ public class Helpers {
       throw new IllegalArgumentException("Invalid view type");
     }
 
-    if (givenSpeed == null || givenSpeed.isBlank()) {
+    if (givenSpeed == null) {
       throw new IllegalArgumentException("Invalid speed");
     }
 
