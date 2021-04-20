@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.EditorView;
+import cs5004.animator.view.IAnimatorView;
 
 
 /**

@@ -197,13 +197,13 @@ public class EditorView implements IAnimatorView, ActionListener {
   }
 
 
-  public static void main(String[] args) throws FileNotFoundException {
-    AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = new FileReader("test/smalldemo.txt");
-    IAnimatorModel model = parseFile(in, builder);
-    EditorView view = new EditorView();
-
-    IAnimatorController controller = new AnimatorControllerImpl(model, view, 1);
-    controller.go();
-  }
+//  public static void main(String[] args) throws FileNotFoundException {
+//    AnimationBuilder<IAnimatorModel> builder = new Builder();
+//    Readable in = new FileReader("test/smalldemo.txt");
+//    IAnimatorModel model = parseFile(in, builder);
+//    EditorView view = new EditorView();
+//
+//    IAnimatorController controller = new AnimatorControllerImpl(model, view, 1);
+//    controller.go();
+//  }
 }
