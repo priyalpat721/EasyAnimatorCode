@@ -2,15 +2,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.EventListener;
 
 import javax.swing.*;
 
@@ -20,7 +16,6 @@ import cs5004.animator.model.AnimatorModelImpl;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.view.EditorView;
 import cs5004.animator.view.Frame;
-import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.ShapesPanel;
 
 import static org.junit.Assert.*;
@@ -54,19 +49,31 @@ public class IAnimatorControllerTest {
 
   @Test
   public void testKeyboard() {
-    KeyEvent enter = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_ENTER, '\n');
-    KeyEvent space = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_SPACE, '\b');
-    KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
-    KeyEvent keyR = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_R, 'r');
-    KeyEvent keyL = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_L, 'l');
-    KeyEvent period = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_PERIOD, '.');
-    KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
-    KeyEvent escape = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_ESCAPE, 'q');
+    KeyEvent enter = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_ENTER, '\n');
+    KeyEvent space = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_SPACE, '\b');
+    KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
+    KeyEvent keyR = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_R, 'r');
+    KeyEvent keyL = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_L, 'l');
+    KeyEvent period = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_PERIOD, '.');
+    KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
+
     view.getFrame().getKeyListeners()[0].keyPressed(enter);
     view.getFrame().getKeyListeners()[0].keyPressed(space);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyS);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyR);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyL);
+    view.getFrame().getKeyListeners()[0].keyPressed(period);
+    view.getFrame().getKeyListeners()[0].keyPressed(comma);
 
-
-    assertEquals("play\npause\n", outContent.toString());
+    assertEquals("play\npause\nresume\nrestart\nloop\nincreaseSpeed\ndecreaseSpeed\n",
+            outContent.toString());
   }
 
   private class MockView extends EditorView {
