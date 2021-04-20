@@ -133,22 +133,32 @@ public class Helpers {
    * @param speed the speed of the animation.
    * @throws NullPointerException if the animation or the output file are null.
    * @throws IllegalArgumentException if the view type is invalid.
-   *                                  if the speed is not greater than zero.
    */
   public static void generateView(IAnimatorModel model, String viewType,
-                                  String[] outputFile, int speed) {
+                                  String[] outputFile, String givenSpeed) {
     Objects.requireNonNull(model, "Must have non-null model");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
 
     if (viewType == null || viewType.isBlank()) {
       throw new IllegalArgumentException("Invalid view type");
-    } else if (speed <= 0) {
-      throw new IllegalArgumentException("Speed must be greater than zero");
+    }
+
+    if (givenSpeed == null || givenSpeed.isBlank()) {
+      throw new IllegalArgumentException("Invalid speed");
     }
 
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);
+    }
+
+    int speed = 1;
+    if (!givenSpeed.equals("")) {
+      speed = Integer.parseInt(givenSpeed);
+    }
+
+    if (speed <= 0) {
+      speed = 1;
     }
 
     String content = "";

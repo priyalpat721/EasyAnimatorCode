@@ -24,11 +24,7 @@ public final class EasyAnimator {
     String inputFile = commands[0];
     String viewType = commands[1];
     String[] outputFile = commands[2].split("\\.");
-
-    int speed = 1;
-    if (!commands[3].equals("")) {
-      speed = Integer.parseInt(commands[3]);
-    }
+    String speed = commands[3];
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = checkInputFile(inputFile);
