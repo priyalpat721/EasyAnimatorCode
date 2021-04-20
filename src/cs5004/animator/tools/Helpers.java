@@ -131,8 +131,7 @@ public class Helpers {
    * @param viewType the type of the view.
    * @param outputFile the output file.
    * @param givenSpeed the speed of the animation.
-   * @throws NullPointerException if the animation or the output file are null.
-   * @throws IllegalArgumentException if the view type or speed are invalid.
+   * @throws NullPointerException if the parameters are null.
    */
   public static void generateView(IAnimatorModel model, String viewType,
                                   String outputFile, String givenSpeed) {
