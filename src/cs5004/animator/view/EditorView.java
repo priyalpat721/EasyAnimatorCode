@@ -189,7 +189,6 @@ public class EditorView implements IAnimatorView, ActionListener {
     if (this.animate) {
       this.count = count % end;
     }
-    System.out.println("Tick count: " + (int) count);
     this.frame.currentView(model.getShapesAtTicks(count));
   }
 
