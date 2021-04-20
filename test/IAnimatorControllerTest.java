@@ -89,7 +89,6 @@ public class IAnimatorControllerTest {
 
     @Override
     public void create(IAnimatorModel model, int speed) {
-
     }
 
     @Override
