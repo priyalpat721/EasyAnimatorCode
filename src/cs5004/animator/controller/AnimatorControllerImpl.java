@@ -14,9 +14,9 @@ import cs5004.animator.view.EditorView;
  * It represents the operations managed by EasyAnimator and enables user to control animations manually.
  */
 public class AnimatorControllerImpl implements IAnimatorController {
-  private IAnimatorModel model;
-  private EditorView view;
-  private int speed;
+  private final IAnimatorModel model;
+  private final EditorView view;
+  private final int speed;
 
   public AnimatorControllerImpl(IAnimatorModel model, EditorView view, int speed) {
     this.model = model;
