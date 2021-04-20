@@ -5,19 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
 import java.util.EventListener;
+import java.util.Objects;
 
 import javax.swing.*;
 
-import cs5004.animator.controller.AnimatorControllerImpl;
-import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
-import cs5004.animator.utils.AnimationBuilder;
-import cs5004.animator.utils.Builder;
 
-import static cs5004.animator.utils.AnimationReader.parseFile;
 
 public class EditorView implements IAnimatorView, ActionListener {
   private IAnimatorModel model;
@@ -82,6 +77,11 @@ public class EditorView implements IAnimatorView, ActionListener {
 
   @Override
   public void create(IAnimatorModel model, int speed) {
+    Objects.requireNonNull(model, "Must have non-null model");
+    if (speed <= 0) {
+      throw new IllegalArgumentException("Speed must be greater than zero");
+    }
+
     this.model = model;
     this.speed = speed;
     this.initialSpeed = speed;
@@ -165,6 +165,9 @@ public class EditorView implements IAnimatorView, ActionListener {
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent, KeyListener keyEvent) {
+    Objects.requireNonNull(mouseEvent);
+    Objects.requireNonNull(keyEvent);
+
     frame.setCommandButtonListener(mouseEvent);
     play.addMouseListener(mouseEvent);
     pause.addMouseListener(mouseEvent);
@@ -196,14 +199,4 @@ public class EditorView implements IAnimatorView, ActionListener {
       event.removeMouseListener((MouseListener) listener);
   }
 
-
-//  public static void main(String[] args) throws FileNotFoundException {
-//    AnimationBuilder<IAnimatorModel> builder = new Builder();
-//    Readable in = new FileReader("test/smalldemo.txt");
-//    IAnimatorModel model = parseFile(in, builder);
-//    EditorView view = new EditorView();
-//
-//    IAnimatorController controller = new AnimatorControllerImpl(model, view, 1);
-//    controller.go();
-//  }
 }
