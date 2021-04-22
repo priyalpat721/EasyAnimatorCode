@@ -25,6 +25,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     this.speed = 1;
     if (!givenSpeed.equals("")) {
       this.speed = Integer.parseInt(givenSpeed);
+      if (this.speed <= 0) {
+        this.speed = 1;
+      }
     }
   }
 
