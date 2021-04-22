@@ -9,10 +9,7 @@ import java.util.Objects;
 
 import javax.swing.JOptionPane;
 
-import cs5004.animator.controller.AnimatorControllerImpl;
-import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
-import cs5004.animator.view.EditorView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
