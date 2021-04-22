@@ -137,7 +137,7 @@ public class Helpers {
     Objects.requireNonNull(outputFile, "Must have non-null output file");
     Objects.requireNonNull(givenSpeed, "Must have non-null speed");
 
-    if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
+    if (model.getLogOfShapes().isEmpty()) {
       showMessage("Animation is empty", 2);
       System.exit(0);
     }
@@ -145,10 +145,9 @@ public class Helpers {
     int speed = 1;
     if (!givenSpeed.equals("")) {
       speed = Integer.parseInt(givenSpeed);
-    }
-
-    if (speed <= 0) {
-      speed = 1;
+      if (speed <= 0) {
+        speed = 1;
+      }
     }
 
     String content = "";
