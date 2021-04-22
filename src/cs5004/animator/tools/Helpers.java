@@ -171,11 +171,6 @@ public class Helpers {
         VisualView view = new VisualView();
         view.create(model, speed);
         break;
-      case "playback":
-        EditorView editor = new EditorView();
-        IAnimatorController controller = new AnimatorControllerImpl(model, editor, speed);
-        controller.go();
-        break;
       default:
         showMessage("Invalid view type", 2);
         System.exit(0);
@@ -184,7 +179,7 @@ public class Helpers {
     String fileName = "";
     String[] output = outputFile.split("\\.");
 
-    if (!(viewType.equals("visual") || viewType.equals("playback"))) {
+    if (!(viewType.equals("visual"))) {
       if (output.length == 1) {
         if (!output[0].isBlank()) {
           if (viewType.equals("text")) {
