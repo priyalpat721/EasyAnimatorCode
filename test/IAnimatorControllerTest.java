@@ -36,15 +36,15 @@ public class IAnimatorControllerTest {
     view = new MockView();
     controller = new AnimatorControllerImpl(model, view, "1");
 
-    outContent = new ByteArrayOutputStream();
     originalOut = System.out;
+    outContent = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outContent));
 
     controller.go();
   }
 
   @After
-  public void restoreStreams() {
+  public void resetStream() {
     System.setOut(originalOut);
   }
 
@@ -86,9 +86,9 @@ public class IAnimatorControllerTest {
   }
 
   private class MockView extends EditorView {
-    private Frame frame;
-    private ShapesPanel animation;
-    private JScrollPane scrollPane;
+    private final Frame frame;
+    private final ShapesPanel animation;
+    private final JScrollPane scrollPane;
 
     private MockView() {
       this.animation = new ShapesPanel(model.getShapesAtTicks(0));
