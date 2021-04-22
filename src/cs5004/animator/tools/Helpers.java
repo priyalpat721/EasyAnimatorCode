@@ -226,7 +226,7 @@ public class Helpers {
    * @param inputFile the name of the file.
    * @return a Readable source of characters.
    */
-  public static Readable checkInputFile(String inputFile) {
+  public static Readable getInputFile(String inputFile) {
     Readable in = null;
 
     try {

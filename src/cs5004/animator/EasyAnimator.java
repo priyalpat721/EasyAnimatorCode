@@ -7,8 +7,8 @@ import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 import cs5004.animator.view.EditorView;
 
-import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.generateView;
+import static cs5004.animator.tools.Helpers.getInputFile;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
@@ -30,7 +30,7 @@ public final class EasyAnimator {
     String speed = commands[3];
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-    Readable in = checkInputFile(input);
+    Readable in = getInputFile(input);
     IAnimatorModel model = parseFile(in, builder);
 
     if (view.equals("playback")) {
