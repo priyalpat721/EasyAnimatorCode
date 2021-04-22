@@ -27,7 +27,6 @@ public class IAnimatorControllerTest {
   private IAnimatorModel model;
   private MockView view;
   private IAnimatorController controller;
-  private int speed;
   private ByteArrayOutputStream outContent;
   private PrintStream originalOut;
 
@@ -35,8 +34,7 @@ public class IAnimatorControllerTest {
   public void setUp() {
     model = new AnimatorModelImpl();
     view = new MockView();
-    controller = new AnimatorControllerImpl(model, view, speed);
-    speed = 1;
+    controller = new AnimatorControllerImpl(model, view, "1");
 
     outContent = new ByteArrayOutputStream();
     originalOut = System.out;
