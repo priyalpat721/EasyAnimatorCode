@@ -88,7 +88,7 @@ public class IAnimatorControllerTest {
   }
 
   /**
-   * A mock view class to test the animator controller.
+   * A private mock view class to test the animator controller.
    */
   private class MockView extends EditorView {
     private final Frame frame;
