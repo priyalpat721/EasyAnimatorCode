@@ -45,6 +45,7 @@ public class IAnimatorControllerTest {
 
   @After
   public void resetStream() {
+    // reset System.out
     System.setOut(originalOut);
   }
 
@@ -85,11 +86,17 @@ public class IAnimatorControllerTest {
             outContent.toString());
   }
 
+  /**
+   * A mock view class to test the controller.
+   */
   private class MockView extends EditorView {
     private final Frame frame;
     private final ShapesPanel animation;
     private final JScrollPane scrollPane;
 
+    /**
+     * Constructs a mock view object.
+     */
     private MockView() {
       this.animation = new ShapesPanel(model.getShapesAtTicks(0));
       this.scrollPane = new JScrollPane(animation);
@@ -149,6 +156,10 @@ public class IAnimatorControllerTest {
       frame.requestFocus();
     }
 
+    /**
+     * Gets the frame of the animation.
+     * @return the frame of the animation.
+     */
     public Frame getFrame() {
       return this.frame;
     }
