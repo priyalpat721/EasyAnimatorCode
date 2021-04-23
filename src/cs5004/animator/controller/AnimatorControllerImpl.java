@@ -148,7 +148,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     });
   }
 
-  private void play() {
+  public void play() {
     timer.start();
     count += 1;
     if (animate) {
@@ -156,16 +156,16 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  private void pause() {
+  public void pause() {
     timer.stop();
   }
 
-  private void resume() {
+  public void resume() {
     timer.start();
     timer.setDelay(1000 / speed);
   }
 
-  private void restart() {
+  public void restart() {
     timer.stop();
     timer.setDelay(1000 / initialSpeed);
     count = 0;
@@ -174,7 +174,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     checkLoop.setSelected(false);
   }
 
-  private void loop() {
+  public void loop() {
     if (!animate) {
       animate = true;
       checkLoop.setSelected(true);
@@ -185,7 +185,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  private void decreaseSpeed() {
+  public void decreaseSpeed() {
     if (speed - 1 <= 0) {
       speed = 1;
     } else {
@@ -194,7 +194,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     timer.setDelay(1000 / speed);
   }
 
-  private void increaseSpeed() {
+  public void increaseSpeed() {
     speed = speed + 1;
     timer.setDelay(1000 / speed);
   }
@@ -204,7 +204,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     generateView();
   }
 
-  private class MouseHandler extends MouseAdapter {
+  public class MouseHandler extends MouseAdapter {
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -241,7 +241,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  private class KeyboardHandler extends KeyAdapter {
+  public class KeyboardHandler extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -273,7 +273,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  private void generateView() {
+  public void generateView() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);
