@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 
 import javax.swing.JScrollPane;
@@ -27,7 +28,7 @@ public class IAnimatorControllerTest {
   private IAnimatorModel model;
   private MockView view;
   private IAnimatorController controller;
-  private ByteArrayOutputStream outContent;
+  private OutputStream newOut;
   private PrintStream originalOut;
 
   @Before
@@ -37,8 +38,8 @@ public class IAnimatorControllerTest {
     controller = new AnimatorControllerImpl(model, view, 1);
 
     originalOut = System.out;
-    outContent = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(outContent));
+    newOut = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(newOut));
 
     controller.go();
   }
@@ -83,7 +84,7 @@ public class IAnimatorControllerTest {
     view.getFrame().getKeyListeners()[0].keyPressed(comma);
 
     assertEquals("play\npause\nresume\nrestart\nloop\nincreaseSpeed\ndecreaseSpeed\n",
-            outContent.toString());
+            newOut.toString());
   }
 
   /**
