@@ -13,7 +13,9 @@ import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
 
-
+/**
+ * This class creates an interactive window-based visual layout of the animation.
+ */
 public class EditorView implements IAnimatorView, ActionListener {
   private IAnimatorModel model;
   private int speed;
@@ -36,7 +38,7 @@ public class EditorView implements IAnimatorView, ActionListener {
   private boolean animate = false;
 
   /**
-   * Class that creates an interactive window-based visual layout of the animation.
+   * Constructs an EditorView object.
    */
   public EditorView() {
     buttons = new JPanel();
@@ -160,10 +162,18 @@ public class EditorView implements IAnimatorView, ActionListener {
     timer.setDelay(1000 / this.speed);
   }
 
+  /**
+   * Makes the frame visible.
+   */
   public void makeVisible() {
     frame.setVisible(true);
   }
 
+  /**
+   * Adds mouse and keyboard listeners to components.
+   * @param mouseEvent a mouse event.
+   * @param keyEvent a keyboard event.
+   */
   public void setCommandButtonListener(MouseListener mouseEvent, KeyListener keyEvent) {
     Objects.requireNonNull(mouseEvent);
     Objects.requireNonNull(keyEvent);
@@ -179,6 +189,9 @@ public class EditorView implements IAnimatorView, ActionListener {
     frame.addKeyListener(keyEvent);
   }
 
+  /**
+   * Sets the focus on the frame.
+   */
   public void setFocus() {
     frame.requestFocus();
   }
