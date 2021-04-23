@@ -88,7 +88,6 @@ public class IActionTest {
             4, 4, 0, 0, 1, 50);
     color2 = new ChangeColor("Square1", square1, new RGB(12, 15, 18),
             0, 1);
-    System.out.println(color2.toString());
     color3 = new ChangeColor("Square1", square1, new RGB(200, 215, 218),
             0, 1);
     assertEquals("Square1 changes color from (12.0,15.0,18.0) "
