@@ -11,7 +11,7 @@ import cs5004.animator.model.IAnimatorModel;
  * The class implements the interface IAnimatorView.
  */
 public class TextView implements IAnimatorView {
-  String result;
+  private String result;
 
   /**
    * Constructs a Text view object.
