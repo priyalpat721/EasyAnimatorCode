@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import cs5004.animator.model.IAnimatorModel;
+import cs5004.animator.view.IAnimatorView;
+import cs5004.animator.view.PlayBack;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.VisualView;
@@ -112,82 +113,14 @@ public class Helpers {
       showMessage("View type is mandatory", 2);
       System.exit(0);
     } else if (!commands[3].equals("")) {
-        if (Integer.parseInt(commands[3]) <= 0) {
-          showMessage("Speed cannot be less than or equal to zero\nSet to default",
-                  2);
-          commands[3] = "";
-        }
+      if (Integer.parseInt(commands[3]) <= 0) {
+        showMessage("Speed cannot be less than or equal to zero\nSet to default",
+                2);
+        commands[3] = "";
+      }
     }
 
     return commands;
-  }
-
-  /**
-   * Generates 1 of 3 views: svg, text, and visual.
-   * @param model the animator model.
-   * @param viewType the type of the view.
-   * @param outputFile the output file.
-   * @param speed the speed of the animation.
-   * @throws NullPointerException if the parameters are null.
-   */
-  public static void generateView(IAnimatorModel model, String viewType,
-                                  String outputFile, int speed) {
-    Objects.requireNonNull(model, "Must have non-null model");
-    Objects.requireNonNull(viewType, "Must have non-null view");
-    Objects.requireNonNull(outputFile, "Must have non-null output file");
-
-    if (model.getLogOfShapes().isEmpty()) {
-      showMessage("Animation is empty", 2);
-      System.exit(0);
-    }
-
-    if (speed <= 0) {
-      speed = 1;
-    }
-
-    String content = "";
-
-    switch (viewType) {
-      case "text":
-        TextView text = new TextView();
-        text.create(model, speed);
-        content = text.generate();
-        break;
-      case "svg":
-        SVGView svg = new SVGView();
-        svg.create(model, speed);
-        content = svg.generate();
-        break;
-      case "visual":
-        VisualView view = new VisualView();
-        view.create(model, speed);
-        break;
-      default:
-        showMessage("Invalid view type", 2);
-        System.exit(0);
-    }
-
-    String fileName = "";
-    String[] output = outputFile.split("\\.");
-
-    if (!(viewType.equals("visual"))) {
-      if (output.length == 1) {
-        if (!output[0].isBlank()) {
-          if (viewType.equals("text")) {
-            fileName = createFile(output[0], "txt", content);
-          }
-          if (viewType.equals("svg")) {
-            fileName = createFile(output[0], "svg", content);
-          }
-          showMessage(String.format("%s created", fileName), 1);
-        } else {
-          System.out.print(content);
-        }
-      } else {
-        fileName = createFile(output[0], output[1], content);
-        showMessage(String.format("%s created", fileName), 1);
-      }
-    }
   }
 
   /**
@@ -221,7 +154,7 @@ public class Helpers {
    * @param inputFile the name of the file.
    * @return a Readable source of characters.
    */
-  public static Readable getInputFile(String inputFile) {
+  public static Readable checkInputFile(String inputFile) {
     Readable in = null;
 
     try {
@@ -233,6 +166,7 @@ public class Helpers {
 
     return in;
   }
+
 
   /**
    * Gets the speed of the animation.
@@ -251,6 +185,27 @@ public class Helpers {
     }
 
     return speed;
+  }
+
+  public static IAnimatorView getView(String viewType) {
+    IAnimatorView view = null;
+
+    switch (viewType) {
+      case "text":
+        view = new TextView();
+        break;
+      case "svg":
+        view = new SVGView();
+        break;
+      case "visual":
+        view = new VisualView();
+        break;
+      case "playback":
+        view = new PlayBack();
+        break;
+    }
+
+    return view;
   }
 
 }

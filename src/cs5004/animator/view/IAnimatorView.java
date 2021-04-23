@@ -1,19 +1,21 @@
 package cs5004.animator.view;
 
-import cs5004.animator.model.IAnimatorModel;
+import java.util.List;
 
 /**
  * This interface contains all the operations that a view must support.
  */
-public interface IAnimatorView {
+public interface IAnimatorView<T> {
 
   /**
-   * Creates a view.
-   * @param model the animator model.
-   * @param speed the speed of the animation.
-   * @throws NullPointerException if the model is null.
-   * @throws IllegalArgumentException if the speed is not greater than zero.
+   * Creates a specific formatted view type using the model.
+   * @param modelData the input model to generate a view.
    */
-  void create(IAnimatorModel model, int speed);
+  void create(List modelData);
 
+  /**
+   * Generates each of the views.
+   * @return the requested view (.txt, .svg, GUI canvas)
+   */
+  T generate();
 }

@@ -3,10 +3,8 @@ package cs5004.animator.view;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import cs5004.animator.action.IAction;
-import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
 
@@ -14,8 +12,13 @@ import cs5004.animator.shape.Shape;
  * This class represents a SVG view. This class generates a file.svg format. It contains the code to
  * render a SVG view of the animation. The class implements the interface IAnimatorView.
  */
-public class SVGView implements IAnimatorView {
+public class SVGView implements IAnimatorView<String> {
   private StringBuilder result;
+  private HashMap<String, List<IAction>> dict;
+  private List<IShape> shapes;
+  private int[] box;
+  private int speed;
+
 
   /**
    * Constructs an SVG view object.
@@ -25,20 +28,22 @@ public class SVGView implements IAnimatorView {
   }
 
   @Override
-  public void create(IAnimatorModel model, int speed) {
-    Objects.requireNonNull(model, "Must have non-null model");
+  public void create(List modelData) {
+    this.speed = (int) modelData.get(3);
+
     if (speed <= 0) {
       throw new IllegalArgumentException("Speed must be greater than zero");
     }
 
-    List<IShape> shapes = model.getLogOfShapes();
-    HashMap<String, List<IAction>> dict = model.getLogOfActions();
+    this.shapes = (List<IShape>) modelData.get(1);
+    this.dict = (HashMap<String, List<IAction>>) modelData.get(0);
+    this.box = (int[]) modelData.get(2);
 
     int count = 0;
 
     result.append(String.format("<svg viewBox=\"%d %d %d %d\" version=\"1.1\" "
                     + "xmlns=\"http://www.w3.org/2000/svg\">\n\n",
-            model.getBox()[0], model.getBox()[1], model.getBox()[2], model.getBox()[3]));
+            this.box[0], this.box[1], this.box[2], this.box[3]));
 
     for (IShape shape : shapes) {
       String tag = "";
@@ -66,8 +71,6 @@ public class SVGView implements IAnimatorView {
           attributes[2] = "r";
           attributes[3] = "";
           break;
-        default:
-          //No action is intended when no other case applies.
       }
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
@@ -180,8 +183,6 @@ public class SVGView implements IAnimatorView {
                                   / speed + "ms"));
                 }
                 break;
-              default:
-                //No action is intended when no other case applies.
             }
             count += 1;
           }
@@ -193,11 +194,13 @@ public class SVGView implements IAnimatorView {
     result.append("</svg>");
   }
 
+
   /**
    * Generates a String representation of the SVG view.
    *
    * @return a String representation of the SVG view.
    */
+  @Override
   public String generate() {
     return this.result.toString();
   }

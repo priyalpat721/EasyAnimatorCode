@@ -1,10 +1,11 @@
 package cs5004.animator.view;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.List;
+
+import javax.swing.*;
+
 import cs5004.animator.shape.IShape;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 
 /**
  * Class that creates the frame of the animation.
@@ -23,9 +24,9 @@ public class Canvas extends JFrame {
    * @param y coordinate of the canvas on the screen.
    * @param width of the canvas window.
    * @param height of the canvas window.
-   * @param model containing the list of shapes to show in the window.
+   * @param listOfShapes containing the list of shapes to show in the window.
    */
-  public Canvas(double x, double y, double width, double height, List<IShape> model) {
+  public Canvas(double x, double y, double width, double height, List<IShape> listOfShapes) {
     super("Easy Animator");
     JScrollPane scrollPane;
     this.width = (int) width;
@@ -33,7 +34,7 @@ public class Canvas extends JFrame {
     setSize(this.width, this.height);
     setLocation((int) x, (int) y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.panel = new ShapesPanel(model);
+    this.panel = new ShapesPanel(listOfShapes);
     this.panel.setPreferredSize(new Dimension((int) width * 2, (int) height * 2));
     scrollPane = new JScrollPane(panel);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);

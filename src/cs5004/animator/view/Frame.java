@@ -1,6 +1,8 @@
 package cs5004.animator.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.List;
 
@@ -12,17 +14,18 @@ import cs5004.animator.shape.IShape;
  * Class that creates the frame of the animation. The class extends the JFrame class of Java Swing.
  */
 public class Frame extends JFrame {
-  private ShapesPanel animation;
-  private JScrollPane scrollPane;
-  private JMenuBar menu;
-  private JMenu file;
-  private JMenuItem exit;
-  private int width;
-  private int height;
+  ShapesPanel animation;
+  JScrollPane scrollPane;
+  JMenuBar menu;
+  JMenu file;
+  JMenuItem exit;
+  int width;
+  int height;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
    *
+
    * @param width  of the canvas window.
    * @param height of the canvas window.
    */
@@ -38,6 +41,7 @@ public class Frame extends JFrame {
     this.setLayout(new BorderLayout());
     this.animation = animation;
     this.scrollPane = scrollPane;
+    //this.view = view;
 
     // adds menu option
     this.menu = new JMenuBar();
@@ -46,6 +50,12 @@ public class Frame extends JFrame {
     this.exit.setName("exit");
     this.file.add(exit);
 
+    exit.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+      }
+    });
     this.menu.add(file);
     this.setJMenuBar(menu);
 
@@ -59,8 +69,13 @@ public class Frame extends JFrame {
   }
 
   public void currentView(List<IShape> currentShapes) {
+
     this.animation.setShapes(currentShapes);
     this.animation.repaint();
+  }
+
+  public void addActionListener(ActionListener listenForButton) {
+    this.exit.addActionListener(listenForButton);
   }
 
   public void setCommandButtonListener(MouseListener mouseEvent) {

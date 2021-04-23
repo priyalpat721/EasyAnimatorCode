@@ -1,8 +1,6 @@
 package cs5004.animator.view;
 
-import java.util.Objects;
-
-import cs5004.animator.model.IAnimatorModel;
+import java.util.List;
 
 /**
  * This class represents a Text view.
@@ -10,8 +8,8 @@ import cs5004.animator.model.IAnimatorModel;
  * This class generates animation events in text format.
  * The class implements the interface IAnimatorView.
  */
-public class TextView implements IAnimatorView {
-  private String result;
+public class TextView implements IAnimatorView<String> {
+  String result;
 
   /**
    * Constructs a Text view object.
@@ -21,21 +19,18 @@ public class TextView implements IAnimatorView {
   }
 
   @Override
-  public void create(IAnimatorModel model, int speed) {
-    Objects.requireNonNull(model, "Must have non-null model");
-    if (speed <= 0) {
-      throw new IllegalArgumentException("Speed must be greater than zero");
-    }
-
-    result = model.toString(speed);
+  public void create(List modelData) {
+    result = (String) modelData.get(0);
   }
 
   /**
    * Generates a String representation of the SVG view.
    * @return a String representation of the SVG view.
    */
+  @Override
   public String generate() {
-    return this.result;
+    String result = this.result;
+    return result;
   }
 
 }
