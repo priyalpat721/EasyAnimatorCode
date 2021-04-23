@@ -76,6 +76,7 @@ public class IAnimatorViewTest {
 
   @Test
   public void testSVGView() throws FileNotFoundException {
+    // testing TextView manually populated model
     IAnimatorModel manualModel = populateModelManual();
     SVGView svgManual = new SVGView();
     String[] args = {"-in smalldemo.txt", "-view svg"};
@@ -128,52 +129,113 @@ public class IAnimatorViewTest {
 
 
     // testing automated populated model
-//    IAnimatorModel automaticModel = populateModelAutomatic();
-//    SVGView svgAuto = new SVGView();
-//    IAnimatorController control2 = new AnimatorControllerImpl(automaticModel, svgAuto, 1);
-//    System.out.println(control2.getSVGView());
+    IAnimatorModel automaticModel = populateModelAutomatic();
+    SVGView svgAuto = new SVGView();
+    IAnimatorController control2 = new AnimatorControllerImpl(args, automaticModel, svgAuto);
+    assertEquals("<svg viewBox=\"200 70 360 360\" version=\"1.1\" "
+                 + "xmlns=\"http://www.w3.org/2000/svg\">\n"
+                 + "\n"
+                 + "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" "
+                 + "fill=\"rgb(255,0,0)\" visibility=\"hidden\" >\n"
+                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" to=\""
+                 + "visible\" begin=\"10ms\" dur=\"90ms\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"100ms\" dur=\"400ms\" "
+                 + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"100ms\" dur=\"400ms\" "
+                 + "attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"500ms\" dur=\"10ms\" "
+                 + "fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"510ms\" dur=\"190ms\" "
+                 + "attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"510ms\" dur=\"190ms\" "
+                 + "attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"700ms\" dur=\"300ms\" "
+                 + "attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"700ms\" dur=\"300ms\" "
+                 + "attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+                 + "</rect>\n\n"
+                 + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"120\" ry=\"60\" "
+                 + "fill=\"rgb(0,0,255)\" visibility=\"hidden\" >\n"
+                 + "\t<set attributeName=\"visibility\" attributeType=\"CSS\" "
+                 + "to=\"visible\" begin=\"60ms\" dur=\"140ms\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"200ms\" dur=\"300ms\" "
+                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"200ms\" dur=\"300ms\" "
+                 + "attributeName=\"cy\" from=\"70\" to=\"250\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"500ms\" dur=\"200ms\" "
+                 + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"500ms\" dur=\"200ms\" "
+                 + "attributeName=\"cy\" from=\"250\" to=\"370\" fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"500ms\" dur=\"200ms\" "
+                 + "attributeName=\"fill\" from=\"rgb(0,0,255)\" to=\"rgb(0,170,85)\" "
+                 + "fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"700ms\" dur=\"100ms\" "
+                 + "attributeName=\"fill\" from=\"rgb(0,170,85)\" to=\"rgb(0,255,0)\" "
+                 + "fill=\"freeze\" />\n"
+                 + "\t<animate attributeType=\"xml\" begin=\"800ms\" dur=\"200ms\" "
+                 + "fill=\"freeze\" />\n"
+                 + "</ellipse>\n\n"
+                 + "</svg>", control2.getSVGView());
   }
-//
-//  @Test
-//  public void testTextView() throws FileNotFoundException {
-//    IAnimatorModel manualModel = populateModelManual();
-//    TextView textManual = new TextView();
-//    IAnimatorController control = new AnimatorControllerImpl(manualModel, textManual, 1);
-//    assertEquals("Shapes:\n"
-//                 + "Name: R\n"
-//                 + "Type: rectangle\n"
-//                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (255.0,0.0,0.0)\n"
-//                 + "Appears at t=1\n"
-//                 + "Disappears at t=100\n"
-//                 + "\n"
-//                 + "Name: C\n"
-//                 + "Type: ellipse\n"
-//                 + "Center: (440.0,70.0), X radius: 120.0, Y radius: 60.0, Color: (0.0,0.0,255.0)\n"
-//                 + "Appears at t=6\n"
-//                 + "Disappears at t=100\n"
-//                 + "\n"
-//                 + "Speed of animation: 1 tick(s) per second\n"
-//                 + "\n"
-//                 + "Shape R moves from (200.0, 200.0) to (300.0, 300.0) from time t=10 to t=50\n"
-//                 + "Shape R scales from Width: 50.0, Height: 100.0 "
-//                 + "to Width: 25.0, Height: 100.0 from time t=51 to t=70\n"
-//                 + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100\n"
-//                 + "Shape C moves from (440.0, 70.0) to (440.0, 250.0) from time t=20 to t=50\n"
-//                 + "Shape C moves from (440.0, 250.0) to (440.0, 370.0) from time t=50 to t=70\n"
-//                 + "Shape C changes color from (0.0,0.0,255.0) to (0.0,170.0,85.0) "
-//                 + "from time t=50 to t=70\n"
-//                 + "Shape C changes color from (0.0,170.0,85.0) to (0.0,255.0,0.0) "
-//                 + "from time t=70 to t=80\n", control.getTextView());
 
-    // testing automated populated model
-//    IAnimatorModel automaticModel = populateModelAutomatic();
-//    TextView textAuto = new TextView();
-//    IAnimatorController control1 = new AnimatorControllerImpl(automaticModel, textManual, 1);
-//    System.out.println(control1.getTextView());
+  @Test
+  public void testTextView() throws FileNotFoundException {
+    // testing TextView manually populated model
+    IAnimatorModel manualModel = populateModelManual();
+    TextView textManual = new TextView();
+    String[] args = {"-in smalldemo.txt", "-view text"};
+    IAnimatorController control3 = new AnimatorControllerImpl(args, manualModel, textManual);
+    assertEquals("Shapes:\n"
+                 + "Name: R\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (255.0,0.0,0.0)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "\nName: C\n"
+                 + "Type: ellipse\n"
+                 + "Center: (440.0,70.0), X radius: 120.0, Y radius: 60.0, Color: (0.0,0.0,255.0)\n"
+                 + "Appears at t=6\n"
+                 + "Disappears at t=100\n\n"
+                 + "Speed of animation: 10 tick(s) per second\n\n"
+                 + "Shape R moves from (200.0, 200.0) to (300.0, 300.0) from time t=10 to t=50\n"
+                 + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, "
+                 + "Height: 100.0 from time t=51 to t=70\n"
+                 + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100\n"
+                 + "Shape C moves from (440.0, 70.0) to (440.0, 250.0) from time t=20 to t=50\n"
+                 + "Shape C moves from (440.0, 250.0) to (440.0, 370.0) from time t=50 to t=70\n"
+                 + "Shape C changes color from (0.0,0.0,255.0) to (0.0,170.0,85.0) "
+                 + "from time t=50 to t=70\n"
+                 + "Shape C changes color from (0.0,170.0,85.0) to (0.0,255.0,0.0) "
+                 + "from time t=70 to t=80\n", control3.getTextView());
 
-//  }
-
-
-
-
+    // testing TextView automated populated model
+    IAnimatorModel automaticModel = populateModelAutomatic();
+    TextView textAuto = new TextView();
+    IAnimatorController control4 = new AnimatorControllerImpl(args, automaticModel, textAuto);
+    assertEquals("Shapes:\n"
+                 + "Name: R\n"
+                 + "Type: rectangle\n"
+                 + "Min corner: (200.0,200.0), Width: 50.0, Height: 100.0, Color: (255.0,0.0,0.0)\n"
+                 + "Appears at t=1\n"
+                 + "Disappears at t=100\n"
+                 + "\n"
+                 + "Name: C\n"
+                 + "Type: ellipse\n"
+                 + "Center: (440.0,70.0), X radius: 120.0, Y radius: 60.0, Color: (0.0,0.0,255.0)\n"
+                 + "Appears at t=6\n"
+                 + "Disappears at t=100\n"
+                 + "\n"
+                 + "Speed of animation: 10 tick(s) per second\n"
+                 + "\n"
+                 + "Shape R moves from (200.0, 200.0) to (300.0, 300.0) from time t=10 to t=50\n"
+                 + "Shape R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 "
+                 + "from time t=51 to t=70\n"
+                 + "Shape R moves from (300.0, 300.0) to (200.0, 200.0) from time t=70 to t=100\n"
+                 + "Shape C moves from (440.0, 70.0) to (440.0, 250.0) from time t=20 to t=50\n"
+                 + "Shape C moves from (440.0, 250.0) to (440.0, 370.0) from time t=50 to t=70\n"
+                 + "Shape C changes color from (0.0,0.0,255.0) to (0.0,170.0,85.0) from time t=50 "
+                 + "to t=70\n"
+                 + "Shape C changes color from (0.0,170.0,85.0) to (0.0,255.0,0.0) from time t=70 "
+                 + "to t=80\n", control4.getTextView());
+  }
 }
