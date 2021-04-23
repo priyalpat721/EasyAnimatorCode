@@ -10,14 +10,21 @@ import cs5004.animator.view.EditorView;
 
 
 /**
- * Class that implements the IAnimatorController interface.
- * It represents the operations managed by EasyAnimator and enables user to control animations manually.
+ * This class represents a controller.
+ * It takes input from the user and delegates to the model and the view.
+ * It implements the interface IAnimatorController.
  */
 public class AnimatorControllerImpl implements IAnimatorController {
   private final IAnimatorModel model;
   private final EditorView view;
   private final int speed;
 
+  /**
+   * Constructs an Animator Controller object.
+   * @param model the model.
+   * @param view the view.
+   * @param speed the speed of the animation.
+   */
   public AnimatorControllerImpl(IAnimatorModel model, EditorView view, int speed) {
     this.model = model;
     this.view = view;
@@ -37,6 +44,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
 
+  /**
+   * This class represents a mouse listener object.
+   * It extends MouseAdapter.
+   */
   private class MouseHandler extends MouseAdapter {
 
     @Override
@@ -75,6 +86,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
 
+  /**
+   * This class represents a keyboard listener object.
+   * It extends KeyAdapter.
+   */
   private class KeyboardHandler extends KeyAdapter {
 
     @Override
