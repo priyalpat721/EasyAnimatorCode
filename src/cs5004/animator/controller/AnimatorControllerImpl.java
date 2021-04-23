@@ -45,7 +45,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
 
   /**
-   * This class represents a mouse listener object.
+   * This private class represents a mouse listener object.
    * It extends MouseAdapter.
    */
   private class MouseHandler extends MouseAdapter {
@@ -87,7 +87,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
 
   /**
-   * This class represents a keyboard listener object.
+   * This private class represents a keyboard listener object.
    * It extends KeyAdapter.
    */
   private class KeyboardHandler extends KeyAdapter {
