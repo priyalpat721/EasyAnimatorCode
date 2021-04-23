@@ -39,7 +39,6 @@ public class Frame extends JFrame {
     this.setLayout(new BorderLayout());
     this.animation = animation;
     this.scrollPane = scrollPane;
-    //this.view = view;
 
     // adds menu option
     this.menu = new JMenuBar();
@@ -48,7 +47,6 @@ public class Frame extends JFrame {
     this.exit.setName("exit");
     this.file.add(exit);
 
-//    exit.addActionListener(this);
     this.menu.add(file);
     this.setJMenuBar(menu);
 
