@@ -123,7 +123,7 @@ public class Helpers {
   }
 
   /**
-   * Generates 1 of 4 available views: svg, text, visual, and playback.
+   * Generates 1 of 3 views: svg, text, and visual.
    * @param model the animator model.
    * @param viewType the type of the view.
    * @param outputFile the output file.
