@@ -127,27 +127,22 @@ public class Helpers {
    * @param model the animator model.
    * @param viewType the type of the view.
    * @param outputFile the output file.
-   * @param givenSpeed the speed of the animation.
+   * @param speed the speed of the animation.
    * @throws NullPointerException if the parameters are null.
    */
   public static void generateView(IAnimatorModel model, String viewType,
-                                  String outputFile, String givenSpeed) {
+                                  String outputFile, int speed) {
     Objects.requireNonNull(model, "Must have non-null model");
     Objects.requireNonNull(viewType, "Must have non-null view");
     Objects.requireNonNull(outputFile, "Must have non-null output file");
-    Objects.requireNonNull(givenSpeed, "Must have non-null speed");
 
     if (model.getLogOfShapes().isEmpty()) {
       showMessage("Animation is empty", 2);
       System.exit(0);
     }
 
-    int speed = 1;
-    if (!givenSpeed.equals("")) {
-      speed = Integer.parseInt(givenSpeed);
-      if (speed <= 0) {
-        speed = 1;
-      }
+    if (speed <= 0) {
+      speed = 1;
     }
 
     String content = "";
@@ -237,6 +232,25 @@ public class Helpers {
     }
 
     return in;
+  }
+
+  /**
+   * Gets the speed of the animation.
+   * The default speed is 1.
+   * @param givenSpeed the given speed.
+   * @return the speed of the animation.
+   */
+  public static int getSpeed(String givenSpeed) {
+    int speed = 1;
+
+    if (!givenSpeed.equals("")) {
+      speed = Integer.parseInt(givenSpeed);
+      if (speed <= 0) {
+        speed = 1;
+      }
+    }
+
+    return speed;
   }
 
 }

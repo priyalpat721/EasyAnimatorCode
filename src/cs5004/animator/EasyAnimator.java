@@ -9,6 +9,7 @@ import cs5004.animator.view.EditorView;
 
 import static cs5004.animator.tools.Helpers.generateView;
 import static cs5004.animator.tools.Helpers.getInputFile;
+import static cs5004.animator.tools.Helpers.getSpeed;
 import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
@@ -27,7 +28,7 @@ public final class EasyAnimator {
     String input = commands[0];
     String view = commands[1];
     String output = commands[2];
-    String speed = commands[3];
+    int speed = getSpeed(commands[3]);
 
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = getInputFile(input);

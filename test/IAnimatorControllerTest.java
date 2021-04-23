@@ -34,7 +34,7 @@ public class IAnimatorControllerTest {
   public void setUp() {
     model = new AnimatorModelImpl();
     view = new MockView();
-    controller = new AnimatorControllerImpl(model, view, "1");
+    controller = new AnimatorControllerImpl(model, view, 1);
 
     originalOut = System.out;
     outContent = new ByteArrayOutputStream();

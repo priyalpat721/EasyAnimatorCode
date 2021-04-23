@@ -16,19 +16,12 @@ import cs5004.animator.view.EditorView;
 public class AnimatorControllerImpl implements IAnimatorController {
   private final IAnimatorModel model;
   private final EditorView view;
-  private int speed;
+  private final int speed;
 
-  public AnimatorControllerImpl(IAnimatorModel model, EditorView view, String givenSpeed) {
+  public AnimatorControllerImpl(IAnimatorModel model, EditorView view, int speed) {
     this.model = model;
     this.view = view;
-
-    this.speed = 1;
-    if (!givenSpeed.equals("")) {
-      this.speed = Integer.parseInt(givenSpeed);
-      if (this.speed <= 0) {
-        this.speed = 1;
-      }
-    }
+    this.speed = speed;
   }
 
   @Override
