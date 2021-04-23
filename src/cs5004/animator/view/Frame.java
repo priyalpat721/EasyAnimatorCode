@@ -59,7 +59,6 @@ public class Frame extends JFrame {
   }
 
   public void currentView(List<IShape> currentShapes) {
-
     this.animation.setShapes(currentShapes);
     this.animation.repaint();
   }
