@@ -23,7 +23,6 @@ public class Frame extends JFrame {
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
    *
-
    * @param width  of the canvas window.
    * @param height of the canvas window.
    */
