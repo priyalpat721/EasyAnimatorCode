@@ -28,8 +28,8 @@ public class IAnimatorControllerTest {
   private IAnimatorModel model;
   private MockView view;
   private IAnimatorController controller;
-  private OutputStream newOut;
   private PrintStream originalOut;
+  private OutputStream newOut;
 
   @Before
   public void setUp() {
