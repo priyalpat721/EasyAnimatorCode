@@ -12,13 +12,13 @@ import cs5004.animator.shape.IShape;
  * Class that creates the frame of the animation. The class extends the JFrame class of Java Swing.
  */
 public class Frame extends JFrame {
-  ShapesPanel animation;
-  JScrollPane scrollPane;
-  JMenuBar menu;
-  JMenu file;
-  JMenuItem exit;
-  int width;
-  int height;
+  private ShapesPanel animation;
+  private JScrollPane scrollPane;
+  private JMenuBar menu;
+  private JMenu file;
+  private JMenuItem exit;
+  private int width;
+  private int height;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
