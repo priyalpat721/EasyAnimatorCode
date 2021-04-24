@@ -126,6 +126,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   @Override
   public void getPlayBackView() {
+    JFrame.setDefaultLookAndFeelDecorated(true);
     playback = (PlayBack) view;
     modelData = new LinkedList<>();
     double width = model.getBox()[2];
@@ -394,6 +395,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * A private method that creates a help center for the animation's controls.
    */
   private void help() {
+    JFrame.setDefaultLookAndFeelDecorated(true);
     JLabel welcome = new JLabel("    Welcome! Here are the controls\n\n");
     welcome.setFont(new Font("Serif", Font.BOLD, 18));
     JPanel panel = new JPanel(new BorderLayout());
@@ -401,9 +403,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
     // makes the table for the functions
     JScrollPane help = new JScrollPane();
-    help.setSize(new Dimension(300, 300));
     String[] heading = {"Buttons", "KeyBoard Keys"};
-    String[][] functions = {{"Play", "Enter"}, {"Pause", "SpaceBar"}, {"Resume", "s"},
+    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "s"},
             {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
             {"Exit", "esc"}};
     JTable controls = new JTable(functions, heading);
@@ -411,11 +412,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
     help.setViewportView(controls);
     panel.add(help, BorderLayout.CENTER);
     JLabel note = new JLabel("Note: Click on loop to enable/diable");
-    note.setFont(new Font("Serif", Font.BOLD, 16));
+    note.setFont(new Font("Serif", Font.BOLD, 14));
     panel.add(note, BorderLayout.SOUTH);
     JFrame helpCenter = new JFrame();
     helpCenter.add(panel);
-    helpCenter.setSize(new Dimension(299, 234));
+    helpCenter.setSize(new Dimension(400, 227));
     helpCenter.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     helpCenter.setVisible(true);
   }

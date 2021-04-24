@@ -33,6 +33,7 @@ public class Frame extends JFrame {
   public Frame(double width, double height,
                ShapesPanel animation) {
     super("Easy Animator");
+    JFrame.setDefaultLookAndFeelDecorated(true);
     this.width = (int) width;
     this.height = (int) height;
 
