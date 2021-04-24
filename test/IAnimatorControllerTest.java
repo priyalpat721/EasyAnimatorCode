@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -87,7 +88,6 @@ public class IAnimatorControllerTest {
     view.getFrame().getKeyListeners()[0].keyPressed(keyL);
     view.getFrame().getKeyListeners()[0].keyPressed(period);
     view.getFrame().getKeyListeners()[0].keyPressed(comma);
-
 
     assertEquals("play" + lineSeparator() + "pause" + lineSeparator()
                  + "resume" + lineSeparator() + "restart" + lineSeparator()
