@@ -9,7 +9,7 @@ We implemented a single controller for all our views in the package cs5004.anima
 This required extensive refactoring from our previous submission to make sure that the MVC architecture pattern was correctly followed.
 
 The AnimatorControllerImpl implements the interface IAnimatorController and our 4 views implement the interface IAnimatorView with a new method generate().
-We implemented our new PlayBack view using Swing elements: JButtons, JPanel, Timer, etc.
+We implemented our new PlayBack view using Swing elements: JButton, JPanel, JCheckBox, etc.
 
 
 Controller.go() selects the appropriate view and calls the right method:
