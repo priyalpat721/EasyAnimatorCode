@@ -189,8 +189,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
    */
   public void restart() {
     timer.stop();
-    speed = initialSpeed;
-    timer.setDelay(1000 / speed);
+//    speed = initialSpeed;
+    timer.setDelay(1000 / initialSpeed);
     count = 0;
     timer.start();
     loop = false;
