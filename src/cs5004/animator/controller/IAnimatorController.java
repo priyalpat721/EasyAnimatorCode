@@ -14,6 +14,8 @@ public interface IAnimatorController {
 
   /**
    * Getter for the SVG view.
+   *
+   * @return SVG representation of the animation.
    */
   String getSVGView();
 
@@ -33,9 +35,7 @@ public interface IAnimatorController {
   void generateView();
 
   /**
-   * Initiates mouse handlers for Mouse and for Keyboard.
-   * Sets command listeners for Mouse and Keyboard in PlayBackView.
-   * Makes the PlayBack frame visible.
+   * Initiates the controller.
    */
   void go();
 
