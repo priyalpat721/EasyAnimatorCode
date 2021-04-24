@@ -75,14 +75,15 @@ public class PlayBack implements IAnimatorView<Frame> {
   public void create(List modelData) {
     ShapesPanel animation = new ShapesPanel((List<IShape>) modelData.get(2));
     animation.setLayout(new BorderLayout());
-    animation.setPreferredSize(new Dimension((int) (double) modelData.get(0),
-            ((int) (double) modelData.get(1))));
+    animation.setPreferredSize(new Dimension(((int) (double) modelData.get(0) + 100),
+            ((int) (double) modelData.get(1)) + 200)) ;
 
     JScrollPane scrollPane = new JScrollPane(animation);
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(800, 600, animation, scrollPane);
+    this.frame = new Frame((double)modelData.get(0), (double)modelData.get(1),
+            animation, scrollPane);
 
     this.frame.add(scrollPane);
     animation.setVisible(true);
@@ -110,6 +111,13 @@ public class PlayBack implements IAnimatorView<Frame> {
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
     frame.addKeyListener(keyEvent);
+    play.addKeyListener(keyEvent);
+    pause.addKeyListener(keyEvent);
+    resume.addKeyListener(keyEvent);
+    restart.addKeyListener(keyEvent);
+    loop.addKeyListener(keyEvent);
+    increaseSpeed.addKeyListener(keyEvent);
+    decreaseSpeed.addKeyListener(keyEvent);
   }
 
   /**

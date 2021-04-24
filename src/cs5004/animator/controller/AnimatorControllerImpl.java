@@ -157,6 +157,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
    */
   public void play() {
     timer.start();
+    count += 1;
+    if (loop) {
+      count = count % endTime;
+    }
+    frame.currentView(model.getShapesAtTicks(count));
   }
 
   /**
@@ -178,7 +183,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
    */
   public void restart() {
     timer.stop();
-    timer.setDelay(1000 / initialSpeed);
+    speed = initialSpeed;
+    timer.setDelay(1000 / speed);
     count = 0;
     timer.start();
     loop = false;

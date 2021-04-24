@@ -21,6 +21,7 @@ import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -51,7 +52,6 @@ public class IAnimatorControllerTest {
 
   @After
   public void resetStream() {
-    // reset System.out
     System.setOut(originalOut);
   }
 
@@ -88,8 +88,11 @@ public class IAnimatorControllerTest {
     view.getFrame().getKeyListeners()[0].keyPressed(period);
     view.getFrame().getKeyListeners()[0].keyPressed(comma);
 
-    assertEquals("play\npause\nresume\nrestart\nloop\nincreaseSpeed\ndecreaseSpeed\n",
-            newOut.toString());
+
+    assertEquals("play" + lineSeparator() + "pause" + lineSeparator()
+                 + "resume" + lineSeparator() + "restart" + lineSeparator()
+                 + "loop" + lineSeparator() + "increaseSpeed"
+                 + lineSeparator() + "decreaseSpeed", newOut.toString().trim());
   }
 
   /**
