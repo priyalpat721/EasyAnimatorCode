@@ -52,7 +52,7 @@ Example with "Play":
 5) actionPerformed triggers and works on the canvas to display the animation
 
 
-Our controller is also capable of creating files in case the user wants to output an svg or text animation.
+Our controller is also capable of creating files in case the user wants to output an svg or text animation, and it can also handle different speeds.
 
 
 To test the controller, we created a mock controller that extends AnimatorControllerImpl and a mock view that extends PlayBack. Then, we simulated keyboard events to make sure that the controller gets the right signals.
