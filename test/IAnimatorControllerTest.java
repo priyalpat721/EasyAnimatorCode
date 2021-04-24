@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -100,7 +99,7 @@ public class IAnimatorControllerTest {
    * It extends AnimatorControllerImpl.
    */
   private class MockController extends AnimatorControllerImpl {
-    private MockView view;
+    private final MockView view;
 
     /**
      * Constructs a mock controller object.
