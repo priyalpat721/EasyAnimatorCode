@@ -104,6 +104,13 @@ public class PlayBack implements IAnimatorView<Frame> {
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
     frame.addKeyListener(keyEvent);
+    play.addKeyListener(keyEvent);
+    pause.addKeyListener(keyEvent);
+    resume.addKeyListener(keyEvent);
+    restart.addKeyListener(keyEvent);
+    loop.addKeyListener(keyEvent);
+    increaseSpeed.addKeyListener(keyEvent);
+    decreaseSpeed.addKeyListener(keyEvent);
   }
 
   /**
