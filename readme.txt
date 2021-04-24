@@ -34,13 +34,13 @@ The controller creates Mouse and Keyboard listeners to execute the actions and c
 
 Steps - PlayBack view example:
 1) User input on terminal: java -jar project.jar -in foo.txt -view playback
-1) Main instantiates the model, an empty view, and a controller
-2) Main relinquishes control to the controller calling controller.go()
-3) go() selects the PlayBack view 
-4) go() creates the PlayBack view by calling getPlayBackView()
-5) go() creates mouse and keyboard listeners
-6) go() initiates the listeners in the PlayBack view
-7) go() makes the PlayBack view visible and focused
+2) Main instantiates the model, an empty view, and a controller
+3) Main relinquishes control to the controller calling controller.go()
+4) go() selects the PlayBack view
+5) go() creates the PlayBack view by calling getPlayBackView()
+6) go() creates mouse and keyboard listeners
+7) go() initiates the listeners in the PlayBack view
+8) go() makes the PlayBack view visible and focused
 
 
 The user can use the mouse or the keyboard to trigger actions on the animation.
