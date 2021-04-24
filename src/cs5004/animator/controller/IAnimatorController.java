@@ -33,10 +33,17 @@ public interface IAnimatorController {
   void getPlayBackView();
 
   /**
+   * Generates the view.
+   */
+  void generateView();
+
+  /**
    * Initiates mouse handlers for Mouse and for Keyboard.
    * Sets command listeners for Mouse and Keyboard in PlayBackView.
    * Makes the PlayBack frame visible.
    */
   void go();
+
+
 
 }

@@ -59,20 +59,20 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * @param view type of view for the animation.
    */
   public AnimatorControllerImpl(String[] args, IAnimatorModel model, IAnimatorView view) {
-//    String[] commands = parseCommands(args);
+    String[] commands = parseCommands(args);
     this.model = model;
     this.view = view;
     this.endTime = model.getTotalTime()[1];
     this.count = 0;
-//    this.viewType = commands[1];
-//    this.output = commands[2];
-//    this.speed = getSpeed(commands[3]);
-//    this.initialSpeed = speed;
-
-    this.viewType = "playback";
-    this.speed = 10;
+    this.viewType = commands[1];
+    this.output = commands[2];
+    this.speed = getSpeed(commands[3]);
     this.initialSpeed = speed;
-    this.output = "";
+
+//    this.viewType = "playback";
+//    this.speed = 10;
+//    this.initialSpeed = speed;
+//    this.output = "";
   }
 
   @Override
@@ -309,9 +309,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  /**
-   * Generates the view.
-   */
+  @Override
   public void generateView() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
