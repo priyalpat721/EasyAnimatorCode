@@ -49,7 +49,7 @@ Example with "Play":
 2) The play button is listened by the mouse and the enter is listened by the keyboard
 3) The method play() in the controller is triggered
 4) The timer starts
-5) actionPerfomed triggers and works on the canvas to display the animation
+5) actionPerformed triggers and works on the canvas to display the animation
 
 
 Our controller is also capable of creating files in case the user wants to output an svg or text animation.
