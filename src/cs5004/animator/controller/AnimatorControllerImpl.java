@@ -161,11 +161,13 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * Starts the timer.
    */
   public void play() {
-    count += 1;
-    if (loop) {
-      count = count % endTime;
-    }
-    frame.currentView(model.getShapesAtTicks(count));
+//    count += 1;
+//    if (loop) {
+//      count = count % endTime;
+//    }
+//    frame.currentView(model.getShapesAtTicks(count));
+    count = 0;
+    timer.start();
   }
 
   /**
@@ -215,7 +217,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     if (speed - 1 <= 0) {
       speed = 1;
     } else {
-      speed = speed - 1;
+      speed -= 1;
     }
     timer.setDelay(1000 / speed);
   }
@@ -224,7 +226,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * Increases the speed.
    */
   public void increaseSpeed() {
-    speed = speed + 1;
+    speed += 1;
     timer.setDelay(1000 / speed);
   }
 
@@ -275,8 +277,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
         switch (e.getComponent().getName()) {
           case "play":
-            timer.start();
-            count = 0;
+//            timer.start();
+//            count = 0;
             play();
             break;
           case "pause":
