@@ -27,8 +27,9 @@ import static cs5004.animator.tools.Helpers.parseCommands;
 import static cs5004.animator.tools.Helpers.showMessage;
 
 /**
- * Class that implements the IAnimatorController interface. It represents the operations managed by
- * EasyAnimator and enables user to control animations manually.
+ * This class represents a controller.
+ * It takes input from the user and delegates to the model and the view.
+ * It implements the IAnimatorController interface.
  */
 public class AnimatorControllerImpl implements IAnimatorController {
   private List modelData;
