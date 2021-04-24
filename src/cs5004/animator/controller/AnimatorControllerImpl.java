@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.*;
 
@@ -61,6 +62,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * @param view  type of view for the animation.
    */
   public AnimatorControllerImpl(String[] args, IAnimatorModel model, IAnimatorView view) {
+    Objects.requireNonNull(args, "Must have non-null args");
+    Objects.requireNonNull(model, "Must have non-null model");
+    Objects.requireNonNull(view, "Must have non-null view");
+
     String[] commands = parseCommands(args);
     this.model = model;
     this.view = view;
@@ -358,6 +363,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * @param content the content of the svg or text view.
    */
   private void generateOutput(String content) {
+    Objects.requireNonNull(content, "Must have non-null content");
+
     String[] outputFile = output.split("\\.");
     String fileName = "";
 
