@@ -65,11 +65,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
     this.output = commands[2];
     this.speed = getSpeed(commands[3]);
     this.initialSpeed = speed;
-
-//    this.viewType = "playback";
-//    this.speed = 10;
-//    this.initialSpeed = speed;
-//    this.output = "";
   }
 
   @Override
@@ -152,7 +147,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
             timer.setDelay(1000 / initialSpeed);
           }
         }
-        System.out.println("Count: " + count);
       }
     });
   }
