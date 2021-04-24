@@ -230,7 +230,36 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   @Override
   public void go() {
-    generateView();
+    if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
+      showMessage("Animation is empty", 2);
+      System.exit(0);
+    }
+
+    String content = "";
+    String[] outputFile = output.split("\\.");
+
+    switch (viewType) {
+      case "text":
+        content = getTextView();
+        break;
+      case "svg":
+        content = getSVGView();
+        break;
+      case "visual":
+        getVisualView();
+        break;
+      case "playback":
+        getPlayBackView();
+        MouseHandler mouse = new MouseHandler();
+        KeyboardHandler keyboard = new KeyboardHandler();
+        playback.setCommandButtonListener(mouse, keyboard);
+        playback.makeVisible();
+        playback.setFocus();
+        break;
+      default:
+        showMessage("Invalid view type", 2);
+        System.exit(0);
+    }
   }
 
 
@@ -334,7 +363,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
 
     String content = "";
-    String[] outputFile = output.split("\\.");
 
     switch (viewType) {
       case "text":
@@ -359,7 +387,13 @@ public class AnimatorControllerImpl implements IAnimatorController {
         System.exit(0);
     }
 
+    generateOutput(content);
+  }
+
+  private void generateOutput(String content) {
+    String[] outputFile = output.split("\\.");
     String fileName = "";
+
     if (!(viewType.equals("visual") || viewType.equals("playback"))) {
       try {
         if (viewType.equals("text")) {
