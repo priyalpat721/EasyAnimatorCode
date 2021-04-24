@@ -77,8 +77,7 @@ public class PlayBack implements IAnimatorView<Frame> {
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame((double)modelData.get(0), (double)modelData.get(1),
-            animation);
+    this.frame = new Frame(800, 600, animation);
 
     animation.setVisible(true);
     scrollPane.setVisible(true);
@@ -105,13 +104,6 @@ public class PlayBack implements IAnimatorView<Frame> {
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
     frame.addKeyListener(keyEvent);
-    play.addKeyListener(keyEvent);
-    pause.addKeyListener(keyEvent);
-    resume.addKeyListener(keyEvent);
-    restart.addKeyListener(keyEvent);
-    loop.addKeyListener(keyEvent);
-    increaseSpeed.addKeyListener(keyEvent);
-    decreaseSpeed.addKeyListener(keyEvent);
   }
 
   /**
