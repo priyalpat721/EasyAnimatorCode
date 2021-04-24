@@ -10,11 +10,7 @@ import java.util.EventListener;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JScrollPane;
-import javax.swing.JComponent;
+import javax.swing.*;
 
 import cs5004.animator.shape.IShape;
 
@@ -68,14 +64,13 @@ public class PlayBack implements IAnimatorView<Frame> {
     this.checkLoop = new JCheckBox("Looping enabled", false);
     this.removeMouseListener(checkLoop);
     buttons.add(checkLoop);
-
   }
 
   @Override
   public void create(List modelData) {
     ShapesPanel animation = new ShapesPanel((List<IShape>) modelData.get(2));
     animation.setLayout(new BorderLayout());
-    animation.setPreferredSize(new Dimension(((int) (double) modelData.get(0) + 100),
+    animation.setPreferredSize(new Dimension(((int) (double) modelData.get(0) + 400),
             ((int) (double) modelData.get(1)) + 200)) ;
 
     JScrollPane scrollPane = new JScrollPane(animation);
@@ -83,12 +78,11 @@ public class PlayBack implements IAnimatorView<Frame> {
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
     this.frame = new Frame((double)modelData.get(0), (double)modelData.get(1),
-            animation, scrollPane);
+            animation);
 
-    this.frame.add(scrollPane);
     animation.setVisible(true);
     scrollPane.setVisible(true);
-    this.frame.add(scrollPane, BorderLayout.CENTER);
+    this.frame.add(scrollPane, BorderLayout.CENTER, SwingConstants.CENTER);
     this.frame.add(buttons, BorderLayout.SOUTH);
     this.frame.setResizable(false);
   }

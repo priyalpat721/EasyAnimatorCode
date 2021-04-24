@@ -12,15 +12,16 @@ import cs5004.animator.shape.IShape;
 
 /**
  * Class that creates the frame of the animation. The class extends the JFrame class of Java Swing.
+ * This class is primarily used in the playback view.
  */
 public class Frame extends JFrame {
-  ShapesPanel animation;
-  JScrollPane scrollPane;
-  JMenuBar menu;
-  JMenu file;
-  JMenuItem exit;
-  int width;
-  int height;
+  private final ShapesPanel animation;
+  private final JMenuItem exit;
+  private final JMenuItem open;
+
+  private final int width;
+  private final int height;
+  private final JMenuItem help;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
@@ -30,7 +31,7 @@ public class Frame extends JFrame {
    * @param height of the canvas window.
    */
   public Frame(double width, double height,
-               ShapesPanel animation, JScrollPane scrollPane) {
+               ShapesPanel animation) {
     super("Easy Animator");
     this.width = (int) width;
     this.height = (int) height;
@@ -40,23 +41,27 @@ public class Frame extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
     this.animation = animation;
-    this.scrollPane = scrollPane;
-    //this.view = view;
 
     // adds menu option
-    this.menu = new JMenuBar();
-    this.file = new JMenu("File");
+    JMenuBar menu = new JMenuBar();
+    JMenu file = new JMenu("File");
+
+    this.open = new JMenuItem("Open");
+    this.open.setName("open");
+    file.add(open);
+    file.addSeparator();
+
+    this.help = new JMenuItem("Help");
+    this.help.setName("help");
+    file.add(help);
+    file.addSeparator();
+
+
     this.exit = new JMenuItem("Exit");
     this.exit.setName("exit");
-    this.file.add(exit);
+    file.add(exit);
 
-    exit.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
-      }
-    });
-    this.menu.add(file);
+    menu.add(file);
     this.setJMenuBar(menu);
 
     this.pack();
@@ -74,12 +79,10 @@ public class Frame extends JFrame {
     this.animation.repaint();
   }
 
-  public void addActionListener(ActionListener listenForButton) {
-    this.exit.addActionListener(listenForButton);
-  }
-
   public void setCommandButtonListener(MouseListener mouseEvent) {
     this.exit.addMouseListener(mouseEvent);
+    this.open.addMouseListener(mouseEvent);
+    this.help.addMouseListener(mouseEvent);
   }
 
 }

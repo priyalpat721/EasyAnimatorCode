@@ -160,7 +160,7 @@ public class IAnimatorControllerTest {
      * Constructs a mock view object.
      */
     private MockView() {
-      this.frame = new Frame(1, 1, null, null);
+      this.frame = new Frame(1, 1, null);
     }
 
     @Override
