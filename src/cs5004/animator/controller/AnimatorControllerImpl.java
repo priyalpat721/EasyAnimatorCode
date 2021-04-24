@@ -272,8 +272,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
         switch (e.getComponent().getName()) {
           case "play":
-//            timer.start();
-//            count = 0;
             play();
             break;
           case "pause":
