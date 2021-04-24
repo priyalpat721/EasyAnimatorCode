@@ -153,8 +153,11 @@ public class Helpers {
    * Generates a Readable source of characters.
    * @param inputFile the name of the file.
    * @return a Readable source of characters.
+   * @throws NullPointerException if input file is invalid.
    */
   public static Readable checkInputFile(String inputFile) {
+    Objects.requireNonNull(inputFile, "Must have non-null input file");
+
     Readable in = null;
 
     try {
@@ -172,8 +175,11 @@ public class Helpers {
    * The default speed is 1.
    * @param givenSpeed the given speed.
    * @return the speed of the animation.
+   * @throws NullPointerException if speed is invalid.
    */
   public static int getSpeed(String givenSpeed) {
+    Objects.requireNonNull(givenSpeed, "Must have non-null speed");
+
     int speed = 1;
 
     if (!givenSpeed.equals("")) {
@@ -190,8 +196,11 @@ public class Helpers {
    * Gets an instance of an IAnimatorView from a view type.
    * @param viewType the view type.
    * @return an instance of an IAnimatorView.
+   * @throws NullPointerException if the view is invalid.
    */
   public static IAnimatorView getView(String viewType) {
+    Objects.requireNonNull(viewType, "Must have non-null view type");
+
     IAnimatorView view = null;
 
     switch (viewType) {
