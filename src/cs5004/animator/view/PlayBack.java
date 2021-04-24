@@ -93,33 +93,6 @@ public class PlayBack implements IAnimatorView<Frame> {
   }
 
   /**
-   * Method that generates a JFrame frame containing the frames of the animation.
-   * @return a Jframe object containing the animation.
-   */
-  @Override
-  public Frame generate() {
-    return frame;
-  }
-
-  public void makeVisible() {
-    frame.setVisible(true);
-  }
-
-  public void setFocus() {
-    frame.requestFocus();
-  }
-
-  private void removeMouseListener(JComponent event) {
-    EventListener[] listeners = event.getListeners(MouseListener.class);
-    for (EventListener listener : listeners)
-      event.removeMouseListener((MouseListener) listener);
-  }
-
-  public JCheckBox getCheckLoop() {
-    return checkLoop;
-  }
-
-  /**
    * Adds mouse and keyboard listeners to components.
    * @param mouseEvent a mouse event.
    * @param keyEvent a keyboard event.
@@ -137,6 +110,33 @@ public class PlayBack implements IAnimatorView<Frame> {
     increaseSpeed.addMouseListener(mouseEvent);
     decreaseSpeed.addMouseListener(mouseEvent);
     frame.addKeyListener(keyEvent);
+  }
+
+  /**
+   * Method that generates a JFrame frame containing the frames of the animation.
+   * @return a Jframe object containing the animation.
+   */
+  @Override
+  public Frame generate() {
+    return frame;
+  }
+
+  public void makeVisible() {
+    frame.setVisible(true);
+  }
+
+  public void setFocus() {
+    frame.requestFocus();
+  }
+
+  public JCheckBox getCheckLoop() {
+    return checkLoop;
+  }
+
+  private void removeMouseListener(JComponent event) {
+    EventListener[] listeners = event.getListeners(MouseListener.class);
+    for (EventListener listener : listeners)
+      event.removeMouseListener((MouseListener) listener);
   }
 
 }
