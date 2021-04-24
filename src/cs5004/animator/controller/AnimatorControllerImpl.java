@@ -150,7 +150,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         if (loop) {
           if (count == endTime) {
             count = 0;
-            timer.setDelay(1000 / initialSpeed);
+            timer.setDelay(1000 / speed);
           }
         }
       }
