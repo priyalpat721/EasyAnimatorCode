@@ -60,6 +60,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * @param args  command-line arguments
    * @param model of the animation.
    * @param view  type of view for the animation.
+   * @throws NullPointerException if the args, model, or view are null.
    */
   public AnimatorControllerImpl(String[] args, IAnimatorModel model, IAnimatorView view) {
     Objects.requireNonNull(args, "Must have non-null args");
@@ -361,6 +362,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * Private method to generate an output.
    * The default is System.out.
    * @param content the content of the svg or text view.
+   * @throws NullPointerException if the content is null.
    */
   private void generateOutput(String content) {
     Objects.requireNonNull(content, "Must have non-null content");
