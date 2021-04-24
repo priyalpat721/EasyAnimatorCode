@@ -8,7 +8,6 @@ import cs5004.animator.shape.IShape;
  * This class represents a Visual view. This class renders animations visually. The class implements
  * the interface IAnimatorView.
  */
-
 public class VisualView implements IAnimatorView<Canvas> {
   private Canvas canvas;
 
