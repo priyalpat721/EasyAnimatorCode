@@ -17,9 +17,6 @@ import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
-import cs5004.animator.view.SVGView;
-import cs5004.animator.view.TextView;
-import cs5004.animator.view.VisualView;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -179,7 +176,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
    */
   public void resume() {
     timer.start();
-    timer.setDelay(1000 / speed);
   }
 
   /**
@@ -203,7 +199,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
       checkLoop.setSelected(true);
     } else {
       loop = false;
-//      timer.setDelay(1000 / speed);
       checkLoop.setSelected(false);
     }
   }
