@@ -105,7 +105,7 @@ public class IAnimatorControllerTest {
      * @param model the model.
      * @param view the view.
      */
-    public MockController(String[] args, IAnimatorModel model, IAnimatorView view) {
+    private MockController(String[] args, IAnimatorModel model, IAnimatorView view) {
       super(args, model, view);
       this.view = (MockView) view;
     }
