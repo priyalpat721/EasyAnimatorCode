@@ -236,7 +236,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
 
     String content = "";
-    String[] outputFile = output.split("\\.");
 
     switch (viewType) {
       case "text":
@@ -260,6 +259,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
         showMessage("Invalid view type", 2);
         System.exit(0);
     }
+
+    generateOutput(content);
   }
 
 
@@ -356,40 +357,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  private void generateView() {
-    if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
-      showMessage("Animation is empty", 2);
-      System.exit(0);
-    }
-
-    String content = "";
-
-    switch (viewType) {
-      case "text":
-        content = getTextView();
-        break;
-      case "svg":
-        content = getSVGView();
-        break;
-      case "visual":
-        getVisualView();
-        break;
-      case "playback":
-        getPlayBackView();
-        MouseHandler mouse = new MouseHandler();
-        KeyboardHandler keyboard = new KeyboardHandler();
-        playback.setCommandButtonListener(mouse, keyboard);
-        playback.makeVisible();
-        playback.setFocus();
-        break;
-      default:
-        showMessage("Invalid view type", 2);
-        System.exit(0);
-    }
-
-    generateOutput(content);
-  }
-
+  /**
+   * Private method to generate an output.
+   * The default is System.out.
+   * @param content the content of the svg or text view.
+   */
   private void generateOutput(String content) {
     String[] outputFile = output.split("\\.");
     String fileName = "";
