@@ -171,11 +171,6 @@ public class IAnimatorControllerTest {
       frame.addKeyListener(keyEvent);
     }
 
-    @Override
-    public void setFocus() {
-      frame.requestFocus();
-    }
-
     /**
      * Gets the frame.
      * @return the frame.
