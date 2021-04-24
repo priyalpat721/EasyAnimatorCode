@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
@@ -167,7 +167,6 @@ public class Helpers {
     return in;
   }
 
-
   /**
    * Gets the speed of the animation.
    * The default speed is 1.
@@ -187,6 +186,11 @@ public class Helpers {
     return speed;
   }
 
+  /**
+   * Gets an instance of an IAnimatorView from a view type.
+   * @param viewType the view type.
+   * @return an instance of an IAnimatorView.
+   */
   public static IAnimatorView getView(String viewType) {
     IAnimatorView view = null;
 
