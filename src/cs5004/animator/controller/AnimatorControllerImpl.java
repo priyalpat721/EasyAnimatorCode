@@ -10,7 +10,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.Timer;
+import javax.swing.JCheckBox;
 
 import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
@@ -44,7 +45,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   private Frame frame;
   private Timer timer;
   private int count;
-  private boolean animate;
+  private boolean loop;
   private int endTime;
   private JCheckBox checkLoop;
 
@@ -58,22 +59,23 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * @param view type of view for the animation.
    */
   public AnimatorControllerImpl(String[] args, IAnimatorModel model, IAnimatorView view) {
-    String[] commands = parseCommands(args);
+//    String[] commands = parseCommands(args);
     this.model = model;
     this.view = view;
     this.endTime = model.getTotalTime()[1];
     this.count = 0;
-    this.viewType = commands[1];
-    this.output = commands[2];
-    this.speed = getSpeed(commands[3]);
-    this.initialSpeed = speed;
+//    this.viewType = commands[1];
+//    this.output = commands[2];
+//    this.speed = getSpeed(commands[3]);
+//    this.initialSpeed = speed;
 
-//    this.viewType = "visual";
-//    this.speed = 10;
-//    this.initialSpeed = 1;
-//    this.output = "";
+    this.viewType = "playback";
+    this.speed = 10;
+    this.initialSpeed = speed;
+    this.output = "";
   }
 
+  @Override
   public String getTextView() {
     this.modelData = new LinkedList<>();
     this.result = model.toString(speed);
@@ -82,6 +84,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return (String) view.generate();
   }
 
+  @Override
   public String getSVGView() {
     modelData = new LinkedList<>();
     HashMap<String, List<IAction>> logOfAction = model.getLogOfActions();
@@ -96,6 +99,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return result;
   }
 
+  @Override
   public void getVisualView() {
     modelData = new LinkedList<>();
     double x = model.getBox()[0];
@@ -123,6 +127,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     timer.start();
   }
 
+  @Override
   public void getPlayBackView() {
     playback = (PlayBack) view;
     modelData = new LinkedList<>();
@@ -132,7 +137,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     modelData.add(width);
     modelData.add(height);
     modelData.add(listOfShapes);
-    this.animate = false;
+    this.loop = false;
     this.initialSpeed = speed;
     this.checkLoop = playback.getCheckLoop();
     playback.create(modelData);
@@ -144,47 +149,67 @@ public class AnimatorControllerImpl implements IAnimatorController {
       public void actionPerformed(ActionEvent e) {
         frame.currentView(model.getShapesAtTicks(count));
         count++;
+        if (loop) {
+          if (count == endTime) {
+            count = 0;
+          }
+        }
+        System.out.println("Count: " + count);
       }
     });
   }
 
+  /**
+   * Starts the timer.
+   */
   public void play() {
     timer.start();
-    count += 1;
-    if (animate) {
-      count = count % endTime;
-    }
   }
 
+  /**
+   * Stops the timer.
+   */
   public void pause() {
     timer.stop();
   }
 
+  /**
+   * Resumes the timer.
+   */
   public void resume() {
     timer.start();
     timer.setDelay(1000 / speed);
   }
 
+  /**
+   * Restarts the timer.
+   */
   public void restart() {
     timer.stop();
     timer.setDelay(1000 / initialSpeed);
     count = 0;
     timer.start();
-    animate = false;
+    loop = false;
     checkLoop.setSelected(false);
   }
 
+  /**
+   * Activates or deactivates the loop.
+   */
   public void loop() {
-    if (!animate) {
-      animate = true;
+    if (!loop) {
+      loop = true;
       checkLoop.setSelected(true);
     } else {
-      animate = false;
+      loop = false;
       timer.setDelay(1000 / speed);
       checkLoop.setSelected(false);
     }
   }
 
+  /**
+   * Decreases the speed.
+   */
   public void decreaseSpeed() {
     if (speed - 1 <= 0) {
       speed = 1;
@@ -194,6 +219,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     timer.setDelay(1000 / speed);
   }
 
+  /**
+   * Increases the speed.
+   */
   public void increaseSpeed() {
     speed = speed + 1;
     timer.setDelay(1000 / speed);
@@ -204,6 +232,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
     generateView();
   }
 
+  /**
+   * This class represents a mouse handler object.
+   * It extends MouseAdapter.
+   */
   public class MouseHandler extends MouseAdapter {
 
     @Override
@@ -241,6 +273,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
+  /**
+   * This class represents a keyboard handler object.
+   * It extends KeyAdapter.
+   */
   public class KeyboardHandler extends KeyAdapter {
 
     @Override
@@ -273,6 +309,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
+  /**
+   * Generates the view.
+   */
   public void generateView() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);

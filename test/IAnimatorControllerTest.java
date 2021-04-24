@@ -11,8 +11,6 @@ import java.io.FileReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import javax.swing.JScrollPane;
-
 import cs5004.animator.controller.AnimatorControllerImpl;
 import cs5004.animator.controller.IAnimatorController;
 import cs5004.animator.model.IAnimatorModel;
@@ -21,7 +19,6 @@ import cs5004.animator.utils.Builder;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
-import cs5004.animator.view.ShapesPanel;
 
 import static cs5004.animator.utils.AnimationReader.parseFile;
 import static org.junit.Assert.assertEquals;
@@ -95,9 +92,19 @@ public class IAnimatorControllerTest {
             newOut.toString());
   }
 
+  /**
+   * A private mock controller class to test the animator controller.
+   * It extends AnimatorControllerImpl.
+   */
   private class MockController extends AnimatorControllerImpl {
     private MockView view;
 
+    /**
+     * Constructs a mock controller object.
+     * @param args command-line arguments.
+     * @param model the model.
+     * @param view the view.
+     */
     public MockController(String[] args, IAnimatorModel model, IAnimatorView view) {
       super(args, model, view);
       this.view = (MockView) view;
@@ -137,25 +144,20 @@ public class IAnimatorControllerTest {
     public void increaseSpeed() {
       System.out.println("increaseSpeed");
     }
-
   }
-
 
   /**
    * A private mock view class to test the animator controller.
+   * It extends PlayBack.
    */
   private class MockView extends PlayBack {
     private final Frame frame;
-    private final ShapesPanel animation;
-    private final JScrollPane scrollPane;
 
     /**
      * Constructs a mock view object.
      */
     private MockView() {
-      this.animation = null;
-      this.scrollPane = new JScrollPane(null);
-      this.frame = new Frame(1, 1, animation, scrollPane);
+      this.frame = new Frame(1, 1, null, null);
     }
 
     @Override
@@ -172,6 +174,10 @@ public class IAnimatorControllerTest {
       frame.requestFocus();
     }
 
+    /**
+     * Gets the frame.
+     * @return the frame.
+     */
     public Frame getFrame() {
       return this.frame;
     }

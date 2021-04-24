@@ -1,13 +1,20 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.util.EventListener;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JScrollPane;
+import javax.swing.JComponent;
 
 import cs5004.animator.shape.IShape;
 
@@ -75,7 +82,7 @@ public class PlayBack implements IAnimatorView<Frame> {
     scrollPane.setHorizontalScrollBarPolicy(scrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scrollPane.setVerticalScrollBarPolicy(scrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-    this.frame = new Frame(850, 700, animation, scrollPane);
+    this.frame = new Frame(800, 600, animation, scrollPane);
 
     this.frame.add(scrollPane);
     animation.setVisible(true);
@@ -89,7 +96,6 @@ public class PlayBack implements IAnimatorView<Frame> {
    * Method that generates a JFrame frame containing the frames of the animation.
    * @return a Jframe object containing the animation.
    */
-
   @Override
   public Frame generate() {
     return frame;
