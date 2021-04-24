@@ -28,14 +28,11 @@ public final class EasyAnimator {
     String viewType = commands[1];
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = checkInputFile(input);
+
     IAnimatorModel model = parseFile(in, builder);
     IAnimatorView view = getView(viewType);
-
-//    Readable in = new FileReader("test/smalldemo.txt");
-//    IAnimatorView view = getView("playback");
-//    IAnimatorModel model = parseFile(in, builder);
-
     IAnimatorController controller = new AnimatorControllerImpl(args, model, view);
+
     controller.go();
   }
 
