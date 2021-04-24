@@ -300,8 +300,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
-  @Override
-  public void generateView() {
+  private void generateView() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);

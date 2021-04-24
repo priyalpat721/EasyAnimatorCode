@@ -30,11 +30,6 @@ public interface IAnimatorController {
   void getPlayBackView();
 
   /**
-   * Generates the view.
-   */
-  void generateView();
-
-  /**
    * Initiates the controller.
    */
   void go();
