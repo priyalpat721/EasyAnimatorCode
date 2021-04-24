@@ -13,7 +13,6 @@ import cs5004.animator.utils.Builder;
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.getView;
 import static cs5004.animator.tools.Helpers.parseCommands;
-//import static cs5004.animator.tools.Helpers.viewFactory;
 import static cs5004.animator.utils.AnimationReader.parseFile;
 
 /**
@@ -27,19 +26,17 @@ public final class EasyAnimator {
    * @param args default arguments for main method.
    */
   public static void main(String[] args) throws FileNotFoundException {
-//    String[] commands = parseCommands(args);
-//    String input = commands[0];
-//    String viewType = commands[1];
-//
+    String[] commands = parseCommands(args);
+    String input = commands[0];
+    String viewType = commands[1];
     AnimationBuilder<IAnimatorModel> builder = new Builder();
-//    Readable in = checkInputFile(input);
-//
-//    IAnimatorModel model = parseFile(in, builder);
-//    IAnimatorView view = getView(viewType);
-
-    Readable in = new FileReader("test/smalldemo.txt");
-    IAnimatorView view = getView("playback");
+    Readable in = checkInputFile(input);
     IAnimatorModel model = parseFile(in, builder);
+    IAnimatorView view = getView(viewType);
+
+//    Readable in = new FileReader("test/smalldemo.txt");
+//    IAnimatorView view = getView("playback");
+//    IAnimatorModel model = parseFile(in, builder);
 
     IAnimatorController controller = new AnimatorControllerImpl(args, model, view);
     controller.go();

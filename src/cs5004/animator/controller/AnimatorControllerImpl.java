@@ -152,6 +152,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         if (loop) {
           if (count == endTime) {
             count = 0;
+            timer.setDelay(1000 / initialSpeed);
           }
         }
         System.out.println("Count: " + count);
@@ -202,7 +203,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
       checkLoop.setSelected(true);
     } else {
       loop = false;
-      timer.setDelay(1000 / speed);
+//      timer.setDelay(1000 / speed);
       checkLoop.setSelected(false);
     }
   }
