@@ -340,8 +340,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     public void keyPressed(KeyEvent e) {
       switch (e.getKeyCode()) {
         case KeyEvent.VK_ENTER:
-          timer.start();
-          count = 0;
+          play();
           break;
         case KeyEvent.VK_SPACE:
           pause();
