@@ -77,6 +77,30 @@ public class IAnimatorControllerTest {
     KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
 
+    //
+    KeyEvent keyO = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_O, 'o');
+
+    //
+    KeyEvent keyH = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_H, 'h');
+
+    //
+    KeyEvent keyA = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_A, 'a');
+
+    //
+    KeyEvent keyM = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_M, 'm');
+
+    //
+    KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
+
+    //
+    KeyEvent keyDelete = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_DELETE, 'z');
+
     // press keys
     view.getFrame().getKeyListeners()[0].keyPressed(enter);
     view.getFrame().getKeyListeners()[0].keyPressed(space);
@@ -85,6 +109,13 @@ public class IAnimatorControllerTest {
     view.getFrame().getKeyListeners()[0].keyPressed(keyL);
     view.getFrame().getKeyListeners()[0].keyPressed(period);
     view.getFrame().getKeyListeners()[0].keyPressed(comma);
+
+    view.getFrame().getKeyListeners()[0].keyPressed(keyO);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyH);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyA);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyM);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyS);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyDelete);
 
     assertEquals("play" + lineSeparator() + "pause" + lineSeparator()
                  + "resume" + lineSeparator() + "restart" + lineSeparator()
@@ -144,6 +175,9 @@ public class IAnimatorControllerTest {
     public void increaseSpeed() {
       System.out.println("increaseSpeed");
     }
+
+    }
+
   }
 
   /**
