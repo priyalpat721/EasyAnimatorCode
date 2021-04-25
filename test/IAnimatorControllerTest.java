@@ -200,7 +200,6 @@ public class IAnimatorControllerTest {
   }
 
 
-
   /**
    * A private mock view class to test the animator controller.
    * It extends PlayBack.
