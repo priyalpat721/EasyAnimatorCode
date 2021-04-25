@@ -404,6 +404,14 @@ public class AnimatorModelImpl implements IAnimatorModel {
   }
 
 
+  /**
+   * Public method that adds a Stay action to a shape.
+   *
+   * @param name      name of the shape.
+   * @param startTime start time of the action.
+   * @param endTime   end time of the action.
+   * @throws IllegalArgumentException if the name is invalid.
+   */
   public void stay(String name, int startTime, int endTime) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Invalid name");
