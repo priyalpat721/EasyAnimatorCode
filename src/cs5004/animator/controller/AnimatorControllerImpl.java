@@ -461,10 +461,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     // makes the table for the functions
     JScrollPane help = new JScrollPane();
     String[] heading = {"Buttons", "KeyBoard Keys"};
-    String[][] functions = {{"o", "open"}, {"h", "help"},
-        {"m", "add motion"},{"a", "add shape"},{"del", "delete shape"},{"s", "save to file"},
-        {"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "k"}, {"Restart", "r"}, {"Loop", "l"},
-        {"Increase speed", "."}, {"Decrease speed", ","}, {"Exit", "esc"}};
+    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "k"}, {"Restart", "r"}, {"Loop", "l"},
+        {"Increase speed", "."}, {"Decrease speed", ","}, {"Exit", "esc"}, {"o", "open"}, {"h", "help"},
+        {"m", "add motion"},{"a", "add shape"},{"del", "delete shape"},{"s", "save to file"}};
     JTable controls = new JTable(functions, heading);
     controls.setFont(new Font("Serif", Font.PLAIN, 16));
     help.setViewportView(controls);

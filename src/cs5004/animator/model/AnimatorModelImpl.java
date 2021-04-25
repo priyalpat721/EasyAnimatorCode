@@ -405,7 +405,7 @@ public class AnimatorModelImpl implements IAnimatorModel {
 
 
   /**
-   * Private method that adds a Stay action to a shape.
+   * Public method that adds a Stay action to a shape.
    *
    * @param name      name of the shape.
    * @param startTime start time of the action.

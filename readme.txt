@@ -60,3 +60,19 @@ Then, we simulated keyboard events to make sure that the controller gets the rig
 
 
 In the menu, our PlayBack view offers a "Help" option to display what every key does.
+
+Changes done to the model (AnimatorModelImpl):
+1) Stay method was made public and added to the IAnimatorModel interface.
+2) removeAction method was created.
+3) removeShape method was created.
+4) getMotionForShape method was created.
+
+Extra credit (AnimatorControllerImpl):
+1) Created a MotionStrategy interface that was implemented by ChangeColorStrategy, MoveStrategy, ScaleStrategy and StationaryStrategy.
+2) getFile method was created to allow user to select and animate a .txt file.
+3) addShape method allows user to add a shape into a current animation.
+4) addMotion method allows user to add a motion to a shape (move, change color, scale, and stay). The MotionStrategy was used in this implementation.
+5) removeShape method allows user to remove a shape from the animation.
+6) save method allows user to save animation as a .txt or .svg file.
+
+
