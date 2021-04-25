@@ -162,7 +162,7 @@ public class IAnimatorControllerTest {
 
     @Override
     public void makeVisible() {
-      // needed for the playback mock test to work correctly
+      this.frame.setVisible(false);
     }
 
     @Override
