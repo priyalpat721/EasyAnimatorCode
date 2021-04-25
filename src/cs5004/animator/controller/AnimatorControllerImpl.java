@@ -421,7 +421,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   /**
    * A private method that allows the user to open a file of their choosing for the animator.
    */
-  private void getFile() {
+  public void getFile() {
     JFileChooser file = new JFileChooser();
     file.showOpenDialog(null);
     File f = file.getSelectedFile();
@@ -430,6 +430,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     Readable in = checkInputFile(filename);
     model = parseFile(in, builder);
     count = 0;
+    pause();
     play();
     pause();
   }
@@ -437,7 +438,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   /**
    * A private method that creates a help center for the animation's controls.
    */
-  private void help() {
+  public void help() {
     //JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame helpCenter = makeFrame(400, 227);
     JLabel welcome = new JLabel("    Welcome! Here are the controls\n\n");
@@ -462,7 +463,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   }
 
-  private void addShape() {
+  public void addShape() {
     JFrame frame = makeFrame(400, 230);
     JPanel shape = new JPanel();
     shape.setBackground(Color.WHITE);
@@ -538,7 +539,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     frame.add(shape);
   }
 
-  private void addMotion() {
+  public void addMotion() {
     JFrame frame = makeFrame(300, 300);
 
     JPanel listPanel = new JPanel();
@@ -638,7 +639,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
 
-  private void removeShape() {
+  public void removeShape() {
     // populate the JList
     DefaultListModel<String> listModel = makeListModel();
     JList<String> list = new JList<String>(listModel);
@@ -695,15 +696,16 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
-  private void save() {
+  public void save() {
     JTextField filename = new JTextField();
     JFileChooser fileChooser = new JFileChooser();
     if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-      if (fileChooser.getName().contains(".txt") || fileChooser.getName().contains(".svg"))
+      File file = fileChooser.getSelectedFile();
+      if (file == null) {
+        JOptionPane.showMessageDialog(null, "A shape was not selected", "Error",
+                JOptionPane.ERROR_MESSAGE);
+      }
       filename.setText(fileChooser.getName());
-    }
-    else {
-
     }
   }
 
