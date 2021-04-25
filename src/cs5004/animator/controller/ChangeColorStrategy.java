@@ -1,13 +1,20 @@
 package cs5004.animator.controller;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
 
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.tools.RGB;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * Class for changing the color of a shape via the GUI. It implements the MotionStrategy interface.
