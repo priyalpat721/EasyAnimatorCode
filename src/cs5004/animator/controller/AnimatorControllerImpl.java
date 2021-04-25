@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
@@ -28,6 +27,7 @@ import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
+import cs5004.animator.view.SVGView;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.createFile;
@@ -728,6 +728,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     if (fileChooser.showSaveDialog(filename) == JFileChooser.APPROVE_OPTION) {
       File file = fileChooser.getSelectedFile();
       String directory = file.getAbsolutePath();
+      System.out.println(directory);
       if (file == null) {
         JOptionPane.showMessageDialog(null, "", "Error",
                 JOptionPane.ERROR_MESSAGE);
@@ -742,10 +743,19 @@ public class AnimatorControllerImpl implements IAnimatorController {
         String text = saveFile(name, extension, model.toString(), directory);
         JOptionPane.showMessageDialog(null, text, "Success", JOptionPane.PLAIN_MESSAGE);
       } else if (file_name.contains("svg")) {
-
-        String result = getSVGView();
-        String svg = saveFile(name, extension, result, directory);
-        JOptionPane.showMessageDialog(null, svg, "Success", JOptionPane.PLAIN_MESSAGE);
+        IAnimatorView svgView = new SVGView();
+        List data = new LinkedList<>();
+        HashMap<String, List<IAction>> logOfAction = model.getLogOfActions();
+        List<IShape> logOfShapes = model.getLogOfShapes();
+        int[] box = model.getBox();
+        data.add(logOfAction);
+        data.add(logOfShapes);
+        data.add(box);
+        data.add(speed);
+        svgView.create(data);
+        String svg = (String) svgView.generate();
+        String svgFile = saveFile(name, extension, svg, directory);
+        JOptionPane.showMessageDialog(null, svgFile, "Success", JOptionPane.PLAIN_MESSAGE);
       } else {
         JOptionPane.showMessageDialog(null, "File must be .txt or .svg", "Error",
                 JOptionPane.ERROR_MESSAGE);
@@ -968,8 +978,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     String fileName = name + "." + format;
 
     try {
-      File newfile = new File(fileName, directory);
-      Writer newFile = new FileWriter(newfile);
+      Writer newFile = new FileWriter(directory);
       newFile.write(content);
       newFile.close();
     } catch (IOException e) {
