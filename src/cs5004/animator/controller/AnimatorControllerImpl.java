@@ -1,6 +1,14 @@
 package cs5004.animator.controller;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -16,8 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
-
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -28,6 +34,22 @@ import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
 import cs5004.animator.view.SVGView;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.createFile;
@@ -52,7 +74,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
   private Timer timer;
   private int count;
   private boolean loop;
-  private final int endTime;
   private JCheckBox checkLoop;
 
   private final String output;
@@ -74,7 +95,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     String[] commands = parseCommands(args);
     this.model = model;
     this.view = view;
-    this.endTime = model.getTotalTime()[1];
+    int endTime = model.getTotalTime()[1];
     this.count = 0;
     this.viewType = commands[1];
     this.output = commands[2];
@@ -461,9 +482,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
     // makes the table for the functions
     JScrollPane help = new JScrollPane();
     String[] heading = {"Buttons", "KeyBoard Keys"};
-    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "k"}, {"Restart", "r"}, {"Loop", "l"},
-        {"Increase speed", "."}, {"Decrease speed", ","}, {"Exit", "esc"}, {"o", "open"}, {"h", "help"},
-        {"m", "add motion"},{"a", "add shape"},{"del", "delete shape"},{"s", "save to file"}};
+    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "k"},
+        {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
+        {"Exit", "esc"}, {"o", "open"}, {"h", "help"}, {"m", "add motion"},
+        {"a", "add shape"},{"del", "delete shape"},{"s", "save to file"}};
     JTable controls = new JTable(functions, heading);
     controls.setFont(new Font("Serif", Font.PLAIN, 16));
     help.setViewportView(controls);
@@ -525,8 +547,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
           model.createShape(text.getText(), type);
           frame.dispose();
         } catch (Exception wrongShape) {
-          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
-                  JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null,
+              "Invalid Shape Name", "Error", JOptionPane.ERROR_MESSAGE);
         }
         setShapeAttributes(text.getText());
       }
@@ -636,8 +658,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
           }
         } catch (Exception notSelected) {
           motionFrame.dispose();
-          JOptionPane.showMessageDialog(null, "A shape was not selected", "Error",
-                  JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null,
+              "A shape was not selected", "Error", JOptionPane.ERROR_MESSAGE);
           frame.dispose();
         }
       }
@@ -692,8 +714,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
         try {
           model.removeShape(removedShape);
         } catch (Exception notMotion) {
-          JOptionPane.showMessageDialog(null, "Shape had no motions", "Error",
-                  JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null,
+              "Shape had no motions", "Error", JOptionPane.ERROR_MESSAGE);
         }
       }
     });
@@ -740,7 +762,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
       String extension = fileComponents[1];
       if (file_name.contains("txt")) {
         String text = saveFile(name, extension, model.toString(), directory);
-        JOptionPane.showMessageDialog(null, text, "Success", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, text, "Success",
+            JOptionPane.PLAIN_MESSAGE);
       } else if (file_name.contains("svg")) {
         IAnimatorView svgView = new SVGView();
         List data = new LinkedList<>();
@@ -754,9 +777,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
         svgView.create(data);
         String svg = (String) svgView.generate();
         String svgFile = saveFile(name, extension, svg, directory);
-        JOptionPane.showMessageDialog(null, svgFile, "Success", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, svgFile, "Success",
+            JOptionPane.PLAIN_MESSAGE);
       } else {
-        JOptionPane.showMessageDialog(null, "File must be .txt or .svg", "Error",
+        JOptionPane.showMessageDialog(null,
+            "File must be .txt or .svg", "Error",
                 JOptionPane.ERROR_MESSAGE);
       }
     }
@@ -866,8 +891,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
                   Integer.parseInt(t2.getText()));
           frame.dispose();
         } catch (Exception wrongShape) {
-          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
-                  JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Invalid Shape Name",
+              "Error", JOptionPane.ERROR_MESSAGE);
         }
       }
     });

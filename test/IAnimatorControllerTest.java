@@ -61,7 +61,7 @@ public class IAnimatorControllerTest {
     // pause: key spacebar
     KeyEvent space = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_SPACE, '\b');
-    // resume: key 's'
+    // resume: key 'k'
     KeyEvent keyK = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_K, 'k');
     // restart: key 'r'
