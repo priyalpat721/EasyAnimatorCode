@@ -12,7 +12,7 @@ The AnimatorControllerImpl implements the interface IAnimatorController and our 
 We implemented our new PlayBack view using Swing elements: JButton, JPanel, JCheckBox, etc.
 
 
-Controller.go() selects the appropriate view and calls the right method:
+Controller.start() selects the appropriate view and calls the right method:
 
 - For SVG: it calls getSVGView()
 - For Text: it calls getTextView()
@@ -35,12 +35,12 @@ The controller creates Mouse and Keyboard listeners to execute the actions and c
 Steps - PlayBack view example:
 1) User input on terminal: java -jar project.jar -in foo.txt -view playback
 2) Main instantiates the model, an empty view, and a controller
-3) Main relinquishes control to the controller calling controller.go()
-4) go() selects the PlayBack view
-5) go() creates the PlayBack view by calling getPlayBackView()
-6) go() creates mouse and keyboard listeners
-7) go() initiates the listeners in the PlayBack view
-8) go() makes the PlayBack view visible and focused
+3) Main relinquishes control to the controller calling controller.start()
+4) start() selects the PlayBack view
+5) start() creates the PlayBack view by calling getPlayBackView()
+6) start() creates mouse and keyboard listeners
+7) start() initiates the listeners in the PlayBack view
+8) start() makes the PlayBack view visible and focused
 
 
 The user can use the mouse or the keyboard to trigger actions on the animation.

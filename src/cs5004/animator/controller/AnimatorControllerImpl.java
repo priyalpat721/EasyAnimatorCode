@@ -232,7 +232,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   @Override
-  public void createView() {
+  public void start() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);
