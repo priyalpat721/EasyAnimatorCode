@@ -21,8 +21,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 
+import cs5004.animator.action.Action;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -600,13 +616,38 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
       @Override
       public void actionPerformed(ActionEvent e) {
+        JFrame frame = new JFrame();
+        JPanel shape = new JPanel();
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        frame.add(shape);
+        frame.setSize(new Dimension(250, 300));
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(frame);
+        frame.setBackground(Color.WHITE);
+        frame.setLayout(new BorderLayout());
+        frame.setVisible(true);
+
+        JLabel welcome = new JLabel("   Set the shape's motion!\n\n");
+        welcome.setBackground(Color.WHITE);
+        welcome.setFont(new Font("Serif", Font.BOLD, 18));
+        frame.add(welcome, BorderLayout.NORTH, SwingConstants.CENTER);
+
+        shape.setVisible(true);
+        shape.setBackground(Color.WHITE);
+        shape.setLayout(new GridLayout(9, 1, 5, 5));
+        shape.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+
         try {
           int index = list.getSelectedIndex();
           // getting shape's name
           String name = (String) listModel.get(index);
           String type = motionType.getSelectedItem().toString();
 
-          if (type =)
+
+          if (type.equals("Move") {
+
+          }
 
           // getting the shape's motion
 
