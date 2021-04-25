@@ -1,9 +1,7 @@
 package cs5004.animator.controller;
 
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -19,23 +17,14 @@ import java.util.Objects;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
-import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
-import javax.swing.WindowConstants;
+
+import javax.swing.*;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.createFile;
@@ -478,12 +467,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
     GridBagConstraints constraints = new GridBagConstraints();
 
     // adds name label
-    JLabel question = new JLabel("What is the shape's name?");
+    JLabel name = new JLabel("What is the shape's name?");
     constraints.gridx = 150;
     constraints.gridy = 100;
     constraints.ipadx = 20;
-    constraints.ipady = 20;
-    shape.add(question, constraints);
+    constraints.ipady = 10;
+    shape.add(name, constraints);
 
     // adds text field to get name
     JTextField text = new JTextField();
@@ -493,7 +482,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     constraints.ipady = 10;
     shape.add(text, constraints);
 
-    // adds shape type label
+    // adds name label
     JLabel questionType = new JLabel("What is the shape's type?");
     constraints.gridx = 150;
     constraints.gridy = 150;
@@ -533,6 +522,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
           JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
                   JOptionPane.ERROR_MESSAGE);
         }
+        setShapeAttributes(text.getText());
       }
     });
 
@@ -640,27 +630,123 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
-  private void setShapeAttributes() {
+//  private GridBagConstraints setConstraints(GridBagConstraints constraints, int x, int y, int padX, int padY) {
+//    constraints.gridx = 150;
+//    constraints.gridy = 100;
+//    constraints.ipadx = 20;
+//    constraints.ipady = 20;
+//    return constraints;
+//  }
+
+  private void setShapeAttributes(String name) {
     JFrame frame = new JFrame();
     JPanel shape = new JPanel();
+
+    JFrame.setDefaultLookAndFeelDecorated(true);
+    frame.add(shape);
+    frame.setSize(new Dimension(250, 300));
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    frame.setLocationRelativeTo(frame);
+    frame.setBackground(Color.WHITE);
+    frame.setLayout(new BorderLayout());
+    frame.setVisible(true);
+
+    JLabel welcome = new JLabel("   Set the shape's attributes!\n\n");
+    welcome.setBackground(Color.WHITE);
+    welcome.setFont(new Font("Serif", Font.BOLD, 18));
+    frame.add(welcome, BorderLayout.NORTH, SwingConstants.CENTER);
+
+    shape.setVisible(true);
     shape.setBackground(Color.WHITE);
-    shape.setLayout(new GridBagLayout());
-    GridBagConstraints constraints = new GridBagConstraints();
+    shape.setLayout(new GridLayout(9, 1, 5, 5));
+    shape.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
     // adds name label
-    JLabel x = new JLabel("X:");
-    constraints.gridx = 150;
-    constraints.gridy = 100;
-    constraints.ipadx = 20;
-    constraints.ipady = 20;
-    shape.add(x, constraints);
+    JLabel xLabel = new JLabel("X:");
+    JTextField xText = new JTextField();
 
-    // adds text field to get name
-    JTextField text = new JTextField();
-    constraints.gridx = 150;
-    constraints.gridy = 120;
-    constraints.ipadx = 20;
-    constraints.ipady = 10;
-    shape.add(text, constraints);
+    JLabel yLabel = new JLabel("Y:");
+    JTextField yText = new JTextField();
+
+    JLabel wLabel = new JLabel("Width:");
+    JTextField width = new JTextField();
+
+    JLabel hLabel = new JLabel("Height:");
+    JTextField height = new JTextField();
+
+    JLabel rLabel = new JLabel("Red:");
+    JTextField redText = new JTextField();
+
+    JLabel gLabel = new JLabel("Green:");
+    JTextField greenText = new JTextField();
+
+    JLabel bLabel = new JLabel("Blue:");
+    JTextField blueText = new JTextField();
+
+    JLabel t1Label = new JLabel("T1:");
+    JTextField t1 = new JTextField();
+
+    JLabel t2Label = new JLabel("T2:");
+    JTextField t2 = new JTextField();
+
+    shape.add(xLabel);
+    shape.add(xText);
+    shape.add(yLabel);
+    shape.add(yText);
+    shape.add(wLabel);
+    shape.add(width);
+    shape.add(hLabel);
+    shape.add(height);
+    shape.add(rLabel);
+    shape.add(redText);
+    shape.add(gLabel);
+    shape.add(greenText);
+    shape.add(bLabel);
+    shape.add(blueText);
+    shape.add(t1Label);
+    shape.add(t1);
+    shape.add(t2Label);
+    shape.add(t2);
+    frame.add(shape, BorderLayout.CENTER);
+
+
+    JButton addShape = new JButton("Add Shape");
+    addShape.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          model.setAttributes(name, Integer.parseInt(xText.getText()),
+                  Integer.parseInt(yText.getText()),
+                  Integer.parseInt(width.getText()), Integer.parseInt(height.getText()),
+                  Integer.parseInt(redText.getText()), Integer.parseInt(greenText.getText()),
+                  Integer.parseInt(blueText.getText()), Integer.parseInt(t1.getText()),
+                  Integer.parseInt(t2.getText()));
+          frame.dispose();
+        }
+        catch (Exception wrongShape) {
+          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    });
+
+    JButton cancel = new JButton("Cancel");
+    cancel.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+      }
+    });
+
+
+    JPanel buttons = new JPanel();
+    buttons.setLayout(new FlowLayout());
+    buttons.setBackground(Color.WHITE);
+    buttons.add(addShape);
+    buttons.add(cancel);
+
+    frame.add(buttons, BorderLayout.SOUTH);
   }
 }
