@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -318,7 +319,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
             removeShape();
             break;
           case "save":
-            save();
+            try {
+              save();
+            } catch (IOException ioException) {
+              ioException.printStackTrace();
+            }
             break;
           case "exit":
             System.exit(0);
@@ -380,7 +385,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
           removeShape();
           break;
         case KeyEvent.VK_S:
-          save();
+          try {
+            save();
+          } catch (IOException ioException) {
+            ioException.printStackTrace();
+          }
           break;
         case KeyEvent.VK_ESCAPE:
           System.exit(0);
@@ -616,8 +625,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
             motionStrategy = new StationaryStrategy(motionFrame, shape, name, model);
             motionStrategy.makeMotion();
           }
-        }
-        catch (Exception notSelected) {
+        } catch (Exception notSelected) {
           motionFrame.dispose();
           JOptionPane.showMessageDialog(null, "A shape was not selected", "Error",
                   JOptionPane.ERROR_MESSAGE);
@@ -696,16 +704,34 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
-  public void save() {
+  public void save() throws IOException {
     JTextField filename = new JTextField();
     JFileChooser fileChooser = new JFileChooser();
-    if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+    if (fileChooser.showSaveDialog(filename) == JFileChooser.APPROVE_OPTION) {
       File file = fileChooser.getSelectedFile();
+      file.getAbsolutePath();
       if (file == null) {
-        JOptionPane.showMessageDialog(null, "A shape was not selected", "Error",
+        JOptionPane.showMessageDialog(null, "", "Error",
                 JOptionPane.ERROR_MESSAGE);
       }
-      filename.setText(fileChooser.getName());
+
+      assert file != null;
+      String file_name = file.getName();
+      String[] fileComponents = file_name.split("\\.");
+      String name = fileComponents[0];
+      String extension = fileComponents[1];
+      if (file_name.contains("txt")) {
+        String text = createFile(name, extension, model.toString());
+        JOptionPane.showMessageDialog(null, text, "Success", JOptionPane.PLAIN_MESSAGE);
+      } else if (file_name.contains("svg")) {
+
+        String result = getSVGView();
+        String svg = createFile(name, extension, result);
+        JOptionPane.showMessageDialog(null, svg, "Success", JOptionPane.PLAIN_MESSAGE);
+      } else {
+        JOptionPane.showMessageDialog(null, "File must be .txt or .svg", "Error",
+                JOptionPane.ERROR_MESSAGE);
+      }
     }
   }
 
@@ -863,4 +889,5 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
     return cancel;
   }
+
 }
