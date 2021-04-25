@@ -14,11 +14,6 @@ import cs5004.animator.shape.Shape;
  */
 public class SVGView implements IAnimatorView<String> {
   private StringBuilder result;
-  private HashMap<String, List<IAction>> dict;
-  private List<IShape> shapes;
-  private int[] box;
-  private int speed;
-
 
   /**
    * Constructs an SVG view object.
@@ -26,17 +21,23 @@ public class SVGView implements IAnimatorView<String> {
   public SVGView() {
     this.result = new StringBuilder();
   }
+  
+  int[] box;
 
   @Override
   public void create(List modelData) {
-    this.speed = (int) modelData.get(3);
+    int speed;
+    HashMap<String, List<IAction>> dict;
+    List<IShape> shapes;
+
+    speed = (int) modelData.get(3);
 
     if (speed <= 0) {
       throw new IllegalArgumentException("Speed must be greater than zero");
     }
 
-    this.shapes = (List<IShape>) modelData.get(1);
-    this.dict = (HashMap<String, List<IAction>>) modelData.get(0);
+    shapes = (List<IShape>) modelData.get(1);
+    dict = (HashMap<String, List<IAction>>) modelData.get(0);
     this.box = (int[]) modelData.get(2);
 
     int count = 0;
@@ -71,6 +72,8 @@ public class SVGView implements IAnimatorView<String> {
           attributes[2] = "r";
           attributes[3] = "";
           break;
+        default:
+          // no action is intended.
       }
 
       if (shape.getType() == Shape.RECTANGLE || shape.getType() == Shape.ELLIPSE) {
@@ -183,6 +186,8 @@ public class SVGView implements IAnimatorView<String> {
                                   / speed + "ms"));
                 }
                 break;
+              default:
+                // no action is intended.
             }
             count += 1;
           }

@@ -1,14 +1,16 @@
 package cs5004.animator.view;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-import javax.swing.*;
 
 import cs5004.animator.shape.IShape;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  * Class that creates the frame of the animation. The class extends the JFrame class of Java Swing.
@@ -57,12 +59,20 @@ public class Frame extends JFrame {
     return new Dimension(width + 1, height + 1);
   }
 
+  /**
+   * Method that takes a list of current shapes and adds the shapes to the Shapes panel.
+   * @param currentShapes current shapes to be added to panel.
+   */
   public void currentView(List<IShape> currentShapes) {
 
     this.animation.setShapes(currentShapes);
     this.animation.repaint();
   }
 
+  /**
+   * Method that adds a mouse event to buttons exit, open and help.
+   * @param mouseEvent for exit, open and help.
+   */
   public void setCommandButtonListener(MouseListener mouseEvent) {
     this.exit.addMouseListener(mouseEvent);
     this.open.addMouseListener(mouseEvent);

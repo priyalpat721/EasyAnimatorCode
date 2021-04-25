@@ -33,6 +33,6 @@ public final class EasyAnimator {
     IAnimatorView view = getView(viewType);
     IAnimatorController controller = new AnimatorControllerImpl(args, model, view);
 
-    controller.go();
+    controller.createView();
   }
 }

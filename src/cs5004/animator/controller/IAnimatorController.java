@@ -32,6 +32,6 @@ public interface IAnimatorController {
   /**
    * Initiates the controller.
    */
-  void go();
+  void createView();
 
 }
