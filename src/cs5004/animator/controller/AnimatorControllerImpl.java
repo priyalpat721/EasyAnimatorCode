@@ -645,6 +645,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
 
+  /**
+   * Method that removes a shape from the animation.
+   */
   public void removeShape() {
     // populate the JList
     DefaultListModel<String> listModel = makeListModel();
@@ -702,6 +705,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
+  /**
+   * Method that allows a user to save an edited animation.
+   * A user can save an animation in .txt or .svg file.
+   */
   public void save() {
     JTextField filename = new JTextField();
     JFileChooser fileChooser = new JFileChooser();
@@ -715,6 +722,17 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
+  /**
+   * Method to set a generic Jlabel with GridBagLayout constraints.
+   * @param message label message.
+   * @param constraints for the GridBagLayout Jlabel.
+   * @param x x coordinate for GridBagLayout Jlabel.
+   * @param y y coordinate for GridBagLayout Jlabel.
+   * @param padX width of GridBagLayout Jlabel.
+   * @param padY height of the GridBagLayout Jlabel.
+   * @return a generic JLabel
+   */
+
   private JLabel setConstraints(String message, GridBagConstraints constraints,
                                 int x, int y, int padX, int padY) {
     JLabel genericLabel = new JLabel(message);
@@ -724,6 +742,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     constraints.ipady = padY;
     return genericLabel;
   }
+
 
   private void setShapeAttributes(String name) {
     JFrame frame = makeFrame(250, 300);
