@@ -724,6 +724,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   /**
    * Method to set a generic Jlabel with GridBagLayout constraints.
+   *
    * @param message label message.
    * @param constraints for the GridBagLayout Jlabel.
    * @param x x coordinate for GridBagLayout Jlabel.
@@ -744,6 +745,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   /**
    * Method that allows user to set shape attributes in GUI via mouse and keyboard events.
+   *
    * @param name of the shape.
    */
   private void setShapeAttributes(String name) {
@@ -851,6 +853,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   /**
    * Method that creates a JFrame given width and height.
+   *
    * @param width of the JFrame.
    * @param height of the JFrame.
    * @return new JFrame of white background.
@@ -869,6 +872,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   /**
    * Method that creates a JScrollPane of width 300 and height 200.
+   *
    * @param list of elements in Panel
    * @return new JScrollpane.
    */
@@ -880,7 +884,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   /**
-   * Mehtod that creates a DefaultListModel of type String and adds to it shapes from the model.
+   * Method that creates a DefaultListModel of type String and adds to it shapes from the model.
+   *
    * @return DefaultListModel of shapes from model.
    */
   private DefaultListModel<String> makeListModel() {
@@ -895,6 +900,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   /**
    * Method that creates a cancel button.
+   *
    * @param frame for the button.
    * @return cancel JButton.
    */
