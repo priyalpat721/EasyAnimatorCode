@@ -81,7 +81,7 @@ public class PlayBack implements IAnimatorView<Frame> {
 
     animation.setVisible(true);
     scrollPane.setVisible(true);
-    this.frame.add(scrollPane, BorderLayout.CENTER, SwingConstants.CENTER);
+    this.frame.add(scrollPane, BorderLayout.CENTER);
     this.frame.add(buttons, BorderLayout.SOUTH);
     this.frame.setResizable(false);
   }
@@ -115,7 +115,7 @@ public class PlayBack implements IAnimatorView<Frame> {
 
   /**
    * Method that generates a JFrame frame containing the frames of the animation.
-   * @return a Jframe object containing the animation.
+   * @return a JFrame object containing the animation.
    */
   @Override
   public Frame generate() {
@@ -139,6 +139,5 @@ public class PlayBack implements IAnimatorView<Frame> {
     for (EventListener listener : listeners)
       event.removeMouseListener((MouseListener) listener);
   }
-
 }
 

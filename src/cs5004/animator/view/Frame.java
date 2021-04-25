@@ -16,12 +16,15 @@ import cs5004.animator.shape.IShape;
  */
 public class Frame extends JFrame {
   private final ShapesPanel animation;
-  private final JMenuItem exit;
-  private final JMenuItem open;
+  private JMenuItem exit;
+  private JMenuItem open;
 
   private final int width;
   private final int height;
-  private final JMenuItem help;
+  private JMenuItem help;
+  private JMenuItem addShape;
+  private JMenuItem addMotion;
+  private JMenuItem removeShape;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
@@ -43,27 +46,7 @@ public class Frame extends JFrame {
     this.setLayout(new BorderLayout());
     this.animation = animation;
 
-    // adds menu option
-    JMenuBar menu = new JMenuBar();
-    JMenu file = new JMenu("File");
-
-    this.open = new JMenuItem("Open");
-    this.open.setName("open");
-    file.add(open);
-    file.addSeparator();
-
-    this.help = new JMenuItem("Help");
-    this.help.setName("help");
-    file.add(help);
-    file.addSeparator();
-
-
-    this.exit = new JMenuItem("Exit");
-    this.exit.setName("exit");
-    file.add(exit);
-
-    menu.add(file);
-    this.setJMenuBar(menu);
+    makeMenu();
 
     this.pack();
     this.setVisible(false);
@@ -84,6 +67,54 @@ public class Frame extends JFrame {
     this.exit.addMouseListener(mouseEvent);
     this.open.addMouseListener(mouseEvent);
     this.help.addMouseListener(mouseEvent);
+    this.addShape.addMouseListener(mouseEvent);
+    this.addMotion.addMouseListener(mouseEvent);
+    this.removeShape.addMouseListener(mouseEvent);
   }
 
+  private void makeMenu() {
+    // adds menu option
+    JMenuBar menu = new JMenuBar();
+    JMenu file = new JMenu("File");
+
+    // creates an open file option
+    this.open = new JMenuItem("Open");
+    this.open.setName("open");
+    file.add(open);
+    file.addSeparator();
+
+    // creates an edit animation option
+    JMenu edit = new JMenu("Edit");
+
+    // adds shape or motion option
+    JMenu add = new JMenu("Add Shape/Motion");
+    this.addShape = new JMenuItem("Add Shape");
+    this.addShape.setName("shape");
+    add.add(addShape);
+    this.addMotion = new JMenuItem("Add Motion");
+    this.addMotion.setName("motion");
+    add.add(addMotion);
+    edit.add(add);
+
+    // removes shape option
+    this.removeShape = new JMenuItem("Remove Shape");
+    this.removeShape.setName("remove");
+    edit.add(removeShape);
+    file.add(edit);
+    file.addSeparator();
+
+    // creates a help center for controls
+    this.help = new JMenuItem("Help");
+    this.help.setName("help");
+    file.add(help);
+    file.addSeparator();
+
+    // allows user to exit out of program
+    this.exit = new JMenuItem("Exit");
+    this.exit.setName("exit");
+    file.add(exit);
+
+    menu.add(file);
+    this.setJMenuBar(menu);
+  }
 }

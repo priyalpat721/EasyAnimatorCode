@@ -307,6 +307,15 @@ public class AnimatorControllerImpl implements IAnimatorController {
           case "help":
             help();
             break;
+          case "shape":
+            addShape();
+            break;
+          case "motion":
+            addMotion();
+            break;
+          case "remove":
+            removeShape();
+            break;
           case "exit":
             System.exit(0);
         }
@@ -351,6 +360,15 @@ public class AnimatorControllerImpl implements IAnimatorController {
             getFile();
           } catch (Exception ex) {
           }
+          break;
+        case KeyEvent.VK_A:
+          addShape();
+          break;
+        case KeyEvent.VK_M:
+          addMotion();
+          break;
+        case KeyEvent.VK_DELETE:
+          removeShape();
           break;
         case KeyEvent.VK_ESCAPE:
           System.exit(0);
@@ -428,7 +446,138 @@ public class AnimatorControllerImpl implements IAnimatorController {
     helpCenter.add(panel);
     helpCenter.setSize(new Dimension(400, 227));
     helpCenter.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    helpCenter.setLocationRelativeTo(frame);
     helpCenter.setVisible(true);
   }
 
+  private void addShape() {
+    JFrame frame = new JFrame();
+    JPanel shape = new JPanel();
+    shape.setBackground(Color.WHITE);
+    shape.setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
+
+    // adds name label
+    JLabel question = new JLabel("What is the shape's name?");
+    constraints.gridx = 150;
+    constraints.gridy = 100;
+    constraints.ipadx = 20;
+    constraints.ipady = 20;
+    shape.add(question, constraints);
+
+    // adds text field to get name
+    JTextField text = new JTextField();
+    constraints.gridx = 150;
+    constraints.gridy = 120;
+    constraints.ipadx = 120;
+    constraints.ipady = 10;
+    shape.add(text, constraints);
+
+    // adds shape type label
+    JLabel questionType = new JLabel("What is the shape's type?");
+    constraints.gridx = 150;
+    constraints.gridy = 150;
+    constraints.ipadx = 20;
+    constraints.ipady = 20;
+    shape.add(questionType, constraints);
+
+    // adds the combo box for shape types
+    String[] types = {"Rectangle", "Ellipse"};
+    JComboBox<String> shapeType = new JComboBox(types);
+    shapeType.setBackground(Color.WHITE);
+    constraints.gridx = 150;
+    constraints.gridy = 170;
+    constraints.ipadx = 120;
+    constraints.ipady = 20;
+    shape.add(shapeType, constraints);
+
+    frame.setSize(new Dimension(300, 200));
+    frame.setLocationRelativeTo(frame);
+    frame.setLayout(new BorderLayout());
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    frame.add(shape, BorderLayout.NORTH);
+    frame.setVisible(true);
+
+
+    //model.createShape(shapeName);
+  }
+
+  private void addMotion() {
+    // TODO
+  }
+
+  private void removeShape() {
+    // populate the JList
+    DefaultListModel listModel = new DefaultListModel();
+    List<IShape> shapes = model.getLogOfShapes();
+    int size = shapes.size();
+    for (int i = 0; i < size; i++) {
+      listModel.addElement(shapes.get(i).getName());
+    }
+    JList list = new JList(listModel);
+    list.setVisible(true);
+
+    // creates scroll bar and adds list to it
+    JScrollPane listScroller = new JScrollPane(list);
+    listScroller.setSize(300, 200);
+    listScroller.setVerticalScrollBarPolicy(listScroller.VERTICAL_SCROLLBAR_ALWAYS);
+
+    // create and add buttons
+    JButton delete = new JButton("Remove");
+    delete.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int index = list.getSelectedIndex();
+        String removedShape = (String) listModel.remove(index);
+
+        int size = listModel.getSize();
+
+        if (size == 0) {
+          delete.setEnabled(false);
+        }
+
+        else {
+          if (index == listModel.getSize()) {
+            index --;
+          }
+          list.setSelectedIndex(index);
+          list.ensureIndexIsVisible(index);
+        }
+
+        model.removeShape(removedShape);
+      }
+    });
+
+
+
+    // creates the JFrame pop up and adds scroll bar to it
+    JFrame listFrame = new JFrame();
+    listFrame.setLayout(new BorderLayout());
+    JLabel message = new JLabel("Which shape would you like to remove?");
+    message.setFont(new Font("Helvetica", Font.BOLD, 14));
+    listFrame.add(message, BorderLayout.NORTH);
+    listFrame.setSize(new Dimension(300, 200));
+    listFrame.setLocationRelativeTo(frame);
+    listFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    listFrame.setVisible(true);
+    listFrame.add(listScroller, BorderLayout.CENTER);
+
+    JButton cancel = new JButton("Cancel");
+    cancel.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        listFrame.dispose();
+      }
+    });
+
+    // creates a button panel and adds to frame
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setLayout(new FlowLayout());
+    buttonPanel.add(delete);
+    buttonPanel.add(cancel);
+    buttonPanel.setVisible(true);
+    listFrame.add(buttonPanel, BorderLayout.SOUTH);
+  }
 }

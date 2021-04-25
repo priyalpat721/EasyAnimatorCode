@@ -35,5 +35,4 @@ public final class EasyAnimator {
 
     controller.go();
   }
-
 }
