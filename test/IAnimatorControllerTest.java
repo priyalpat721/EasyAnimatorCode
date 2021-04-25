@@ -76,16 +76,16 @@ public class IAnimatorControllerTest {
     // decrease speed: key ','
     KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
-    // help: hey 'H'
+    // help: hey 'h'
     KeyEvent keyH = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_H, 'h');
-    // add shape: key 'A'
+    // add shape: key 'a'
     KeyEvent keyA = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_A, 'a');
-    // add motion: key 'M'
+    // add motion: key 'm'
     KeyEvent keyM = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_M, 'm');
-    // save: key 'S'
+    // save: key 's'
     KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
     // remove shape: key 'delete'
