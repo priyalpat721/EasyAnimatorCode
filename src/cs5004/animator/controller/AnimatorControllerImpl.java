@@ -1,14 +1,6 @@
 package cs5004.animator.controller;
 
-import java.awt.ComponentOrientation;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -21,24 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
-import javax.swing.WindowConstants;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JTextField;
-import javax.swing.JOptionPane;
-import javax.swing.DefaultListModel;
+import javax.swing.*;
 
-import cs5004.animator.action.Action;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -61,7 +37,7 @@ import static cs5004.animator.utils.AnimationReader.parseFile;
  * the view. It implements the IAnimatorController interface.
  */
 public class AnimatorControllerImpl implements IAnimatorController {
-  private List modelData;
+  private List<Object> modelData;
   private IAnimatorModel model;
   private final IAnimatorView view;
   private PlayBack playback;
@@ -178,7 +154,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         frame.currentView(model.getShapesAtTicks(count));
         count++;
         if (loop) {
-          if (count == endTime) {
+          if (count == model.getTotalTime()[1]) {
             count = 0;
             timer.setDelay(1000 / speed);
           }
@@ -191,6 +167,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * Starts the timer.
    */
   public void play() {
+    timer.setDelay(1000 / speed);
     count = 0;
     timer.start();
   }
@@ -389,6 +366,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
             // no exception needs to be thrown.
           }
           break;
+        case KeyEvent.VK_H:
+          help();
+          break;
         case KeyEvent.VK_A:
           addShape();
           break;
@@ -454,7 +434,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
    * A private method that creates a help center for the animation's controls.
    */
   private void help() {
-    JFrame.setDefaultLookAndFeelDecorated(true);
+    //JFrame.setDefaultLookAndFeelDecorated(true);
+    JFrame helpCenter = makeFrame(400, 227);
     JLabel welcome = new JLabel("    Welcome! Here are the controls\n\n");
     welcome.setFont(new Font("Serif", Font.BOLD, 18));
     JPanel panel = new JPanel(new BorderLayout());
@@ -470,30 +451,23 @@ public class AnimatorControllerImpl implements IAnimatorController {
     controls.setFont(new Font("Serif", Font.PLAIN, 16));
     help.setViewportView(controls);
     panel.add(help, BorderLayout.CENTER);
-    JLabel note = new JLabel("Note: Click on loop to enable/diable");
+    JLabel note = new JLabel("Note: Click on loop to enable/disable");
     note.setFont(new Font("Serif", Font.BOLD, 14));
     panel.add(note, BorderLayout.SOUTH);
-    JFrame helpCenter = new JFrame();
     helpCenter.add(panel);
-    helpCenter.setSize(new Dimension(400, 227));
-    helpCenter.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    helpCenter.setLocationRelativeTo(frame);
-    helpCenter.setVisible(true);
+
   }
 
   private void addShape() {
-    JFrame frame = new JFrame();
+    JFrame frame = makeFrame(400, 230);
     JPanel shape = new JPanel();
     shape.setBackground(Color.WHITE);
     shape.setLayout(new GridBagLayout());
     GridBagConstraints constraints = new GridBagConstraints();
 
     // adds name label
-    JLabel name = new JLabel("What is the shape's name?");
-    constraints.gridx = 150;
-    constraints.gridy = 100;
-    constraints.ipadx = 20;
-    constraints.ipady = 10;
+    JLabel name = setConstraints("What is the shape's name?", constraints, 150, 100,
+            20,10);
     shape.add(name, constraints);
 
     // adds text field to get name
@@ -505,29 +479,20 @@ public class AnimatorControllerImpl implements IAnimatorController {
     shape.add(text, constraints);
 
     // adds name label
-    JLabel questionType = new JLabel("What is the shape's type?");
-    constraints.gridx = 150;
-    constraints.gridy = 150;
-    constraints.ipadx = 20;
-    constraints.ipady = 20;
+    JLabel questionType = setConstraints("What is the shape's type?", constraints,
+            150, 150, 20, 20);
+
     shape.add(questionType, constraints);
 
     // adds the combo box for shape types
     String[] types = {"Rectangle", "Ellipse"};
-    JComboBox<String> shapeType = new JComboBox(types);
+    JComboBox<String> shapeType = new JComboBox<>(types);
     shapeType.setBackground(Color.WHITE);
     constraints.gridx = 150;
     constraints.gridy = 170;
     constraints.ipadx = 120;
     constraints.ipady = 20;
     shape.add(shapeType, constraints);
-
-    frame.setSize(new Dimension(300, 230));
-    frame.setLocationRelativeTo(frame);
-    frame.setLayout(new BorderLayout());
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    frame.add(shape, BorderLayout.NORTH);
-    frame.setVisible(true);
 
     String type = shapeType.getSelectedItem().toString();
 
@@ -566,34 +531,24 @@ public class AnimatorControllerImpl implements IAnimatorController {
     constraints.ipadx = 120;
     constraints.ipady = 20;
     shape.add(buttons, constraints);
+    frame.add(shape);
   }
 
   private void addMotion() {
-    JFrame frame = new JFrame();
-    frame.setSize(new Dimension(300, 300));
-    frame.setLocationRelativeTo(frame);
-    frame.setLayout(new BorderLayout());
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    DefaultListModel listModel = new DefaultListModel();
-
+    JFrame frame = makeFrame(300, 300);
 
     JPanel listPanel = new JPanel();
     listPanel.setLayout(new BorderLayout());
     JLabel shape = new JLabel("What shape do you want?");
     listPanel.setLayout(new BorderLayout());
     listPanel.add(shape, BorderLayout.CENTER);
-    List<IShape> shapes = model.getLogOfShapes();
-    int size = shapes.size();
-    for (int i = 0; i < size; i++) {
-      listModel.addElement(shapes.get(i).getName());
-    }
-    JList list = new JList(listModel);
+
+    DefaultListModel<String> listModel = makeListModel();
+    JList<String> list = new JList<>(listModel);
     list.setVisible(true);
 
     // creates scroll bar and adds list to it
-    JScrollPane listScroller = new JScrollPane(list);
-    listScroller.setSize(300, 300);
-    listScroller.setVerticalScrollBarPolicy(listScroller.VERTICAL_SCROLLBAR_ALWAYS);
+    JScrollPane listScroller = makeScrollPane(list);
     listPanel.add(listScroller, BorderLayout.SOUTH);
 
 
@@ -601,7 +556,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     panel.setLayout(new BorderLayout());
     JLabel motion = new JLabel("What motion do you want?");
     String[] types = {"Move", "Scale", "Change Color", "Stationary"};
-    JComboBox<String> motionType = new JComboBox(types);
+    JComboBox<String> motionType = new JComboBox<>(types);
     motionType.setBackground(Color.WHITE);
     panel.add(motion, BorderLayout.CENTER);
     panel.add(motionType, BorderLayout.SOUTH);
@@ -609,47 +564,74 @@ public class AnimatorControllerImpl implements IAnimatorController {
     frame.add(listPanel, BorderLayout.NORTH);
     frame.add(panel, BorderLayout.CENTER);
     panel.setVisible(true);
-    frame.setVisible(true);
 
     JButton motionShape = new JButton("Add Motion");
     motionShape.addActionListener(new ActionListener() {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        JFrame frame = new JFrame();
+        JFrame motionFrame = makeFrame(250, 300);
         JPanel shape = new JPanel();
 
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        frame.add(shape);
-        frame.setSize(new Dimension(250, 300));
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(frame);
-        frame.setBackground(Color.WHITE);
-        frame.setLayout(new BorderLayout());
-        frame.setVisible(true);
+        motionFrame.add(shape);
 
         JLabel welcome = new JLabel("   Set the shape's motion!\n\n");
         welcome.setBackground(Color.WHITE);
         welcome.setFont(new Font("Serif", Font.BOLD, 18));
-        frame.add(welcome, BorderLayout.NORTH, SwingConstants.CENTER);
+        motionFrame.add(welcome, BorderLayout.NORTH, SwingConstants.CENTER);
 
         shape.setVisible(true);
         shape.setBackground(Color.WHITE);
         shape.setLayout(new GridLayout(9, 1, 5, 5));
         shape.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        try {
-          int index = list.getSelectedIndex();
-          // getting shape's name
-          String name = (String) listModel.get(index);
-          String type = motionType.getSelectedItem().toString();
+        int index = list.getSelectedIndex();
+
+        // getting shape's name
+        String name = (String) listModel.get(index);
+        String type = motionType.getSelectedItem().toString();
 
 
-          if (type.equals("Move") {
+        if (type.equals("Move")) {
+          frame.dispose();
+          JLabel xLabel = new JLabel("X:");
+          JTextField xText = new JTextField();
+          JLabel yLabel = new JLabel("Y:");
+          JTextField yText = new JTextField();
+          JLabel t1Label = new JLabel("T1:");
+          JTextField t1 = new JTextField();
+          JLabel t2Label = new JLabel("T2:");
+          JTextField t2 = new JTextField();
+          shape.add(xLabel);
+          shape.add(xText);
+          shape.add(yLabel);
+          shape.add(yText);
+          shape.add(t1Label);
+          shape.add(t1);
+          shape.add(t2Label);
+          shape.add(t2);
+          motionFrame.add(shape, BorderLayout.CENTER);
+          JPanel buttons = new JPanel();
+          buttons.setLayout(new FlowLayout());
+          buttons.setBackground(Color.WHITE);
+          JButton ok = new JButton("OK");
+          buttons.add(ok);
+          motionFrame.add(buttons, BorderLayout.SOUTH);
 
-          }
-
-          // getting the shape's motion
+          ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              motionFrame.dispose();
+              try {
+                model.move(name, Integer.parseInt(xText.getText()), Integer.parseInt(yText.getText()),
+                        Integer.parseInt(t1.getText()), Integer.parseInt(t2.getText()));
+              } catch (Exception err) {
+                JOptionPane.showMessageDialog(null, "Move overlap", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+              }
+            }
+          });
+        }
 
 
 //          model.setAttributes(name, Integer.parseInt(xText.getText()),
@@ -658,24 +640,10 @@ public class AnimatorControllerImpl implements IAnimatorController {
 //                  Integer.parseInt(redText.getText()), Integer.parseInt(greenText.getText()),
 //                  Integer.parseInt(blueText.getText()), Integer.parseInt(t1.getText()),
 //                  Integer.parseInt(t2.getText()));
-
-
-          frame.dispose();
-        } catch (Exception wrongShape) {
-          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
-                  JOptionPane.ERROR_MESSAGE);
-        }
       }
     });
 
-    JButton cancel = new JButton("Cancel");
-    cancel.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        frame.dispose();
-      }
-    });
+    JButton cancel = makeCancelButton(frame);
 
 
     JPanel buttons = new JPanel();
@@ -689,19 +657,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   private void removeShape() {
     // populate the JList
-    DefaultListModel listModel = new DefaultListModel();
-    List<IShape> shapes = model.getLogOfShapes();
-    int size = shapes.size();
-    for (int i = 0; i < size; i++) {
-      listModel.addElement(shapes.get(i).getName());
-    }
-    JList list = new JList(listModel);
+    DefaultListModel<String> listModel = makeListModel();
+    JList<String> list = new JList<String>(listModel);
     list.setVisible(true);
 
     // creates scroll bar and adds list to it
-    JScrollPane listScroller = new JScrollPane(list);
-    listScroller.setSize(300, 200);
-    listScroller.setVerticalScrollBarPolicy(listScroller.VERTICAL_SCROLLBAR_ALWAYS);
+    JScrollPane listScroller = makeScrollPane(list);
 
     // create and add buttons
     JButton delete = new JButton("Remove");
@@ -734,25 +695,13 @@ public class AnimatorControllerImpl implements IAnimatorController {
     });
 
     // creates the JFrame pop up and adds scroll bar to it
-    JFrame listFrame = new JFrame();
-    listFrame.setLayout(new BorderLayout());
+    JFrame listFrame = makeFrame(300, 200);
     JLabel message = new JLabel("Which shape would you like to remove?");
     message.setFont(new Font("Helvetica", Font.BOLD, 14));
     listFrame.add(message, BorderLayout.NORTH);
-    listFrame.setSize(new Dimension(300, 200));
-    listFrame.setLocationRelativeTo(frame);
-    listFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    listFrame.setVisible(true);
     listFrame.add(listScroller, BorderLayout.CENTER);
 
-    JButton cancel = new JButton("Cancel");
-    cancel.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        listFrame.dispose();
-      }
-    });
+    JButton cancel = makeCancelButton(listFrame);
 
     // creates a button panel and adds to frame
     JPanel buttonPanel = new JPanel();
@@ -763,26 +712,20 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
-//  private GridBagConstraints setConstraints(GridBagConstraints constraints, int x, int y, int padX, int padY) {
-//    constraints.gridx = 150;
-//    constraints.gridy = 100;
-//    constraints.ipadx = 20;
-//    constraints.ipady = 20;
-//    return constraints;
-//  }
+  private JLabel setConstraints(String message, GridBagConstraints constraints,
+                                            int x, int y, int padX, int padY) {
+    JLabel genericLabel = new JLabel(message);
+    constraints.gridx = 150;
+    constraints.gridy = 150;
+    constraints.ipadx = 20;
+    constraints.ipady = 20;
+    return genericLabel;
+  }
 
   private void setShapeAttributes(String name) {
-    JFrame frame = new JFrame();
+    JFrame frame = makeFrame(250, 300);
     JPanel shape = new JPanel();
-
-    JFrame.setDefaultLookAndFeelDecorated(true);
     frame.add(shape);
-    frame.setSize(new Dimension(250, 300));
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    frame.setLocationRelativeTo(frame);
-    frame.setBackground(Color.WHITE);
-    frame.setLayout(new BorderLayout());
-    frame.setVisible(true);
 
     JLabel welcome = new JLabel("   Set the shape's attributes!\n\n");
     welcome.setBackground(Color.WHITE);
@@ -880,5 +823,47 @@ public class AnimatorControllerImpl implements IAnimatorController {
     buttons.add(cancel);
 
     frame.add(buttons, BorderLayout.SOUTH);
+  }
+
+  private JFrame makeFrame(int width, int height) {
+    JFrame frame = new JFrame();
+    JFrame.setDefaultLookAndFeelDecorated(true);
+    frame.setSize(new Dimension(width, height));
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    frame.setLocationRelativeTo(frame);
+    frame.setBackground(Color.WHITE);
+    frame.setLayout(new BorderLayout());
+    frame.setVisible(true);
+    return frame;
+  }
+
+  private JScrollPane makeScrollPane(JList<String> list) {
+    JScrollPane listScroller = new JScrollPane(list);
+    listScroller.setSize(300, 200);
+    listScroller.setVerticalScrollBarPolicy(listScroller.VERTICAL_SCROLLBAR_ALWAYS);
+    return listScroller;
+  }
+
+  private DefaultListModel<String> makeListModel() {
+    DefaultListModel<String> listModel = new DefaultListModel<String>();
+    List<IShape> shapes = model.getLogOfShapes();
+    int size = shapes.size();
+    for (int i = 0; i < size; i++) {
+      listModel.addElement(shapes.get(i).getName());
+    }
+    return listModel;
+  }
+
+  private JButton makeCancelButton(JFrame frame) {
+    JButton cancel = new JButton("Cancel");
+    cancel.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+      }
+    });
+
+    return cancel;
   }
 }
