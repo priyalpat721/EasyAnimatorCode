@@ -83,12 +83,15 @@ public interface IAnimatorModel {
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
   /**
+   * Private method that adds a Stay action to a shape.
    *
-   * @param name
-   * @param parseInt
-   * @param parseInt1
+   * @param name      name of the shape.
+   * @param startTime start time of the action.
+   * @param endTime   end time of the action.
+   * @throws IllegalArgumentException if the name is invalid.
    */
-  void stay(String name, int parseInt, int parseInt1);
+
+  void stay(String name, int startTime, int endTime);
 
   /**
    * A function that returns a list of shapes at the specified frame. The function works by
