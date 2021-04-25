@@ -463,6 +463,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   }
 
+  /**
+   * Method that adds the selected shape to the panel animation.
+   */
   public void addShape() {
     JFrame frame = makeFrame(400, 230);
     JPanel shape = new JPanel();
@@ -539,6 +542,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     frame.add(shape);
   }
 
+  /**
+   * Method that allows user to select a motion from a list and add it to the panel animation.
+   */
   public void addMotion() {
     JFrame frame = makeFrame(300, 300);
 
