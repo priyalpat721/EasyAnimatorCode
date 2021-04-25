@@ -8,12 +8,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
@@ -722,7 +726,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     JFileChooser fileChooser = new JFileChooser();
     if (fileChooser.showSaveDialog(filename) == JFileChooser.APPROVE_OPTION) {
       File file = fileChooser.getSelectedFile();
-      file.getAbsolutePath();
+      String directory = file.getAbsolutePath();
       if (file == null) {
         JOptionPane.showMessageDialog(null, "", "Error",
                 JOptionPane.ERROR_MESSAGE);
@@ -734,12 +738,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
       String name = fileComponents[0];
       String extension = fileComponents[1];
       if (file_name.contains("txt")) {
-        String text = createFile(name, extension, model.toString());
+        String text = saveFile(name, extension, model.toString(), directory);
         JOptionPane.showMessageDialog(null, text, "Success", JOptionPane.PLAIN_MESSAGE);
       } else if (file_name.contains("svg")) {
 
         String result = getSVGView();
-        String svg = createFile(name, extension, result);
+        String svg = saveFile(name, extension, result, directory);
         JOptionPane.showMessageDialog(null, svg, "Success", JOptionPane.PLAIN_MESSAGE);
       } else {
         JOptionPane.showMessageDialog(null, "File must be .txt or .svg", "Error",
@@ -941,6 +945,38 @@ public class AnimatorControllerImpl implements IAnimatorController {
     });
 
     return cancel;
+  }
+
+  /**
+   * Creates a file.
+   * @param name name of the file.
+   * @param format format of the file.
+   * @param content content of the file.
+   * @return the file name.
+   * @throws IllegalArgumentException if the name, format, or content are invalid.
+   */
+  private String saveFile(String name, String format, String content, String directory) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Invalid name");
+    } else if (format == null || format.isBlank()) {
+      throw new IllegalArgumentException("Invalid format");
+    } else if (content == null || content.isBlank()) {
+      throw new IllegalArgumentException("Invalid content");
+    }
+
+    String fileName = name + "." + format;
+
+    try {
+      File newfile = new File(fileName, directory);
+      Writer newFile = new FileWriter(newfile);
+      newFile.write(content);
+      newFile.close();
+    } catch (IOException e) {
+      showMessage("An error occurred while saving the file", 2);
+      System.exit(0);
+    }
+
+    return fileName;
   }
 
 }
