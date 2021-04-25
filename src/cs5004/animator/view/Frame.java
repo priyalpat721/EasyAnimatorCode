@@ -1,7 +1,6 @@
 package cs5004.animator.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.List;
 
@@ -27,6 +26,7 @@ public class Frame extends JFrame {
   private JMenuItem addShape;
   private JMenuItem addMotion;
   private JMenuItem removeShape;
+  private JMenuItem save;
 
   /**
    * Constructs Canvas objects that displays the panel with the shapes.
@@ -80,6 +80,7 @@ public class Frame extends JFrame {
     this.addShape.addMouseListener(mouseEvent);
     this.addMotion.addMouseListener(mouseEvent);
     this.removeShape.addMouseListener(mouseEvent);
+    this.save.addMouseListener(mouseEvent);
   }
 
   private void makeMenu() {
@@ -117,6 +118,11 @@ public class Frame extends JFrame {
     this.help = new JMenuItem("Help");
     this.help.setName("help");
     file.add(help);
+    file.addSeparator();
+
+    this.save = new JMenuItem("Save");
+    this.save.setName("save");
+    file.add(save);
     file.addSeparator();
 
     // allows user to exit out of program

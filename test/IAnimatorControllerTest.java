@@ -163,6 +163,11 @@ public class IAnimatorControllerTest {
     }
 
     @Override
+    public void makeVisible() {
+      // needed for the playback mock test to work correctly
+    }
+
+    @Override
     public void setCommandButtonListener(MouseListener mouseEvent, KeyListener keyEvent) {
       frame.addKeyListener(keyEvent);
     }

@@ -317,6 +317,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
           case "remove":
             removeShape();
             break;
+          case "save":
+            save();
+            break;
           case "exit":
             System.exit(0);
             break;
@@ -344,7 +347,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         case KeyEvent.VK_SPACE:
           pause();
           break;
-        case KeyEvent.VK_S:
+        case KeyEvent.VK_K:
           resume();
           break;
         case KeyEvent.VK_R:
@@ -377,6 +380,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
           break;
         case KeyEvent.VK_DELETE:
           removeShape();
+          break;
+        case KeyEvent.VK_S:
+          save();
           break;
         case KeyEvent.VK_ESCAPE:
           System.exit(0);
@@ -444,7 +450,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
     // makes the table for the functions
     JScrollPane help = new JScrollPane();
     String[] heading = {"Buttons", "KeyBoard Keys"};
-    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "s"},
+    String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "k"},
             {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
             {"Exit", "esc"}};
     JTable controls = new JTable(functions, heading);
@@ -467,7 +473,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
     // adds name label
     JLabel name = setConstraints("What is the shape's name?", constraints, 150, 100,
-            20,10);
+            20, 10);
     shape.add(name, constraints);
 
     // adds text field to get name
@@ -585,61 +591,39 @@ public class AnimatorControllerImpl implements IAnimatorController {
         shape.setLayout(new GridLayout(9, 1, 5, 5));
         shape.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        int index = list.getSelectedIndex();
-
-        // getting shape's name
-        String name = (String) listModel.get(index);
-        String type = motionType.getSelectedItem().toString();
+        try {
+          int index = list.getSelectedIndex();
 
 
-        if (type.equals("Move")) {
-          frame.dispose();
-          JLabel xLabel = new JLabel("X:");
-          JTextField xText = new JTextField();
-          JLabel yLabel = new JLabel("Y:");
-          JTextField yText = new JTextField();
-          JLabel t1Label = new JLabel("T1:");
-          JTextField t1 = new JTextField();
-          JLabel t2Label = new JLabel("T2:");
-          JTextField t2 = new JTextField();
-          shape.add(xLabel);
-          shape.add(xText);
-          shape.add(yLabel);
-          shape.add(yText);
-          shape.add(t1Label);
-          shape.add(t1);
-          shape.add(t2Label);
-          shape.add(t2);
-          motionFrame.add(shape, BorderLayout.CENTER);
-          JPanel buttons = new JPanel();
-          buttons.setLayout(new FlowLayout());
-          buttons.setBackground(Color.WHITE);
-          JButton ok = new JButton("OK");
-          buttons.add(ok);
-          motionFrame.add(buttons, BorderLayout.SOUTH);
+          // getting shape's name
+          String name = (String) listModel.get(index);
+          String type = motionType.getSelectedItem().toString();
 
-          ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              motionFrame.dispose();
-              try {
-                model.move(name, Integer.parseInt(xText.getText()), Integer.parseInt(yText.getText()),
-                        Integer.parseInt(t1.getText()), Integer.parseInt(t2.getText()));
-              } catch (Exception err) {
-                JOptionPane.showMessageDialog(null, "Move overlap", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-              }
-            }
-          });
+          MotionStrategy motionStrategy = new MoveStrategy(motionFrame, shape, name, model);
+
+          if (type.equals("Move")) {
+            frame.dispose();
+            motionStrategy.makeMotion();
+          } else if (type.equals("Scale")) {
+            frame.dispose();
+            motionStrategy = new ScaleStrategy(motionFrame, shape, name, model);
+            motionStrategy.makeMotion();
+          } else if (type.equals("Change Color")) {
+            frame.dispose();
+            motionStrategy = new ChangeColorStrategy(motionFrame, shape, name, model);
+            motionStrategy.makeMotion();
+          } else {
+            frame.dispose();
+            motionStrategy = new StationaryStrategy(motionFrame, shape, name, model);
+            motionStrategy.makeMotion();
+          }
         }
-
-
-//          model.setAttributes(name, Integer.parseInt(xText.getText()),
-//                  Integer.parseInt(yText.getText()),
-//                  Integer.parseInt(width.getText()), Integer.parseInt(height.getText()),
-//                  Integer.parseInt(redText.getText()), Integer.parseInt(greenText.getText()),
-//                  Integer.parseInt(blueText.getText()), Integer.parseInt(t1.getText()),
-//                  Integer.parseInt(t2.getText()));
+        catch (Exception notSelected) {
+          motionFrame.dispose();
+          JOptionPane.showMessageDialog(null, "A shape was not selected", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+          frame.dispose();
+        }
       }
     });
 
@@ -654,6 +638,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
     frame.add(buttons, BorderLayout.SOUTH);
   }
+
 
   private void removeShape() {
     // populate the JList
@@ -688,7 +673,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         try {
           model.removeShape(removedShape);
         } catch (Exception notMotion) {
-          JOptionPane.showMessageDialog(null, "Shape has no motions", "Error",
+          JOptionPane.showMessageDialog(null, "Shape had no motions", "Error",
                   JOptionPane.ERROR_MESSAGE);
         }
       }
@@ -712,13 +697,17 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
+  private void save() {
+
+  }
+
   private JLabel setConstraints(String message, GridBagConstraints constraints,
-                                            int x, int y, int padX, int padY) {
+                                int x, int y, int padX, int padY) {
     JLabel genericLabel = new JLabel(message);
-    constraints.gridx = 150;
-    constraints.gridy = 150;
-    constraints.ipadx = 20;
-    constraints.ipady = 20;
+    constraints.gridx = x;
+    constraints.gridy = y;
+    constraints.ipadx = padX;
+    constraints.ipady = padY;
     return genericLabel;
   }
 

@@ -62,7 +62,7 @@ public class Scale extends AbstractAction {
       return copy;
     }
 
-    double percent = (double) (tick - this.time.getStartTime())
+    double percent = (tick - this.time.getStartTime())
                      / (this.time.getEndTime() - this.time.getStartTime());
 
     double currentWidth = (percent * (newWidth - oldWidth) + oldWidth);

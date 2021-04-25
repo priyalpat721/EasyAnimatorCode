@@ -83,6 +83,14 @@ public interface IAnimatorModel {
   void scale(String name, double newWidth, double newHeight, int startTime, int endTime);
 
   /**
+   *
+   * @param name
+   * @param parseInt
+   * @param parseInt1
+   */
+  void stay(String name, int parseInt, int parseInt1);
+
+  /**
    * A function that returns a list of shapes at the specified frame. The function works by
    * identifying the tick of a move at a specified time. If the tick falls within the the interval
    * of event's duration, that specific frame is added to a list and returned back to the
@@ -191,5 +199,4 @@ public interface IAnimatorModel {
    * @param action takes in the specific action that needs to be removed from the shape.
    */
   void removeAction(String name, IAction action);
-
 }
