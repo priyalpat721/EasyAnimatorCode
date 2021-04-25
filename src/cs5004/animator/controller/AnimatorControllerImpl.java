@@ -18,6 +18,7 @@ import javax.swing.*;
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
+import cs5004.animator.shape.Shape;
 import cs5004.animator.utils.AnimationBuilder;
 import cs5004.animator.utils.Builder;
 import cs5004.animator.view.Canvas;
@@ -491,15 +492,50 @@ public class AnimatorControllerImpl implements IAnimatorController {
     constraints.ipady = 20;
     shape.add(shapeType, constraints);
 
-    frame.setSize(new Dimension(300, 200));
+    frame.setSize(new Dimension(300, 230));
     frame.setLocationRelativeTo(frame);
     frame.setLayout(new BorderLayout());
     frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     frame.add(shape, BorderLayout.NORTH);
     frame.setVisible(true);
 
+    String type = shapeType.getSelectedItem().toString();
 
-    //model.createShape(shapeName);
+    JButton addShape = new JButton("Add Shape");
+    addShape.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          model.createShape(text.getText(), type);
+          frame.dispose();
+        }
+        catch (Exception wrongShape) {
+          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    });
+
+    JButton cancel = new JButton("Cancel");
+    cancel.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+      }
+    });
+
+    JPanel buttons = new JPanel();
+    buttons.setLayout(new FlowLayout());
+    buttons.setBackground(Color.WHITE);
+    buttons.add(addShape);
+    buttons.add(cancel);
+    constraints.gridx = 150;
+    constraints.gridy = 200;
+    constraints.ipadx = 120;
+    constraints.ipady = 20;
+    shape.add(buttons, constraints);
   }
 
   private void addMotion() {
@@ -545,11 +581,15 @@ public class AnimatorControllerImpl implements IAnimatorController {
           list.ensureIndexIsVisible(index);
         }
 
-        model.removeShape(removedShape);
+        try {
+          model.removeShape(removedShape);
+        }
+        catch (Exception notMotion) {
+          JOptionPane.showMessageDialog(null, "Shape has no motions", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+        }
       }
     });
-
-
 
     // creates the JFrame pop up and adds scroll bar to it
     JFrame listFrame = new JFrame();
@@ -579,5 +619,29 @@ public class AnimatorControllerImpl implements IAnimatorController {
     buttonPanel.add(cancel);
     buttonPanel.setVisible(true);
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
+  }
+
+  private void setShapeAttributes() {
+    JFrame frame = new JFrame();
+    JPanel shape = new JPanel();
+    shape.setBackground(Color.WHITE);
+    shape.setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
+
+    // adds name label
+    JLabel x = new JLabel("X:");
+    constraints.gridx = 150;
+    constraints.gridy = 100;
+    constraints.ipadx = 20;
+    constraints.ipady = 20;
+    shape.add(x, constraints);
+
+    // adds text field to get name
+    JTextField text = new JTextField();
+    constraints.gridx = 150;
+    constraints.gridy = 120;
+    constraints.ipadx = 20;
+    constraints.ipady = 10;
+    shape.add(text, constraints);
   }
 }
