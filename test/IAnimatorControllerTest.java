@@ -38,7 +38,7 @@ public class IAnimatorControllerTest {
     Readable in = new FileReader("test/smalldemo.txt");
     IAnimatorModel model = parseFile(in, builder);
     view = new MockView();
-    String[] args = {"-in", "in", "-view", "playback"};
+    String[] args = {"-in", "foo", "-view", "playback"};
 
     originalOut = System.out;
     newOut = new ByteArrayOutputStream();
