@@ -45,7 +45,7 @@ public class IAnimatorControllerTest {
     System.setOut(new PrintStream(newOut));
 
     IAnimatorController controller = new MockController(args, model, view);
-    controller.createView();
+    controller.start();
   }
 
   @After
