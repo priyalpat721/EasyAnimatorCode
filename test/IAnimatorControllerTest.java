@@ -76,28 +76,19 @@ public class IAnimatorControllerTest {
     // decrease speed: key ','
     KeyEvent comma = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_COMMA, ',');
-
-    //
-    KeyEvent keyO = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
-            System.currentTimeMillis(), 0,  KeyEvent.VK_O, 'o');
-
-    //
+    // help: hey 'H'
     KeyEvent keyH = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_H, 'h');
-
-    //
+    // add shape: key 'A'
     KeyEvent keyA = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_A, 'a');
-
-    //
+    // add motion: key 'M'
     KeyEvent keyM = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_M, 'm');
-
-    //
+    // save: key 'S'
     KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
-
-    //
+    // remove shape: key 'delete'
     KeyEvent keyDelete = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_DELETE, 'z');
 
@@ -109,18 +100,24 @@ public class IAnimatorControllerTest {
     view.getFrame().getKeyListeners()[0].keyPressed(keyL);
     view.getFrame().getKeyListeners()[0].keyPressed(period);
     view.getFrame().getKeyListeners()[0].keyPressed(comma);
-
-    view.getFrame().getKeyListeners()[0].keyPressed(keyO);
     view.getFrame().getKeyListeners()[0].keyPressed(keyH);
     view.getFrame().getKeyListeners()[0].keyPressed(keyA);
     view.getFrame().getKeyListeners()[0].keyPressed(keyM);
     view.getFrame().getKeyListeners()[0].keyPressed(keyS);
     view.getFrame().getKeyListeners()[0].keyPressed(keyDelete);
 
-    assertEquals("play" + lineSeparator() + "pause" + lineSeparator()
-                 + "resume" + lineSeparator() + "restart" + lineSeparator()
-                 + "loop" + lineSeparator() + "increaseSpeed"
-                 + lineSeparator() + "decreaseSpeed", newOut.toString().trim());
+    assertEquals("play" + lineSeparator()
+                      + "pause" + lineSeparator()
+                      + "resume" + lineSeparator()
+                      + "restart" + lineSeparator()
+                      + "loop" + lineSeparator()
+                      + "increaseSpeed" + lineSeparator()
+                      + "decreaseSpeed" + lineSeparator()
+                      + "help" + lineSeparator()
+                      + "addShape" + lineSeparator()
+                      + "addMotion" + lineSeparator()
+                      + "save" + lineSeparator()
+                      + "removeShape", newOut.toString().trim());
   }
 
   /**
@@ -176,7 +173,31 @@ public class IAnimatorControllerTest {
       System.out.println("increaseSpeed");
     }
 
+    @Override
+    public void help() {
+      System.out.println("help");
     }
+
+    @Override
+    public void addShape() {
+      System.out.println("addShape");
+    }
+
+    @Override
+    public void addMotion() {
+      System.out.println("addMotion");
+    }
+
+    @Override
+    public void removeShape() {
+      System.out.println("removeShape");
+    }
+
+    @Override
+    public void save() {
+      System.out.println("save");
+    }
+  }
 
 
 
