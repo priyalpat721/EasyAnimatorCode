@@ -83,6 +83,11 @@ public class Frame extends JFrame {
     this.save.addMouseListener(mouseEvent);
   }
 
+  /**
+   * Method that adds JMenu tool bar functionality to PlayBackView.
+   * It allows user to open animation from file, edit, and save animation to a file.
+   * Buttons: File, Open, Edit, Add Shape/Motion, Add Shape, Add Motion, Remove Shape, Save, Exit.
+   */
   private void makeMenu() {
     // adds menu option
     JMenuBar menu = new JMenuBar();

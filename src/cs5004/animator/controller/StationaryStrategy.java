@@ -15,12 +15,22 @@ import javax.swing.JOptionPane;
 
 import cs5004.animator.model.IAnimatorModel;
 
+/**
+ * Class for representing a static shape via the GUI. It implements the MotionStrategy interface.
+ */
 public class StationaryStrategy implements MotionStrategy {
   private JFrame motionFrame;
   private JPanel shape;
   private String name;
   private IAnimatorModel model;
 
+  /**
+   * Constructor for StationaryStrategy.
+   * @param motionFrame JFrame for the motion.
+   * @param shape to be kept stationary.
+   * @param name of the shape.
+   * @param model containing the shapes.
+   */
   public StationaryStrategy(JFrame motionFrame, JPanel shape, String name, IAnimatorModel model) {
     this.motionFrame = motionFrame;
     this.shape = shape;
@@ -28,6 +38,9 @@ public class StationaryStrategy implements MotionStrategy {
     this.model = model;
   }
 
+  /**
+   * Method that applies the new motion(maintaining a shape fixed) based on user input via GUI.
+   */
   public void makeMotion() {
     JLabel t1Label = new JLabel("T1:");
     JTextField t1 = new JTextField();

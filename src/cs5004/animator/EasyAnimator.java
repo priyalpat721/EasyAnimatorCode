@@ -19,8 +19,7 @@ public final class EasyAnimator {
 
   /**
    * Main method for Easy Animator.
-   * It manages events from Readable file and generates a view accordingly.
-   * @param args default arguments for main method.
+   * @param args command-line arguments.
    */
   public static void main(String[] args) {
     String[] commands = parseCommands(args);

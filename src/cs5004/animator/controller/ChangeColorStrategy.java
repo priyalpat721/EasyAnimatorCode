@@ -9,12 +9,22 @@ import javax.swing.*;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.tools.RGB;
 
+/**
+ * Class for changing the color of a shape via the GUI. It implements the MotionStrategy interface.
+ */
 public class ChangeColorStrategy implements MotionStrategy {
   private JFrame motionFrame;
   private JPanel shape;
   private String name;
   private IAnimatorModel model;
 
+  /**
+   * Constructor for ChangeColorStrategy.
+   * @param motionFrame motion to be applied to shape.
+   * @param shape shape to be changed.
+   * @param name of the shape.
+   * @param model that contains shapes.
+   */
   public ChangeColorStrategy(JFrame motionFrame, JPanel shape, String name, IAnimatorModel model) {
     this.motionFrame = motionFrame;
     this.shape = shape;
@@ -22,6 +32,9 @@ public class ChangeColorStrategy implements MotionStrategy {
     this.model = model;
   }
 
+  /**
+   * Method that applies the new motion (color change) to shape based on user input via GUI.
+   */
   public void makeMotion() {
     JLabel redLabel = new JLabel("Red:");
     JTextField red = new JTextField();

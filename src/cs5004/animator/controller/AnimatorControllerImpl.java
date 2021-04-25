@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -472,6 +471,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
   }
 
+  /**
+   * Method that adds the selected shape to the panel animation.
+   */
   public void addShape() {
     JFrame frame = makeFrame(400, 230);
     JPanel shape = new JPanel();
@@ -548,6 +550,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
     frame.add(shape);
   }
 
+  /**
+   * Method that allows user to select a motion from a list and add it to the panel animation.
+   */
   public void addMotion() {
     JFrame frame = makeFrame(300, 300);
 
@@ -647,6 +652,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
 
+  /**
+   * Method that removes a shape from the animation.
+   */
   public void removeShape() {
     // populate the JList
     DefaultListModel<String> listModel = makeListModel();
@@ -704,6 +712,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
     listFrame.add(buttonPanel, BorderLayout.SOUTH);
   }
 
+  /**
+   * Method that allows a user to save an edited animation.
+   * A user can save an animation in .txt or .svg file.
+   */
+
   public void save() throws IOException {
     JTextField filename = new JTextField();
     JFileChooser fileChooser = new JFileChooser();
@@ -735,6 +748,17 @@ public class AnimatorControllerImpl implements IAnimatorController {
     }
   }
 
+  /**
+   * Method to set a generic Jlabel with GridBagLayout constraints.
+   *
+   * @param message label message.
+   * @param constraints for the GridBagLayout Jlabel.
+   * @param x x coordinate for GridBagLayout Jlabel.
+   * @param y y coordinate for GridBagLayout Jlabel.
+   * @param padX width of GridBagLayout Jlabel.
+   * @param padY height of the GridBagLayout Jlabel.
+   * @return a generic JLabel
+   */
   private JLabel setConstraints(String message, GridBagConstraints constraints,
                                 int x, int y, int padX, int padY) {
     JLabel genericLabel = new JLabel(message);
@@ -745,6 +769,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return genericLabel;
   }
 
+  /**
+   * Method that allows user to set shape attributes in GUI via mouse and keyboard events.
+   *
+   * @param name of the shape.
+   */
   private void setShapeAttributes(String name) {
     JFrame frame = makeFrame(250, 300);
     JPanel shape = new JPanel();
@@ -848,6 +877,13 @@ public class AnimatorControllerImpl implements IAnimatorController {
     frame.add(buttons, BorderLayout.SOUTH);
   }
 
+  /**
+   * Method that creates a JFrame given width and height.
+   *
+   * @param width of the JFrame.
+   * @param height of the JFrame.
+   * @return new JFrame of white background.
+   */
   private JFrame makeFrame(int width, int height) {
     JFrame frame = new JFrame();
     JFrame.setDefaultLookAndFeelDecorated(true);
@@ -860,6 +896,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return frame;
   }
 
+  /**
+   * Method that creates a JScrollPane of width 300 and height 200.
+   *
+   * @param list of elements in Panel
+   * @return new JScrollpane.
+   */
   private JScrollPane makeScrollPane(JList<String> list) {
     JScrollPane listScroller = new JScrollPane(list);
     listScroller.setSize(300, 200);
@@ -867,6 +909,11 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return listScroller;
   }
 
+  /**
+   * Method that creates a DefaultListModel of type String and adds to it shapes from the model.
+   *
+   * @return DefaultListModel of shapes from model.
+   */
   private DefaultListModel<String> makeListModel() {
     DefaultListModel<String> listModel = new DefaultListModel<String>();
     List<IShape> shapes = model.getLogOfShapes();
@@ -877,6 +924,12 @@ public class AnimatorControllerImpl implements IAnimatorController {
     return listModel;
   }
 
+  /**
+   * Method that creates a cancel button.
+   *
+   * @param frame for the button.
+   * @return cancel JButton.
+   */
   private JButton makeCancelButton(JFrame frame) {
     JButton cancel = new JButton("Cancel");
     cancel.addActionListener(new ActionListener() {

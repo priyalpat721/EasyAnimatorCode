@@ -15,12 +15,22 @@ import javax.swing.JOptionPane;
 
 import cs5004.animator.model.IAnimatorModel;
 
+/**
+ * Class for adding motion a shape via the GUI. It implements the MotionStrategy interface.
+ */
 public class MoveStrategy implements MotionStrategy {
   private JFrame motionFrame;
   private JPanel shape;
   private String name;
   private IAnimatorModel model;
 
+  /**
+   * Constructor for MoveStrategy.
+   * @param motionFrame JFrame for the motion.
+   * @param shape to be moved.
+   * @param name name of the object.
+   * @param model that contains shapes.
+   */
   public MoveStrategy(JFrame motionFrame, JPanel shape, String name, IAnimatorModel model) {
     this.motionFrame = motionFrame;
     this.shape = shape;
@@ -28,6 +38,9 @@ public class MoveStrategy implements MotionStrategy {
     this.model = model;
   }
 
+  /**
+   * Method that applies the new motion to shape based on user input via GUI.
+   */
   public void makeMotion() {
 
     JLabel xLabel = new JLabel("X:");
