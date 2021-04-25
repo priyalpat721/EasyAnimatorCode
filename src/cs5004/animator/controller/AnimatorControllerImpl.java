@@ -1,6 +1,9 @@
 package cs5004.animator.controller;
 
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -13,8 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
-
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -24,6 +25,16 @@ import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.createFile;
@@ -232,7 +243,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   @Override
-  public void go() {
+  public void createView() {
     if (model.getLogOfShapes().isEmpty() && !viewType.equals("playback")) {
       showMessage("Animation is empty", 2);
       System.exit(0);
@@ -302,6 +313,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
             try {
               getFile();
             } catch (Exception ex) {
+              // no exception needs to be thrown.
             }
             break;
           case "help":
@@ -309,6 +321,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
             break;
           case "exit":
             System.exit(0);
+            break;
+          default:
+            // no action is intended when no other case applies.
         }
         playback.setFocus();
       }
@@ -350,10 +365,14 @@ public class AnimatorControllerImpl implements IAnimatorController {
           try {
             getFile();
           } catch (Exception ex) {
+            // no exception needs to be thrown.
           }
           break;
         case KeyEvent.VK_ESCAPE:
           System.exit(0);
+          break;
+        default:
+          // no action is intended when no other case applies.
       }
     }
   }
@@ -415,8 +434,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
     JScrollPane help = new JScrollPane();
     String[] heading = {"Buttons", "KeyBoard Keys"};
     String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "s"},
-            {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
-            {"Exit", "esc"}};
+        {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
+        {"Exit", "esc"}};
     JTable controls = new JTable(functions, heading);
     controls.setFont(new Font("Serif", Font.PLAIN, 16));
     help.setViewportView(controls);

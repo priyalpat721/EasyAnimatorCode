@@ -10,10 +10,17 @@ import java.util.EventListener;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
-
 import cs5004.animator.shape.IShape;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
+/**
+ * Class Playback creates the interactive user-facing window for the animation.
+ */
 public class PlayBack implements IAnimatorView<Frame> {
   private Frame frame;
   private final JPanel buttons;
@@ -136,8 +143,9 @@ public class PlayBack implements IAnimatorView<Frame> {
 
   private void removeMouseListener(JComponent event) {
     EventListener[] listeners = event.getListeners(MouseListener.class);
-    for (EventListener listener : listeners)
+    for (EventListener listener : listeners) {
       event.removeMouseListener((MouseListener) listener);
+    }
   }
 
 }

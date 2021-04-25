@@ -216,6 +216,8 @@ public class Helpers {
       case "playback":
         view = new PlayBack();
         break;
+      default:
+        // no action is intended when no other case applies.
     }
 
     return view;

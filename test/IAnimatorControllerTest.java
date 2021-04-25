@@ -28,14 +28,14 @@ import static org.junit.Assert.assertEquals;
  * A JUnit test for the IAnimatorController.
  */
 public class IAnimatorControllerTest {
-  private IAnimatorModel model;
   private MockView view;
-  private IAnimatorController controller;
   private PrintStream originalOut;
   private OutputStream newOut;
 
   @Before
   public void setUp() throws FileNotFoundException {
+    IAnimatorModel model;
+    IAnimatorController controller;
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
     model = parseFile(in, builder);
@@ -47,7 +47,7 @@ public class IAnimatorControllerTest {
     System.setOut(new PrintStream(newOut));
 
     controller = new MockController(args, model, view);
-    controller.go();
+    controller.createView();
   }
 
   @After
@@ -160,10 +160,6 @@ public class IAnimatorControllerTest {
      */
     private MockView() {
       this.frame = new Frame(1, 1, null);
-    }
-
-    @Override
-    public void makeVisible() {
     }
 
     @Override

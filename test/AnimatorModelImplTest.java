@@ -843,8 +843,7 @@ public class AnimatorModelImplTest {
                  + "to (10.0,10.0,10.0) from time t=10 to t=15]",
             model2.getMotionForShape("P1").toString());
 
-    assertEquals("[]"
-            , model2.getMotionForShape("X1").toString());
+    assertEquals("[]", model2.getMotionForShape("X1").toString());
   }
 
   @Test(expected = IllegalArgumentException.class)

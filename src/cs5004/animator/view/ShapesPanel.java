@@ -1,12 +1,13 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.List;
-
-import javax.swing.*;
 
 import cs5004.animator.shape.IShape;
 import cs5004.animator.shape.Shape;
+import javax.swing.JPanel;
 
 /**
  * Class that creates the panel containing the animations.
