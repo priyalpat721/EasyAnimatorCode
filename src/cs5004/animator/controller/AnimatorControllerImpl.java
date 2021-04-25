@@ -1,7 +1,14 @@
 package cs5004.animator.controller;
 
-
-import java.awt.*;
+import java.awt.ComponentOrientation;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -14,6 +21,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.*;
+
 import cs5004.animator.action.IAction;
 import cs5004.animator.model.IAnimatorModel;
 import cs5004.animator.shape.IShape;
@@ -23,8 +32,6 @@ import cs5004.animator.view.Canvas;
 import cs5004.animator.view.Frame;
 import cs5004.animator.view.IAnimatorView;
 import cs5004.animator.view.PlayBack;
-
-import javax.swing.*;
 
 import static cs5004.animator.tools.Helpers.checkInputFile;
 import static cs5004.animator.tools.Helpers.createFile;
@@ -187,8 +194,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   /**
-   * Restarts the timer.
-   * Sets the speed to the initial speed.
+   * Restarts the timer. Sets the speed to the initial speed.
    */
   public void restart() {
     timer.stop();
@@ -386,8 +392,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   /**
-   * Private method to generate an output.
-   * The default is System.out.
+   * Private method to generate an output. The default is System.out.
+   *
    * @param content the content of the svg or text view.
    * @throws NullPointerException if the content is null.
    */
@@ -442,8 +448,8 @@ public class AnimatorControllerImpl implements IAnimatorController {
     JScrollPane help = new JScrollPane();
     String[] heading = {"Buttons", "KeyBoard Keys"};
     String[][] functions = {{"Play", "enter"}, {"Pause", "spacebar"}, {"Resume", "s"},
-        {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
-        {"Exit", "esc"}};
+            {"Restart", "r"}, {"Loop", "l"}, {"Increase speed", "."}, {"Decrease speed", ","},
+            {"Exit", "esc"}};
     JTable controls = new JTable(functions, heading);
     controls.setFont(new Font("Serif", Font.PLAIN, 16));
     help.setViewportView(controls);
@@ -517,8 +523,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
         try {
           model.createShape(text.getText(), type);
           frame.dispose();
-        }
-        catch (Exception wrongShape) {
+        } catch (Exception wrongShape) {
           JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
                   JOptionPane.ERROR_MESSAGE);
         }
@@ -548,7 +553,97 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   private void addMotion() {
-    // TODO
+    JFrame frame = new JFrame();
+    frame.setSize(new Dimension(300, 300));
+    frame.setLocationRelativeTo(frame);
+    frame.setLayout(new BorderLayout());
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    DefaultListModel listModel = new DefaultListModel();
+
+
+    JPanel listPanel = new JPanel();
+    listPanel.setLayout(new BorderLayout());
+    JLabel shape = new JLabel("What shape do you want?");
+    listPanel.setLayout(new BorderLayout());
+    listPanel.add(shape, BorderLayout.CENTER);
+    List<IShape> shapes = model.getLogOfShapes();
+    int size = shapes.size();
+    for (int i = 0; i < size; i++) {
+      listModel.addElement(shapes.get(i).getName());
+    }
+    JList list = new JList(listModel);
+    list.setVisible(true);
+
+    // creates scroll bar and adds list to it
+    JScrollPane listScroller = new JScrollPane(list);
+    listScroller.setSize(300, 300);
+    listScroller.setVerticalScrollBarPolicy(listScroller.VERTICAL_SCROLLBAR_ALWAYS);
+    listPanel.add(listScroller, BorderLayout.SOUTH);
+
+
+    JPanel panel = new JPanel();
+    panel.setLayout(new BorderLayout());
+    JLabel motion = new JLabel("What motion do you want?");
+    String[] types = {"Move", "Scale", "Change Color", "Stationary"};
+    JComboBox<String> motionType = new JComboBox(types);
+    motionType.setBackground(Color.WHITE);
+    panel.add(motion, BorderLayout.CENTER);
+    panel.add(motionType, BorderLayout.SOUTH);
+
+    frame.add(listPanel, BorderLayout.NORTH);
+    frame.add(panel, BorderLayout.CENTER);
+    panel.setVisible(true);
+    frame.setVisible(true);
+
+    JButton motionShape = new JButton("Add Motion");
+    motionShape.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          int index = list.getSelectedIndex();
+          // getting shape's name
+          String name = (String) listModel.get(index);
+          String type = motionType.getSelectedItem().toString();
+
+          if (type =)
+
+          // getting the shape's motion
+
+
+//          model.setAttributes(name, Integer.parseInt(xText.getText()),
+//                  Integer.parseInt(yText.getText()),
+//                  Integer.parseInt(width.getText()), Integer.parseInt(height.getText()),
+//                  Integer.parseInt(redText.getText()), Integer.parseInt(greenText.getText()),
+//                  Integer.parseInt(blueText.getText()), Integer.parseInt(t1.getText()),
+//                  Integer.parseInt(t2.getText()));
+
+
+          frame.dispose();
+        } catch (Exception wrongShape) {
+          JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
+                  JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    });
+
+    JButton cancel = new JButton("Cancel");
+    cancel.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+      }
+    });
+
+
+    JPanel buttons = new JPanel();
+    buttons.setLayout(new FlowLayout());
+    buttons.setBackground(Color.WHITE);
+    buttons.add(motionShape);
+    buttons.add(cancel);
+
+    frame.add(buttons, BorderLayout.SOUTH);
   }
 
   private void removeShape() {
@@ -580,11 +675,9 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
         if (size == 0) {
           delete.setEnabled(false);
-        }
-
-        else {
+        } else {
           if (index == listModel.getSize()) {
-            index --;
+            index--;
           }
           list.setSelectedIndex(index);
           list.ensureIndexIsVisible(index);
@@ -592,8 +685,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
 
         try {
           model.removeShape(removedShape);
-        }
-        catch (Exception notMotion) {
+        } catch (Exception notMotion) {
           JOptionPane.showMessageDialog(null, "Shape has no motions", "Error",
                   JOptionPane.ERROR_MESSAGE);
         }
@@ -723,8 +815,7 @@ public class AnimatorControllerImpl implements IAnimatorController {
                   Integer.parseInt(blueText.getText()), Integer.parseInt(t1.getText()),
                   Integer.parseInt(t2.getText()));
           frame.dispose();
-        }
-        catch (Exception wrongShape) {
+        } catch (Exception wrongShape) {
           JOptionPane.showMessageDialog(null, "Invalid Shape Name", "Error",
                   JOptionPane.ERROR_MESSAGE);
         }
