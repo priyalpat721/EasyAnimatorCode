@@ -36,7 +36,7 @@ public class IAnimatorControllerTest {
   public void setUp() throws FileNotFoundException {
     AnimationBuilder<IAnimatorModel> builder = new Builder();
     Readable in = new FileReader("test/smalldemo.txt");
-    IAnimatorModel model; = parseFile(in, builder);
+    IAnimatorModel model = parseFile(in, builder);
     view = new MockView();
     String[] args = {"-in", "in", "-view", "playback"};
 
