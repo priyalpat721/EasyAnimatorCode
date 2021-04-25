@@ -342,7 +342,6 @@ public class AnimatorControllerImpl implements IAnimatorController {
         case KeyEvent.VK_ENTER:
           timer.start();
           count = 0;
-          play();
           break;
         case KeyEvent.VK_SPACE:
           pause();
@@ -698,7 +697,15 @@ public class AnimatorControllerImpl implements IAnimatorController {
   }
 
   private void save() {
+    JTextField filename = new JTextField();
+    JFileChooser fileChooser = new JFileChooser();
+    if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+      if (fileChooser.getName().contains(".txt") || fileChooser.getName().contains(".svg"))
+      filename.setText(fileChooser.getName());
+    }
+    else {
 
+    }
   }
 
   private JLabel setConstraints(String message, GridBagConstraints constraints,

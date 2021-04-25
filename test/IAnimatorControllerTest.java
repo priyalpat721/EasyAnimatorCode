@@ -64,8 +64,8 @@ public class IAnimatorControllerTest {
     KeyEvent space = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_SPACE, '\b');
     // resume: key 's'
-    KeyEvent keyS = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
-            System.currentTimeMillis(), 0,  KeyEvent.VK_S, 's');
+    KeyEvent keyK = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
+            System.currentTimeMillis(), 0,  KeyEvent.VK_K, 'k');
     // restart: key 'r'
     KeyEvent keyR = new KeyEvent(view.getFrame(), KeyEvent.KEY_PRESSED,
             System.currentTimeMillis(), 0,  KeyEvent.VK_R, 'r');
@@ -82,7 +82,7 @@ public class IAnimatorControllerTest {
     // press keys
     view.getFrame().getKeyListeners()[0].keyPressed(enter);
     view.getFrame().getKeyListeners()[0].keyPressed(space);
-    view.getFrame().getKeyListeners()[0].keyPressed(keyS);
+    view.getFrame().getKeyListeners()[0].keyPressed(keyK);
     view.getFrame().getKeyListeners()[0].keyPressed(keyR);
     view.getFrame().getKeyListeners()[0].keyPressed(keyL);
     view.getFrame().getKeyListeners()[0].keyPressed(period);
